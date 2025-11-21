@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Leistungen & Karriere – Jonas Plener</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #4a787d;
+      --accent:  #f4be69;
+      --text:    #111111;
+      --muted:   #4b5563;
+      --bg:      #f4f8f8;
+      --bg-soft: #f9fbfb;
+      --border-soft: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Arimo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background: #ffffff;
+      box-shadow: 0 12px 35px rgba(15,23,42,0.08);
+    }
+
+    /* Topbar – wie auf Seite 1 */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1.8rem;
+      border-bottom: 1px solid var(--border-soft);
+      background: #ffffff;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .topbar-logo img {
+      height: 70px;
+      width: auto;
+      display: block;
+    }
+
+    .topbar-title {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .topbar-tagline {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Hero */
+    header.hero {
+      padding: 2.3rem 1.8rem 2.4rem;
+      border-bottom: 1px solid var(--border-soft);
+      background: linear-gradient(135deg, #ffffff 0%, #f4f8f8 45%, #e8f1f1 100%);
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-text {
+      flex: 1 1 260px;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.15rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.8);
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      background: rgba(255,255,255,0.7);
+    }
+
+    .hero-label span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 2.0rem;
+      margin: 0 0 0.6rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-sub {
+      margin: 0 0 1.1rem;
+      color: var(--muted);
+      max-width: 34rem;
+      font-size: 0.98rem;
+    }
+
+    .hero-tagline {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-photo {
+      flex: 0 0 280px;
+      text-align: right;
+    }
+
+    .hero-photo img {
+      max-width: 380px;
+      height: auto;
+    }
+
+    /* CTA Buttons */
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.6rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.96rem;
+      cursor: pointer;
+      border: none;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #1f2933;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.12);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--primary);
+      border: 1px solid rgba(148,163,184,0.7);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      filter: brightness(1.03);
+      transform: translateY(-1px);
+    }
+
+    .cta-small {
+      font-size: 0.85rem;
+      color: var(--primary);
+      text-decoration: underline;
+      text-decoration-color: rgba(0,0,0,0.15);
+    }
+
+    main {
+      padding: 2.1rem 1.8rem 2.4rem;
+    }
+
+    section {
+      margin-bottom: 2.4rem;
+    }
+
+    h2 {
+      font-family: "Raleway", system-ui, sans-serif;
+      margin: 0 0 0.35rem;
+      font-size: 1.45rem;
+      color: var(--primary);
+    }
+
+    .section-subtitle {
+      margin-bottom: 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    p { margin: 0 0 0.6rem; }
+
+    /* Leistungs-Grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .service-card {
+      background: var(--bg-soft);
+      border-radius: 16px;
+      padding: 1rem 1.1rem 1.1rem;
+      border: 1px solid var(--border-soft);
+    }
+
+    .service-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .service-card h3 {
+      font-family: "Raleway", system-ui, sans-serif;
+      margin: 0 0 0.35rem;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .service-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.3rem 0 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .service-list li {
+      margin-bottom: 0.15rem;
+    }
+
+    /* Karriere-Teil */
+    .career-section {
+      background: linear-gradient(135deg, #fffaf2 0%, #fdf4e6 40%, #f4be69 140%);
+      border-radius: 24px;
+      padding: 1.8rem 1.6rem 1.7rem;
+      border: 1px solid rgba(248,200,112,0.7);
+    }
+
+    .career-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.16rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.15);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .badge span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #16a34a;
+    }
+
+    .career-title {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-size: 1.4rem;
+      margin: 0.6rem 0 0.4rem;
+    }
+
+    .career-sub {
+      font-size: 0.95rem;
+      color: #4b5563;
+      margin-bottom: 0.9rem;
+    }
+
+    .career-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 0.4rem;
+    }
+
+    .career-block {
+      background: rgba(255,255,255,0.75);
+      border-radius: 16px;
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(0,0,0,0.08);
+      font-size: 0.9rem;
+    }
+
+    .career-block strong {
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .career-highlight {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.9rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+    }
+
+    .pill {
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(0,0,0,0.08);
+      font-size: 0.83rem;
+    }
+
+    /* Ganzkörperbild */
+    .person-photo-frame {
+      max-width: 340px;
+      margin: 0 auto 0.6rem auto;
+      background: #f4f8f8;
+      border-radius: 18px;
+      padding: 0.9rem 0.9rem 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(15,23,42,0.12);
+    }
+
+    .person-photo-frame img {
+      width: 115%;
+      margin-left: -8%;
+      height: auto;
+      display: block;
+    }
+
+    /* CTA-Block unten */
+    .cta-final {
+      margin-top: 2rem;
+      padding: 1.3rem 1.2rem 1.5rem;
+      border-radius: 18px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border-soft);
+    }
+
+    .cta-final h3 {
+      font-family: "Raleway", system-ui, sans-serif;
+      margin: 0 0 0.4rem;
+      font-size: 1.15rem;
+      color: var(--primary);
+    }
+
+    .cta-final p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    footer {
+      padding: 1.2rem 1.8rem 1.5rem;
+      font-size: 0.8rem;
+      color: #6b7280;
+      border-top: 1px solid var(--border-soft);
+      background: #f9fafb;
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner { flex-direction: column-reverse; align-items: flex-start; }
+      .hero-photo { text-align: left; }
+      .hero h1 { font-size: 1.6rem; }
+      .cta-row { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- TOPBAR – wie auf Seite 1 -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-logo">
+        <img src="logo.png" alt="Logo Jonas Plener">
+      </div>
+      <div>
+        <div class="topbar-title">Jonas Plener</div>
+        <div class="topbar-tagline">Ganzheitliche Finanzberatung</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-label">
+          <span class="dot"></span>
+          Dein Next Level – Finanzen & Karriere
+        </div>
+
+        <h1>Mehr Klarheit für dein Geld. Mehr Perspektive für deine Zukunft.</h1>
+        <p class="hero-sub">
+          Auf dieser Seite siehst du, wie ich dich als Allfinanz-Berater begleite – und warum ich aktuell
+          neue Menschen suche, die wir gemeinsam zu Führungskräften entwickeln.
+        </p>
+        <p class="hero-tagline">
+          Egal ob du deine Finanzen sortieren möchtest oder eine echte Karrierechance suchst:
+          hier starten wir mit einem Gespräch auf Augenhöhe.
+        </p>
+
+        <!-- 3 CTAs -->
+        <div class="cta-row">
+          <!-- Forms: Haupt-CTA -->
+          <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-primary">
+            Kurze Anfrage – ich melde mich bei dir
+          </a>
+          <!-- Bookings: hier deine Outlook-URL einsetzen -->
+          <a href="https://outlook.office.com/bookwithme/user/046519f5c9f24d65979730d47a424ff5@dvag.de/meetingtype/QTun75jJgEaTt0n0wtOqWA2?anonymous&ismsaljsauthenabled&ep=mlink" target="_blank" class="btn-secondary">
+            Direkt einen Termin buchen
+          </a>
+          <!-- WhatsApp kleiner -->
+          <a class="cta-small" href="https://wa.me/4915141678134" target="_blank">
+            oder schreib mir kurz per WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-photo">
+        <img src="jonas-halbkoerper.png" alt="Jonas Plener">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- LEISTUNGEN -->
+    <section id="leistungen">
+      <h2>1. Wie ich dich unterstützen kann</h2>
+      <div class="section-subtitle">
+        Ganzheitliche Allfinanz-Beratung – vom ersten Sparplan bis zum komplexen Versorgungskonzept.
+      </div>
+
+      <div class="grid-3">
+        <div class="service-card">
+          <div class="service-label">Vermögensaufbau</div>
+          <h3>Moderne Geldanlagen</h3>
+          <p>Struktur statt Bauchgefühl: Wir bauen ein Konzept, das zu dir, deinem Einkommen und deinen Zielen passt.</p>
+          <ul class="service-list">
+            <li>✔ Sparpläne & zielorientiertes Investieren</li>
+            <li>✔ Aktienfonds & Vermögensverwaltung</li>
+            <li>✔ Edelmetalle als Beimischung</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-label">Eigentum & Wohnen</div>
+          <h3>Immobilien & Baufinanzierung</h3>
+          <p>Vom ersten Eigenkapital bis zur Anschlussfinanzierung – wir planen deinen Weg ins Eigenheim.</p>
+          <ul class="service-list">
+            <li>✔ Finanzierungskonzepte & Zinsstrategien</li>
+            <li>✔ Bausparkonzepte sinnvoll nutzen</li>
+            <li>✔ Einbindung in deine Gesamtplanung</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-label">Absicherung</div>
+          <h3>Berufs-, Alters- & Gesundheitsvorsorge</h3>
+          <p>Du, deine Familie und dein Einkommen – so abgesichert, dass du nachts ruhig schlafen kannst.</p>
+          <ul class="service-list">
+            <li>✔ Berufsunfähigkeits- & Risikovorsorge</li>
+            <li>✔ Altersvorsorge & Rentenlösungen</li>
+            <li>✔ Gesundheitskonzepte & Krankenzusatz</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-label">Schutz & Liquidität</div>
+          <h3>Versicherungen & Privatkredite</h3>
+          <p>Vom Kfz bis zur Privathaftpflicht – wir bringen Ordnung und Sinn in deine Verträge.</p>
+          <ul class="service-list">
+            <li>✔ Versicherungs-Check mit Struktur</li>
+            <li>✔ Optimierung von Konditionen & Leistungen</li>
+            <li>✔ Gezielter Einsatz von Krediten</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-label">Rechtliches & Förderung</div>
+          <h3>Staatliche Vorteile & Absicherungen</h3>
+          <p>Viele rechtliche und staatliche Bausteine bleiben liegen. Wir schauen, was dir wirklich zusteht – und was sinnvoll ist.</p>
+          <ul class="service-list">
+            <li>✔ Kindererziehungszeiten & Rentenansprüche</li>
+            <li>✔ Steuerersparnisse durch geförderte Produkte</li>
+            <li>✔ Patientenverfügung, Vollmachten & Testament (in Zusammenarbeit mit Fachpartnern)</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-label">Business</div>
+          <h3>Firmenkundenberatung</h3>
+          <p>Für Unternehmer und Selbstständige: Konzepte, die Mitarbeiter binden und dich entlasten.</p>
+          <ul class="service-list">
+            <li>✔ Betriebliche Altersversorgung (bAV)</li>
+            <li>✔ Betriebliche Krankenversicherung (bKV)</li>
+            <li>✔ Absicherung von Inhaber & Schlüsselpersonen</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- KARRIERE / TEAMAUFBAU -->
+    <section id="karriere">
+      <h2>2. Dein nächster Schritt: gemeinsam wachsen im Team</h2>
+      <div class="section-subtitle">
+        Ich vergrößere mein Team und suche Menschen, die menschlich, authentisch und voller Energie sind – und Lust haben, Verantwortung zu übernehmen.
+      </div>
+
+      <div class="career-section">
+        <div class="career-grid">
+          <div>
+            <div class="badge">
+              <span class="dot"></span>
+              Auf der Suche nach neuen Führungskräften
+            </div>
+            <h3 class="career-title">Menschlich. Authentisch. Voller Energie.</h3>
+            <p class="career-sub">
+              Ich brauche keine perfekten Lebensläufe, sondern Persönlichkeiten, die wachsen wollen –
+              persönlich, fachlich und unternehmerisch. Wenn du bereit bist, für dich und andere Verantwortung
+              zu übernehmen, könnte das hier dein nächster Schritt sein.
+            </p>
+
+            <div class="career-columns">
+              <div class="career-block">
+                <strong>Was dich erwartet</strong>
+                <p>
+                  Intensive Einarbeitung und echte Begleitung. Wir schauen gemeinsam auf deine Stärken und
+                  entwickeln daraus deinen Weg – Schritt für Schritt hin zur Führungskraft.
+                </p>
+              </div>
+
+              <div class="career-block">
+                <strong>Wie du starten kannst</strong>
+                <p>
+                  Einstieg nebenberuflich möglich, mit klarer Perspektive in den Hauptberuf. Du bekommst eine
+                  fundierte Ausbildung im Allfinanz-Bereich und moderne Tools an die Hand.
+                </p>
+              </div>
+
+              <div class="career-block">
+                <strong>Was mir wichtig ist</strong>
+                <p>
+                  Menschlichkeit, Verlässlichkeit und Energie. Du solltest Lust haben, dich weiterzuentwickeln,
+                  Feedback anzunehmen und langfristig ein eigenes Team aufzubauen.
+                </p>
+              </div>
+            </div>
+
+            <p class="career-highlight">
+              Ich suche gezielt <strong>2–3 Menschen</strong>, die ich persönlich auf ihrem Weg zur Führungskraft begleite.
+              Wenn du dich darin wiederfindest, lass uns sprechen.
+            </p>
+
+            <div class="pill-row">
+              <div class="pill">menschlich & authentisch</div>
+              <div class="pill">Lust auf Verantwortung</div>
+              <div class="pill">lernbereit & coachbar</div>
+              <div class="pill">Energie & Eigeninitiative</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="person-photo-frame">
+              <img src="jonas-ganzkoerper.png" alt="Jonas Plener – dein Ansprechpartner">
+            </div>
+            <p style="font-size:0.9rem;">
+              <strong>Jonas Plener</strong><br>
+              Ganzheitliche Finanzberatung & Teamaufbau<br>
+              Gemeinsam entwickeln wir eine Karriere, die zu deinem Leben passt – nicht andersherum.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FÜR LEISTUNGEN + KARRIERE -->
+    <section id="kontakt">
+      <div class="cta-final">
+        <h3>Bereit für dein Next Level?</h3>
+        <p>
+          Egal, ob du zuerst deine Finanzplanung sortieren möchtest oder ob dich die Karrierechance mehr anspricht:
+          schreib mir kurz, worum es bei dir geht – ich melde mich persönlich bei dir.
+        </p>
+
+        <div class="cta-row">
+          <!-- Forms -->
+          <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-primary">
+            Kurze Anfrage senden
+          </a>
+          <!-- Bookings -->
+          <a href="https://outlook.office.com/bookwithme/user/046519f5c9f24d65979730d47a424ff5@dvag.de/meetingtype/QTun75jJgEaTt0n0wtOqWA2?anonymous&ismsaljsauthenabled&ep=mlink" target="_blank" class="btn-secondary">
+            Direkt Termin auswählen
+          </a>
+          <!-- WhatsApp / Telefon -->
+          <a class="cta-small" href="https://wa.me/4915141678134" target="_blank">
+            oder per WhatsApp melden / Tel. +49 151 41678134
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Diese Seite ersetzt keine individuelle Rechts-, Steuer- oder Sozialversicherungsberatung.
+    Alle Angaben ohne Gewähr. Maßgeblich sind die gesetzlichen Regelungen und die Informationen
+    der jeweiligen Produktanbieter. Die Karrierebeschreibung stellt kein verbindliches
+    Einkommensversprechen dar, sondern zeigt Möglichkeiten und Perspektiven.
+  </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Eltern-Rente-Check – Mehr aus deiner Rente machen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google Fonts: Raleway (Headlines) & Arimo (Text) -->
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Deine Farben */
+      --primary: #4a787d;   /* Petrol */
+      --accent:  #f4be69;   /* Gelb */
+      --text:    #111111;   /* Text */
+      --muted:   #4b5563;   /* Sekundärtext */
+      --bg:      #f4f8f8;   /* Seitenhintergrund leicht getönt */
+      --bg-soft: #f9fbfb;   /* weiche Box-Hintergründe */
+      --bar-base: #d1d5db;  /* Grau für „vorher“ */
+      --bar-boost: #f4be69; /* Gelb für „Förderung“ */
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Arimo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background: #ffffff;
+      box-shadow: 0 12px 35px rgba(15,23,42,0.08);
+    }
+
+    /* Top-Leiste mit Logo */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1.8rem;
+      border-bottom: 1px solid #e5e7eb;
+      background: #ffffff;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .topbar-logo img {
+      height: 70px; /* vergrößert */
+      width: auto;
+      display: block;
+    }
+
+    .topbar-title {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .topbar-tagline {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    header.hero {
+      padding: 2.3rem 1.8rem 2.4rem;
+      border-bottom: 1px solid #e5e7eb;
+      background: linear-gradient(135deg, #ffffff 0%, #f4f8f8 45%, #e8f1f1 100%);
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-text {
+      flex: 1 1 260px;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.15rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.8);
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      background: rgba(255,255,255,0.7);
+    }
+
+    .hero-label span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 2.1rem;
+      margin: 0 0 0.75rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero p {
+      margin: 0 0 1.1rem;
+      color: var(--muted);
+      max-width: 34rem;
+    }
+
+    .hero-tags {
+      margin-bottom: 1.2rem;
+      font-size: 0.85rem;
+    }
+
+    .hero-tags span {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: var(--bg-soft);
+      margin-right: 0.25rem;
+      margin-bottom: 0.25rem;
+      color: var(--primary);
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.95rem 1.9rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #1f2933;
+      font-weight: 600;
+      font-size: 1.0rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.12);
+      text-align: center;
+    }
+
+    .btn-primary.full-width {
+      display: block;
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.03);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      margin-left: 0.7rem;
+      font-size: 0.9rem;
+      color: var(--primary);
+    }
+
+    .hero-photo {
+      flex: 0 0 280px;
+      text-align: right;
+    }
+
+    .hero-photo img {
+      max-width: 400px; /* deutlich größer */
+      height: auto;
+    }
+
+    main {
+      padding: 2.1rem 1.8rem 2.4rem;
+    }
+
+    section {
+      margin-bottom: 2.4rem;
+    }
+
+    h2 {
+      font-family: "Raleway", system-ui, sans-serif;
+      margin: 0 0 0.35rem;
+      font-size: 1.45rem;
+      color: var(--primary);
+    }
+
+    h3 {
+      font-family: "Raleway", system-ui, sans-serif;
+      margin: 1rem 0 0.35rem;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    .section-subtitle {
+      margin-bottom: 0.8rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    p { margin: 0 0 0.6rem; }
+
+    ul {
+      margin: 0.4rem 0 0.8rem 1.1rem;
+      padding: 0;
+    }
+
+    li { margin-bottom: 0.25rem; }
+
+    .two-cols {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .two-cols > div {
+      flex: 1 1 260px;
+    }
+
+    .highlight-box {
+      border-left: 4px solid var(--accent);
+      background: rgba(74, 120, 125, 0.06);
+      padding: 0.85rem 1rem;
+      margin-top: 0.4rem;
+      font-size: 0.94rem;
+      border-radius: 8px;
+    }
+
+    .cta-block {
+      margin-top: 1.3rem;
+      padding: 1rem 1.1rem;
+      border-radius: 0.8rem;
+      background: #fdfaf5;
+      border: 1px solid #f4e4c7;
+      font-size: 0.95rem;
+    }
+
+    .cta-block strong {
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      margin: 0.4rem 0 0;
+      padding: 0;
+      font-size: 0.93rem;
+    }
+
+    .contact-list li {
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-list a {
+      text-decoration: underline;
+      text-decoration-color: rgba(0,0,0,0.2);
+    }
+
+    .person-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .person-photo {
+      max-width: 252px; /* vergrößert */
+    }
+
+    .person-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Beispielkarten / Balkengrafik */
+    .example-card {
+      background: var(--bg-soft);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.95rem;
+    }
+
+    .example-header {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .example-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.3rem 0 0.6rem;
+      font-size: 0.9rem;
+    }
+
+    .example-table td {
+      padding: 0.1rem 0;
+    }
+
+    .example-table td:first-child {
+      color: var(--muted);
+    }
+
+    .example-table td:last-child {
+      text-align: right;
+      font-weight: 500;
+    }
+
+    .example-bar-wrapper {
+      margin-top: 0.4rem;
+    }
+
+    .example-bar-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.15rem;
+    }
+
+    .example-bar {
+      position: relative;
+      width: 100%;
+      height: 16px;
+      border-radius: 999px;
+      background: var(--bar-base);
+      overflow: hidden;
+    }
+
+    .example-bar-boost {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: var(--bar-boost);
+    }
+
+    footer {
+      padding: 1.2rem 1.8rem 1.5rem;
+      font-size: 0.8rem;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      background: #f9fafb;
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner { flex-direction: column-reverse; align-items: flex-start; }
+      .hero-photo { text-align: left; }
+      .hero h1 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Top-Bar mit Logo -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-logo">
+        <img src="logo.png" alt="Logo Jonas Plener">
+      </div>
+      <div>
+        <div class="topbar-title">Jonas Plener</div>
+        <div class="topbar-tagline">Eltern-Renten-Finanzcoach</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO-BEREICH -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-label">
+          <span class="dot"></span>
+          Eltern-Renten-Check · unverbindlich
+        </div>
+
+        <h1>Hol dir, was dir zusteht – und mach mehr aus deiner Rente.</h1>
+        <p>Als Mutter oder Vater hast du besondere Möglichkeiten: Kindererziehungszeiten, staatliche
+           Zulagen und Unterstützung vom Arbeitgeber. Auf dieser Seite bekommst du einen klaren Überblick –
+           ohne Fachchinesisch.</p>
+
+        <div class="hero-tags">
+          <span>Kindererziehungszeiten</span>
+          <span>bAV – betriebliche Altersversorgung</span>
+          <span>Riester &amp; Basisrente</span>
+        </div>
+
+        <!-- Button -> Microsoft Forms -->
+        <a href="https://forms.cloud.microsoft/e/DYguRWAj0N"
+           target="_blank"
+           class="btn-primary">
+           Jetzt Eltern-Renten-Check anfragen
+        </a>
+        <a href="#hebel" class="btn-ghost">Mehr über deine Möglichkeiten erfahren ↓</a>
+      </div>
+
+      <div class="hero-photo">
+        <img src="jonas-halbkoerper.png" alt="Jonas Plener">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ABSCHNITT 1 – Kindererziehungszeiten -->
+    <section id="kez">
+      <h2>1. Kindererziehungszeiten – der Rentenbooster für Eltern</h2>
+      <div class="section-subtitle">
+        Staatliche Gutschriften für die Erziehung deiner Kinder – oft nicht oder nur teilweise beantragt.
+      </div>
+      <p>Für deine Kinder können dir bei der Deutschen Rentenversicherung Kindererziehungszeiten
+         gutgeschrieben werden. Das entspricht aktuell ungefähr <strong>120&nbsp;€ zusätzlichem
+         Rentenanspruch pro Kind und Monat</strong> – ein Leben lang.</p>
+      <p>Viele Eltern wissen gar nicht, dass sie diese Möglichkeit haben oder dass Zeiten fehlen.</p>
+      <ul>
+        <li>Prüfen, ob alle Kindererziehungszeiten korrekt erfasst sind</li>
+        <li>Fehlende Zeiten nachtragen lassen (auch rückwirkend möglich)</li>
+        <li>Renteninformation nach der Korrektur neu bewerten</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>Gut zu wissen:</strong>
+        Selbst wenn deine Kinder schon älter sind, lohnt sich ein Blick in den Versicherungsverlauf.
+        Häufig lassen sich fehlende Monate noch ergänzen – und damit deine spätere Rente erhöhen.
+      </div>
+    </section>
+
+    <!-- ABSCHNITT 2 – Rentenlücke -->
+    <section id="luecke">
+      <h2>2. Deine Rentenlücke – reicht das später wirklich?</h2>
+      <div class="section-subtitle">
+        Was sagt deine Renteninformation – und was brauchst du tatsächlich im Ruhestand?
+      </div>
+      <p>Die Renteninformation zeigt dir, wie hoch deine gesetzliche Rente voraussichtlich einmal sein wird.
+         Entscheidend ist: <strong>Reicht dieser Betrag für deinen gewünschten Lebensstandard?</strong></p>
+      <p>Kurzer Selbst-Check:</p>
+      <ul>
+        <li>Weißt du, wie hoch deine Netto-Rente heute wäre, wenn du morgen in Rente gehst?</li>
+        <li>Kennst du deinen Wunschbetrag pro Monat im Ruhestand?</li>
+        <li>Weißt du, wie groß die Lücke zwischen beiden Beträgen ist?</li>
+      </ul>
+      <p>Wenn du eine dieser Fragen mit <strong>„Nein“</strong> beantwortest, lohnt sich ein kurzer Eltern-Renten-Check.</p>
+    </section>
+
+    <!-- ABSCHNITT 3 – Hebel mit Zahlen (kurz) -->
+    <section id="hebel">
+      <h2>3. Deine Förder-Hebel – was bringt was in Euro?</h2>
+      <div class="section-subtitle">
+        Kurz &amp; greifbar: die wichtigsten Bausteine, mit denen du deine Rente aufbessern kannst.
+      </div>
+
+      <div class="two-cols">
+        <div>
+          <h3>Kindererziehungszeiten (KEZ)</h3>
+          <ul>
+            <li>Pro Kind ca. <strong>120&nbsp;€</strong> zusätzlicher Rentenanspruch pro Monat</li>
+            <li>Bis zu 3 Jahre pro Kind werden angerechnet</li>
+            <li>Kann bei mehreren Kindern schnell einige Hundert Euro im Monat ausmachen</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>bAV – Betriebliche Altersversorgung</h3>
+          <ul>
+            <li>Beiträge z. B. <strong>150–300&nbsp;€</strong> monatlich aus dem Brutto</li>
+            <li>Durch Steuer- &amp; Sozialersparnis ist die Nettobelastung oft nur ca. <strong>60–70&nbsp;%</strong> davon</li>
+            <li>Zusätzlich mind. <strong>15&nbsp;% Arbeitgeberzuschuss</strong> üblich (oft mehr)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="two-cols">
+        <div>
+          <h3>Riester – Grund- &amp; Kinderzulagen</h3>
+          <ul>
+            <li><strong>175&nbsp;€ Grundzulage</strong> pro Jahr für dich selbst</li>
+            <li><strong>300&nbsp;€ Kinderzulage</strong> pro Kind und Jahr (ab Geburtsjahr 2008, davor 185&nbsp;€)</li>
+            <li>Max. 2.100&nbsp;€/Jahr (inkl. Zulagen) werden gefördert</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Basisrente (Rürup) – Steuervorteil</h3>
+          <ul>
+            <li>Beiträge sind bis zu einem hohen Höchstbetrag steuerlich absetzbar (je nach Jahr voll oder größtenteils)</li>
+            <li>Besonders spannend bei höherem Einkommen und hohem Steuersatz</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="two-cols">
+        <div>
+          <h3>Private Vorsorge &amp; Investments</h3>
+          <ul>
+            <li>Fonds, ETF-Sparpläne oder fondsgebundene Renten als Ergänzung</li>
+            <li>Langfristig höhere Renditechancen als Sparbuch &amp; Co.</li>
+            <li>Gut kombinierbar mit den geförderten Bausteinen</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Weitere „Booster“</h3>
+          <ul>
+            <li>Freiwillige Beiträge zur Deutschen Rentenversicherung</li>
+            <li>Ausgleich von Abschlägen bei vorgezogenem Rentenbeginn</li>
+            <li>Wohn-Riester (Eigentum als Altersvorsorge-Baustein)</li>
+            <li>Vermögenswirksame Leistungen (VWL) sinnvoll nutzen</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <strong>Wichtig:</strong>
+        Welche Kombination am meisten bringt, hängt immer von deiner persönlichen Situation ab. Im Eltern-Renten-Check gehen wir das gemeinsam durch.
+      </div>
+    </section>
+
+    <!-- ABSCHNITT 4 – einfache Beispielrechnungen mit Balken -->
+    <section id="beispiele">
+      <h2>4. Zwei einfache Beispiele – vorher / nachher</h2>
+      <div class="section-subtitle">
+        Vereinfacht und gerundet – damit du ein Gefühl bekommst, wie stark Förderungen wirken können.
+      </div>
+
+      <div class="two-cols">
+        <!-- Beispiel 1 -->
+        <div class="example-card">
+          <div class="example-header">Beispiel 1: Mutter mit 3 Kindern + KEZ + Riester</div>
+          <p><strong>Ausgangssituation:</strong> Hochrechnung gesetzliche Rente heute: ca. <strong>1.000&nbsp;€</strong>/Monat.</p>
+
+          <table class="example-table">
+            <tr>
+              <td>Gesetzliche Rente heute</td>
+              <td>1.000&nbsp;€</td>
+            </tr>
+            <tr>
+              <td>Kindererziehungszeiten (3 Kinder)</td>
+              <td>+ 360&nbsp;€</td>
+            </tr>
+            <tr>
+              <td>Riester mit Zulagen (vereinfacht hochgerechnet)</td>
+              <td>+ 140&nbsp;€</td>
+            </tr>
+            <tr>
+              <td><strong>Neue Versorgung (vereinfacht)</strong></td>
+              <td><strong>≈ 1.500&nbsp;€</strong></td>
+            </tr>
+          </table>
+
+          <div class="example-bar-wrapper">
+            <div class="example-bar-labels">
+              <span>Vorher: 1.000&nbsp;€</span>
+              <span>Nachher: ca. 1.500&nbsp;€</span>
+            </div>
+            <div class="example-bar">
+              <div class="example-bar-boost" style="width: 100%; background: linear-gradient(to right, var(--bar-base) 0 67%, var(--bar-boost) 67% 100%);"></div>
+            </div>
+          </div>
+
+          <p style="font-size:0.8rem;color:var(--muted);margin-top:0.4rem;">
+            Vereinfachte Modellrechnung, keine Garantie – tatsächliche Werte hängen von Jahrgängen, Beiträgen und Produkten ab.
+          </p>
+        </div>
+
+        <!-- Beispiel 2 -->
+        <div class="example-card">
+          <div class="example-header">Beispiel 2: Vater mit bAV + Basisrente</div>
+          <p><strong>Ausgangssituation:</strong> Hochrechnung gesetzliche Rente: ca. <strong>1.600&nbsp;€</strong>/Monat.</p>
+
+          <table class="example-table">
+            <tr>
+              <td>Gesetzliche Rente heute</td>
+              <td>1.600&nbsp;€</td>
+            </tr>
+            <tr>
+              <td>bAV (vereinfacht)</td>
+              <td>+ 250&nbsp;€</td>
+            </tr>
+            <tr>
+              <td>Basisrente (vereinfacht)</td>
+              <td>+ 150&nbsp;€</td>
+            </tr>
+            <tr>
+              <td><strong>Neue Versorgung (vereinfacht)</strong></td>
+              <td><strong>≈ 2.000&nbsp;€</strong></td>
+            </tr>
+          </table>
+
+          <div class="example-bar-wrapper">
+            <div class="example-bar-labels">
+              <span>Vorher: 1.600&nbsp;€</span>
+              <span>Nachher: ca. 2.000&nbsp;€</span>
+            </div>
+            <div class="example-bar">
+              <div class="example-bar-boost" style="width: 100%; background: linear-gradient(to right, var(--bar-base) 0 80%, var(--bar-boost) 80% 100%);"></div>
+            </div>
+          </div>
+
+          <p style="font-size:0.8rem;color:var(--muted);margin-top:0.4rem;">
+            Auch hier: stark vereinfacht. Steuervorteile, Arbeitgeberzuschüsse und Erträge können die Wirkung weiter verstärken.
+          </p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <strong>Wichtig:</strong>
+        Die Beispiele sind bewusst einfach gehalten und ersetzen keine individuelle Berechnung. Im Eltern-Renten-Check schauen wir uns deine persönlichen Zahlen konkret an.
+      </div>
+    </section>
+
+    <!-- ABSCHNITT 5 – Dein Check + Kontakt -->
+    <section id="kontakt">
+      <h2>5. Dein persönlicher Eltern-Renten-Check mit Jonas</h2>
+      <div class="two-cols">
+        <div>
+          <p>In einem Gespräch von ca. 20–30 Minuten klären wir gemeinsam:</p>
+          <ul>
+            <li>Sind alle Kindererziehungszeiten erfasst und korrekt hinterlegt?</li>
+            <li>Wie groß ist deine aktuelle Rentenlücke?</li>
+            <li>Welche Förderungen (bAV, Riester, Basisrente, weitere Lösungen) passen zu dir?</li>
+          </ul>
+          <p><strong>Ohne Abschlussdruck, ohne Fachchinesisch – du entscheidest danach selbst, was du umsetzen möchtest.</strong></p>
+
+          <div class="cta-block">
+            <strong>So kannst du den Eltern-Renten-Check starten:</strong>
+            <ul class="contact-list">
+              <li>📋 <a href="https://forms.office.com/e/DYguRWAj0N" target="_blank">
+                  Kurzes Formular ausfüllen – ich melde mich bei dir
+              </a></li>
+              <li>📱 Telefon / WhatsApp: <a href="tel:+4915141678134">+49 151 41678134</a></li>
+              <li>✉️ E-Mail: <a href="mailto:jonas.plener@dvag.de">jonas.plener@dvag.de</a></li>
+              <li>📸 Instagram: <a href="https://instagram.com/jonas.plener.karrierecoach" target="_blank">@jonas.plener.karrierecoach</a></li>
+            </ul>
+          </div>
+
+          <div class="cta-block" style="margin-top:1.5rem;">
+            <strong>Renten-Booster, die wir im Gespräch prüfen können:</strong>
+            <ul class="contact-list">
+              <li>• Kindererziehungszeiten komplett und korrekt erfassen</li>
+              <li>• bAV mit Arbeitgeberzuschuss optimal nutzen</li>
+              <li>• Riester-Zulagen (Grund- &amp; Kinderzulagen) voll ausschöpfen</li>
+              <li>• Basisrente mit Steuervorteil kombinieren</li>
+              <li>• Private Vorsorge (Fonds / ETFs) passend zur Risikobereitschaft ergänzen</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="person-block">
+          <div class="person-photo">
+            <img src="jonas-ganzkoerper.png" alt="Jonas Plener – dein Ansprechpartner">
+          </div>
+          <div>
+            <p><strong>Jonas Plener</strong><br>
+               Eltern-Renten-Finanzcoach</p>
+            <p>Ich unterstütze Eltern dabei, staatliche Möglichkeiten optimal zu nutzen und ihre Rente mit passenden
+               Strategien langfristig zu stärken. Ziel: Du weißt heute, wie du morgen leben kannst – und welche
+               Schritte sich für dich wirklich lohnen.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Großer Button am Ende: zu weiterer Seite mit deinen Angeboten -->
+      <div style="margin-top:2rem;text-align:center;">
+        <a href="leistung.html" class="btn-primary full-width">
+          Mehr zu meinen Leistungen &amp; Angeboten erfahren
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Diese Seite ersetzt keine individuelle Rechts-, Steuer- oder Sozialversicherungsberatung.
+    Alle Angaben ohne Gewähr. Maßgeblich sind die gesetzlichen Regelungen und die Informationen
+    der Deutschen Rentenversicherung sowie der jeweiligen Anbieter.
+  </footer>
+</div>
+
+</body>
+</html>
