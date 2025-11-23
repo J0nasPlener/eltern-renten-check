@@ -499,6 +499,13 @@
       font-size: 0.9rem;
     }
 
+    .rechner-title {
+      font-weight: 600;
+      font-family: "Raleway", system-ui, sans-serif;
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+
     .rechner-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -528,7 +535,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.65rem 1.3rem;
+      padding: 0.65rem 1.4rem;
       border-radius: 999px;
       border: none;
       background: var(--primary);
@@ -560,6 +567,58 @@
       color: var(--muted);
     }
 
+    .rechner-graphic {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .rechner-box {
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      min-width: 130px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .rechner-box-before {
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    .rechner-box-after {
+      background: linear-gradient(to right, var(--accent), #fde9b0);
+      color: #1f2933;
+    }
+
+    .rechner-arrow {
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .rechner-cta-inline {
+      margin-top: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .rechner-cta-inline .btn-primary {
+      padding: 0.7rem 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .rechner-cta-inline a.secondary-link {
+      font-size: 0.85rem;
+      color: var(--primary);
+      text-decoration: underline;
+      text-decoration-color: rgba(0,0,0,0.18);
+    }
+
     /* Scroll-Animationen */
     .animate-on-scroll {
       opacity: 0;
@@ -579,6 +638,18 @@
       .topbar { padding-inline: 1.2rem; }
       main { padding-inline: 1.2rem; }
       .contact-section { grid-template-columns: minmax(0,1fr); }
+      .rechner-cta-inline {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .rechner-cta-inline .btn-primary {
+        width: 100%;
+        justify-content: center;
+      }
+      .rechner-cta-inline a.secondary-link {
+        text-align: center;
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -642,13 +713,13 @@
 
   <main>
 
-    <!-- MINI-RECHNER direkt am Anfang -->
+    <!-- RECHNER: Eltern-Renten-Potenzial -->
     <section id="rechner">
       <div class="rechner-card animate-on-scroll">
-        <strong>Mini-Rechner: Wie groß könnte dein Renten-Boost (vereinfacht) sein?</strong>
+        <div class="rechner-title">Dein Eltern-Renten-Potenzial auf einen Blick</div>
         <p style="margin:0.3rem 0 0.6rem;color:var(--muted);font-size:0.88rem;">
-          Trage ein paar Eckdaten ein und sieh eine stark vereinfachte Modellrechnung. Sie ersetzt keine
-          individuelle Beratung, zeigt dir aber, was grundsätzlich drin sein könnte.
+          Gib ein paar Eckdaten ein und sieh, welches Renten-Niveau für dich im Bereich des Möglichen liegen könnte –
+          inklusive Kindererziehungszeiten und staatlicher Unterstützung.
         </p>
 
         <form onsubmit="berechneBoost(event)">
@@ -665,19 +736,15 @@
               <label for="kinder">Anzahl deiner Kinder</label>
               <input type="number" id="kinder" min="0" max="10" value="1">
             </div>
-            <div>
-              <label for="kinderNeu">davon nach 2008 geboren</label>
-              <input type="number" id="kinderNeu" min="0" max="10" value="1">
-            </div>
           </div>
 
-          <button type="submit" class="rechner-btn">Vereinfachte Einschätzung anzeigen</button>
+          <button type="submit" class="rechner-btn">Mögliches Renten-Niveau anzeigen</button>
         </form>
 
         <div id="rechner-ergebnis" class="rechner-result"></div>
+
         <div class="rechner-hinweis">
-          Hinweis: Die Rechnung ist stark vereinfacht, gerundet und dient nur der Orientierung. Gesetzliche Anpassungen,
-          Steuern, Produkteigenschaften und individuelle Faktoren bleiben unberücksichtigt.
+          Modellrechnung zur Orientierung. Sie ersetzt keine individuelle Beratung und berücksichtigt nicht alle persönlichen Faktoren.
         </div>
       </div>
     </section>
@@ -726,7 +793,7 @@
           <h3>Kindererziehungszeiten (KEZ)</h3>
           <ul>
             <li>Bis zu 3 Jahre pro Kind anrechenbar</li>
-            <li>Vereinfacht: bis zu ca. 120&nbsp;€ Rentenanspruch pro Kind</li>
+            <li>Bis zu ca. 120&nbsp;€ Rentenanspruch pro Kind möglich</li>
             <li>Oft sind nicht alle Zeiten erfasst – das prüfen wir</li>
           </ul>
         </div>
@@ -744,7 +811,7 @@
           <h3>Riester mit Zulagen</h3>
           <ul>
             <li>175&nbsp;€ Grundzulage pro Jahr</li>
-            <li>Bis zu 300&nbsp;€ Kinderzulage pro Kind und Jahr (nach 2008 geboren)</li>
+            <li>Bis zu 300&nbsp;€ Kinderzulage pro Kind und Jahr möglich</li>
             <li>Gerade für Familien mit Kindern interessant</li>
           </ul>
         </div>
@@ -805,7 +872,7 @@
     <section>
       <h2 class="animate-on-scroll">Wie sich das in Zahlen auswirken kann</h2>
       <div class="section-subtitle animate-on-scroll">
-        Vereinfachte Beispiele, damit du ein Gefühl für die Größenordnungen bekommst – ohne Anspruch auf exakte Berechnung.
+        Modelle, damit du ein Gefühl für die Größenordnungen bekommst – ohne Anspruch auf exakte Berechnung.
       </div>
 
       <div class="example-wrap">
@@ -815,10 +882,10 @@
             <span>Gesetzliche Rente heute</span><span>1.000&nbsp;€</span>
           </div>
           <div class="example-line">
-            <span>Optimierte Rente mit passenden Bausteinen</span><span>≈ 1.500&nbsp;€</span>
+            <span>Rente mit passenden Vorteilen</span><span>≈ 1.500&nbsp;€</span>
           </div>
           <div class="example-highlight">
-            Vereinfachter Mehrwert: ca. 500&nbsp;€ pro Monat
+            Mehrwert: ca. 500&nbsp;€ pro Monat
           </div>
 
           <div class="example-bars">
@@ -829,7 +896,7 @@
               </div>
             </div>
             <div class="bar-row">
-              <div class="bar-label">Nachher: ca. 1.500&nbsp;€</div>
+              <div class="bar-label">Danach: ca. 1.500&nbsp;€</div>
               <div class="bar">
                 <div class="bar-inner-after"></div>
               </div>
@@ -837,7 +904,7 @@
           </div>
 
           <div class="example-footnote">
-            Modellrechnung, gerundet. Konkrete Werte hängen von Jahrgängen, Beiträgen und Produkten ab.
+            Modelle zur Veranschaulichung. Konkrete Werte hängen von Jahrgängen, Beiträgen und Produkten ab.
           </div>
         </div>
 
@@ -847,10 +914,10 @@
             <span>Gesetzliche Rente heute</span><span>1.600&nbsp;€</span>
           </div>
           <div class="example-line">
-            <span>Optimierte Rente mit passenden Bausteinen</span><span>≈ 2.000&nbsp;€</span>
+            <span>Rente mit passenden Vorteilen</span><span>≈ 2.000&nbsp;€</span>
           </div>
           <div class="example-highlight">
-            Vereinfachter Mehrwert: ca. 400&nbsp;€ pro Monat
+            Mehrwert: ca. 400&nbsp;€ pro Monat
           </div>
 
           <div class="example-bars">
@@ -861,7 +928,7 @@
               </div>
             </div>
             <div class="bar-row">
-              <div class="bar-label">Nachher: ca. 2.000&nbsp;€</div>
+              <div class="bar-label">Danach: ca. 2.000&nbsp;€</div>
               <div class="bar">
                 <div class="bar-inner-after-2"></div>
               </div>
@@ -869,7 +936,7 @@
           </div>
 
           <div class="example-footnote">
-            Ebenfalls stark vereinfacht. Steuervorteile und Zuschüsse können die Wirkung weiter erhöhen.
+            Ebenfalls Modellwerte. Steuervorteile und Zuschüsse können die Wirkung weiter erhöhen.
           </div>
         </div>
       </div>
@@ -956,7 +1023,6 @@
     const geburtsdatumInput = document.getElementById("geburtsdatum").value;
     const bruttoInput = parseFloat(document.getElementById("brutto").value.toString().replace(",", "."));
     const kinderGesamtInput = parseInt(document.getElementById("kinder").value || "0", 10);
-    let kinderNeuInput = parseInt(document.getElementById("kinderNeu").value || "0", 10);
     const ausgabe = document.getElementById("rechner-ergebnis");
 
     if (!geburtsdatumInput || isNaN(bruttoInput) || bruttoInput <= 0) {
@@ -984,23 +1050,17 @@
     const jahreBis100 = Math.max(0, 100 - alter);
 
     const kinderGesamt = Math.max(0, kinderGesamtInput);
-    let kinderNeu = Math.max(0, kinderNeuInput);
-    if (kinderNeu > kinderGesamt) {
-      kinderNeu = kinderGesamt;
-    }
-    const kinderAlt = Math.max(0, kinderGesamt - kinderNeu);
 
-    // Basis: sehr grob 40 % vom aktuellen Brutto
+    // Basis: grob 40 % vom aktuellen Brutto
     const basisRente = bruttoInput * 0.4;
 
     // Kindererziehungszeiten als pauschaler Monats-Boost
     const kezBoostMonat = kinderGesamt * 120;
 
-    // Riester-Zulagen-Modell (stark vereinfacht)
+    // Riester-Zulagen-Modell (alle Kinder als maximal gefördert angenommen)
     const grundzulage = 175;
-    const kinderzulageNeu = kinderNeu * 300;  // nach 2008
-    const kinderzulageAlt = kinderAlt * 185;  // vor 2008 
-    const jahresZulagen = grundzulage + kinderzulageNeu + kinderzulageAlt;
+    const kinderzulagenProKind = 300; // bis zu 300 € p. a. pro Kind
+    const jahresZulagen = grundzulage + (kinderGesamt * kinderzulagenProKind);
 
     const jahreSparen = 25;
     const r = 0.06;
@@ -1017,13 +1077,25 @@
 
     const format = (zahl) => zahl.toLocaleString("de-DE", { maximumFractionDigits: 0 });
 
+    const basisText = format(basisRente);
+    const neuText = format(gesamtRenteMonat);
+
     ausgabe.innerHTML = ""
-      + "<strong>Deine stark vereinfachte Einschätzung:</strong>"
+      + "<strong>Dein mögliches Renten-Niveau:</strong>"
       + "<div style='margin-top:0.4rem;'>"
-      + "• Mögliche Monatsrente auf Basis deiner heutigen Daten (ohne Förder-Boost): ca. <strong>" + format(basisRente) + " €</strong><br>"
-      + "• Wenn du relevante Vorteile &amp; Förderungen optimal nutzt, könnte eine Monatsrente von ca. <strong>" + format(gesamtRenteMonat) + " €</strong> im Bereich des Möglichen liegen.<br>"
-      + "• Vereinfachter Mehrwert pro Monat: ca. <strong>" + format(gesamtBoostMonat) + " €</strong><br>"
-      + "• Auf die restliche Lebenszeit bis 100 hochgerechnet: ca. <strong>" + format(lebenszeitBoost) + " €</strong> zusätzlicher Effekt."
+      + "• Rente nur aus deiner aktuellen Situation heraus: ca. <strong>" + basisText + " € pro Monat</strong><br>"
+      + "• Wenn du Vorteile und Förderungen optimal nutzt, könnte eine Monatsrente von rund <strong>" + neuText + " €</strong> im Bereich des Möglichen liegen.<br>"
+      + "• Zusätzlicher Effekt pro Monat: ca. <strong>" + format(gesamtBoostMonat) + " €</strong><br>"
+      + "• Auf die restliche Lebenszeit bis 100 hochgerechnet: bis zu ca. <strong>" + format(lebenszeitBoost) + " €</strong> Extra-Effekt."
+      + "</div>"
+      + "<div class='rechner-graphic'>"
+      + "  <div class='rechner-box rechner-box-before'>Heute: " + basisText + " €</div>"
+      + "  <div class='rechner-arrow'>➜</div>"
+      + "  <div class='rechner-box rechner-box-after'>Mit Vorteilen: " + neuText + " €</div>"
+      + "</div>"
+      + "<div class='rechner-cta-inline'>"
+      + "  <a href='https://forms.cloud.microsoft/e/DYguRWAj0N' target='_blank' class='btn-primary'>Jetzt Eltern-Renten-Check sichern</a>"
+      + "  <a href='https://outlook.office.com/bookwithme/user/046519f5c9f24d65979730d47a424ff5@dvag.de/meetingtype/QTun75jJgEaTt0n0wtOqWA2?anonymous&amp;ismsaljsauthenabled&amp;ep=mlink' target='_blank' class='secondary-link'>Oder direkt Termin buchen</a>"
       + "</div>";
   }
 </script>
