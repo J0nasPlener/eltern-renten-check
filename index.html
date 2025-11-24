@@ -216,6 +216,9 @@
       position: relative;
       display: flex;
       justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 0.7rem;
     }
 
     .hero-photo::before {
@@ -227,6 +230,7 @@
       background: radial-gradient(circle, #f4be69 0, #ffffff 50%, #f4f8f8 100%);
       opacity: 0.5;
       top: 10px;
+      z-index: 0;
     }
 
     .hero-photo img {
@@ -553,6 +557,11 @@
       background: #f9fafb;
     }
 
+    /* Scroll-Anker: damit Badges wirklich drei verschiedene Punkte haben */
+    .anchor-target {
+      scroll-margin-top: 90px;
+    }
+
     /* Rechner */
     .rechner-card {
       border-radius: 18px;
@@ -673,7 +682,7 @@
       padding: 0.8rem 1.3rem;
     }
 
-    /* Scroll Animationen */
+    /* Scroll-Animationen */
     .animate-on-scroll {
       opacity: 0;
       transform: translateY(18px);
@@ -708,19 +717,24 @@
       .hero-photo {
         width: 100%;
         justify-content: center;
+        align-items: center;
       }
       .hero-photo::before {
         width: 180px;
         height: 180px;
-        top: 0;
+        top: 10px;
       }
       .hero-photo img {
-        max-width: 260px;
+        max-width: 280px;
       }
+      /* Tagcard auf Handy NICHT über das Bild, sondern darunter */
       .hero-tagcard {
-        right: 50%;
-        transform: translateX(50%);
-        bottom: -8px;
+        position: static;
+        transform: none;
+        margin-top: 0.6rem;
+        box-shadow: 0 4px 14px rgba(15,23,42,0.15);
+        max-width: 260px;
+        text-align: left;
       }
       section {
         margin-bottom: 1.7rem;
@@ -881,21 +895,21 @@
       </div>
 
       <div class="grid-3">
-        <div class="card animate-on-scroll" id="kez">
+        <div class="card animate-on-scroll anchor-target" id="kez">
           <div class="card-title">Kindererziehungszeiten</div>
           <p>
             Pro Kind können bis zu <strong>120&nbsp;€ monatlicher Rentenanspruch</strong> möglich sein.
             Oft fehlen Monate oder Jahre, weil sie nie korrekt erfasst wurden.
           </p>
         </div>
-        <div class="card animate-on-scroll" id="rente">
+        <div class="card animate-on-scroll anchor-target" id="rente">
           <div class="card-title">Rente und Rentenlücke</div>
           <p>
             Deine Renteninformation ist wichtig, aber ohne Einordnung schwer zu bewerten.
             Wir übersetzen sie gemeinsam in klare Zahlen: <strong>Was bedeutet das netto für Dich?</strong>
           </p>
         </div>
-        <div class="card animate-on-scroll" id="foerderung">
+        <div class="card animate-on-scroll anchor-target" id="foerderung">
           <div class="card-title">Förderungen und Steuern</div>
           <p>
             bAV, Riester, Basisrente und andere Bausteine können Deine eigene Einzahlung deutlich verstärken,
@@ -1124,7 +1138,7 @@
   </footer>
 </div>
 
-<!-- Scroll Animationen und Rechner Logik -->
+<!-- Scroll-Animationen und Rechner-Logik -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const elements = document.querySelectorAll(".animate-on-scroll");
@@ -1173,13 +1187,9 @@
     const jahreBis100 = Math.max(0, 100 - alter);
     const kinderGesamt = Math.max(0, kinderGesamtInput);
 
-    // sehr grobe Annahme: 40 % vom aktuellen Brutto als Basisrente
     const basisRente = bruttoInput * 0.4;
-
-    // Kindererziehungszeiten als pauschaler Monats-Boost
     const kezBoostMonat = kinderGesamt * 120;
 
-    // Riester-Zulagen Modell (bis zu)
     const grundzulage = 175;
     const kinderzulage = kinderGesamt * 300;
     const jahresZulagen = grundzulage + kinderzulage;
@@ -1189,12 +1199,9 @@
     const faktor = (Math.pow(1 + r, jahreSparen) - 1) / r;
     const riesterKapital = jahresZulagen * faktor;
 
-    // Umrechnung in Monatsrente (20 Jahre Leistungsphase)
     const riesterBoostMonat = riesterKapital / (12 * 20);
-
     const gesamtBoostMonat = kezBoostMonat + riesterBoostMonat;
     const gesamtRenteMonat = basisRente + gesamtBoostMonat;
-
     const lebenszeitBoost = gesamtBoostMonat * 12 * jahreBis100;
 
     const format = (zahl) => zahl.toLocaleString("de-DE", { maximumFractionDigits: 0 });
@@ -1221,7 +1228,6 @@
       + "  <a href='https://forms.cloud.microsoft/e/DYguRWAj0N' target='_blank' class='btn-primary btn-rechner-cta'>Jetzt Eltern-Renten-Check anfragen</a>"
       + "</div>";
 
-    // Balkenhöhen setzen
     const basisFill = ausgabe.querySelector(".basis-fill");
     const boostFill = ausgabe.querySelector(".boost-fill");
     if (basisFill && boostFill) {
