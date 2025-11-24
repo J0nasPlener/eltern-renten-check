@@ -155,6 +155,8 @@
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
+      border: 1px solid rgba(148,163,184,0.6);
+      cursor: pointer;
     }
 
     .badge span.arrow {
@@ -232,6 +234,43 @@
       height: auto;
       position: relative;
       z-index: 1;
+    }
+
+    .hero-tagcard {
+      position: absolute;
+      bottom: 0;
+      right: 10px;
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid rgba(148,163,184,0.6);
+      padding: 0.55rem 0.7rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      box-shadow: 0 8px 20px rgba(15,23,42,0.2);
+      z-index: 2;
+      max-width: 190px;
+    }
+
+    .hero-tagcard-title {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-tagcard-line {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .hero-tagcard-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
     }
 
     main {
@@ -634,7 +673,7 @@
       padding: 0.8rem 1.3rem;
     }
 
-    /* Scroll-Animationen */
+    /* Scroll Animationen */
     .animate-on-scroll {
       opacity: 0;
       transform: translateY(18px);
@@ -677,6 +716,11 @@
       }
       .hero-photo img {
         max-width: 260px;
+      }
+      .hero-tagcard {
+        right: 50%;
+        transform: translateX(50%);
+        bottom: -8px;
       }
       section {
         margin-bottom: 1.7rem;
@@ -747,18 +791,18 @@
           Genau da setze ich an: kurz, verständlich und auf Augenhöhe.
         </p>
         <div class="hero-badges">
-          <div class="badge">
+          <a href="#kez" class="badge">
             <span>Kindererziehungszeiten prüfen</span>
             <span class="arrow">↓</span>
-          </div>
-          <div class="badge">
+          </a>
+          <a href="#rente" class="badge">
             <span>bAV und Riester richtig nutzen</span>
             <span class="arrow">↓</span>
-          </div>
-          <div class="badge">
+          </a>
+          <a href="#foerderung" class="badge">
             <span>Rentenlücke klar sehen</span>
             <span class="arrow">↓</span>
-          </div>
+          </a>
         </div>
 
         <div class="cta-row">
@@ -776,6 +820,17 @@
 
       <div class="hero-photo animate-on-scroll">
         <img src="jonas-halbkoerper.png" alt="Jonas Plener">
+        <div class="hero-tagcard">
+          <div class="hero-tagcard-title">Dein Ansprechpartner</div>
+          <div class="hero-tagcard-line">
+            <span class="hero-tagcard-dot"></span>
+            <span>Eltern und Familien im Fokus</span>
+          </div>
+          <div class="hero-tagcard-line">
+            <span class="hero-tagcard-dot"></span>
+            <span>Beratung digital und vor Ort</span>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -826,21 +881,21 @@
       </div>
 
       <div class="grid-3">
-        <div class="card animate-on-scroll">
+        <div class="card animate-on-scroll" id="kez">
           <div class="card-title">Kindererziehungszeiten</div>
           <p>
             Pro Kind können bis zu <strong>120&nbsp;€ monatlicher Rentenanspruch</strong> möglich sein.
             Oft fehlen Monate oder Jahre, weil sie nie korrekt erfasst wurden.
           </p>
         </div>
-        <div class="card animate-on-scroll">
+        <div class="card animate-on-scroll" id="rente">
           <div class="card-title">Rente und Rentenlücke</div>
           <p>
             Deine Renteninformation ist wichtig, aber ohne Einordnung schwer zu bewerten.
             Wir übersetzen sie gemeinsam in klare Zahlen: <strong>Was bedeutet das netto für Dich?</strong>
           </p>
         </div>
-        <div class="card animate-on-scroll">
+        <div class="card animate-on-scroll" id="foerderung">
           <div class="card-title">Förderungen und Steuern</div>
           <p>
             bAV, Riester, Basisrente und andere Bausteine können Deine eigene Einzahlung deutlich verstärken,
@@ -1020,7 +1075,7 @@
             <strong>So kannst Du starten:</strong>
             <ul class="contact-list">
               <li>📋 <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank">
-                Kurzes Formular ausfüllen, ich melde mich bei Dir
+                Kurze Anfrage ausfüllen, ich melde mich bei Dir
               </a></li>
               <li>📅 <a href="https://outlook.office.com/bookwithme/user/046519f5c9f24d65979730d47a424ff5@dvag.de/meetingtype/QTun75jJgEaTt0n0wtOqWA2?anonymous&amp;ismsaljsauthenabled&amp;ep=mlink" target="_blank">
                 Direkt einen freien Termin buchen
@@ -1069,7 +1124,7 @@
   </footer>
 </div>
 
-<!-- Scroll-Animationen und Rechner-Logik -->
+<!-- Scroll Animationen und Rechner Logik -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const elements = document.querySelectorAll(".animate-on-scroll");
@@ -1124,7 +1179,7 @@
     // Kindererziehungszeiten als pauschaler Monats-Boost
     const kezBoostMonat = kinderGesamt * 120;
 
-    // Riester-Zulagen-Modell (bis zu)
+    // Riester-Zulagen Modell (bis zu)
     const grundzulage = 175;
     const kinderzulage = kinderGesamt * 300;
     const jahresZulagen = grundzulage + kinderzulage;
