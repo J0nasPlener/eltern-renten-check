@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Leistungen und Karriere – Jonas Plener</title>
+  <title>Leistungen & Karriere – Jonas Plener</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Google Fonts -->
@@ -136,26 +136,12 @@
       font-size: 0.98rem;
     }
 
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 1.1rem;
-    }
-
-    .badge {
-      padding: 0.18rem 0.7rem;
-      border-radius: 999px;
-      background: var(--bg-soft);
-      font-size: 0.78rem;
-      color: var(--primary);
-    }
-
     .cta-row {
       display: flex;
       flex-wrap: wrap;
       gap: 0.7rem;
       align-items: center;
+      margin-top: 1rem;
     }
 
     .btn-primary,
@@ -204,6 +190,9 @@
       position: relative;
       display: flex;
       justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 0.7rem;
     }
 
     .hero-photo::before {
@@ -215,6 +204,7 @@
       background: radial-gradient(circle, #f4be69 0, #ffffff 50%, #f4f8f8 100%);
       opacity: 0.5;
       top: 10px;
+      z-index: 0;
     }
 
     .hero-photo img {
@@ -222,6 +212,43 @@
       height: auto;
       position: relative;
       z-index: 1;
+    }
+
+    .hero-tagcard {
+      position: absolute;
+      bottom: 0;
+      right: 10px;
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid rgba(148,163,184,0.6);
+      padding: 0.55rem 0.7rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      box-shadow: 0 8px 20px rgba(15,23,42,0.2);
+      z-index: 2;
+      max-width: 210px;
+    }
+
+    .hero-tagcard-title {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-tagcard-line {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .hero-tagcard-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
     }
 
     main {
@@ -248,7 +275,7 @@
 
     .grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.0rem;
     }
 
@@ -269,18 +296,58 @@
       font-size: 1rem;
     }
 
-    .card strong {
-      color: var(--text);
+    .card ul {
+      margin: 0.2rem 0 0;
+      padding-left: 1.1rem;
     }
 
-    .list {
-      margin: 0.3rem 0 0;
-      padding-left: 1rem;
-      font-size: 0.9rem;
-    }
-
-    .list li {
+    .card li {
       margin-bottom: 0.18rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+    }
+
+    .pill {
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.0rem;
+    }
+
+    .step {
+      border-radius: 14px;
+      border: 1px dashed var(--border);
+      padding: 0.9rem 1.0rem;
+      background: #ffffff;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #1f2933;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-right: 0.45rem;
     }
 
     .contact-section {
@@ -350,6 +417,26 @@
       color: var(--muted);
     }
 
+    .btn-gold {
+      background: var(--accent);
+      color: #1f2933;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      border-radius: 999px;
+      padding: 0.9rem 1.7rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-gold:hover {
+      filter: brightness(1.03);
+      transform: translateY(-1px);
+    }
+
     footer {
       padding: 1.0rem 1.4rem 1.3rem;
       font-size: 0.78rem;
@@ -358,35 +445,6 @@
       background: #f9fafb;
     }
 
-    .badge-small {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.1rem 0.55rem;
-      border-radius: 999px;
-      background: #ffffff;
-      border: 1px solid rgba(148,163,184,0.6);
-      font-size: 0.75rem;
-      color: var(--primary);
-      margin-bottom: 0.4rem;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.4rem;
-    }
-
-    .pill {
-      padding: 0.15rem 0.6rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      background: #ffffff;
-      border: 1px solid var(--border);
-      color: var(--muted);
-    }
-
-    /* Scroll-Animationen */
     .animate-on-scroll {
       opacity: 0;
       transform: translateY(18px);
@@ -421,39 +479,43 @@
       .hero-photo {
         width: 100%;
         justify-content: center;
+        align-items: center;
       }
       .hero-photo::before {
         width: 180px;
         height: 180px;
-        top: 0;
+        top: 10px;
       }
       .hero-photo img {
+        max-width: 280px;
+      }
+      /* Tagcard auf Handy unter dem Bild */
+      .hero-tagcard {
+        position: static;
+        transform: none;
+        margin-top: 0.6rem;
+        box-shadow: 0 4px 14px rgba(15,23,42,0.15);
         max-width: 260px;
+        text-align: left;
       }
       section {
         margin-bottom: 1.7rem;
       }
-      .grid-2 {
+      .grid-2,
+      .steps {
         gap: 0.8rem;
       }
-      .card {
+      .card,
+      .step {
         padding: 0.8rem 0.85rem;
+      }
+      .btn-primary,
+      .btn-secondary,
+      .btn-gold {
+        padding-inline: 1.4rem;
       }
       .contact-section {
         grid-template-columns: minmax(0,1fr);
-      }
-      .btn-primary,
-      .btn-secondary {
-        padding-inline: 1.4rem;
-      }
-      .btn-stack-mobile {
-        display: flex;
-        flex-direction: column;
-        gap: 0.6rem;
-      }
-      .btn-stack-mobile a {
-        width: 100%;
-        justify-content: center;
       }
     }
   </style>
@@ -470,11 +532,11 @@
       </div>
       <div>
         <div class="topbar-title">Jonas Plener</div>
-        <div class="topbar-tagline">Finanz- und Karrierecoach</div>
+        <div class="topbar-tagline">Ganzheitliche Finanzberatung &amp; Karriere</div>
       </div>
     </div>
     <div class="topbar-right">
-      Ganzheitliche Finanzplanung und Karrierechancen
+      Beratung für Dich und Dein Umfeld in der Ortenau
     </div>
   </div>
 
@@ -484,235 +546,193 @@
       <div class="hero-text animate-on-scroll">
         <div class="hero-label">
           <span class="dot"></span>
-          Dein nächstes Level in Finanzen und Karriere
+          Dein Next Level – Finanzen &amp; Karriere
         </div>
-        <h1>Leistungen für Dich – und Chancen im Team</h1>
+        <h1>Mehr Klarheit für Dein Geld. Mehr Perspektive für Deine Zukunft.</h1>
         <p class="hero-lead">
-          Ich begleite Dich als ganzheitlicher Finanzcoach und suche gleichzeitig Menschen,
-          die selbst Verantwortung übernehmen und eine Karriere im Finanzbereich starten möchten.
+          Ich begleite Dich als Allfinanz-Berater auf Deinem finanziellen Weg – und baue parallel ein Team aus neuen
+          Führungskräften auf, die Lust auf Verantwortung und echte Entwicklung haben.
         </p>
-        <div class="hero-badges">
-          <span class="badge">Finanzkonzepte für Privatkunden</span>
-          <span class="badge">Lösungen für Unternehmer und Teams</span>
-          <span class="badge">Karriere mit Perspektive</span>
-        </div>
 
-        <div class="cta-row btn-stack-mobile">
+        <div class="cta-row">
           <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-primary">
-            Kurze Anfrage stellen
+            Kurze Anfrage – ich melde mich bei Dir
           </a>
-          <a href="https://outlook.office.com/bookwithme/user/046519f5c9f24d65979730d47a424ff5@dvag.de/meetingtype/QTun75jJgEaTt0n0wtOqWA2?anonymous&amp;ismsaljsauthenabled&amp;ep=mlink" target="_blank" class="btn-secondary">
-            Direkt Termin buchen
+          <a href="https://outlook.office.com/bookwithme/user/046519f5c9f24d65979730d47a424ff5@dvag.de/meetingtype/QTun75jJgEaTt0n0wtOqWA2?anonymous&amp;ismsaljsauthenabled&amp;ep=mlink"
+             target="_blank"
+             class="btn-secondary">
+            Direkt einen Termin buchen
           </a>
-        </div>
-
-        <div style="margin-top:0.5rem;font-size:0.85rem;color:var(--muted);">
-          Du möchtest zurück zum Eltern-Renten-Check?
-          <a href="index.html" style="color:var(--primary);text-decoration:underline;text-decoration-color:rgba(0,0,0,0.18);">
-            Zurück zur Eltern-Seite
+          <a href="https://wa.me/4915141678134" target="_blank" class="cta-soft">
+            oder schreib mir kurz per WhatsApp
           </a>
         </div>
       </div>
 
       <div class="hero-photo animate-on-scroll">
         <img src="jonas-halbkoerper.png" alt="Jonas Plener">
+        <div class="hero-tagcard">
+          <div class="hero-tagcard-title">Finanzen &amp; Karriere im Blick</div>
+          <div class="hero-tagcard-line">
+            <span class="hero-tagcard-dot"></span>
+            <span>Ganzheitliche Strategien statt Einzelbausteine</span>
+          </div>
+          <div class="hero-tagcard-line">
+            <span class="hero-tagcard-dot"></span>
+            <span>Beratung auf Augenhöhe – digital oder vor Ort</span>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
   <main>
 
-    <!-- LEISTUNGEN PRIVAT -->
+    <!-- LEISTUNGEN -->
     <section>
-      <h2 class="animate-on-scroll">Leistungen für Dich als Privatkunde</h2>
+      <h2 class="animate-on-scroll">Wobei ich Dich konkret unterstütze</h2>
       <div class="section-subtitle animate-on-scroll">
-        Ziel: Du verstehst Deine Finanzen und hast einen klaren Plan, der zu Deinem Leben passt.
+        Du bekommst keine Einzelprodukte, sondern ein Finanzkonzept, das zu Deinem Leben passt – als Privatperson
+        und als Unternehmer.
       </div>
 
       <div class="grid-2">
         <div class="card animate-on-scroll">
-          <div class="card-title">Renten- und Vorsorgekonzept</div>
-          <ul class="list">
-            <li>Analyse Deiner aktuellen Situation und Renteninformation</li>
-            <li>Rentenlücke, Kindererziehungszeiten und staatliche Förderung im Blick</li>
-            <li>Kombination aus gesetzlicher Rente, geförderter Vorsorge und privatem Vermögensaufbau</li>
+          <div class="card-title">Deine Finanz- und Absicherungswelt</div>
+          <ul>
+            <li>Moderne Geldanlagen:
+              <span class="pill-row">
+                <span class="pill">Sparpläne</span>
+                <span class="pill">Aktienfonds</span>
+                <span class="pill">Edelmetalle</span>
+              </span>
+            </li>
+            <li>Eigentum &amp; Finanzierung:
+              <span class="pill-row">
+                <span class="pill">Baufinanzierungen</span>
+                <span class="pill">Bausparkonzepte</span>
+              </span>
+            </li>
+            <li>Berufs-, Alters- &amp; Gesundheitsvorsorge:
+              <span class="pill-row">
+                <span class="pill">Berufsunfähigkeit</span>
+                <span class="pill">Altersvorsorge</span>
+                <span class="pill">Krankenzusatz</span>
+              </span>
+            </li>
+            <li>Versicherungen &amp; Privatkredite – sinnvoll strukturiert statt wild gewachsen</li>
           </ul>
-          <div class="pill-row">
-            <span class="pill">Eltern-Renten-Check</span>
-            <span class="pill">Riester und Basisrente</span>
-          </div>
         </div>
 
         <div class="card animate-on-scroll">
-          <div class="card-title">Absicherung und Familie</div>
-          <ul class="list">
-            <li>Absicherung Deiner Arbeitskraft und Deiner Familie</li>
-            <li>Themen wie Berufsunfähigkeit, Risikoabsicherung und Krankenzusatz</li>
-            <li>Fokus darauf, was für Deine Lebensrealität wirklich relevant ist</li>
+          <div class="card-title">Rechtliches &amp; Firmenkunden</div>
+          <ul>
+            <li>Patientenverfügung, Vollmachten und Testament:
+              <span class="pill-row">
+                <span class="pill">Vorsorgevollmacht</span>
+                <span class="pill">Betreuungsverfügung</span>
+              </span>
+            </li>
+            <li>Staatliche Förderungen &amp; Steuervorteile:
+              <span class="pill-row">
+                <span class="pill">Kindererziehungszeiten</span>
+                <span class="pill">bAV</span>
+                <span class="pill">Riester</span>
+                <span class="pill">Basisrente</span>
+              </span>
+            </li>
+            <li>Firmenkundenberatung:
+              <span class="pill-row">
+                <span class="pill">bAV &amp; bKV</span>
+                <span class="pill">Mitarbeiterbindung</span>
+                <span class="pill">Absicherung von Unternehmern</span>
+              </span>
+            </li>
           </ul>
-          <div class="pill-row">
-            <span class="pill">Einkommenssicherung</span>
-            <span class="pill">Familienkonzepte</span>
-          </div>
-        </div>
-
-        <div class="card animate-on-scroll">
-          <div class="card-title">Vermögensaufbau und Investments</div>
-          <ul class="list">
-            <li>Strukturierter Vermögensaufbau mit Fonds und anderen Lösungen</li>
-            <li>Regelmäßige Sparpläne und Einmalanlagen mit Plan und Ziel</li>
-            <li>Transparente Darstellung von Chancen und Risiken</li>
-          </ul>
-          <div class="pill-row">
-            <span class="pill">Sparpläne</span>
-            <span class="pill">Vermögensaufbau</span>
-          </div>
-        </div>
-
-        <div class="card animate-on-scroll">
-          <div class="card-title">Immobilienfinanzierung</div>
-          <ul class="list">
-            <li>Begleitung von der ersten Idee bis zur passenden Finanzierung</li>
-            <li>Vergleich verschiedener Wege, inklusive KfW-Möglichkeiten, wo sinnvoll</li>
-            <li>Einbindung in Dein Gesamt-Finanzkonzept</li>
-          </ul>
-          <div class="pill-row">
-            <span class="pill">Eigenheim</span>
-            <span class="pill">Kapitalanlage-Immobilien</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LEISTUNGEN UNTERNEHMER -->
-    <section>
-      <h2 class="animate-on-scroll">Leistungen für Unternehmer und Teams</h2>
-      <div class="section-subtitle animate-on-scroll">
-        Wenn Du als Unternehmer etwas für Deine Mitarbeitenden und Dich selbst tun möchtest.
-      </div>
-
-      <div class="grid-2">
-        <div class="card animate-on-scroll">
-          <div class="card-title">Mitarbeiterbindung und Benefits</div>
-          <ul class="list">
-            <li>bAV und bKV als Bausteine für Mitarbeiterbindung und Arbeitgebermarke</li>
-            <li>Einführung in bestehende Strukturen und klare Kommunikation im Team</li>
-            <li>Konzeption, die zum Unternehmen und den Mitarbeitenden passt</li>
-          </ul>
-          <div class="pill-row">
-            <span class="pill">bAV</span>
-            <span class="pill">bKV</span>
-            <span class="pill">Mitarbeiterbindung</span>
-          </div>
-        </div>
-
-        <div class="card animate-on-scroll">
-          <div class="card-title">Unternehmer- und Firmenabsicherung</div>
-          <ul class="list">
-            <li>Analyse von Risiken rund um Dich als Inhaber und Deine Firma</li>
-            <li>Schutz für Dich, das Unternehmen und Deine Familie</li>
-            <li>Aufbau einer Struktur, die langfristig trägt</li>
-          </ul>
-          <div class="pill-row">
-            <span class="pill">Unternehmerkonzepte</span>
-            <span class="pill">Risikomanagement</span>
-          </div>
-        </div>
-
-        <div class="card animate-on-scroll">
-          <div class="card-title">Liquidität und Wachstum</div>
-          <ul class="list">
-            <li>Begleitung beim Thema Liquidität und Finanzierung von Wachstum</li>
-            <li>Einbindung von passenden Finanzbausteinen in Dein Geschäftsmodell</li>
-            <li>Strukturierter Blick auf private und geschäftliche Finanzen</li>
-          </ul>
-          <div class="pill-row">
-            <span class="pill">Liquidität</span>
-            <span class="pill">Wachstum</span>
-          </div>
-        </div>
-
-        <div class="card animate-on-scroll">
-          <div class="card-title">Vorsorge für Unternehmer</div>
-          <ul class="list">
-            <li>Ruhestandsplanung ohne klassische gesetzliche Rente als Hauptsäule</li>
-            <li>Kombination aus privaten, betrieblichen und unternehmerischen Bausteinen</li>
-            <li>Klarer Plan, wie Dein Unternehmen und Dein Vermögen zusammenwirken</li>
-          </ul>
-          <div class="pill-row">
-            <span class="pill">Ruhestandsplanung</span>
-            <span class="pill">Unternehmer-Vorsorge</span>
-          </div>
         </div>
       </div>
     </section>
 
     <!-- KARRIERE -->
     <section>
-      <h2 class="animate-on-scroll">Karriere: Werde Teil meines Teams</h2>
+      <h2 class="animate-on-scroll">Karrierechance: Werde Teil meines Teams</h2>
       <div class="section-subtitle animate-on-scroll">
-        Ich suche Menschen, die menschlich sind, authentisch auftreten und Lust auf Verantwortung und Entwicklung haben.
+        Ich baue mein Team weiter aus und suche Menschen, die menschlich, authentisch und voller Energie sind –
+        und Lust haben, sich zu Führungskräften zu entwickeln.
       </div>
 
       <div class="grid-2">
         <div class="card animate-on-scroll">
-          <span class="badge-small">Was ich suche</span>
-          <div class="card-title">Menschen mit Energie und Haltung</div>
-          <ul class="list">
-            <li>Du hast Freude an Menschen und Kommunikation auf Augenhöhe</li>
-            <li>Du möchtest Verantwortung für Dein eigenes Berufsleben übernehmen</li>
-            <li>Du bist bereit, Dich fachlich und persönlich weiterzuentwickeln</li>
+          <div class="card-title">Was Dich bei uns ausmacht</div>
+          <ul>
+            <li>Du willst Menschen langfristig begleiten, nicht nur einmal etwas verkaufen.</li>
+            <li>Du hast Freude daran, komplexe Themen verständlich zu erklären.</li>
+            <li>Du möchtest fachlich und persönlich wachsen – mit echter Perspektive.</li>
+            <li>Du kannst Dir vorstellen, Verantwortung für ein eigenes Team zu übernehmen.</li>
           </ul>
         </div>
 
         <div class="card animate-on-scroll">
-          <span class="badge-small">Was Dich erwartet</span>
-          <div class="card-title">Perspektive und Entwicklung</div>
-          <ul class="list">
-            <li>Aufbau einer eigenen Karriere im Finanz- und Coachingbereich</li>
-            <li>Coaching, Begleitung und strukturiertes Onboarding</li>
-            <li>Perspektive, mittelfristig eine eigene Führungskraft-Rolle zu übernehmen</li>
-          </ul>
-        </div>
-
-        <div class="card animate-on-scroll">
-          <span class="badge-small">Dein Profil</span>
-          <div class="card-title">Passt das zu Dir?</div>
-          <ul class="list">
-            <li>Du bist menschlich, authentisch und suchst ein Umfeld, in dem Du wachsen kannst</li>
-            <li>Du hast Spaß daran, komplexe Themen verständlich zu machen</li>
-            <li>Du möchtest Leistung bringen, aber nicht in einer klassischen Konzernstruktur untergehen</li>
-          </ul>
-        </div>
-
-        <div class="card animate-on-scroll">
-          <span class="badge-small">Nächster Schritt</span>
-          <div class="card-title">Kurz sprechen und klären, ob es passt</div>
-          <ul class="list">
-            <li>Unverbindliches Kennenlernen, bei dem wir uns gegenseitig ein Bild machen</li>
-            <li>Transparenter Blick auf Chancen, Rahmenbedingungen und Deinen Einstieg</li>
-            <li>Gemeinsam klären wir, ob und wie eine Zusammenarbeit Sinn ergibt</li>
+          <div class="card-title">Was Du bei uns erwarten kannst</div>
+          <ul>
+            <li>Intensive Einarbeitung und Begleitung beim Einstieg – auch nebenberuflich möglich.</li>
+            <li>Klare Entwicklungspfade hin zu Führungsverantwortung.</li>
+            <li>Moderne Arbeitsweise: digital, flexibel und mit starkem Netzwerk im Rücken.</li>
+            <li>Eine Tätigkeit, in der Finanzen, Persönlichkeitsentwicklung und Leadership zusammenkommen.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- KONTAKT / CTA -->
+    <!-- ABLAUF ZUSAMMENARBEIT -->
     <section>
-      <h2 class="animate-on-scroll">So erreichst Du mich</h2>
+      <h2 class="animate-on-scroll">So kann unsere Zusammenarbeit starten</h2>
+      <div class="section-subtitle animate-on-scroll">
+        Egal, ob Du Deine Finanzen sortieren oder eine echte Karrierechance nutzen möchtest:
+        wir beginnen immer mit einem offenen Gespräch auf Augenhöhe.
+      </div>
+
+      <div class="steps">
+        <div class="step animate-on-scroll">
+          <div><span class="step-number">1</span><strong>Kurze Anfrage</strong></div>
+          <p>
+            Du gibst mir ein paar Infos zu Dir: Geht es um Deine privaten Finanzen, um Dein Unternehmen
+            oder um die Karrierechance – oder um alles zusammen?
+          </p>
+        </div>
+        <div class="step animate-on-scroll">
+          <div><span class="step-number">2</span><strong>Analyse &amp; Klarheit</strong></div>
+          <p>
+            Wir schauen uns Deine Ausgangssituation an, ordnen alles und legen gemeinsam fest,
+            welche Themen zuerst sinnvoll sind.
+          </p>
+        </div>
+        <div class="step animate-on-scroll">
+          <div><span class="step-number">3</span><strong>Konzept &amp; Umsetzung</strong></div>
+          <p>
+            Du bekommst einen klaren Plan – für Deine Finanzstruktur und, wenn Du möchtest,
+            Deinen Einstieg oder Ausbau als Beraterin oder Berater in meinem Team.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section>
+      <h2 class="animate-on-scroll">Lass uns über Deine nächsten Schritte sprechen</h2>
       <div class="contact-section">
         <div>
           <div class="contact-box animate-on-scroll">
-            <strong>Deine nächsten Schritte:</strong>
+            <strong>So erreichst Du mich:</strong>
             <ul class="contact-list">
               <li>📋 <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank">
-                Kurze Anfrage ausfüllen, ich melde mich bei Dir
+                Kurze Anfrage ausfüllen – ich melde mich bei Dir
               </a></li>
               <li>📅 <a href="https://outlook.office.com/bookwithme/user/046519f5c9f24d65979730d47a424ff5@dvag.de/meetingtype/QTun75jJgEaTt0n0wtOqWA2?anonymous&amp;ismsaljsauthenabled&amp;ep=mlink" target="_blank">
                 Direkt einen Termin buchen
               </a></li>
               <li>💬 <a href="https://wa.me/4915141678134" target="_blank">
-                Kurze Nachricht per WhatsApp schicken
+                Kurze Nachricht per WhatsApp
               </a></li>
               <li>✉️ <a href="mailto:jonas.plener@dvag.de">jonas.plener@dvag.de</a></li>
               <li>📸 <a href="https://instagram.com/jonas.plener.karrierecoach" target="_blank">
@@ -728,20 +748,20 @@
           </div>
           <div>
             <p><strong>Jonas Plener</strong><br>
-              Finanz- und Karrierecoach · Deutsche Vermögensberatung
+              Ganzheitliche Finanzberatung &amp; Karriereentwicklung
             </p>
             <p>
-              Ob es um Deine eigenen Finanzen geht oder um Deinen möglichen Weg im Team:
-              Mir ist wichtig, dass Du verstehst, welche Chancen Du hast und wie der Weg konkret aussehen kann.
+              Meine Aufgabe ist es, Dir Struktur, Klarheit und echte Perspektiven zu geben – in Deinen Finanzen
+              und, wenn Du möchtest, auch in Deiner beruflichen Entwicklung.
             </p>
           </div>
         </div>
       </div>
 
       <div class="bottom-cta animate-on-scroll">
-        <p>Du möchtest zuerst noch einmal den Eltern-Renten-Check sehen?</p>
-        <a href="index.html" class="btn-primary">
-          Zur Eltern-Renten-Seite wechseln
+        <p>Möchtest Du zurück zum Eltern-Renten-Check und den Rechner noch einmal nutzen?</p>
+        <a href="index.html" class="btn-gold">
+          Zurück zum Eltern-Renten-Check
         </a>
       </div>
     </section>
@@ -755,7 +775,6 @@
   </footer>
 </div>
 
-<!-- Scroll-Animationen -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const elements = document.querySelectorAll(".animate-on-scroll");
