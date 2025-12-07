@@ -117,11 +117,9 @@
     .menu-toggle.open .menu-burger:nth-child(1) {
       transform: translateY(6px) rotate(45deg);
     }
-
     .menu-toggle.open .menu-burger:nth-child(2) {
       opacity: 0;
     }
-
     .menu-toggle.open .menu-burger:nth-child(3) {
       transform: translateY(-6px) rotate(-45deg);
     }
@@ -197,7 +195,9 @@
       margin: 0.1rem 0 0;
     }
 
-    .menu-link-item + .menu-link-item { margin-top: 0.25rem; }
+    .menu-link-item + .menu-link-item {
+      margin-top: 0.25rem;
+    }
 
     .menu-link {
       display: block;
@@ -212,7 +212,9 @@
       color: #6b7280;
     }
 
-    .menu-link:hover { color: var(--primary); }
+    .menu-link:hover {
+      color: var(--primary);
+    }
 
     .menu-panel-footer {
       margin-top: auto;
@@ -430,7 +432,6 @@
 
     .btn-primary,
     .btn-secondary,
-    .btn-wa,
     .btn-gold {
       display: inline-flex;
       align-items: center;
@@ -538,24 +539,11 @@
     </div>
 
     <div>
-      <div class="menu-panel-section-title">Eltern-Retter & Rente</div>
-      <ul class="menu-link-list">
-        <li class="menu-link-item">
-          <!-- Pfad ggf. anpassen: index.html = Seite mit Renten-Check -->
-          <a href="index.html#rentencheck" class="menu-link">
-            Eltern-Renten-Check
-            <span>Renten-Booster für Eltern</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <div>
       <div class="menu-panel-section-title">Leistungen auf dieser Seite</div>
       <ul class="menu-link-list">
         <li class="menu-link-item">
           <a href="#uebersicht" class="menu-link">
-            Überblick für Privatkunden
+            Überblick Privatkunden
             <span>Vorsorge, Absicherung, Vermögensaufbau</span>
           </a>
         </li>
@@ -569,6 +557,19 @@
           <a href="#unternehmen" class="menu-link">
             Unternehmen & Selbstständige
             <span>bAV, BKV, Unternehmer-Absicherung, Factoring</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="menu-panel-section-title">Weitere Seiten</div>
+      <ul class="menu-link-list">
+        <li class="menu-link-item">
+          <!-- Pfad ggf. anpassen: Seite mit Eltern-Renten-Check -->
+          <a href="index.html#rentencheck" class="menu-link">
+            Eltern-Renten-Check
+            <span>Renten-Booster für Eltern</span>
           </a>
         </li>
       </ul>
@@ -645,6 +646,13 @@
           </a>
         </div>
 
+        <div class="hero-badges">
+          <a href="index.html#rentencheck" class="badge">
+            <span>Zum Eltern-Renten-Check</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+
         <div class="cta-row">
           <a href="https://forms.cloud.microsoft/e/DYguRWAj0N"
              target="_blank"
@@ -683,8 +691,8 @@
       <div class="tagline">Privatkunden</div>
       <h2>Alles, was Deine Finanzen stabil macht</h2>
       <div class="section-subtitle">
-        Du bekommst kein Produktfeuerwerk, sondern einen roten Faden durch Deine Finanzthemen.
-        Schritt für Schritt – vom Absichern über Vorsorge bis Vermögensaufbau.
+        Du bekommst keinen Produktkatalog, sondern einen roten Faden durch Deine Finanzthemen:
+        Absicherung, Vorsorge und Vermögensaufbau — passend zu Deinem Alltag.
       </div>
 
       <div class="grid-3">
@@ -701,8 +709,8 @@
           <div class="card-title">Vorsorge & Rente</div>
           <ul>
             <li>Altersvorsorge mit und ohne Förderung</li>
-            <li>Eltern-Renter-Konzepte und Kindererziehungszeiten</li>
-            <li>Private & betriebliche Versorgung kombiniert</li>
+            <li>Kombination von gesetzlicher, betrieblicher und privater Rente</li>
+            <li>Strukturierter Fahrplan bis zum Ruhestand</li>
           </ul>
         </div>
 
@@ -746,7 +754,7 @@
           <div class="card-title">Kinder absichern</div>
           <ul>
             <li>Unfall- & Gesundheitsabsicherung für Kinder</li>
-            <li>Frühe Arbeitskraftabsicherung (z.&nbsp;B. Schüler-BU)</li>
+            <li>frühe Arbeitskraftabsicherung (z.&nbsp;B. Schüler-BU)</li>
             <li>Sinnvolle Kombination mit den Eltern-Verträgen</li>
           </ul>
         </div>
@@ -754,9 +762,9 @@
         <div class="card">
           <div class="card-title">Ausbildung & Zukunft</div>
           <ul>
-            <li>Sparen für Ausbildung, Studium und erste eigene Wohnung</li>
+            <li>Sparen für Ausbildung, Studium, erste eigene Wohnung</li>
             <li>Langfristige Sparpläne auf den Namen des Kindes</li>
-            <li>Struktur, wer was für die Kinder übernimmt</li>
+            <li>Klare Aufteilung, wer was für die Kinder übernimmt</li>
           </ul>
         </div>
       </div>
@@ -854,24 +862,24 @@
       menuPanel.setAttribute("aria-hidden", "true");
     }
 
-    menuToggle.addEventListener("click", () => {
-      const isOpen = menuPanel.classList.contains("open");
-      if (isOpen) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
+    if (menuToggle) {
+      menuToggle.addEventListener("click", () => {
+        const isOpen = menuPanel.classList.contains("open");
+        if (isOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+    }
 
-    menuBackdrop.addEventListener("click", closeMenu);
-    menuClose.addEventListener("click", closeMenu);
+    if (menuBackdrop) menuBackdrop.addEventListener("click", closeMenu);
+    if (menuClose) menuClose.addEventListener("click", closeMenu);
 
-    // Menü schließen bei Klick auf Link
     document.querySelectorAll(".menu-link").forEach((link) => {
       link.addEventListener("click", closeMenu);
     });
 
-    // ESC schließt Menü
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         closeMenu();
