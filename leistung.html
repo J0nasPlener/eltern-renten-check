@@ -199,20 +199,55 @@
       margin-top: 0.25rem;
     }
 
-    .menu-link {
+    .menu-link,
+    .menu-link-parent {
       display: block;
       padding: 0.35rem 0;
       font-size: 0.9rem;
       color: #111827;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      width: 100%;
     }
 
-    .menu-link span {
+    .menu-link span,
+    .menu-link-parent span {
       display: block;
       font-size: 0.78rem;
       color: #6b7280;
     }
 
-    .menu-link:hover {
+    .menu-link:hover,
+    .menu-link-parent:hover {
+      color: var(--primary);
+    }
+
+    .menu-sublink-list {
+      list-style: none;
+      padding-left: 0.8rem;
+      margin: 0.15rem 0 0.3rem;
+      border-left: 1px solid #e5e7eb;
+      display: none;
+    }
+
+    .menu-sublink-list.open {
+      display: block;
+    }
+
+    .menu-sublink-list li + li {
+      margin-top: 0.12rem;
+    }
+
+    .menu-sublink {
+      font-size: 0.82rem;
+      padding: 0.15rem 0;
+      display: block;
+      color: #374151;
+    }
+
+    .menu-sublink:hover {
       color: var(--primary);
     }
 
@@ -358,6 +393,14 @@
       background: var(--accent);
     }
 
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
     main {
       padding: 1.8rem 1.4rem 2.4rem;
       flex: 1;
@@ -430,6 +473,16 @@
       margin-bottom: 0.25rem;
     }
 
+    .card-clickable {
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card-clickable:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.09);
+    }
+
     .btn-primary,
     .btn-secondary,
     .btn-gold {
@@ -495,6 +548,65 @@
       transform: translateY(0);
     }
 
+    /* Modals */
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.3rem 1.4rem 1.2rem;
+      max-width: 420px;
+      width: calc(100% - 2.4rem);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.25);
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .modal h3 {
+      margin: 0 0 0.4rem;
+      font-family: "Raleway", system-ui, sans-serif;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .modal p {
+      margin: 0 0 0.6rem;
+    }
+
+    .modal ul {
+      margin: 0.2rem 0 0.8rem;
+      padding-left: 1.1rem;
+    }
+
+    .modal li + li {
+      margin-top: 0.18rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: flex-end;
+    }
+
+    .modal-main-link {
+      text-decoration: none;
+    }
+
     @media (max-width: 768px) {
       .topbar { padding-inline: 1rem; }
       .topbar-right-text { display: none; }
@@ -524,6 +636,10 @@
       .btn-primary,
       .btn-secondary,
       .btn-gold { width: 100%; justify-content: center; }
+
+      .modal {
+        padding: 1.1rem 1.1rem 1rem;
+      }
     }
   </style>
 </head>
@@ -539,24 +655,100 @@
     </div>
 
     <div>
-      <div class="menu-panel-section-title">Leistungen auf dieser Seite</div>
+      <div class="menu-panel-section-title">Privatkunden</div>
       <ul class="menu-link-list">
         <li class="menu-link-item">
-          <a href="#uebersicht" class="menu-link">
-            Überblick Privatkunden
-            <span>Vorsorge, Absicherung, Vermögensaufbau</span>
-          </a>
+          <button type="button" class="menu-link-parent" data-submenu="sub-absicherung">
+            Absicherung &amp; Schutz
+            <span>Berufsunfähigkeit, Sachschutz, Risikoleben</span>
+          </button>
+          <ul class="menu-sublink-list" id="sub-absicherung">
+            <li><a class="menu-sublink" href="arbeitskraftabsicherung.html">Berufsunfähigkeit &amp; Arbeitskraft</a></li>
+            <li><a class="menu-sublink" href="sachversicherungen.html">Haftpflicht, Hausrat, Wohngebäude</a></li>
+            <li><a class="menu-sublink" href="risikoleben.html">Risikolebensversicherung</a></li>
+          </ul>
         </li>
+
         <li class="menu-link-item">
-          <a href="#familie" class="menu-link">
-            Familie & Kinder
-            <span>Eltern-Retter, Kinder-Absicherung, Ausbildung</span>
-          </a>
+          <button type="button" class="menu-link-parent" data-submenu="sub-vorsorge">
+            Vorsorge &amp; Rente
+            <span>Riester, Rürup, betriebliche Altersvorsorge</span>
+          </button>
+          <ul class="menu-sublink-list" id="sub-vorsorge">
+            <li><a class="menu-sublink" href="riester.html">Riester-Rente</a></li>
+            <li><a class="menu-sublink" href="ruerup-basisrente.html">Rürup / Basisrente</a></li>
+            <li><a class="menu-sublink" href="bav.html">Betriebliche Altersvorsorge (bAV)</a></li>
+          </ul>
         </li>
+
         <li class="menu-link-item">
-          <a href="#unternehmen" class="menu-link">
-            Unternehmen & Selbstständige
+          <button type="button" class="menu-link-parent" data-submenu="sub-vermoegen">
+            Vermögensaufbau &amp; Sparen
+            <span>Fondssparen, Einmalanlagen, Struktur</span>
+          </button>
+          <ul class="menu-sublink-list" id="sub-vermoegen">
+            <li><a class="menu-sublink" href="fondssparen.html">Investment- &amp; Fondssparpläne</a></li>
+            <li><a class="menu-sublink" href="einmalanlagen.html">Strategien für Einmalanlagen</a></li>
+            <li><a class="menu-sublink" href="vermoegensstruktur.html">Vermögensstruktur &amp; Strategie</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="menu-panel-section-title">Familie &amp; Kinder</div>
+      <ul class="menu-link-list">
+        <li class="menu-link-item">
+          <button type="button" class="menu-link-parent" data-submenu="sub-elternretter">
+            Eltern-Retter &amp; Kindererziehungszeiten
+            <span>Rentenansprüche für Eltern prüfen</span>
+          </button>
+          <ul class="menu-sublink-list" id="sub-elternretter">
+            <li><a class="menu-sublink" href="eltern-retter.html">Eltern-Retter Überblick</a></li>
+            <li><a class="menu-sublink" href="kindererziehungszeiten-pruefen.html">Kindererziehungszeiten prüfen</a></li>
+            <li><a class="menu-sublink" href="eltern-rente-optimieren.html">Eltern-Rente optimieren</a></li>
+          </ul>
+        </li>
+
+        <li class="menu-link-item">
+          <button type="button" class="menu-link-parent" data-submenu="sub-kinderabsichern">
+            Kinder absichern
+            <span>Gesundheit, Unfall, Arbeitskraft</span>
+          </button>
+          <ul class="menu-sublink-list" id="sub-kinderabsichern">
+            <li><a class="menu-sublink" href="kinder-gesundheit.html">Gesundheits- &amp; Zusatzschutz</a></li>
+            <li><a class="menu-sublink" href="kinder-unfall.html">Kinder-Unfallabsicherung</a></li>
+            <li><a class="menu-sublink" href="schueler-bu.html">Frühe Arbeitskraftabsicherung (Schüler-BU)</a></li>
+          </ul>
+        </li>
+
+        <li class="menu-link-item">
+          <button type="button" class="menu-link-parent" data-submenu="sub-ausbildung">
+            Ausbildung &amp; Zukunft
+            <span>Sparen für Ausbildung, Studium &amp; Start ins Leben</span>
+          </button>
+          <ul class="menu-sublink-list" id="sub-ausbildung">
+            <li><a class="menu-sublink" href="ausbildungssparen.html">Sparen für Ausbildung &amp; Studium</a></li>
+            <li><a class="menu-sublink" href="kinder-sparplaene.html">Langfristige Sparpläne fürs Kind</a></li>
+            <li><a class="menu-sublink" href="kinder-zukunftsplanung.html">Zukunftsplan &amp; Rollenverteilung</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="menu-panel-section-title">Unternehmen</div>
+      <ul class="menu-link-list">
+        <li class="menu-link-item">
+          <a class="menu-link" href="#unternehmen">
+            Unternehmen &amp; Selbstständige
             <span>bAV, BKV, Unternehmer-Absicherung, Factoring</span>
+          </a>
+        </li>
+        <li class="menu-link-item">
+          <a class="menu-link" href="karriere.html">
+            Karriere &amp; Jobchance
+            <span>DVAG als berufliche Alternative</span>
           </a>
         </li>
       </ul>
@@ -692,32 +884,35 @@
       <h2>Alles, was Deine Finanzen stabil macht</h2>
       <div class="section-subtitle">
         Du bekommst keinen Produktkatalog, sondern einen roten Faden durch Deine Finanzthemen:
-        Absicherung, Vorsorge und Vermögensaufbau — passend zu Deinem Alltag.
+        Absicherung, Vorsorge und Vermögensaufbau – passend zu Deinem Alltag.
       </div>
 
       <div class="grid-3">
-        <div class="card">
-          <div class="card-title">Absicherung & Schutz</div>
+        <!-- Absicherung & Schutz -->
+        <div class="card card-clickable" data-modal-target="modal-absicherung">
+          <div class="card-title">Absicherung &amp; Schutz</div>
           <ul>
-            <li>Berufsunfähigkeit & Arbeitskraftabsicherung</li>
+            <li>Berufsunfähigkeit &amp; Arbeitskraftabsicherung</li>
             <li>Haftpflicht, Hausrat, Wohngebäude</li>
-            <li>Risikoleben für Familie & Immobilien</li>
+            <li>Risikoleben für Familie &amp; Immobilien</li>
           </ul>
         </div>
 
-        <div class="card">
-          <div class="card-title">Vorsorge & Rente</div>
+        <!-- Vorsorge & Rente -->
+        <div class="card card-clickable" data-modal-target="modal-vorsorge">
+          <div class="card-title">Vorsorge &amp; Rente</div>
           <ul>
-            <li>Altersvorsorge mit und ohne Förderung</li>
-            <li>Kombination von gesetzlicher, betrieblicher und privater Rente</li>
-            <li>Strukturierter Fahrplan bis zum Ruhestand</li>
+            <li>Riester-Rente mit Zulagen</li>
+            <li>Rürup / Basisrente für Selbstständige &amp; Gutverdiener</li>
+            <li>Betriebliche Altersvorsorge (bAV) über den Arbeitgeber</li>
           </ul>
         </div>
 
-        <div class="card">
-          <div class="card-title">Vermögensaufbau & Sparen</div>
+        <!-- Vermögensaufbau & Sparen -->
+        <div class="card card-clickable" data-modal-target="modal-vermoegen">
+          <div class="card-title">Vermögensaufbau &amp; Sparen</div>
           <ul>
-            <li>Investment- & Fondssparpläne</li>
+            <li>Investment- &amp; Fondssparpläne</li>
             <li>Strategien für Einmalanlagen</li>
             <li>Vermögensstruktur passend zu Deinen Zielen</li>
           </ul>
@@ -741,32 +936,42 @@
       </div>
 
       <div class="grid-3">
-        <div class="card">
-          <div class="card-title">Eltern-Retter & Kindererziehungszeiten</div>
+        <!-- Eltern-Retter -->
+        <div class="card card-clickable" data-modal-target="modal-elternretter">
+          <div class="card-title">Eltern-Retter &amp; Kindererziehungszeiten</div>
           <ul>
-            <li>Prüfung und Optimierung Deiner Kindererziehungszeiten</li>
+            <li>Kindererziehungszeiten prüfen und nachmelden</li>
             <li>Rentenaufbau speziell für Eltern</li>
-            <li>Abgleich mit Deiner gesetzlichen Renteninformation</li>
+            <li>Abgleich mit Deiner Renteninformation</li>
           </ul>
         </div>
 
-        <div class="card">
+        <!-- Kinder absichern -->
+        <div class="card card-clickable" data-modal-target="modal-kinderabsichern">
           <div class="card-title">Kinder absichern</div>
           <ul>
-            <li>Unfall- & Gesundheitsabsicherung für Kinder</li>
-            <li>frühe Arbeitskraftabsicherung (z.&nbsp;B. Schüler-BU)</li>
-            <li>Sinnvolle Kombination mit den Eltern-Verträgen</li>
+            <li>Unfall- &amp; Gesundheitsabsicherung für Kinder</li>
+            <li>Frühe Arbeitskraftabsicherung (z.&nbsp;B. Schüler-BU)</li>
+            <li>Abstimmung mit den Verträgen der Eltern</li>
           </ul>
         </div>
 
-        <div class="card">
-          <div class="card-title">Ausbildung & Zukunft</div>
+        <!-- Ausbildung & Zukunft -->
+        <div class="card card-clickable" data-modal-target="modal-ausbildung">
+          <div class="card-title">Ausbildung &amp; Zukunft</div>
           <ul>
-            <li>Sparen für Ausbildung, Studium, erste eigene Wohnung</li>
+            <li>Sparen für Ausbildung, Studium &amp; Start ins Leben</li>
             <li>Langfristige Sparpläne auf den Namen des Kindes</li>
-            <li>Klare Aufteilung, wer was für die Kinder übernimmt</li>
+            <li>Klarer Zukunftsplan für Eure Familie</li>
           </ul>
         </div>
+      </div>
+
+      <!-- zweiter CTA hier wie gewünscht -->
+      <div class="centered-cta">
+        <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-primary">
+          Gespräch zu Deinen Themen vereinbaren
+        </a>
       </div>
     </section>
 
@@ -785,7 +990,7 @@
           <ul>
             <li>Einführung oder Optimierung der bAV im Unternehmen</li>
             <li>Individuelle Mitarbeiterberatung vor Ort oder digital</li>
-            <li>Unternehmer-Konzept für eigene Versorgung</li>
+            <li>Unternehmer-Konzept für Deine eigene Versorgung</li>
           </ul>
         </div>
 
@@ -793,7 +998,7 @@
           <div class="card-title">BKV & Mitarbeiter-Benefits</div>
           <ul>
             <li>Betriebliche Krankenversicherung (BKV)</li>
-            <li>Zusatzleistungen für Mitarbeiterbindung</li>
+            <li>Zusatzleistungen zur Mitarbeiterbindung</li>
             <li>Praxisnahe Umsetzung inkl. Kommunikation</li>
           </ul>
         </div>
@@ -806,13 +1011,30 @@
             <li>Factoring- & Liquiditätslösungen (je nach Branche)</li>
           </ul>
         </div>
+
+        <div class="card">
+          <div class="card-title">Karriere &amp; Jobchance</div>
+          <ul>
+            <li>Berufliche Neuorientierung im Finanzbereich</li>
+            <li>Nebenberuflicher Einstieg mit Perspektive</li>
+            <li>Flexible Arbeitsmodelle und Entwicklungschancen</li>
+          </ul>
+        </div>
       </div>
 
       <div class="centered-cta">
-        <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-gold">
-          Termin für Unternehmens-Gespräch anfragen
+        <!-- Link soll zu neuer Seite führen -->
+        <a href="unternehmer-termin.html" class="btn-gold">
+          Termin für Unternehmer-Gespräch anfragen
         </a>
       </div>
+    </section>
+
+    <!-- Button zurück zum Eltern-Renten-Check -->
+    <section class="centered-cta">
+      <a href="index.html#rentencheck" class="btn-secondary">
+        Zurück zum Eltern-Renten-Check
+      </a>
     </section>
 
   </main>
@@ -821,6 +1043,110 @@
     Diese Seite ersetzt keine individuelle Rechts-, Steuer- oder Sozialversicherungsberatung.
     Alle Angaben ohne Gewähr. Maßgeblich sind die gesetzlichen Regelungen und die Informationen der jeweiligen Anbieter.
   </footer>
+</div>
+
+<!-- MODALS -->
+
+<!-- Absicherung & Schutz -->
+<div class="modal-backdrop" id="modal-absicherung">
+  <div class="modal">
+    <h3>Absicherung &amp; Schutz – Details</h3>
+    <p>Wähle, womit wir starten sollen:</p>
+    <ul>
+      <li><a href="arbeitskraftabsicherung.html">Berufsunfähigkeit &amp; Arbeitskraftabsicherung</a></li>
+      <li><a href="sachversicherungen.html">Haftpflicht, Hausrat &amp; Wohngebäude</a></li>
+      <li><a href="risikoleben.html">Risikolebensversicherung für Familie &amp; Immobilien</a></li>
+    </ul>
+    <div class="modal-actions">
+      <button type="button" class="btn-secondary" data-close-modal>Schließen</button>
+      <a href="#uebersicht" class="btn-primary modal-main-link">Zur Übersicht Privatkunden</a>
+    </div>
+  </div>
+</div>
+
+<!-- Vorsorge & Rente -->
+<div class="modal-backdrop" id="modal-vorsorge">
+  <div class="modal">
+    <h3>Vorsorge &amp; Rente – Details</h3>
+    <p>Mehr Infos zu den einzelnen Bausteinen:</p>
+    <ul>
+      <li><a href="riester.html">Riester-Rente mit staatlicher Förderung</a></li>
+      <li><a href="ruerup-basisrente.html">Rürup / Basisrente – besonders für Selbstständige</a></li>
+      <li><a href="bav.html">Betriebliche Altersvorsorge (bAV)</a></li>
+    </ul>
+    <div class="modal-actions">
+      <button type="button" class="btn-secondary" data-close-modal>Schließen</button>
+      <a href="#uebersicht" class="btn-primary modal-main-link">Zur Übersicht Privatkunden</a>
+    </div>
+  </div>
+</div>
+
+<!-- Vermögensaufbau & Sparen -->
+<div class="modal-backdrop" id="modal-vermoegen">
+  <div class="modal">
+    <h3>Vermögensaufbau &amp; Sparen – Details</h3>
+    <p>Such Dir aus, womit wir starten:</p>
+    <ul>
+      <li><a href="fondssparen.html">Investment- &amp; Fondssparpläne</a></li>
+      <li><a href="einmalanlagen.html">Konzept für Einmalanlagen</a></li>
+      <li><a href="vermoegensstruktur.html">Vermögensstruktur &amp; Strategie</a></li>
+    </ul>
+    <div class="modal-actions">
+      <button type="button" class="btn-secondary" data-close-modal>Schließen</button>
+      <a href="#uebersicht" class="btn-primary modal-main-link">Zur Übersicht Privatkunden</a>
+    </div>
+  </div>
+</div>
+
+<!-- Eltern-Retter & Kindererziehungszeiten -->
+<div class="modal-backdrop" id="modal-elternretter">
+  <div class="modal">
+    <h3>Eltern-Retter &amp; Kindererziehungszeiten – Details</h3>
+    <p>Was Dich interessiert:</p>
+    <ul>
+      <li><a href="eltern-retter.html">Eltern-Retter – Überblick &amp; Konzept</a></li>
+      <li><a href="kindererziehungszeiten-pruefen.html">Kindererziehungszeiten prüfen &amp; nachmelden</a></li>
+      <li><a href="eltern-rente-optimieren.html">Eltern-Rente gezielt aufbauen</a></li>
+    </ul>
+    <div class="modal-actions">
+      <button type="button" class="btn-secondary" data-close-modal>Schließen</button>
+      <a href="#familie" class="btn-primary modal-main-link">Zur Übersicht Familie &amp; Kinder</a>
+    </div>
+  </div>
+</div>
+
+<!-- Kinder absichern -->
+<div class="modal-backdrop" id="modal-kinderabsichern">
+  <div class="modal">
+    <h3>Kinder absichern – Details</h3>
+    <p>Wo möchtest Du genauer hinschauen?</p>
+    <ul>
+      <li><a href="kinder-gesundheit.html">Gesundheits- &amp; Zusatzschutz für Kinder</a></li>
+      <li><a href="kinder-unfall.html">Kinder-Unfallabsicherung</a></li>
+      <li><a href="schueler-bu.html">Frühe Arbeitskraftabsicherung (Schüler-BU)</a></li>
+    </ul>
+    <div class="modal-actions">
+      <button type="button" class="btn-secondary" data-close-modal>Schließen</button>
+      <a href="#familie" class="btn-primary modal-main-link">Zur Übersicht Familie &amp; Kinder</a>
+    </div>
+  </div>
+</div>
+
+<!-- Ausbildung & Zukunft -->
+<div class="modal-backdrop" id="modal-ausbildung">
+  <div class="modal">
+    <h3>Ausbildung &amp; Zukunft – Details</h3>
+    <p>Wähle, welcher Bereich für Dich gerade wichtig ist:</p>
+    <ul>
+      <li><a href="ausbildungssparen.html">Sparen für Ausbildung &amp; Studium</a></li>
+      <li><a href="kinder-sparplaene.html">Langfristige Sparpläne fürs Kind</a></li>
+      <li><a href="kinder-zukunftsplanung.html">Zukunftsplan &amp; Rollenverteilung</a></li>
+    </ul>
+    <div class="modal-actions">
+      <button type="button" class="btn-secondary" data-close-modal>Schließen</button>
+      <a href="#familie" class="btn-primary modal-main-link">Zur Übersicht Familie &amp; Kinder</a>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -876,14 +1202,62 @@
     if (menuBackdrop) menuBackdrop.addEventListener("click", closeMenu);
     if (menuClose) menuClose.addEventListener("click", closeMenu);
 
+    // Menü schließen bei Klick auf Link
     document.querySelectorAll(".menu-link").forEach((link) => {
       link.addEventListener("click", closeMenu);
     });
 
+    // Sub-Menüs im Burger
+    document.querySelectorAll(".menu-link-parent").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-submenu");
+        const submenu = document.getElementById(id);
+        if (submenu) {
+          submenu.classList.toggle("open");
+        }
+      });
+    });
+
+    // ESC schließt Menü
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         closeMenu();
+        closeAllModals();
       }
+    });
+
+    // Modals
+    const modalTriggers = document.querySelectorAll("[data-modal-target]");
+    const modalBackdrops = document.querySelectorAll(".modal-backdrop");
+
+    function openModal(id) {
+      const backdrop = document.getElementById(id);
+      if (backdrop) {
+        backdrop.classList.add("open");
+      }
+    }
+
+    function closeAllModals() {
+      modalBackdrops.forEach((mb) => mb.classList.remove("open"));
+    }
+
+    modalTriggers.forEach((card) => {
+      card.addEventListener("click", () => {
+        const id = card.getAttribute("data-modal-target");
+        if (id) openModal(id);
+      });
+    });
+
+    modalBackdrops.forEach((mb) => {
+      mb.addEventListener("click", (e) => {
+        if (e.target === mb) {
+          mb.classList.remove("open");
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-close-modal]").forEach((btn) => {
+      btn.addEventListener("click", closeAllModals);
     });
   });
 </script>
