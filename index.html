@@ -56,7 +56,14 @@
 
     .topbar-left { display: flex; align-items: center; gap: 0.75rem; }
 
-    .topbar-logo img { height: 60px; width: auto; display: block; }
+    .topbar-portrait img {
+      height: 54px;
+      width: 54px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.25);
+    }
 
     .topbar-title {
       font-family: "Raleway", system-ui, sans-serif;
@@ -253,7 +260,7 @@
       color: var(--muted);
       box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
       z-index: 2;
-      max-width: 210px;
+      max-width: 220px;
     }
 
     .hero-tagcard-title {
@@ -386,6 +393,8 @@
 
     .calc-expl strong { font-weight: 700; }
 
+    /* Ergebnis-Kästen */
+
     .calc-values {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -400,21 +409,25 @@
       border: 2px solid var(--border);
     }
 
+    /* 1 = Rente heute (rot) */
     .calc-value-box.today {
-      border-color: rgba(220, 38, 38, 0.4);
+      border-color: rgba(220, 38, 38, 0.7);
       background: #fee2e2;
     }
 
+    /* 2 = Rente mit Förderung (neutral/schwarz) */
     .calc-value-box.boosted {
-      border-color: rgba(22, 163, 74, 0.5);
+      border-color: #111827;
+      background: #f3f4f6;
+    }
+
+    /* 3 = Mehr-Rente (grün) */
+    .calc-value-box.diff {
+      border-color: rgba(22, 163, 74, 0.8);
       background: #dcfce7;
     }
 
-    .calc-value-box.diff {
-      border-color: rgba(250, 204, 21, 0.8);
-      background: #fef9c3;
-    }
-
+    /* 4 = Summe bis 100 – kann so bleiben */
     .calc-value-box.total {
       border-color: rgba(148, 163, 184, 0.7);
       background: #eff6ff;
@@ -426,13 +439,18 @@
       margin-bottom: 0.1rem;
     }
 
+    /* Zahlen schön mittig im Kasten, alle auf gleicher Höhe */
     .calc-value-number {
+      display: block;
       font-weight: 700;
       font-size: 1.05rem;
+      margin-top: 2px;
     }
 
-    .calc-value-number.red { color: var(--bad); }
-    .calc-value-number.green { color: var(--good); }
+    /* Farben der Zahlen */
+    .calc-value-number.red   { color: #dc2626; }   /* Rente heute */
+    .calc-value-number.green { color: #16a34a; }   /* Mehr-Rente */
+    .calc-value-number.black { color: #111827; }   /* Rente mit Förderung */
 
     .calc-note {
       margin-top: 0.6rem;
@@ -614,17 +632,20 @@
   <!-- TOPBAR -->
   <div class="topbar">
     <div class="topbar-left">
-      <div class="topbar-logo">
-        <img src="logo.png" alt="Logo Jonas Plener" />
+      <div class="topbar-portrait">
+        <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
       </div>
       <div>
         <div class="topbar-title">Jonas Plener</div>
-        <div class="topbar-tagline">Eltern-Renten-Finanzcoach</div>
+        <div class="topbar-tagline">
+          Agentur für Deutsche Vermögensberatung<br />
+          (Region Kinzigtal / Ortenau)
+        </div>
       </div>
     </div>
     <div class="topbar-right">
       Eltern, Selbstständige und Angestellte<br />
-      in der Ortenau
+      im Kinzigtal & der Ortenau
     </div>
   </div>
 
@@ -638,8 +659,9 @@
         </div>
         <h1>Bis zu <strong>120 €</strong> pro Kind: Weißt Du, ob Du alles bekommst?</h1>
         <p class="hero-lead">
-          Viele Eltern verschenken jeden Monat Rentenansprüche und staatliche Förderungen, weil niemand das Thema mit ihnen
-          klar durchgeht. Genau da setze ich an: kurz, verständlich und auf Augenhöhe.
+          Ich bin Jonas Plener. Viele Eltern verschenken jeden Monat Rentenansprüche und staatliche Förderungen,
+          weil niemand das Thema mit ihnen klar durchgeht. Genau da setze ich an:
+          <strong>kurz, verständlich und auf Augenhöhe.</strong>
         </p>
 
         <!-- 4 Badges -->
@@ -670,7 +692,7 @@
             Eltern-Renten-Check starten
           </a>
 
-          <a href="https://wa.me/4915141678134"
+          <a href="https://wa.me/4917663796605"
              target="_blank"
              class="btn-wa">
             Schreib mir auf WhatsApp
@@ -737,18 +759,25 @@
             </p>
 
             <div class="calc-values">
+              <!-- 1: Rente heute -->
               <div class="calc-value-box today">
                 <div class="calc-value-label">Rente heute (ca. pro Monat)</div>
                 <div class="calc-value-number red" id="res-today">–</div>
               </div>
+
+              <!-- 2: Rente mit Förderung -->
               <div class="calc-value-box boosted">
                 <div class="calc-value-label">Rente mit Förderung (ca. pro Monat)</div>
-                <div class="calc-value-number green" id="res-boosted">–</div>
+                <div class="calc-value-number black" id="res-boosted">–</div>
               </div>
+
+              <!-- 3: Mehr-Rente -->
               <div class="calc-value-box diff">
                 <div class="calc-value-label">Mehr-Rente pro Monat</div>
                 <div class="calc-value-number green" id="res-diff">–</div>
               </div>
+
+              <!-- 4: Summe bis 100 Jahre -->
               <div class="calc-value-box total">
                 <div class="calc-value-label">Zusätzliche Summe bis 100 Jahre</div>
                 <div class="calc-value-number" id="res-lifetime">–</div>
@@ -756,17 +785,17 @@
             </div>
 
             <div class="calc-note">
-              Die Werte sind eine grobe Orientierung und ersetzen keine individuelle Beratung. Welche Bausteine für Dich
-              wirklich passen, klären wir am besten im Gespräch.
+              Die Werte sind eine grobe Orientierung und ersetzen keine individuelle Beratung.
+              Welche Bausteine wirklich zu Dir passen, klären wir am besten im Gespräch.
             </div>
 
             <div class="calc-cta-row">
               <a href="https://forms.cloud.microsoft/e/DYguRWAj0N"
                  target="_blank"
                  class="btn-primary">
-                Ergebnis besprechen
+                Ergebnis mit mir durchgehen
               </a>
-              <a href="https://wa.me/4915141678134"
+              <a href="https://wa.me/4917663796605"
                  target="_blank"
                  class="btn-wa">
                 Ergebnis per WhatsApp schicken
@@ -781,7 +810,7 @@
       </div>
     </section>
 
-    <!-- BEISPIELE gleich nach Rechner -->
+    <!-- BEISPIELE -->
     <section id="beispiele">
       <h2>Wie sich das in Zahlen auswirken kann</h2>
       <div class="section-subtitle">
@@ -865,8 +894,8 @@
     <section id="kez">
       <h2>1. Kindererziehungszeiten: Dein monatlicher Renten-Booster</h2>
       <div class="section-subtitle">
-        Für jedes Kind kannst Du bis zu <strong class="num">120 €</strong> pro Monat an zusätzlicher Rente bekommen. Viele Eltern nutzen das
-        nicht komplett, weil der Antrag nie sauber gemacht wurde.
+        Für jedes Kind kannst Du bis zu <strong class="num">120 €</strong> pro Monat an zusätzlicher Rente bekommen.
+        Viele Eltern nutzen das nicht komplett, weil der Antrag nie sauber gemacht wurde.
       </div>
 
       <div class="grid-2">
@@ -874,7 +903,7 @@
           <div class="card-title">Was wichtig ist</div>
           <ul>
             <li>Zeiten pro Kind werden Deiner Rente gutgeschrieben.</li>
-            <li>Wichtig ist, dass die Zeiten korrekt beantragt sind.</li>
+            <li>Entscheidend ist, dass die Zeiten korrekt beantragt sind.</li>
             <li>Das funktioniert auch, wenn Du heute schon arbeitest oder selbstständig bist.</li>
           </ul>
         </div>
@@ -894,8 +923,8 @@
     <section id="rente">
       <h2>2. bAV und Riester: Förderung, die Deine Rente nach vorne bringt</h2>
       <div class="section-subtitle">
-        Über den Arbeitgeber, über Riester oder über eine Basisrente kannst Du Dir zusätzliche Förderung sichern, die Deine
-        eigene Einzahlung deutlich verstärkt.
+        Über den Arbeitgeber, über Riester oder über eine Basisrente kannst Du Dir zusätzliche Förderung sichern,
+        die Deine eigene Einzahlung deutlich verstärken kann.
       </div>
 
       <div class="grid-2">
@@ -923,8 +952,8 @@
     <section id="foerderung">
       <h2>3. Deine Rentenlücke klar sehen</h2>
       <div class="section-subtitle">
-        Die meisten wissen, dass eine Lücke da ist, aber nicht wie groß sie wirklich ist. Sobald Du Deine Zahlen kennst,
-        kannst Du in Ruhe entscheiden, welche Schritte für Dich passen.
+        Die meisten wissen, dass eine Lücke da ist, aber nicht wie groß sie wirklich ist.
+        Sobald Du Deine Zahlen kennst, kannst Du in Ruhe entscheiden, welche Schritte zu Dir passen.
       </div>
 
       <div class="grid-2">
@@ -1018,13 +1047,11 @@
     if (age < 18) age = 18;
     if (age > 67) age = 67;
 
-    // grobe Näherung: gesetzliche Rente ~ 40 % vom Brutto
     const rentToday = bruttoInput * 0.4;
 
-    // Förderung: Kindererziehungszeiten + Riester-Zulagen (vereinfachte Annahmen)
-    const kezPlus = childrenInput * 120;          // 120 € pro Kind
-    const riesterBase = 175 / 12;                 // Grundzulage
-    const riesterKids = childrenInput * (300 / 12); // Kinderzulagen
+    const kezPlus = childrenInput * 120;
+    const riesterBase = 175 / 12;
+    const riesterKids = childrenInput * (300 / 12);
 
     const monthlyPlus = kezPlus + riesterBase + riesterKids;
 
