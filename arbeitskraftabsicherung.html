@@ -56,6 +56,7 @@
       padding: 0.9rem 1.6rem;
       border-bottom: 1px solid var(--border);
       background: linear-gradient(to right, #ffffff, #fef3c7);
+      position: relative;
     }
 
     .topbar-left {
@@ -91,17 +92,18 @@
       font-size: 0.8rem;
       color: var(--muted);
       text-align: right;
+      margin-right: 3.2rem; /* Platz für Burger */
     }
 
     /* Burger-Menü */
 
     .menu-toggle {
       position: absolute;
-      right: 18px;
+      right: 16px;
       top: 14px;
       background: #ffffff;
       border: 1px solid #e5e7eb;
-      padding: 0.4rem 0.5rem;
+      padding: 0.35rem 0.5rem;
       border-radius: 10px;
       cursor: pointer;
       z-index: 60;
@@ -147,6 +149,7 @@
       z-index: 45;
       transition: right 0.25s ease;
       font-size: 0.9rem;
+      overflow-y: auto;
     }
 
     .menu-panel.open {
@@ -389,13 +392,24 @@
     /* Karten im Stil der Leistungs-Boxen */
 
     .card {
-      background: linear-gradient(to bottom, #f9fbfb, #ffffff);
+      background: linear-gradient(to bottom right, #f1fafb, #ffffff);
       border-radius: 26px;
-      border: 1px solid #c5e1e3;
-      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.06);
+      border: 1px solid #a5d5d9;
+      box-shadow: 0 18px 32px rgba(15, 23, 42, 0.06);
       padding: 1.2rem 1.3rem;
       font-size: 0.9rem;
       color: var(--muted);
+      position: relative;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 26px;
+      border-top: 4px solid var(--primary);
+      pointer-events: none;
+      opacity: 0.9;
     }
 
     .card-title {
@@ -430,28 +444,28 @@
     }
 
     .persons-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      max-width: 420px;
-      margin-top: 0.6rem;
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      justify-items: center;
+      column-gap: 0.5rem;
+      row-gap: 1.4rem;
+      margin-top: 0.8rem;
+      margin-bottom: 0.4rem;
     }
 
     .person {
-      width: 32px;
-      height: 56px;
+      width: 30px;
+      height: 52px;
       border-radius: 16px 16px 10px 10px;
       border: 2px solid #d1d5db;
       position: relative;
-      overflow: visible;
       background: #f9fafb;
     }
 
     .person::before {
-      /* Kopf */
       content: "";
       position: absolute;
-      top: -14px;
+      top: -16px;
       left: 50%;
       transform: translateX(-50%);
       width: 18px;
@@ -462,7 +476,6 @@
     }
 
     .person::after {
-      /* Beine */
       content: "";
       position: absolute;
       bottom: -10px;
@@ -484,7 +497,7 @@
     .persons-note {
       font-size: 0.85rem;
       color: var(--muted);
-      margin-top: 0.7rem;
+      margin-top: 0.4rem;
     }
 
     /* Ursachen – Kreisdiagramm (SVG) */
@@ -605,12 +618,22 @@
 
     .reason-box {
       border-radius: 24px;
-      border: 1px solid #c5e1e3;
-      background: linear-gradient(to bottom, #f9fbfb, #ffffff);
+      border: 1px solid #a5d5d9;
+      background: linear-gradient(to bottom, #f1fafb, #ffffff);
       box-shadow: 0 16px 30px rgba(15, 23, 42, 0.04);
       padding: 0.85rem 0.95rem;
       font-size: 0.9rem;
       color: var(--muted);
+      position: relative;
+    }
+
+    .reason-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      border-top: 3px solid var(--accent);
+      pointer-events: none;
     }
 
     .reason-number {
@@ -634,6 +657,9 @@
     .centered-cta .btn-primary {
       width: 100%;
       max-width: 520px;
+      white-space: normal; /* Text soll umbrechen */
+      line-height: 1.4;
+      padding-inline: 1.4rem;
     }
 
     .back-link {
@@ -657,6 +683,7 @@
 
     @media (max-width: 768px) {
       .topbar { padding-inline: 1rem; }
+      .topbar-right { margin-right: 2.8rem; }
       .menu-toggle { right: 12px; top: 12px; }
 
       header.hero { padding: 2.2rem 1rem 2.2rem; }
@@ -834,32 +861,34 @@
       </div>
     </section>
 
-    <!-- „Jeder Vierte“ – 24 Figuren -->
+    <!-- „Jeder Vierte“ – Figuren -->
     <section class="persons-section">
       <h2>„Jeder Vierte“ – was heißt das eigentlich?</h2>
       <p class="section-subtitle">
-        Stell dir 24 Menschen vor, die heute mit dir im Büro, in der Werkstatt oder im Homeoffice
-        sitzen. <strong>Bei etwa sechs von ihnen wird im Laufe des Berufslebens die Arbeitskraft
+        Stell dir 27 Menschen vor, die heute mit dir im Büro, in der Werkstatt oder im Homeoffice
+        sitzen. <strong>Bei etwa sieben von ihnen wird im Laufe des Berufslebens die Arbeitskraft
         so eingeschränkt, dass der bisherige Job nicht mehr geht.</strong>
       </p>
 
       <div class="card">
         <div id="persons-container" class="persons-grid">
-          <!-- 24 Figuren -->
-          <span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span>
-          <span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span>
-          <span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span>
-          <span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span>
+          <!-- 27 Figuren (3 Reihen à 9) -->
+          <!-- Reihe 1 -->
+          <span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span>
+          <!-- Reihe 2 -->
+          <span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span>
+          <!-- Reihe 3 -->
+          <span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span>
         </div>
         <p class="persons-note">
-          Beim Scrollen werden nacheinander sechs Figuren eingefärbt – <strong>so viele betrifft
+          Beim Scrollen werden nacheinander sieben Figuren eingefärbt – <strong>so viele betrifft
           Berufsunfähigkeit statistisch gesehen</strong>. Erschreckend: Man sieht ihnen vorher
           nicht an, wer es sein wird.
         </p>
       </div>
     </section>
 
-    <!-- Ursachen – Kreisdiagramm (animiert) -->
+    <!-- Ursachen – Kreisdiagramm -->
     <section>
       <h2>Häufigste Ursachen – nicht der Unfall, sondern die Gesundheit</h2>
       <p class="section-subtitle">
@@ -871,8 +900,9 @@
         <div class="charts-grid">
           <div class="pie-causes-wrapper">
             <svg id="causes-chart" class="pie-svg" viewBox="0 0 120 120">
-              <circle cx="60" cy="60" r="40" fill="#ffffff" />
-              <!-- Segmente werden per JavaScript eingefügt -->
+              <!-- Basisring (immer geschlossen) -->
+              <circle cx="60" cy="60" r="40" fill="none" stroke="#e5e7eb" stroke-width="16" />
+              <!-- Farbsegmente werden per JavaScript eingefügt -->
             </svg>
           </div>
 
@@ -1097,11 +1127,11 @@
     menuBackdrop.classList.remove("open");
   });
 
-  // Figuren-Animation „jeder Vierte“ (6 von 24)
+  // Figuren-Animation „jeder Vierte“ (7 von 27)
   document.addEventListener("DOMContentLoaded", () => {
     const personsContainer = document.getElementById("persons-container");
     const persons = Array.from(personsContainer.querySelectorAll(".person"));
-    const toFill = 6;
+    const toFill = 7;
     let animatedPersons = false;
 
     const personsObserver = new IntersectionObserver(
@@ -1137,11 +1167,13 @@
     const center = 60;
     const circumference = 2 * Math.PI * radius;
 
+    const rootStyles = getComputedStyle(document.documentElement);
+
     const segments = [
-      { percent: 40, color: getComputedStyle(document.documentElement).getPropertyValue("--psych") || "#ef4444" },
-      { percent: 25, color: getComputedStyle(document.documentElement).getPropertyValue("--back") || "#f97316" },
-      { percent: 20, color: getComputedStyle(document.documentElement).getPropertyValue("--other") || "#3b82f6" },
-      { percent: 15, color: getComputedStyle(document.documentElement).getPropertyValue("--accident") || "#6b7280" },
+      { percent: 40, color: rootStyles.getPropertyValue("--psych").trim() || "#ef4444" },
+      { percent: 25, color: rootStyles.getPropertyValue("--back").trim() || "#f97316" },
+      { percent: 20, color: rootStyles.getPropertyValue("--other").trim() || "#3b82f6" },
+      { percent: 15, color: rootStyles.getPropertyValue("--accident").trim() || "#6b7280" },
     ];
 
     let startAngle = -90;
@@ -1154,14 +1186,14 @@
       circle.setAttribute("r", radius);
       circle.setAttribute("fill", "none");
       circle.setAttribute("stroke-linecap", "round");
-      circle.style.stroke = seg.color.trim();
+      circle.style.stroke = seg.color;
       circle.style.strokeWidth = "16";
+
       const segLen = (circumference * seg.percent) / 100;
-      circle.style.strokeDasharray = segLen + " " + circumference;
+      circle.style.strokeDasharray = segLen + " " + (circumference - segLen);
       circle.style.strokeDashoffset = circumference;
       circle.style.transformOrigin = center + "px " + center + "px";
       circle.style.transform = "rotate(" + startAngle + "deg)";
-      circle.classList.add("cause-segment");
       svg.appendChild(circle);
 
       startAngle += (360 * seg.percent) / 100;
@@ -1176,9 +1208,9 @@
             segmentNodes.forEach((segObj) => {
               setTimeout(() => {
                 segObj.node.style.transition = "stroke-dashoffset 0.9s ease-out";
-                segObj.node.style.strokeDashoffset = circumference - segObj.len;
+                segObj.node.style.strokeDashoffset = 0;
               }, delay);
-              delay += 500;
+              delay += 450;
             });
             chartObserver.unobserve(svg);
           }
