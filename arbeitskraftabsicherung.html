@@ -21,6 +21,7 @@
       --back: #f97316;
       --other: #3b82f6;
       --accident: #6b7280;
+      --wa: #25d366;
     }
 
     * { box-sizing: border-box; }
@@ -175,10 +176,53 @@
       color: var(--primary);
     }
 
+    /* Buttons */
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.7rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #1f2933;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--primary);
+      border: 1px solid rgba(148, 163, 184, 0.85);
+    }
+
+    .btn-wa {
+      background: var(--wa);
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-wa:hover {
+      filter: brightness(1.03);
+      transform: translateY(-1px);
+    }
+
     /* Hero */
 
     header.hero {
-      padding: 2.8rem 1.6rem 2.6rem; /* etwas mehr Abstand nach oben */
+      padding: 2.8rem 1.6rem 2.6rem;
       border-bottom: 1px solid var(--border);
       background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 45%, #e0f2fe 100%);
     }
@@ -258,39 +302,6 @@
       gap: 0.7rem;
       align-items: center;
       margin-top: 0.5rem;
-    }
-
-    .btn-primary,
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.9rem 1.7rem;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      border: none;
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #1f2933;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-    }
-
-    .btn-secondary {
-      background: #ffffff;
-      color: var(--primary);
-      border: 1px solid rgba(148, 163, 184, 0.85);
-    }
-
-    .btn-primary:hover,
-    .btn-secondary:hover {
-      filter: brightness(1.03);
-      transform: translateY(-1px);
     }
 
     .hero-photo {
@@ -378,10 +389,10 @@
     /* Karten im Stil der Leistungs-Boxen */
 
     .card {
-      background: #ffffff;
-      border-radius: 22px;
-      border: 1px solid #d1e3e4;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+      background: linear-gradient(to bottom, #f9fbfb, #ffffff);
+      border-radius: 26px;
+      border: 1px solid #c5e1e3;
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.06);
       padding: 1.2rem 1.3rem;
       font-size: 0.9rem;
       color: var(--muted);
@@ -404,7 +415,7 @@
 
     .highlight-box {
       background: #fff7ed;
-      border-radius: 14px;
+      border-radius: 18px;
       border: 1px solid #fed7aa;
       padding: 0.9rem 1rem;
       font-size: 0.9rem;
@@ -421,36 +432,51 @@
     .persons-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.35rem;
-      max-width: 360px;
+      gap: 0.4rem;
+      max-width: 420px;
       margin-top: 0.6rem;
     }
 
     .person {
-      width: 26px;
-      height: 42px;
-      border-radius: 12px;
+      width: 32px;
+      height: 56px;
+      border-radius: 16px 16px 10px 10px;
       border: 2px solid #d1d5db;
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       background: #f9fafb;
     }
 
     .person::before {
+      /* Kopf */
       content: "";
       position: absolute;
-      top: -10px;
+      top: -14px;
       left: 50%;
       transform: translateX(-50%);
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       border: 2px solid #d1d5db;
       background: #f9fafb;
     }
 
+    .person::after {
+      /* Beine */
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 10px;
+      border-radius: 10px;
+      border-top: 3px solid #d1d5db;
+    }
+
     .person.filled,
-    .person.filled::before {
+    .person.filled::before,
+    .person.filled::after {
       background: var(--primary);
       border-color: var(--primary);
     }
@@ -458,10 +484,10 @@
     .persons-note {
       font-size: 0.85rem;
       color: var(--muted);
-      margin-top: 0.5rem;
+      margin-top: 0.7rem;
     }
 
-    /* Ursachen – Kreisdiagramm */
+    /* Ursachen – Kreisdiagramm (SVG) */
 
     .charts-grid {
       display: grid;
@@ -478,31 +504,9 @@
       gap: 0.4rem;
     }
 
-    .pie-causes {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      background: conic-gradient(
-        var(--psych) 0 40%,
-        var(--back) 40% 65%,
-        var(--other) 65% 85%,
-        var(--accident) 85% 100%
-      );
-      position: relative;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
-    }
-
-    .pie-causes-inner {
-      position: absolute;
-      inset: 24px;
-      border-radius: 50%;
-      background: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: 0.8rem;
-      padding: 0.2rem 0.4rem;
+    .pie-svg {
+      width: 170px;
+      height: 170px;
     }
 
     .legend {
@@ -568,7 +572,7 @@
 
     .price-table {
       margin-top: 0.7rem;
-      border-radius: 16px;
+      border-radius: 18px;
       background: #f9fafb;
       border: 1px dashed #d1d5db;
       padding: 0.7rem 0.9rem;
@@ -600,10 +604,10 @@
     }
 
     .reason-box {
-      border-radius: 22px;
-      border: 1px solid #d1e3e4;
-      background: #ffffff;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.03);
+      border-radius: 24px;
+      border: 1px solid #c5e1e3;
+      background: linear-gradient(to bottom, #f9fbfb, #ffffff);
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.04);
       padding: 0.85rem 0.95rem;
       font-size: 0.9rem;
       color: var(--muted);
@@ -624,7 +628,12 @@
 
     .centered-cta {
       text-align: center;
-      margin-top: 1.2rem;
+      margin-top: 1.4rem;
+    }
+
+    .centered-cta .btn-primary {
+      width: 100%;
+      max-width: 520px;
     }
 
     .back-link {
@@ -670,6 +679,12 @@
         box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
         max-width: 260px;
         text-align: left;
+      }
+
+      .btn-primary,
+      .btn-secondary,
+      .btn-wa {
+        width: 100%;
       }
     }
   </style>
@@ -763,7 +778,7 @@
           <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" class="btn-primary" target="_blank">
             Gespräch zu deiner Arbeitskraft vereinbaren
           </a>
-          <a href="https://wa.me/4917663796605" class="btn-secondary" target="_blank">
+          <a href="https://wa.me/4917663796605" class="btn-wa" target="_blank">
             Kurzfrage per WhatsApp stellen
           </a>
         </div>
@@ -819,48 +834,32 @@
       </div>
     </section>
 
-    <!-- „Jeder Vierte“ – 20 Figuren -->
+    <!-- „Jeder Vierte“ – 24 Figuren -->
     <section class="persons-section">
       <h2>„Jeder Vierte“ – was heißt das eigentlich?</h2>
       <p class="section-subtitle">
-        Stell dir 20 Menschen vor, die heute mit dir im Büro, in der Werkstatt oder im Homeoffice
-        sitzen. <strong>Bei etwa fünf von ihnen wird im Laufe des Berufslebens die Arbeitskraft
+        Stell dir 24 Menschen vor, die heute mit dir im Büro, in der Werkstatt oder im Homeoffice
+        sitzen. <strong>Bei etwa sechs von ihnen wird im Laufe des Berufslebens die Arbeitskraft
         so eingeschränkt, dass der bisherige Job nicht mehr geht.</strong>
       </p>
 
       <div class="card">
         <div id="persons-container" class="persons-grid">
-          <!-- 20 Figuren -->
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
-          <span class="person"></span>
+          <!-- 24 Figuren -->
+          <span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span>
+          <span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span>
+          <span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span>
+          <span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span><span class="person"></span>
         </div>
         <p class="persons-note">
-          Beim Scrollen werden nacheinander fünf Figuren eingefärbt – <strong>so viele betrifft
+          Beim Scrollen werden nacheinander sechs Figuren eingefärbt – <strong>so viele betrifft
           Berufsunfähigkeit statistisch gesehen</strong>. Erschreckend: Man sieht ihnen vorher
           nicht an, wer es sein wird.
         </p>
       </div>
     </section>
 
-    <!-- Ursachen – Kreisdiagramm -->
+    <!-- Ursachen – Kreisdiagramm (animiert) -->
     <section>
       <h2>Häufigste Ursachen – nicht der Unfall, sondern die Gesundheit</h2>
       <p class="section-subtitle">
@@ -871,12 +870,10 @@
       <div class="card">
         <div class="charts-grid">
           <div class="pie-causes-wrapper">
-            <div class="pie-causes">
-              <div class="pie-causes-inner">
-                Häufige BU-Ursachen<br />
-                (vereinfacht dargestellt)
-              </div>
-            </div>
+            <svg id="causes-chart" class="pie-svg" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="40" fill="#ffffff" />
+              <!-- Segmente werden per JavaScript eingefügt -->
+            </svg>
           </div>
 
           <div class="legend">
@@ -1100,18 +1097,18 @@
     menuBackdrop.classList.remove("open");
   });
 
-  // Figuren-Animation „jeder Vierte“
+  // Figuren-Animation „jeder Vierte“ (6 von 24)
   document.addEventListener("DOMContentLoaded", () => {
     const personsContainer = document.getElementById("persons-container");
     const persons = Array.from(personsContainer.querySelectorAll(".person"));
-    const toFill = 5; // 5 von 20 = jeder Vierte
-    let animated = false;
+    const toFill = 6;
+    let animatedPersons = false;
 
-    const observer = new IntersectionObserver(
+    const personsObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !animated) {
-            animated = true;
+          if (entry.isIntersecting && !animatedPersons) {
+            animatedPersons = true;
             let index = 0;
             const interval = setInterval(() => {
               if (index >= toFill) {
@@ -1121,14 +1118,76 @@
               persons[index].classList.add("filled");
               index++;
             }, 200);
-            observer.unobserve(personsContainer);
+            personsObserver.unobserve(personsContainer);
           }
         });
       },
       { threshold: 0.4 }
     );
 
-    observer.observe(personsContainer);
+    personsObserver.observe(personsContainer);
+  });
+
+  // Kreisdiagramm (SVG) animiert aufbauen
+  document.addEventListener("DOMContentLoaded", () => {
+    const svg = document.getElementById("causes-chart");
+    if (!svg) return;
+
+    const radius = 40;
+    const center = 60;
+    const circumference = 2 * Math.PI * radius;
+
+    const segments = [
+      { percent: 40, color: getComputedStyle(document.documentElement).getPropertyValue("--psych") || "#ef4444" },
+      { percent: 25, color: getComputedStyle(document.documentElement).getPropertyValue("--back") || "#f97316" },
+      { percent: 20, color: getComputedStyle(document.documentElement).getPropertyValue("--other") || "#3b82f6" },
+      { percent: 15, color: getComputedStyle(document.documentElement).getPropertyValue("--accident") || "#6b7280" },
+    ];
+
+    let startAngle = -90;
+    const segmentNodes = [];
+
+    segments.forEach((seg) => {
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", center);
+      circle.setAttribute("cy", center);
+      circle.setAttribute("r", radius);
+      circle.setAttribute("fill", "none");
+      circle.setAttribute("stroke-linecap", "round");
+      circle.style.stroke = seg.color.trim();
+      circle.style.strokeWidth = "16";
+      const segLen = (circumference * seg.percent) / 100;
+      circle.style.strokeDasharray = segLen + " " + circumference;
+      circle.style.strokeDashoffset = circumference;
+      circle.style.transformOrigin = center + "px " + center + "px";
+      circle.style.transform = "rotate(" + startAngle + "deg)";
+      circle.classList.add("cause-segment");
+      svg.appendChild(circle);
+
+      startAngle += (360 * seg.percent) / 100;
+      segmentNodes.push({ node: circle, len: segLen });
+    });
+
+    const chartObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            let delay = 0;
+            segmentNodes.forEach((segObj) => {
+              setTimeout(() => {
+                segObj.node.style.transition = "stroke-dashoffset 0.9s ease-out";
+                segObj.node.style.strokeDashoffset = circumference - segObj.len;
+              }, delay);
+              delay += 500;
+            });
+            chartObserver.unobserve(svg);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    chartObserver.observe(svg);
   });
 </script>
 </body>
