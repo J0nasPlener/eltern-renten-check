@@ -300,7 +300,7 @@
       gap: 0.7rem;
     }
 
-    /* Kein blauer Kreis mehr */
+    /* Halbkörperbild ohne blauen Kreis */
 
     .hero-photo img {
       max-width: 320px;
@@ -397,6 +397,124 @@
 
     .card li { margin-bottom: 0.18rem; }
 
+    /* Kästen im Stil der Leistungsseite */
+
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 0.8rem;
+    }
+
+    .focus-card {
+      background: #ffffff;
+      border-radius: 22px;
+      border: 1px solid #d1e3e4;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      padding: 1.1rem 1.3rem;
+      border-top: 5px solid #4a787d;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .focus-card h3 {
+      margin: 0 0 0.5rem;
+      font-family: "Raleway", system-ui, sans-serif;
+      font-size: 1.05rem;
+      color: #111827;
+    }
+
+    .focus-card ul {
+      margin: 0.1rem 0 0;
+      padding-left: 1.1rem;
+    }
+
+    /* Kuchendiagramme */
+
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 0.9rem;
+      align-items: center;
+    }
+
+    .pie-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .pie {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: conic-gradient(#ef4444 0 25%, #e5e7eb 25% 100%);
+      position: relative;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+    }
+
+    .pie-inner {
+      position: absolute;
+      inset: 20px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-size: 0.78rem;
+    }
+
+    .pie-inner strong {
+      font-size: 1.1rem;
+      color: #ef4444;
+    }
+
+    .bar-chart {
+      width: 100%;
+      max-width: 260px;
+      margin: 0 auto;
+    }
+
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.86rem;
+    }
+
+    .bar-label {
+      width: 95px;
+      color: var(--muted);
+    }
+
+    .bar-track {
+      flex: 1;
+      height: 12px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .bar-fill.red { background: #ef4444; width: 40%; }
+    .bar-fill.orange { background: #f97316; width: 30%; }
+    .bar-fill.blue { background: #3b82f6; width: 20%; }
+    .bar-fill.gray { background: #6b7280; width: 10%; }
+
+    .small-note {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-top: 0.3rem;
+    }
+
     .highlight-box {
       background: #fff7ed;
       border-radius: 14px;
@@ -405,68 +523,6 @@
       font-size: 0.9rem;
       color: #7c2d12;
     }
-
-    .compare-wrapper {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-      margin-top: 0.8rem;
-    }
-
-    .compare-box {
-      border-radius: 16px;
-      padding: 1rem 1.1rem;
-      background: #fef2f2;
-      border: 1px solid #fecaca;
-      font-size: 0.9rem;
-    }
-
-    .compare-box.good {
-      background: #ecfdf3;
-      border-color: #bbf7d0;
-    }
-
-    .compare-title {
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .dot-red, .dot-green {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-    }
-
-    .dot-red { background: #ef4444; }
-    .dot-green { background: #22c55e; }
-
-    .income-bar {
-      margin-top: 0.4rem;
-      height: 14px;
-      border-radius: 999px;
-      background: #fee2e2;
-      overflow: hidden;
-    }
-
-    .income-fill {
-      height: 100%;
-      background: #ef4444;
-      width: 40%;
-    }
-
-    .income-bar.good {
-      background: #bbf7d0;
-    }
-
-    .income-fill.good {
-      background: #22c55e;
-      width: 85%;
-    }
-
-    /* Timeline „Je früher desto besser“ */
 
     .timeline {
       margin-top: 0.8rem;
@@ -566,7 +622,7 @@
       .hero h1 { font-size: 1.6rem; }
       .hero-lead { font-size: 0.92rem; }
 
-      .hero-photo img { max-width: 260px; }
+      .hero-photo img { max-width: 280px; }
 
       .hero-tagcard {
         position: static;
@@ -655,7 +711,7 @@
 
         <div class="hero-badges">
           <div class="badge">Jeder Vierte wird im Laufe des Berufslebens berufsunfähig*</div>
-          <div class="badge">Meistens wegen Krankheit, nicht wegen Unfall*</div>
+          <div class="badge">Häufigste Gründe: Psyche, Rücken, Herz-/Kreislauf</div>
         </div>
 
         <div class="cta-row">
@@ -669,8 +725,8 @@
       </div>
 
       <div class="hero-photo">
-        <!-- Dein Bild bleibt -->
-        <img src="jonas-portrait-klein.png" alt="Jonas Plener" />
+        <!-- Halbkörperbild -->
+        <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
         <div class="hero-tagcard">
           <div class="hero-tagcard-title">Dein Ansprechpartner</div>
           <div class="hero-tagcard-line">
@@ -688,13 +744,52 @@
 
   <main>
 
+    <!-- Fokuskästen wie in leistung.html -->
+    <section>
+      <h2>Dein Schutzbereich „Absicherung & Schutz“ im Überblick</h2>
+      <p class="section-subtitle">
+        Arbeitskraftabsicherung ist ein Baustein in deinem gesamten Sicherheitskonzept. So fügt sie sich
+        mit den anderen Themen zusammen.
+      </p>
+
+      <div class="focus-grid">
+        <div class="focus-card">
+          <h3>Berufsunfähigkeit & Arbeitskraft</h3>
+          <ul>
+            <li>Sichert dein Einkommen bei längerer Krankheit oder Berufsunfähigkeit.</li>
+            <li>Schützt deinen Lebensstandard, deine Familie und deine Vorsorgepläne.</li>
+            <li>Lässt sich an Berufsbild, Einkommen und Lebensphase anpassen.</li>
+          </ul>
+        </div>
+
+        <div class="focus-card">
+          <h3>Haftpflicht, Hausrat, Wohngebäude</h3>
+          <ul>
+            <li>Regelt Sachschäden und Haftungsrisiken – damit ein Schaden nicht dein Budget sprengt.</li>
+            <li>Ergänzt die Arbeitskraftabsicherung: Einkommen gesichert, Vermögen geschützt.</li>
+            <li>Wichtig für Eigentümer, Familien und Selbstständige.</li>
+          </ul>
+        </div>
+
+        <div class="focus-card">
+          <h3>Risikoleben für Familie & Immobilien</h3>
+          <ul>
+            <li>Schützt deine Familie und Kredite, falls du versterben solltest.</li>
+            <li>Passt besonders gut zu BU, wenn Hauskredit und Familie zusammenkommen.</li>
+            <li>Hält finanzielle Verpflichtungen vom Partner fern.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- Warum Arbeitskraft so wichtig ist -->
     <section>
       <h2>Warum deine Arbeitskraft dein größtes Vermögen ist</h2>
       <p class="section-subtitle">
-        Statistisch wird etwa <strong>jeder Vierte bis zum Rentenalter mindestens einmal berufsunfähig</strong> –
-        meist wegen Krankheit oder Psyche, nicht wegen eines Unfalls. Genau diese Lücke
-        zwischen Realität und „Wird schon gutgehen“ schließt eine saubere Arbeitskraftabsicherung.
+        Statistisch wird etwa <strong>jeder Vierte bis zum Rentenalter mindestens einmal berufsunfähig</strong>.
+        Viele denken dabei an schwere Unfälle – tatsächlich sind es oft <strong>psyche, Rücken und
+        innere Erkrankungen</strong>. Genau diese Lücke zwischen Realität und „Wird schon gutgehen“
+        schließt eine saubere Arbeitskraftabsicherung.
       </p>
 
       <div class="grid-2">
@@ -710,7 +805,7 @@
         <div class="card">
           <div class="card-title">Was passiert ohne Absicherung?</div>
           <ul>
-            <li>Gesetzliche Erwerbsminderungsrente greift nur, wenn du <strong>kaum noch arbeiten</strong> kannst – und liegt häufig deutlich unter deinem bisherigen Einkommen.</li>
+            <li>Gesetzliche Erwerbsminderungsrente greift nur, wenn du kaum noch arbeitsfähig bist.</li>
             <li>Rücklagen und Altersvorsorge werden vorzeitig aufgebraucht.</li>
             <li>Finanzielle Entscheidungen werden aus Zwang getroffen: Hausverkauf, Konsumstopp, Verzicht bei der Familie.</li>
           </ul>
@@ -718,59 +813,55 @@
       </div>
     </section>
 
-    <!-- Vergleich ohne / mit Schutz -->
+    <!-- Kuchendiagramme: Jeder Vierte + Gründe -->
     <section>
-      <h2>Einfaches Bild: Ohne Schutz vs. mit guter BU-Rente</h2>
-      <p class="section-subtitle">
-        Die Zahlen müssen nicht perfekt sein, aber das Bild ist klar – mit Arbeitskraftabsicherung
-        bleibt deine finanzielle Handlungsfähigkeit erhalten.
-      </p>
+      <h2>„Jeder Vierte“ – und warum die meisten nicht an Unfall scheitern</h2>
 
-      <div class="compare-wrapper">
-        <div class="compare-box">
-          <div class="compare-title">
-            <span class="dot-red"></span>
-            <span>Ohne Arbeitskraftabsicherung</span>
+      <div class="charts-grid">
+        <div class="pie-wrapper">
+          <div class="pie">
+            <div class="pie-inner">
+              <strong>1 von 4</strong>
+              <span>wird im Laufe des Berufslebens berufsunfähig*</span>
+            </div>
           </div>
-          <p>
-            Dein Nettoeinkommen fällt teilweise oder ganz weg. Was bleibt, ist eventuell eine
-            gesetzliche Erwerbsminderungsrente – oft weit unter dem gewohnten Lebensstandard.
-          </p>
-          <div class="income-bar">
-            <div class="income-fill"></div>
+          <div class="small-note">
+            *Langfristige Statistik – je nach Quelle leicht abweichend, aber die Größenordnung bleibt.
           </div>
-          <p style="font-size:0.82rem; color: var(--danger); margin-top:0.3rem;">
-            Beispiel: 3.000&nbsp;€ Netto &rarr; nach Ausfall bleiben vielleicht 1.200&nbsp;€ gesetzliche Leistungen –
-            Fixkosten und Familie lassen sich damit kaum dauerhaft tragen.
-          </p>
         </div>
 
-        <div class="compare-box good">
-          <div class="compare-title">
-            <span class="dot-green"></span>
-            <span>Mit passender BU- & Arbeitskraftabsicherung</span>
+        <div>
+          <div class="bar-chart">
+            <div class="bar-row">
+              <div class="bar-label">Psyche</div>
+              <div class="bar-track"><div class="bar-fill red"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Rücken & Gelenke</div>
+              <div class="bar-track"><div class="bar-fill orange"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Sonst. Erkrankungen</div>
+              <div class="bar-track"><div class="bar-fill blue"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Unfälle</div>
+              <div class="bar-track"><div class="bar-fill gray"></div></div>
+            </div>
           </div>
-          <p>
-            Eine vereinbarte BU-Rente plus ggf. ergänzende Bausteine fangen einen großen Teil
-            deines bisherigen Nettoeinkommens auf. Du kannst dich auf deine Gesundheit konzentrieren,
-            statt auf Rechnungen.
-          </p>
-          <div class="income-bar good">
-            <div class="income-fill good"></div>
-          </div>
-          <p style="font-size:0.82rem; color: var(--good); margin-top:0.3rem;">
-            Beispiel: 3.000&nbsp;€ Netto &rarr; ca. 2.000&nbsp;€ gesichertes Einkommen aus BU-Rente
-            und weiteren Bausteinen – Fixkosten bleiben tragbar, Zukunftsplanung bleibt möglich.
+          <p class="small-note">
+            Unfälle machen meist nur einen kleineren Teil der Ursachen aus – <strong>die
+            meisten Fälle kommen leise</strong>, über Gesundheit und Psyche.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Gesundheit "einfrieren" & je früher desto besser -->
+    <!-- Gesundheit einfrieren & je früher desto besser -->
     <section>
       <h2>Gesundheit „einfrieren“ – warum frühe Absicherung so viel bringt</h2>
       <p class="section-subtitle">
-        Je jünger und gesünder du bist, desto einfacher ist die Annahme – und desto mehr kannst du
+        Je jünger und gesünder du bist, desto entspannter ist die Annahme – und desto mehr kannst du
         deinen heutigen Gesundheitszustand für später „konservieren“.
       </p>
 
@@ -778,34 +869,34 @@
         <div class="card">
           <div class="card-title">Gesundheit sichern, solange sie gut ist</div>
           <ul>
-            <li>Viele Erkrankungen entstehen zwischen 30 und 50 – dann wird der Abschluss schwieriger oder nur noch mit Ausschlüssen möglich.</li>
-            <li>Früher Abschluss bedeutet: aktueller Gesundheitszustand wird vertraglich festgehalten.</li>
-            <li>Über Optionen und Anpassungsgarantien lässt sich der Schutz später an Einkommen, Familie oder Immobilienkauf anpassen – ohne alles neu prüfen zu müssen.</li>
+            <li>Viele Diagnosen entstehen zwischen 30 und 50 – dann wird der Abschluss schwieriger oder nur mit Ausschlüssen möglich.</li>
+            <li>Mit einem frühen Vertrag wird dein Gesundheitszustand zum Zeitpunkt des Abschlusses dokumentiert.</li>
+            <li>Über Nachversicherungs- und Optionsrechte lässt sich der Schutz später an Einkommen, Familie oder Immobilienkauf anpassen.</li>
           </ul>
         </div>
 
         <div class="card">
-          <div class="card-title">Je früher, desto entspannter</div>
+          <div class="card-title">Je früher, desto stabiler der Schutz</div>
           <div class="timeline">
             <div class="timeline-step">
-              <div class="timeline-age">Ausbildung / Studium (18–25)</div>
+              <div class="timeline-age">Ausbildung / Studium</div>
               <div style="font-size:0.9rem;">
-                Häufig beste Gesundheit, wenige Diagnosen. Perfekte Phase, um den Grundschutz zu legen
-                – oft mit Einsteigerlösungen, die mitwachsen können.
+                Wenig Diagnosen, viel Zukunft vor dir – ideal, um eine Grund-Absicherung aufzubauen,
+                die später mit dir mitwachsen kann.
               </div>
             </div>
             <div class="timeline-step">
-              <div class="timeline-age">Karriere & Familie (25–40)</div>
+              <div class="timeline-age">Karriere & Familie</div>
               <div style="font-size:0.9rem;">
-                Mehr Verantwortung, höheres Einkommen, Kredite, Kinder. Gesundheitszustand verändert
-                sich – hier sind Nachbesserungen wichtig, wenn die Basis schon steht.
+                Einkommen steigt, Verantwortung auch: Kinder, Haus, Kredite. Hier ist wichtig,
+                dass der Schutz zu deinem neuen Leben passt.
               </div>
             </div>
             <div class="timeline-step">
               <div class="timeline-age">40+</div>
               <div style="font-size:0.9rem;">
-                Rücken, Psyche, Verschleiß – Diagnosen nehmen zu. Neue Verträge sind schwerer oder
-                nur noch eingeschränkt möglich. Wer vorher gehandelt hat, ist im Vorteil.
+                Rücken, Psyche, Blutdruck – jetzt zeigt sich, wie wertvoll ein früher Abschluss war.
+                Neue Verträge sind deutlich schwieriger.
               </div>
             </div>
           </div>
@@ -813,8 +904,9 @@
       </div>
 
       <div class="highlight-box" style="margin-top:1rem;">
-        Die wichtigste Message: <strong>Du brauchst keine perfekte Gesundheit – aber je früher wir
-        deinen Zustand sauber „einfrieren“, desto mehr Optionen hast du später.</strong>
+        Du brauchst keine perfekte Gesundheit – aber je früher wir deinen Zustand sauber „einfrieren“,
+        desto mehr Optionen hast du später. Später „noch schnell“ nachzuholen funktioniert selten so gut,
+        wie viele denken.
       </div>
     </section>
 
@@ -853,8 +945,8 @@
     <section>
       <h2>Wie wird die BU-Rente steuerlich behandelt?</h2>
       <p class="section-subtitle">
-        Steuerlich ist die BU-Rente ein „Mix“: Beiträge können teilweise als Vorsorgeaufwand geltend
-        gemacht werden, die spätere BU-Rente selbst wird nur mit einem Anteil versteuert.
+        Steuerlich ist die BU-Rente ein „Mix“: Beiträge können teilweise als Vorsorgeaufwand gelten,
+        die spätere BU-Rente selbst wird nur mit einem Anteil versteuert.
       </p>
 
       <div class="grid-2">
@@ -862,8 +954,8 @@
           <div class="card-title">Während der Berufstätigkeit</div>
           <p style="font-size:0.9rem;">
             Beiträge zur reinen BU zählen je nach Gestaltung zu den Vorsorgeaufwendungen. Wie viel
-            genau anerkannt wird, hängt von deiner Gesamtsituation (z. B. gesetzliche Rente,
-            Krankenversicherung) ab. Wir rechnen gemeinsam durch, welchen Effekt das für dich hat.
+            genau anerkannt wird, hängt von deiner Gesamtsituation (gesetzliche Rente, Krankenversicherung,
+            weitere Verträge) ab. Wir schauen uns das im Detail an – mit deiner echten Steuerlogik.
           </p>
         </div>
 
@@ -874,40 +966,10 @@
             einem Teilbetrag, der von deinem Alter bei Beginn der BU-Rente abhängt. Je älter du beim
             Leistungsbeginn bist, desto niedriger dieser steuerpflichtige Anteil.
           </p>
-          <p style="font-size:0.82rem; margin-top:0.4rem;">
-            Wichtig: Auch nach Steuern bleibt die BU-Rente darauf ausgelegt, deinen Lebensstandard
-            so weit wie möglich zu stabilisieren – die konkrete Berechnung schauen wir uns im Gespräch
-            anhand deiner Zahlen an.
+          <p class="small-note">
+            Wichtig: Die BU ist trotzdem dazu gedacht, deinen Alltag zu tragen. Die konkrete Netto-Wirkung
+            rechnen wir gemeinsam mit realistischen Annahmen.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Weitere Bausteine kurz erwähnen -->
-    <section>
-      <h2>Mehr als nur BU: sinnvolle Ergänzungen rund um deine Arbeitskraft</h2>
-      <p class="section-subtitle">
-        Je nach Beruf, Familie und Krankenversicherung können ergänzende Bausteine sinnvoll sein –
-        ohne die BU zu ersetzen, sondern als Ergänzung.
-      </p>
-
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Grundfähigkeits- & Krankheitskonzepte</div>
-          <ul>
-            <li>Absicherung bestimmter Fähigkeiten (z. B. Gehen, Sehen, Gebrauch der Hände) – kann gerade bei körperlichen Berufen spannend sein.</li>
-            <li>Kann eine Lösung sein, wenn eine klassische BU nur eingeschränkt oder gar nicht mehr möglich ist.</li>
-            <li>In Kombination mit BU können Lücken geschlossen und Übergangsphasen besser abgefedert werden.</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Krankschreibung & Krankentagegeld</div>
-          <ul>
-            <li>Schließt die Lücke zwischen Lohnfortzahlung des Arbeitgebers und einer möglichen BU-Leistung.</li>
-            <li>Gerade für gesetzlich Versicherte wichtig, damit längere Krankschreibungen nicht direkt ein Loch in die Haushaltskasse reißen.</li>
-            <li>Kann so gestaltet werden, dass Zahlungen sauber aufeinander abgestimmt sind.</li>
-          </ul>
         </div>
       </div>
     </section>
