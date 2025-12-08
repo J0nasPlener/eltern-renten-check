@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Berufsunfähigkeit & Arbeitskraftabsicherung – Jonas Plener</title>
+  <title>Arbeitskraftabsicherung & Berufsunfähigkeit – Jonas Plener</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@500;600;700&display=swap" rel="stylesheet" />
 
@@ -64,8 +64,8 @@
       width: 54px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.25);
       display: block;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.25);
     }
 
     .topbar-title {
@@ -159,8 +159,6 @@
     .menu-link {
       display: block;
       padding: 0.35rem 0;
-      color: #111827;
-      text-decoration: none;
     }
 
     .menu-link span {
@@ -227,6 +225,8 @@
       max-width: 36rem;
       font-size: 0.98rem;
     }
+
+    .hero-lead strong { color: var(--primary); }
 
     .hero-badges {
       display: flex;
@@ -300,7 +300,7 @@
       gap: 0.7rem;
     }
 
-    /* WICHTIG: Kein blauer Kreis mehr – daher kein ::before */
+    /* Kein blauer Kreis mehr */
 
     .hero-photo img {
       max-width: 320px;
@@ -406,32 +406,6 @@
       color: #7c2d12;
     }
 
-    .centered-cta {
-      text-align: center;
-      margin-top: 1.2rem;
-    }
-
-    .back-link {
-      margin-top: 1.4rem;
-      text-align: center;
-      font-size: 0.88rem;
-    }
-
-    .back-link a {
-      color: var(--primary);
-      text-decoration: underline;
-    }
-
-    footer {
-      padding: 1rem 1.6rem 1.4rem;
-      font-size: 0.78rem;
-      color: #6b7280;
-      border-top: 1px solid var(--border);
-      background: #f9fafb;
-    }
-
-    /* Grafik: Ohne Schutz vs. Mit Schutz */
-
     .compare-wrapper {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -444,6 +418,7 @@
       padding: 1rem 1.1rem;
       background: #fef2f2;
       border: 1px solid #fecaca;
+      font-size: 0.9rem;
     }
 
     .compare-box.good {
@@ -459,19 +434,14 @@
       gap: 0.4rem;
     }
 
-    .dot-red {
+    .dot-red, .dot-green {
       width: 10px;
       height: 10px;
       border-radius: 999px;
-      background: #ef4444;
     }
 
-    .dot-green {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: #22c55e;
-    }
+    .dot-red { background: #ef4444; }
+    .dot-green { background: #22c55e; }
 
     .income-bar {
       margin-top: 0.4rem;
@@ -494,6 +464,91 @@
     .income-fill.good {
       background: #22c55e;
       width: 85%;
+    }
+
+    /* Timeline „Je früher desto besser“ */
+
+    .timeline {
+      margin-top: 0.8rem;
+      border-left: 2px solid #e5e7eb;
+      padding-left: 1.1rem;
+    }
+
+    .timeline-step {
+      margin-bottom: 0.8rem;
+      position: relative;
+      padding-left: 0.2rem;
+    }
+
+    .timeline-step::before {
+      content: "";
+      position: absolute;
+      left: -1.25rem;
+      top: 0.2rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(244, 190, 105, 0.3);
+    }
+
+    .timeline-age {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 0.9rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.8rem;
+    }
+
+    .reason-box {
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 0.8rem 0.9rem;
+      background: #ffffff;
+      font-size: 0.9rem;
+    }
+
+    .reason-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-right: 0.4rem;
+    }
+
+    .centered-cta {
+      text-align: center;
+      margin-top: 1.2rem;
+    }
+
+    .back-link {
+      margin-top: 1.4rem;
+      text-align: center;
+      font-size: 0.88rem;
+    }
+
+    .back-link a {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    footer {
+      padding: 1rem 1.6rem 1.4rem;
+      font-size: 0.78rem;
+      color: #6b7280;
+      border-top: 1px solid var(--border);
+      background: #f9fafb;
     }
 
     @media (max-width: 768px) {
@@ -589,23 +644,23 @@
           Absicherung & Schutz · Berufsunfähigkeit & Arbeitskraft
         </div>
 
-        <h1>Berufsunfähigkeit & Arbeitskraftabsicherung – wenn dein Einkommen ausfällt</h1>
+        <h1>Arbeitskraft absichern – damit dein Einkommen bleibt, auch wenn du es nicht kannst</h1>
 
         <p class="hero-lead">
-          Deine Arbeitskraft ist dein größtes Vermögen. Fällt sie weg – durch Krankheit,
-          Unfall oder psychische Belastung – bricht oft ein Großteil des Einkommens weg.
-          Genau hier setzt die Berufsunfähigkeits- und Arbeitskraftabsicherung an:
-          Sie zahlt, wenn du deinen Beruf dauerhaft nicht mehr ausüben kannst.
+          Deine Arbeitskraft ist das, wovon alles andere bezahlt wird: Miete, Hauskredit, Familie,
+          Vorsorge. Fällt sie weg, kann es schnell eng werden. <strong>Eine gute BU- und
+          Arbeitskraftabsicherung sorgt dafür, dass Geld weiter reinkommt</strong>, wenn dein Körper oder
+          deine Psyche nicht mehr mitmachen.
         </p>
 
         <div class="hero-badges">
-          <div class="badge">Schützt dein monatliches Einkommen</div>
-          <div class="badge">Wichtig für Angestellte & Selbstständige</div>
+          <div class="badge">Jeder Vierte wird im Laufe des Berufslebens berufsunfähig*</div>
+          <div class="badge">Meistens wegen Krankheit, nicht wegen Unfall*</div>
         </div>
 
         <div class="cta-row">
           <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" class="btn-primary" target="_blank">
-            Gespräch zu deiner Absicherung vereinbaren
+            Gespräch zu deiner Arbeitskraft vereinbaren
           </a>
           <a href="https://wa.me/4917663796605" class="btn-secondary" target="_blank">
             Kurzfrage per WhatsApp stellen
@@ -614,6 +669,7 @@
       </div>
 
       <div class="hero-photo">
+        <!-- Dein Bild bleibt -->
         <img src="jonas-portrait-klein.png" alt="Jonas Plener" />
         <div class="hero-tagcard">
           <div class="hero-tagcard-title">Dein Ansprechpartner</div>
@@ -632,125 +688,257 @@
 
   <main>
 
-    <!-- Was sichern wir ab? -->
+    <!-- Warum Arbeitskraft so wichtig ist -->
     <section>
-      <h2>Was genau sichern wir mit der Arbeitskraftabsicherung ab?</h2>
+      <h2>Warum deine Arbeitskraft dein größtes Vermögen ist</h2>
       <p class="section-subtitle">
-        Es geht nicht um „eine Police mehr“, sondern darum, dein laufendes Einkommen zu schützen,
-        wenn du deinen Beruf voraussichtlich dauerhaft nicht mehr ausüben kannst.
+        Statistisch wird etwa <strong>jeder Vierte bis zum Rentenalter mindestens einmal berufsunfähig</strong> –
+        meist wegen Krankheit oder Psyche, nicht wegen eines Unfalls. Genau diese Lücke
+        zwischen Realität und „Wird schon gutgehen“ schließt eine saubere Arbeitskraftabsicherung.
       </p>
 
       <div class="grid-2">
         <div class="card">
-          <div class="card-title">Kern der Berufsunfähigkeitsversicherung</div>
+          <div class="card-title">Was eine BU in der Praxis leistet</div>
           <ul>
-            <li>Monatliche Rente, wenn du deinen zuletzt ausgeübten Beruf zu mindestens 50&nbsp;% nicht mehr ausüben kannst (je nach Bedingungen).</li>
-            <li>Gilt in der Regel für Krankheiten, Unfälle und psychische Erkrankungen.</li>
-            <li>Absicherung kann auf deine aktuelle Lebenssituation und dein Einkommen abgestimmt werden.</li>
+            <li>Monatliche Rente, wenn du deinen Beruf dauerhaft nur noch eingeschränkt oder gar nicht mehr ausüben kannst (je nach Bedingungen).</li>
+            <li>Gilt typischerweise bei Krankheiten, Unfällen und psychischen Erkrankungen wie Burn-out oder Depression.</li>
+            <li>Sichert dein Einkommen, damit du Miete, Kredit, Familie und Vorsorge weiter stemmen kannst.</li>
           </ul>
         </div>
 
         <div class="card">
-          <div class="card-title">Alternativen & Ergänzungen</div>
+          <div class="card-title">Was passiert ohne Absicherung?</div>
           <ul>
-            <li>Erwerbsunfähigkeits-, Grundfähigkeits- oder Schwere-Krankheiten-Konzepte – je nach Beruf & Gesundheitssituation.</li>
-            <li>Optionen zur späteren Erhöhung (z. B. bei Gehaltssteigerung, Familiengründung, Immobilienkauf).</li>
-            <li>Für Selbstständige: Kombination mit betrieblichen Lösungen und privaten Rücklagen.</li>
+            <li>Gesetzliche Erwerbsminderungsrente greift nur, wenn du <strong>kaum noch arbeiten</strong> kannst – und liegt häufig deutlich unter deinem bisherigen Einkommen.</li>
+            <li>Rücklagen und Altersvorsorge werden vorzeitig aufgebraucht.</li>
+            <li>Finanzielle Entscheidungen werden aus Zwang getroffen: Hausverkauf, Konsumstopp, Verzicht bei der Familie.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Grafik: Ohne Schutz vs. Mit Schutz -->
+    <!-- Vergleich ohne / mit Schutz -->
     <section>
-      <h2>Warum die Absicherung so wichtig ist</h2>
+      <h2>Einfaches Bild: Ohne Schutz vs. mit guter BU-Rente</h2>
       <p class="section-subtitle">
-        Ein Blick auf die Zahlen zeigt sehr schnell, wie groß der Unterschied zwischen
-        „kein Schutz“ und „passender BU-Rente“ sein kann.
+        Die Zahlen müssen nicht perfekt sein, aber das Bild ist klar – mit Arbeitskraftabsicherung
+        bleibt deine finanzielle Handlungsfähigkeit erhalten.
       </p>
 
       <div class="compare-wrapper">
         <div class="compare-box">
           <div class="compare-title">
             <span class="dot-red"></span>
-            <span>Ohne Absicherung</span>
+            <span>Ohne Arbeitskraftabsicherung</span>
           </div>
-          <p style="font-size:0.9rem;">
-            Einkommen fällt weg oder reduziert sich auf eine geringe Erwerbsminderungsrente.
-            Fixkosten wie Miete, Kreditraten und Unterhalt laufen weiter.
+          <p>
+            Dein Nettoeinkommen fällt teilweise oder ganz weg. Was bleibt, ist eventuell eine
+            gesetzliche Erwerbsminderungsrente – oft weit unter dem gewohnten Lebensstandard.
           </p>
           <div class="income-bar">
             <div class="income-fill"></div>
           </div>
           <p style="font-size:0.82rem; color: var(--danger); margin-top:0.3rem;">
-            Beispiel: 2.000&nbsp;€ Netto, davon 1.200&nbsp;€ Fixkosten – ohne Schutz fehlt schnell der komplette Puffer.
+            Beispiel: 3.000&nbsp;€ Netto &rarr; nach Ausfall bleiben vielleicht 1.200&nbsp;€ gesetzliche Leistungen –
+            Fixkosten und Familie lassen sich damit kaum dauerhaft tragen.
           </p>
         </div>
 
         <div class="compare-box good">
           <div class="compare-title">
             <span class="dot-green"></span>
-            <span>Mit passender BU-Rente</span>
+            <span>Mit passender BU- & Arbeitskraftabsicherung</span>
           </div>
-          <p style="font-size:0.9rem;">
-            Eine vereinbarte BU-Rente fängt einen Großteil deines bisherigen Einkommens auf.
-            Fixkosten bleiben tragbar, Rücklagen und Altersvorsorge müssen nicht sofort angegriffen werden.
+          <p>
+            Eine vereinbarte BU-Rente plus ggf. ergänzende Bausteine fangen einen großen Teil
+            deines bisherigen Nettoeinkommens auf. Du kannst dich auf deine Gesundheit konzentrieren,
+            statt auf Rechnungen.
           </p>
           <div class="income-bar good">
             <div class="income-fill good"></div>
           </div>
           <p style="font-size:0.82rem; color: var(--good); margin-top:0.3rem;">
-            Beispiel: 1.500&nbsp;€ BU-Rente sichern deine wichtigsten Ausgaben – du behältst finanzielle Handlungsfähigkeit.
+            Beispiel: 3.000&nbsp;€ Netto &rarr; ca. 2.000&nbsp;€ gesichertes Einkommen aus BU-Rente
+            und weiteren Bausteinen – Fixkosten bleiben tragbar, Zukunftsplanung bleibt möglich.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Steuer & Beispiele -->
+    <!-- Gesundheit "einfrieren" & je früher desto besser -->
     <section>
-      <h2>Steuerliche Einordnung & Beispielrechnung</h2>
+      <h2>Gesundheit „einfrieren“ – warum frühe Absicherung so viel bringt</h2>
+      <p class="section-subtitle">
+        Je jünger und gesünder du bist, desto einfacher ist die Annahme – und desto mehr kannst du
+        deinen heutigen Gesundheitszustand für später „konservieren“.
+      </p>
+
       <div class="grid-2">
         <div class="card">
-          <div class="card-title">Beiträge</div>
-          <p>
-            Beiträge zur Berufsunfähigkeitsversicherung zählen in vielen Fällen zu den
-            <strong>Sonderausgaben</strong> (Altersvorsorgeaufwendungen bzw. weitere Vorsorgeaufwendungen),
-            wirken aber je nach Gesamtsituation nur begrenzt steuerlich.
-          </p>
-          <p style="font-size:0.85rem; margin-top:0.4rem;">
-            Wir prüfen gemeinsam, welcher Anteil deiner Beiträge steuerlich berücksichtigt werden kann
-            und wie hoch die tatsächliche Entlastung ist.
-          </p>
+          <div class="card-title">Gesundheit sichern, solange sie gut ist</div>
+          <ul>
+            <li>Viele Erkrankungen entstehen zwischen 30 und 50 – dann wird der Abschluss schwieriger oder nur noch mit Ausschlüssen möglich.</li>
+            <li>Früher Abschluss bedeutet: aktueller Gesundheitszustand wird vertraglich festgehalten.</li>
+            <li>Über Optionen und Anpassungsgarantien lässt sich der Schutz später an Einkommen, Familie oder Immobilienkauf anpassen – ohne alles neu prüfen zu müssen.</li>
+          </ul>
         </div>
 
         <div class="card">
-          <div class="card-title">BU-Rente in der Steuer</div>
-          <p>
-            Die BU-Rente wird mit dem sogenannten <strong>Ertragsanteil</strong> besteuert.
-            Wie hoch dieser Anteil ist, hängt vom Alter bei Beginn der Rente ab:
-            je jünger, desto höher der steuerpflichtige Anteil.
-          </p>
-          <p style="font-size:0.85rem; margin-top:0.4rem;">
-            Wir rechnen mit realistischen Szenarien: BU-Rente, Ertragsanteil, Steuersatz
-            – und was davon tatsächlich bei dir ankommt.
-          </p>
+          <div class="card-title">Je früher, desto entspannter</div>
+          <div class="timeline">
+            <div class="timeline-step">
+              <div class="timeline-age">Ausbildung / Studium (18–25)</div>
+              <div style="font-size:0.9rem;">
+                Häufig beste Gesundheit, wenige Diagnosen. Perfekte Phase, um den Grundschutz zu legen
+                – oft mit Einsteigerlösungen, die mitwachsen können.
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-age">Karriere & Familie (25–40)</div>
+              <div style="font-size:0.9rem;">
+                Mehr Verantwortung, höheres Einkommen, Kredite, Kinder. Gesundheitszustand verändert
+                sich – hier sind Nachbesserungen wichtig, wenn die Basis schon steht.
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-age">40+</div>
+              <div style="font-size:0.9rem;">
+                Rücken, Psyche, Verschleiß – Diagnosen nehmen zu. Neue Verträge sind schwerer oder
+                nur noch eingeschränkt möglich. Wer vorher gehandelt hat, ist im Vorteil.
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="highlight-box" style="margin-top:1rem;">
-        Kurz gesagt: Du tauschst heute einen überschaubaren Beitrag gegen die Sicherheit,
-        dass im Ernstfall jeden Monat eine planbare Rente kommt – selbst dann, wenn dein
-        reguläres Einkommen komplett wegbricht.
+        Die wichtigste Message: <strong>Du brauchst keine perfekte Gesundheit – aber je früher wir
+        deinen Zustand sauber „einfrieren“, desto mehr Optionen hast du später.</strong>
       </div>
     </section>
 
-    <!-- Nächster Schritt -->
+    <!-- Gründe-Bereich -->
     <section>
-      <h2>Dein nächster Schritt</h2>
+      <h2>Drei Hauptgründe, warum sich eine BU fast immer lohnt</h2>
+
+      <div class="reasons-grid">
+        <div class="reason-box">
+          <div><span class="reason-number">1</span><strong>Einkommen sichern</strong></div>
+          <p style="margin:0.4rem 0 0;">
+            Deine laufenden Ausgaben hören bei Krankheit nicht auf. Mit einer BU-Rente sicherst du
+            dir ein planbares Einkommen – unabhängig davon, ob du arbeiten kannst oder nicht.
+          </p>
+        </div>
+
+        <div class="reason-box">
+          <div><span class="reason-number">2</span><strong>Vorsorge & Vermögen schützen</strong></div>
+          <p style="margin:0.4rem 0 0;">
+            Ohne Absicherung werden als erstes Sparpläne und Altersvorsorge gestoppt.
+            Eine BU verhindert, dass du mühsam aufgebautes Vermögen wieder auflösen musst.
+          </p>
+        </div>
+
+        <div class="reason-box">
+          <div><span class="reason-number">3</span><strong>Freiheit für medizinische Entscheidungen</strong></div>
+          <p style="margin:0.4rem 0 0;">
+            Mit stabiler Einkommensbasis kannst du Therapien, Reha oder Auszeiten nach medizinischer
+            Notwendigkeit wählen – nicht nach Kontostand.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Steuerliche Einordnung kurz -->
+    <section>
+      <h2>Wie wird die BU-Rente steuerlich behandelt?</h2>
       <p class="section-subtitle">
-        Wir schauen uns deinen Beruf, dein Einkommen und deine bestehenden Verträge an
-        und bauen daraus ein Konzept, das zu dir, deiner Familie und deinen Zielen passt.
+        Steuerlich ist die BU-Rente ein „Mix“: Beiträge können teilweise als Vorsorgeaufwand geltend
+        gemacht werden, die spätere BU-Rente selbst wird nur mit einem Anteil versteuert.
       </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Während der Berufstätigkeit</div>
+          <p style="font-size:0.9rem;">
+            Beiträge zur reinen BU zählen je nach Gestaltung zu den Vorsorgeaufwendungen. Wie viel
+            genau anerkannt wird, hängt von deiner Gesamtsituation (z. B. gesetzliche Rente,
+            Krankenversicherung) ab. Wir rechnen gemeinsam durch, welchen Effekt das für dich hat.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Im Leistungsfall</div>
+          <p style="font-size:0.9rem;">
+            Die BU-Rente wird mit dem sogenannten <strong>Ertragsanteil</strong> besteuert – also nur mit
+            einem Teilbetrag, der von deinem Alter bei Beginn der BU-Rente abhängt. Je älter du beim
+            Leistungsbeginn bist, desto niedriger dieser steuerpflichtige Anteil.
+          </p>
+          <p style="font-size:0.82rem; margin-top:0.4rem;">
+            Wichtig: Auch nach Steuern bleibt die BU-Rente darauf ausgelegt, deinen Lebensstandard
+            so weit wie möglich zu stabilisieren – die konkrete Berechnung schauen wir uns im Gespräch
+            anhand deiner Zahlen an.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Weitere Bausteine kurz erwähnen -->
+    <section>
+      <h2>Mehr als nur BU: sinnvolle Ergänzungen rund um deine Arbeitskraft</h2>
+      <p class="section-subtitle">
+        Je nach Beruf, Familie und Krankenversicherung können ergänzende Bausteine sinnvoll sein –
+        ohne die BU zu ersetzen, sondern als Ergänzung.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Grundfähigkeits- & Krankheitskonzepte</div>
+          <ul>
+            <li>Absicherung bestimmter Fähigkeiten (z. B. Gehen, Sehen, Gebrauch der Hände) – kann gerade bei körperlichen Berufen spannend sein.</li>
+            <li>Kann eine Lösung sein, wenn eine klassische BU nur eingeschränkt oder gar nicht mehr möglich ist.</li>
+            <li>In Kombination mit BU können Lücken geschlossen und Übergangsphasen besser abgefedert werden.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Krankschreibung & Krankentagegeld</div>
+          <ul>
+            <li>Schließt die Lücke zwischen Lohnfortzahlung des Arbeitgebers und einer möglichen BU-Leistung.</li>
+            <li>Gerade für gesetzlich Versicherte wichtig, damit längere Krankschreibungen nicht direkt ein Loch in die Haushaltskasse reißen.</li>
+            <li>Kann so gestaltet werden, dass Zahlungen sauber aufeinander abgestimmt sind.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section>
+      <h2>Wie wir gemeinsam vorgehen</h2>
+      <p class="section-subtitle">
+        Mir ist wichtig, dass du verstehst, <strong>was</strong> du absicherst und <strong>warum</strong> – nicht,
+        dass du einfach „eine BU mehr“ im Ordner liegen hast. Im Gespräch gehen wir Schritt für Schritt durch:
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">1. Ist-Analyse & Risiko-Check</div>
+          <ul>
+            <li>Beruf, Einkommen, bestehende Verträge und familiäre Situation.</li>
+            <li>Welche Risiken wären bei dir besonders kritisch (z. B. Alleinverdiener, Selbstständigkeit, Kredite)?</li>
+            <li>Welche Leistung brauchst du wirklich, damit es im Ernstfall reicht?</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">2. Konzept & Umsetzung</div>
+          <ul>
+            <li>Auswahl passender Lösung(en) – mit Blick auf Gesundheit, Flexibilität und Steuern.</li>
+            <li>Saubere Gesundheitsdokumentation, damit im Leistungsfall alles nachvollziehbar ist.</li>
+            <li>Regelmäßiger Check, ob Schutz und Leben noch zusammenpassen.</li>
+          </ul>
+        </div>
+      </div>
 
       <div class="centered-cta">
         <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" class="btn-primary" target="_blank">
