@@ -15,6 +15,8 @@
       --muted: #4b5563;
       --bg: #f4f8f8;
       --border: #e5e7eb;
+      --danger: #b91c1c;
+      --good: #15803d;
     }
 
     * { box-sizing: border-box; }
@@ -37,9 +39,10 @@
       box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12);
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
-    /* Topbar wie auf der Leistungsseite */
+    /* Topbar */
 
     .topbar {
       display: flex;
@@ -83,6 +86,91 @@
       font-size: 0.8rem;
       color: var(--muted);
       text-align: right;
+    }
+
+    /* Burger-Menü */
+
+    .menu-toggle {
+      position: absolute;
+      right: 18px;
+      top: 14px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      padding: 0.4rem 0.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 3px;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+    }
+
+    .menu-burger {
+      width: 20px;
+      height: 2px;
+      background: #111827;
+      border-radius: 999px;
+    }
+
+    .menu-panel-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 40;
+    }
+
+    .menu-panel-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .menu-panel {
+      position: fixed;
+      right: -270px;
+      top: 0;
+      height: 100%;
+      width: 270px;
+      background: #ffffff;
+      border-left: 1px solid #e5e7eb;
+      padding: 1.2rem 1.1rem;
+      z-index: 45;
+      transition: right 0.25s ease;
+      font-size: 0.9rem;
+    }
+
+    .menu-panel.open {
+      right: 0;
+    }
+
+    .menu-section-title {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-top: 0.7rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .menu-link {
+      display: block;
+      padding: 0.35rem 0;
+      color: #111827;
+      text-decoration: none;
+    }
+
+    .menu-link span {
+      font-size: 0.8rem;
+      color: #6b7280;
+      display: block;
+    }
+
+    .menu-link:hover {
+      color: var(--primary);
     }
 
     /* Hero */
@@ -212,17 +300,7 @@
       gap: 0.7rem;
     }
 
-    .hero-photo::before {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #f4be69 0, #ffffff 50%, #93c5fd 100%);
-      opacity: 0.55;
-      top: 10px;
-      z-index: 0;
-    }
+    /* WICHTIG: Kein blauer Kreis mehr – daher kein ::before */
 
     .hero-photo img {
       max-width: 320px;
@@ -238,12 +316,12 @@
       background: #ffffff;
       border-radius: 14px;
       border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 0.55rem 0.7rem;
+      padding: 0.55rem 0.9rem;
       font-size: 0.78rem;
       color: var(--muted);
       box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
       z-index: 2;
-      max-width: 220px;
+      max-width: 240px;
     }
 
     .hero-tagcard-title {
@@ -352,8 +430,76 @@
       background: #f9fafb;
     }
 
+    /* Grafik: Ohne Schutz vs. Mit Schutz */
+
+    .compare-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 0.8rem;
+    }
+
+    .compare-box {
+      border-radius: 16px;
+      padding: 1rem 1.1rem;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+    }
+
+    .compare-box.good {
+      background: #ecfdf3;
+      border-color: #bbf7d0;
+    }
+
+    .compare-title {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .dot-red {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #ef4444;
+    }
+
+    .dot-green {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .income-bar {
+      margin-top: 0.4rem;
+      height: 14px;
+      border-radius: 999px;
+      background: #fee2e2;
+      overflow: hidden;
+    }
+
+    .income-fill {
+      height: 100%;
+      background: #ef4444;
+      width: 40%;
+    }
+
+    .income-bar.good {
+      background: #bbf7d0;
+    }
+
+    .income-fill.good {
+      background: #22c55e;
+      width: 85%;
+    }
+
     @media (max-width: 768px) {
       .topbar { padding-inline: 1rem; }
+      .menu-toggle { right: 12px; top: 12px; }
+
       header.hero { padding: 1.8rem 1rem 2rem; }
       main { padding: 1.6rem 1rem 2.2rem; }
 
@@ -365,7 +511,6 @@
       .hero h1 { font-size: 1.6rem; }
       .hero-lead { font-size: 0.92rem; }
 
-      .hero-photo::before { width: 180px; height: 180px; top: 10px; }
       .hero-photo img { max-width: 260px; }
 
       .hero-tagcard {
@@ -382,11 +527,42 @@
 <body>
 <div class="page">
 
-  <!-- TOPBAR wie bei leistung.html -->
+  <!-- Burger-Button -->
+  <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen">
+    <div class="menu-burger"></div>
+    <div class="menu-burger"></div>
+    <div class="menu-burger"></div>
+  </button>
+
+  <!-- Burger-Overlay & Panel -->
+  <div id="menu-backdrop" class="menu-panel-backdrop"></div>
+
+  <nav id="menu-panel" class="menu-panel">
+    <div class="menu-section-title">Start & Überblick</div>
+    <a class="menu-link" href="index.html">Startseite</a>
+    <a class="menu-link" href="eltern-renten-check.html">Eltern-Renten-Check</a>
+    <a class="menu-link" href="leistung.html">Meine Leistungen</a>
+
+    <div class="menu-section-title">Absicherung & Schutz</div>
+    <a class="menu-link" href="arbeitskraftabsicherung.html">Arbeitskraft & BU</a>
+    <a class="menu-link" href="haftpflicht-hausrat-gebaeude.html">Haftpflicht · Hausrat · Gebäude</a>
+    <a class="menu-link" href="risikoleben.html">Risikoleben für Familie & Immobilien</a>
+
+    <div class="menu-section-title">Vorsorge & Rente</div>
+    <a class="menu-link" href="riester.html">Riester-Rente mit Zulagen</a>
+    <a class="menu-link" href="basisrente.html">Rürup / Basisrente</a>
+    <a class="menu-link" href="bav.html">Betriebliche Altersvorsorge</a>
+
+    <div class="menu-section-title">Familie & Kinder</div>
+    <a class="menu-link" href="eltern-retter-kindererziehungszeiten.html">Eltern-Retter & Kindererziehungszeiten</a>
+    <a class="menu-link" href="kinder-absichern.html">Kinder absichern</a>
+    <a class="menu-link" href="ausbildung-und-zukunft.html">Ausbildung & Zukunft</a>
+  </nav>
+
+  <!-- TOPBAR -->
   <div class="topbar">
     <div class="topbar-left">
       <div class="topbar-portrait">
-        <!-- Bildpfad ggf. anpassen -->
         <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
       </div>
       <div>
@@ -398,12 +574,12 @@
       </div>
     </div>
     <div class="topbar-right">
-      Eltern, Selbstständige und Angestellte<br />
+      Eltern, Familien & Selbstständige<br />
       im Kinzigtal & der Ortenau
     </div>
   </div>
 
-  <!-- HERO BEREICH FÜR UNTERPUNKT 1 -->
+  <!-- HERO -->
 
   <header class="hero">
     <div class="hero-inner">
@@ -438,8 +614,7 @@
       </div>
 
       <div class="hero-photo">
-        <!-- Gleiches Bild wie auf der Leistungsseite nutzen -->
-        <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
+        <img src="jonas-portrait-klein.png" alt="Jonas Plener" />
         <div class="hero-tagcard">
           <div class="hero-tagcard-title">Dein Ansprechpartner</div>
           <div class="hero-tagcard-line">
@@ -457,7 +632,7 @@
 
   <main>
 
-    <!-- Abschnitt: Was ist BU / Arbeitskraftabsicherung? -->
+    <!-- Was sichern wir ab? -->
     <section>
       <h2>Was genau sichern wir mit der Arbeitskraftabsicherung ab?</h2>
       <p class="section-subtitle">
@@ -469,7 +644,7 @@
         <div class="card">
           <div class="card-title">Kern der Berufsunfähigkeitsversicherung</div>
           <ul>
-            <li>Monatliche Rente, wenn du deinen Beruf zu mindestens 50&nbsp;% nicht mehr ausüben kannst (je nach Bedingungen).</li>
+            <li>Monatliche Rente, wenn du deinen zuletzt ausgeübten Beruf zu mindestens 50&nbsp;% nicht mehr ausüben kannst (je nach Bedingungen).</li>
             <li>Gilt in der Regel für Krankheiten, Unfälle und psychische Erkrankungen.</li>
             <li>Absicherung kann auf deine aktuelle Lebenssituation und dein Einkommen abgestimmt werden.</li>
           </ul>
@@ -486,31 +661,52 @@
       </div>
     </section>
 
-    <!-- Abschnitt: Warum ist das so wichtig? -->
+    <!-- Grafik: Ohne Schutz vs. Mit Schutz -->
     <section>
-      <h2>Warum ist Arbeitskraftabsicherung so entscheidend?</h2>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Was ohne Schutz passieren kann</div>
-          <ul>
-            <li>Gesetzliche Erwerbsminderungsrente ist meist deutlich zu niedrig.</li>
-            <li>Fixkosten wie Miete, Kreditraten oder Unterhalt laufen weiter.</li>
-            <li>Rücklagen werden schnell aufgebraucht, langfristige Ziele geraten ins Wanken.</li>
-          </ul>
+      <h2>Warum die Absicherung so wichtig ist</h2>
+      <p class="section-subtitle">
+        Ein Blick auf die Zahlen zeigt sehr schnell, wie groß der Unterschied zwischen
+        „kein Schutz“ und „passender BU-Rente“ sein kann.
+      </p>
+
+      <div class="compare-wrapper">
+        <div class="compare-box">
+          <div class="compare-title">
+            <span class="dot-red"></span>
+            <span>Ohne Absicherung</span>
+          </div>
+          <p style="font-size:0.9rem;">
+            Einkommen fällt weg oder reduziert sich auf eine geringe Erwerbsminderungsrente.
+            Fixkosten wie Miete, Kreditraten und Unterhalt laufen weiter.
+          </p>
+          <div class="income-bar">
+            <div class="income-fill"></div>
+          </div>
+          <p style="font-size:0.82rem; color: var(--danger); margin-top:0.3rem;">
+            Beispiel: 2.000&nbsp;€ Netto, davon 1.200&nbsp;€ Fixkosten – ohne Schutz fehlt schnell der komplette Puffer.
+          </p>
         </div>
 
-        <div class="card">
-          <div class="card-title">Mit einem passenden Konzept</div>
-          <ul>
-            <li>Du sicherst dein Einkommen und damit deinen Lebensstandard ab.</li>
-            <li>Du schützt deine Familie davor, finanzielle Notentscheidungen treffen zu müssen.</li>
-            <li>Du kannst dich im Ernstfall auf Gesundheit & Genesung konzentrieren – nicht auf Geldsorgen.</li>
-          </ul>
+        <div class="compare-box good">
+          <div class="compare-title">
+            <span class="dot-green"></span>
+            <span>Mit passender BU-Rente</span>
+          </div>
+          <p style="font-size:0.9rem;">
+            Eine vereinbarte BU-Rente fängt einen Großteil deines bisherigen Einkommens auf.
+            Fixkosten bleiben tragbar, Rücklagen und Altersvorsorge müssen nicht sofort angegriffen werden.
+          </p>
+          <div class="income-bar good">
+            <div class="income-fill good"></div>
+          </div>
+          <p style="font-size:0.82rem; color: var(--good); margin-top:0.3rem;">
+            Beispiel: 1.500&nbsp;€ BU-Rente sichern deine wichtigsten Ausgaben – du behältst finanzielle Handlungsfähigkeit.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Abschnitt: Steuerliche Punkte & Beispiel -->
+    <!-- Steuer & Beispiele -->
     <section>
       <h2>Steuerliche Einordnung & Beispielrechnung</h2>
       <div class="grid-2">
@@ -522,8 +718,8 @@
             wirken aber je nach Gesamtsituation nur begrenzt steuerlich.
           </p>
           <p style="font-size:0.85rem; margin-top:0.4rem;">
-            Wichtig: Wir schauen gemeinsam in die Steuerlogik – also welche Effekte bei dir
-            tatsächlich ankommen können.
+            Wir prüfen gemeinsam, welcher Anteil deiner Beiträge steuerlich berücksichtigt werden kann
+            und wie hoch die tatsächliche Entlastung ist.
           </p>
         </div>
 
@@ -531,25 +727,24 @@
           <div class="card-title">BU-Rente in der Steuer</div>
           <p>
             Die BU-Rente wird mit dem sogenannten <strong>Ertragsanteil</strong> besteuert.
-            Wie hoch dieser ist, hängt vom Alter bei Beginn der Rente ab. Je früher die
-            Rente beginnt, desto höher der Ertragsanteil.
+            Wie hoch dieser Anteil ist, hängt vom Alter bei Beginn der Rente ab:
+            je jünger, desto höher der steuerpflichtige Anteil.
           </p>
           <p style="font-size:0.85rem; margin-top:0.4rem;">
-            Das heißt: Ein Teil der BU-Rente bleibt steuerfrei, ein Teil wird versteuert.
-            Wir rechnen das gemeinsam sauber durch.
+            Wir rechnen mit realistischen Szenarien: BU-Rente, Ertragsanteil, Steuersatz
+            – und was davon tatsächlich bei dir ankommt.
           </p>
         </div>
       </div>
 
       <div class="highlight-box" style="margin-top:1rem;">
-        Beispiel (vereinfacht): 2.000&nbsp;€ Netto-Einkommen, davon 1.200&nbsp;€ Fixkosten.
-        Fällt dein Einkommen weg und es gibt keine Absicherung, müssen Fixkosten aus Rücklagen
-        oder Unterstützung finanziert werden. Mit einer BU-Rente von z. B. 1.500&nbsp;€ pro
-        Monat bleibt dein finanzielles Fundament weitgehend stabil.
+        Kurz gesagt: Du tauschst heute einen überschaubaren Beitrag gegen die Sicherheit,
+        dass im Ernstfall jeden Monat eine planbare Rente kommt – selbst dann, wenn dein
+        reguläres Einkommen komplett wegbricht.
       </div>
     </section>
 
-    <!-- Call-to-Action + Zurück-Link -->
+    <!-- Nächster Schritt -->
     <section>
       <h2>Dein nächster Schritt</h2>
       <p class="section-subtitle">
@@ -577,5 +772,21 @@
   </footer>
 
 </div>
+
+<script>
+  const menuToggle = document.getElementById("menu-toggle");
+  const menuBackdrop = document.getElementById("menu-backdrop");
+  const menuPanel = document.getElementById("menu-panel");
+
+  menuToggle.addEventListener("click", () => {
+    menuPanel.classList.toggle("open");
+    menuBackdrop.classList.toggle("open");
+  });
+
+  menuBackdrop.addEventListener("click", () => {
+    menuPanel.classList.remove("open");
+    menuBackdrop.classList.remove("open");
+  });
+</script>
 </body>
 </html>
