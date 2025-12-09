@@ -32,6 +32,7 @@
       background: linear-gradient(to bottom, #f9fafb, #e5f0f1);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -45,6 +46,7 @@
       display: flex;
       flex-direction: column;
       position: relative;
+      overflow-x: hidden;
     }
 
     /* Topbar */
@@ -194,7 +196,7 @@
       cursor: pointer;
       border: none;
       text-align: center;
-      white-space: nowrap;
+      white-space: normal;
     }
 
     .btn-primary {
@@ -389,7 +391,7 @@
       gap: 1rem;
     }
 
-    /* Karten-Design wie bei BU, aber mit mehr Farbakzenten */
+    /* Karten-Design + Collapsible */
 
     .card {
       background: linear-gradient(to bottom right, #f1fafb, #ffffff);
@@ -435,6 +437,56 @@
       font-size: 0.9rem;
       color: #7c2d12;
       margin-top: 0.8rem;
+    }
+
+    /* Collapsible Blocks */
+
+    .card-collapsible {
+      cursor: pointer;
+      padding-top: 1rem;
+    }
+
+    .card-collapsible .card::before {
+      border-top-color: transparent;
+    }
+
+    .card-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .card-subtitle {
+      font-size: 0.82rem;
+      color: #6b7280;
+    }
+
+    .card-toggle-hint {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      white-space: nowrap;
+    }
+
+    .chevron {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .card-collapsible.open .chevron {
+      transform: rotate(90deg);
+    }
+
+    .card-content {
+      margin-top: 0.6rem;
+      display: none;
+    }
+
+    .card-collapsible.open .card-content {
+      display: block;
     }
 
     /* Sparten-Chips */
@@ -505,6 +557,7 @@
       justify-content: space-between;
       align-items: baseline;
       margin-bottom: 0.3rem;
+      gap: 0.4rem;
     }
 
     .damage-card-title {
@@ -520,10 +573,25 @@
       border-radius: 999px;
       background: #f3f4f6;
       color: #4b5563;
+      white-space: nowrap;
+    }
+
+    .damage-image {
+      margin: 0.4rem 0 0.6rem;
+      border-radius: 16px;
+      overflow: hidden;
+      max-height: 150px;
+    }
+
+    .damage-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
     }
 
     .damage-body {
-      margin-top: 0.2rem;
+      margin-top: 0.1rem;
       font-size: 0.88rem;
     }
 
@@ -618,7 +686,6 @@
     .centered-cta .btn-primary {
       width: 100%;
       max-width: 520px;
-      white-space: normal;
       line-height: 1.4;
       padding-inline: 1.4rem;
     }
@@ -673,6 +740,11 @@
       .btn-secondary,
       .btn-wa {
         width: 100%;
+      }
+
+      .damage-card-header {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
@@ -746,8 +818,8 @@
         <p class="hero-lead">
           Ob Rotwein auf dem Parkett, Leitungswasserschaden, Sturm am Dach, zerbrochene Glasdusche
           oder Streit mit dem Arbeitgeber: <strong>Sach- und Haftpflichtversicherungen fangen
-          Schäden ab, bevor sie dein Vermögen auffressen</strong>. Hier geht es um dein Zuhause,
-          deine Sachen – und darum, wenn du anderen etwas kaputt machst.
+          Schäden ab, bevor sie dein Vermögen auffressen</strong>. Es geht um dein Zuhause, deine
+          Sachen – und darum, wenn du anderen etwas kaputt machst.
         </p>
 
         <div class="highlight-box">
@@ -791,69 +863,197 @@
 
   <main>
 
-    <!-- Überblick: Was wird abgesichert? -->
+    <!-- Überblick: Sparten – klickbare Blöcke -->
     <section>
-      <h2>Was Sach- & Haftpflichtversicherungen überhaupt abdecken</h2>
+      <h2>Welche Bausteine gehören zu deinem „Sach-Schutzschild“?</h2>
       <p class="section-subtitle">
-        Es geht um zwei Dinge: <strong>dein Eigentum</strong> und <strong>die Schäden, die du bei
-        anderen anrichtest</strong>. Dazu kommen Bausteine, die dich bei Unfällen und rechtlichen
-        Auseinandersetzungen entlasten.
+        Tippe oder klicke auf die einzelnen Bereiche, um zu sehen, <strong>wofür sie gut sind und
+        welche typischen Leistungen dahinterstecken</strong>. Danach schauen wir uns konkrete
+        Schadensbeispiele an.
       </p>
 
       <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Haftpflicht – wenn du anderen etwas kaputt machst</div>
-          <div class="chip-row">
-            <div class="chip hp"><span class="chip-dot"></span>Privathaftpflicht</div>
-            <div class="chip hp"><span class="chip-dot"></span>Tierhalter, Haus- & Grundbesitz</div>
+
+        <!-- Haftpflicht -->
+        <div class="card-collapsible">
+          <div class="card">
+            <div class="card-header-row">
+              <div>
+                <div class="card-title">Privathaftpflicht</div>
+                <div class="card-subtitle">Wenn du anderen einen Schaden zufügst</div>
+              </div>
+              <div class="card-toggle-hint">
+                Details anzeigen
+                <span class="chevron">▶</span>
+              </div>
+            </div>
+
+            <div class="chip-row">
+              <div class="chip hp"><span class="chip-dot"></span>Privat</div>
+              <div class="chip hp"><span class="chip-dot"></span>Familie & Kinder</div>
+              <div class="chip hp"><span class="chip-dot"></span>Haus- & Grundbesitz</div>
+            </div>
+
+            <div class="card-content">
+              <ul>
+                <li>Deckt Sach-, Personen- und Vermögensschäden, die du anderen zufügst.</li>
+                <li>Typisch: Missgeschicke in fremden Wohnungen, Schäden durch Kinder, Fahrradunfälle.</li>
+                <li>Prüft auch, ob eine Forderung überhaupt berechtigt ist (passiver Rechtsschutz).</li>
+              </ul>
+            </div>
           </div>
-          <ul>
-            <li>Schützt dich, wenn <strong>du jemand anderem einen Schaden zufügst</strong> – Sach-, Personen- oder Vermögensschaden.</li>
-            <li>Typisch: Missgeschicke im Alltag, Kinder, die etwas zerstören, Schäden in gemieteten Wohnungen.</li>
-            <li>Ohne Haftpflicht haftest du mit deinem gesamten Privatvermögen – im Extremfall ein Leben lang.</li>
-          </ul>
         </div>
 
-        <div class="card">
-          <div class="card-title">Hausrat & Wohngebäude – dein Zuhause</div>
-          <div class="chip-row">
-            <div class="chip hr"><span class="chip-dot"></span>Hausrat</div>
-            <div class="chip wg"><span class="chip-dot"></span>Wohngebäude</div>
-          </div>
-          <ul>
-            <li><strong>Hausrat</strong> versichert alles, was man mitnehmen könnte, wenn man umzieht: Möbel, Kleidung, Technik, Küche usw.</li>
-            <li><strong>Wohngebäude</strong> schützt das eigentliche Haus: Dach, Wände, Leitungen, fest verbaute Teile.</li>
-            <li>Wichtige Gefahren: Feuer, Leitungswasser, Sturm/Hagel, Einbruchdiebstahl, Elementargefahren.</li>
-          </ul>
-        </div>
-      </div>
+        <!-- Hausrat -->
+        <div class="card-collapsible">
+          <div class="card">
+            <div class="card-header-row">
+              <div>
+                <div class="card-title">Hausrat</div>
+                <div class="card-subtitle">Deine Einrichtung, Technik & Kleidung</div>
+              </div>
+              <div class="card-toggle-hint">
+                Details anzeigen
+                <span class="chevron">▶</span>
+              </div>
+            </div>
 
-      <div class="grid-2" style="margin-top:1rem;">
-        <div class="card">
-          <div class="card-title">Glas – wenn es splittert</div>
-          <div class="chip-row">
-            <div class="chip glas"><span class="chip-dot"></span>Glas / Scheiben</div>
-            <div class="chip glas"><span class="chip-dot"></span>Duschkabine, Ceranfeld, Türen</div>
+            <div class="chip-row">
+              <div class="chip hr"><span class="chip-dot"></span>Feuer</div>
+              <div class="chip hr"><span class="chip-dot"></span>Leitungswasser</div>
+              <div class="chip hr"><span class="chip-dot"></span>Einbruch & Vandalismus</div>
+            </div>
+
+            <div class="card-content">
+              <ul>
+                <li>Versichert alles, was du bei einem Umzug mitnehmen würdest: Möbel, Technik, Kleidung, Küche.</li>
+                <li>Schützt bei Feuer, Leitungswasser, Sturm/Hagel, Einbruchdiebstahl und oft Elementargefahren.</li>
+                <li>Wichtig: ausreichende Versicherungssumme, damit es im Schadenfall keine Kürzungen gibt.</li>
+              </ul>
+            </div>
           </div>
-          <ul>
-            <li>Schützt Glasflächen im und am Haus: Fenster, Türen, Spiegel, Duschkabinen, teilweise auch Kochfelder.</li>
-            <li>Glasbruch ist schnell passiert und meist <strong>nicht über Hausrat oder Gebäude mitversichert</strong>.</li>
-            <li>Reparatur und Montage sind oft teurer als das Glas selbst.</li>
-          </ul>
         </div>
 
-        <div class="card">
-          <div class="card-title">Unfall & Rechtsschutz – wenn es kompliziert wird</div>
-          <div class="chip-row">
-            <div class="chip unfall"><span class="chip-dot"></span>Unfall</div>
-            <div class="chip rs"><span class="chip-dot"></span>Rechtsschutz</div>
+        <!-- Wohngebäude -->
+        <div class="card-collapsible">
+          <div class="card">
+            <div class="card-header-row">
+              <div>
+                <div class="card-title">Wohngebäude</div>
+                <div class="card-subtitle">Dein Haus als Vermögenswert</div>
+              </div>
+              <div class="card-toggle-hint">
+                Details anzeigen
+                <span class="chevron">▶</span>
+              </div>
+            </div>
+
+            <div class="chip-row">
+              <div class="chip wg"><span class="chip-dot"></span>Feuer & Blitz</div>
+              <div class="chip wg"><span class="chip-dot"></span>Leitungswasser</div>
+              <div class="chip wg"><span class="chip-dot"></span>Sturm, Hagel, Elementar</div>
+            </div>
+
+            <div class="card-content">
+              <ul>
+                <li>Versichert das Gebäude selbst: Dach, Wände, Leitungen, fest verbaute Teile.</li>
+                <li>Trägt die Kosten für Reparatur, Wiederaufbau und oft auch Aufräum- und Nebenkosten.</li>
+                <li>Besonders wichtig bei Finanzierung: Die Immobilie ist meist einer deiner größten Vermögenswerte.</li>
+              </ul>
+            </div>
           </div>
-          <ul>
-            <li><strong>Unfallversicherung</strong> springt ein, wenn ein Unfall zu dauerhaften Einschränkungen führt – unabhängig von der Schuldfrage.</li>
-            <li><strong>Rechtsschutz</strong> übernimmt Anwalts- und Gerichtskosten z. B. bei Ärger mit Arbeitgeber, Vermieter oder nach einem Kauf.</li>
-            <li>Gerade bei Arbeitsrecht, Mietrecht und Verkehrsrecht können die Kosten schnell mehrere Tausend Euro erreichen.</li>
-          </ul>
         </div>
+
+        <!-- Glas -->
+        <div class="card-collapsible">
+          <div class="card">
+            <div class="card-header-row">
+              <div>
+                <div class="card-title">Glasversicherung</div>
+                <div class="card-subtitle">Wenn es plötzlich splittert</div>
+              </div>
+              <div class="card-toggle-hint">
+                Details anzeigen
+                <span class="chevron">▶</span>
+              </div>
+            </div>
+
+            <div class="chip-row">
+              <div class="chip glas"><span class="chip-dot"></span>Fenster & Türen</div>
+              <div class="chip glas"><span class="chip-dot"></span>Duschen & Spiegel</div>
+              <div class="chip glas"><span class="chip-dot"></span>Ceranfeld</div>
+            </div>
+
+            <div class="card-content">
+              <ul>
+                <li>Deckt Glasbruch an Scheiben, Türen, Duschkabinen und oft auch Kochfeldern.</li>
+                <li>Schließt Lücken, die Hausrat und Gebäude nicht automatisch abdecken.</li>
+                <li>Übernimmt Glas, Ausbau, Entsorgung und Montage durch den Fachbetrieb.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unfall -->
+        <div class="card-collapsible">
+          <div class="card">
+            <div class="card-header-row">
+              <div>
+                <div class="card-title">Unfallversicherung</div>
+                <div class="card-subtitle">Leistung bei dauerhaften Folgen eines Unfalls</div>
+              </div>
+              <div class="card-toggle-hint">
+                Details anzeigen
+                <span class="chevron">▶</span>
+              </div>
+            </div>
+
+            <div class="chip-row">
+              <div class="chip unfall"><span class="chip-dot"></span>Invaliditätssumme</div>
+              <div class="chip unfall"><span class="chip-dot"></span>Progression</div>
+              <div class="chip unfall"><span class="chip-dot"></span>Knochenbruch-/Tagegeld</div>
+            </div>
+
+            <div class="card-content">
+              <ul>
+                <li>Zahlt bei dauerhafter Beeinträchtigung durch einen Unfall – unabhängig von der Schuldfrage.</li>
+                <li>Progression erhöht die Leistung bei schweren Invaliditätsgraden deutlich.</li>
+                <li>Optionale Bausteine: Krankenhaustagegeld, Leistungen bei Knochenbruch, Zahnersatz nach Unfall.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rechtsschutz -->
+        <div class="card-collapsible">
+          <div class="card">
+            <div class="card-header-row">
+              <div>
+                <div class="card-title">Rechtsschutz</div>
+                <div class="card-subtitle">Anwalt & Gericht, wenn es ernst wird</div>
+              </div>
+              <div class="card-toggle-hint">
+                Details anzeigen
+                <span class="chevron">▶</span>
+              </div>
+            </div>
+
+            <div class="chip-row">
+              <div class="chip rs"><span class="chip-dot"></span>Privat</div>
+              <div class="chip rs"><span class="chip-dot"></span>Beruf</div>
+              <div class="chip rs"><span class="chip-dot"></span>Wohnen & Verkehr</div>
+            </div>
+
+            <div class="card-content">
+              <ul>
+                <li>Übernimmt Anwalts- und Gerichtskosten in versicherten Bereichen (z. B. Arbeit, Miete, Verkehr).</li>
+                <li>Hilft, eigene Ansprüche durchzusetzen oder sich gegen Forderungen zu wehren.</li>
+                <li>Telefonische Erstberatung oft inklusive – bevor man den ersten Schritt macht.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -861,9 +1061,8 @@
     <section id="schadensbeispiele">
       <h2>Schadensbeispiele: was wirklich passieren kann</h2>
       <p class="section-subtitle">
-        Die Beispiele orientieren sich an realen Schadenfällen aus der Praxis. Wichtig ist die Kombination:
-        <strong>Schäden, die häufig vorkommen</strong>, und Schäden, die zwar seltener sind, aber <strong>finanziell
-        existenzbedrohend werden können</strong>.
+        Die Beispiele orientieren sich an typischen Schadenbildern aus der Praxis. Entscheidend ist die Kombination aus
+        <strong>hoher Wahrscheinlichkeit im Alltag</strong> und <strong>Schäden, die ohne Versicherung sehr teuer werden</strong>.
       </p>
 
       <div class="damage-grid">
@@ -874,6 +1073,9 @@
           <div class="damage-card-header">
             <div class="damage-card-title">Haftpflicht – kleiner Fehler, große Rechnung</div>
             <span class="damage-tag">häufig + teuer für den Einzelnen</span>
+          </div>
+          <div class="damage-image">
+            <img src="bilder/haftpflicht-parkett.jpg" alt="Wasserschaden auf Parkettboden" />
           </div>
           <div class="damage-body">
             <p>
@@ -898,6 +1100,9 @@
             <div class="damage-card-title">Hausrat – Einbruch mit Folgen</div>
             <span class="damage-tag">häufiger Schaden</span>
           </div>
+          <div class="damage-image">
+            <img src="bilder/hausrat-einbruch.jpg" alt="Aufgebrochene Wohnungstür nach Einbruch" />
+          </div>
           <div class="damage-body">
             <p>
               Ein Einbruchdiebstahl: Türen werden aufgehebelt, Technik, Schmuck und Markenbekleidung werden gestohlen.
@@ -918,21 +1123,24 @@
         <div class="damage-card">
           <div class="damage-bg-strip"></div>
           <div class="damage-card-header">
-            <div class="damage-card-title">Wohngebäude – Leitungswasser im Einfamilienhaus</div>
-            <span class="damage-tag">hohe Schäden möglich</span>
+            <div class="damage-card-title">Wohngebäude – massiver Leitungswasserschaden</div>
+            <span class="damage-tag">sehr hohe Schäden möglich</span>
+          </div>
+          <div class="damage-image">
+            <img src="bilder/wohngebaeude-leitungswasser.jpg" alt="Leitungswasserschaden im Haus" />
           </div>
           <div class="damage-body">
             <p>
-              Ein geplatztes Rohr im Obergeschoss: Wasser läuft über Stunden in Wände und Decken. Estrich,
-              Dämmung, Bodenbeläge und Teile der Elektrik müssen erneuert werden.
+              Ein geplatztes Rohr im Obergeschoss: Über Stunden läuft Wasser in Decken, Wände und den darunterliegenden
+              Wohnbereich. Estrich, Dämmung, Bodenbeläge und Teile der Elektrik müssen erneuert werden.
             </p>
             <div class="damage-amount-row">
               <span class="damage-label">Schadenhöhe (Beispiel):</span>
-              <span class="damage-amount wg" data-target="48000">0&nbsp;€</span>
+              <span class="damage-amount wg" data-target="65000">0&nbsp;€</span>
             </div>
             <p class="damage-note">
-              Leitungswasserschäden zählen zu den häufigsten Gebäudeschäden – und liegen bei Häusern schnell im
-              Bereich von <strong>zehntausenden Euro</strong>.
+              Leitungswasserschäden zählen zu den häufigsten Gebäudeschäden – bei Einfamilienhäusern sind
+              <strong>Schäden um 65.000&nbsp;€ keine Seltenheit</strong>.
             </p>
           </div>
         </div>
@@ -943,6 +1151,9 @@
           <div class="damage-card-header">
             <div class="damage-card-title">Glas – zerborstene Duschkabine</div>
             <span class="damage-tag">oft unterschätzt</span>
+          </div>
+          <div class="damage-image">
+            <img src="bilder/glas-duschkabine.jpg" alt="Zerbrochene Glasdusche im Badezimmer" />
           </div>
           <div class="damage-body">
             <p>
@@ -967,6 +1178,9 @@
             <div class="damage-card-title">Unfall – Sturz mit dauerhafter Einschränkung</div>
             <span class="damage-tag">selten, aber existenziell</span>
           </div>
+          <div class="damage-image">
+            <img src="bilder/unfall-leitersturz.jpg" alt="Sturz von der Leiter im Haushalt" />
+          </div>
           <div class="damage-body">
             <p>
               Ein Sturz von der Leiter führt zu einer dauerhaften Beeinträchtigung der Handfunktion. Der bisherige
@@ -988,7 +1202,10 @@
           <div class="damage-bg-strip"></div>
           <div class="damage-card-header">
             <div class="damage-card-title">Rechtsschutz – Kündigung vom Arbeitgeber</div>
-            <span class="damage-tag">teuer, wenn man verliert</span>
+            <span class="damage-tag">teuer, wenn man streiten muss</span>
+          </div>
+          <div class="damage-image">
+            <img src="bilder/rechtsschutz-arbeitsrecht.jpg" alt="Gespräch mit Anwalt im Büro" />
           </div>
           <div class="damage-body">
             <p>
@@ -1070,6 +1287,7 @@
 </div>
 
 <script>
+  // Burger-Menü
   const menuToggle = document.getElementById("menu-toggle");
   const menuBackdrop = document.getElementById("menu-backdrop");
   const menuPanel = document.getElementById("menu-panel");
@@ -1084,6 +1302,21 @@
     menuBackdrop.classList.remove("open");
   });
 
+  // Collapsible Cards
+  document.addEventListener("DOMContentLoaded", () => {
+    const collapsibles = document.querySelectorAll(".card-collapsible");
+
+    collapsibles.forEach((wrap) => {
+      const header = wrap.querySelector(".card-header-row");
+      if (!header) return;
+
+      header.addEventListener("click", (e) => {
+        e.stopPropagation();
+        wrap.classList.toggle("open");
+      });
+    });
+  });
+
   // Animierte Schadensbeträge
   document.addEventListener("DOMContentLoaded", () => {
     const amountEls = document.querySelectorAll(".damage-amount");
@@ -1095,7 +1328,6 @@
       if (isNaN(target)) return;
 
       el.dataset.animated = "true";
-      let start = 0;
       const duration = 1200;
       const startTime = performance.now();
 
