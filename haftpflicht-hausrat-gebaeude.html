@@ -2,153 +2,130 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leistungsseite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sachversicherung – Haftpflicht, Hausrat, Wohngebäude & mehr – Jonas Plener</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@500;600;700&display=swap" rel="stylesheet" />
 
   <style>
+    :root {
+      --primary: #4a787d;
+      --accent: #f4be69;
+      --text: #111827;
+      --muted: #4b5563;
+      --bg: #f4f8f8;
+      --border: #e5e7eb;
+      --wa: #25d366;
+      --hp: #6366f1;
+      --hr: #f97316;
+      --wg: #22c55e;
+      --glas: #0ea5e9;
+      --unfall: #ec4899;
+      --rs: #8b5cf6;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: "Raleway", sans-serif;
-      background: #f9fafb;
-      color: #111827;
+      font-family: "Arimo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(to bottom, #f9fafb, #e5f0f1);
+      color: var(--text);
+      line-height: 1.6;
     }
 
-    header.hero {
-      background: #eef7fa;
-      padding: 2.5rem 1.2rem;
-      border-bottom: 1px solid #e5e7eb;
-    }
+    a { color: inherit; text-decoration: none; }
 
-    .hero-inner {
+    .page {
       max-width: 1100px;
       margin: 0 auto;
+      min-height: 100vh;
+      background: #ffffff;
+      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12);
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      position: relative;
     }
 
-    .hero-label {
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      color: #4a787d;
-      letter-spacing: 0.05em;
+    /* Topbar */
+
+    .topbar {
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: space-between;
+      padding: 0.9rem 1.6rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to right, #ffffff, #fef3c7);
+      position: relative;
     }
 
-    .dot {
-      width: 8px;
-      height: 8px;
-      background: #4a787d;
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .topbar-portrait img {
+      height: 54px;
+      width: 54px;
       border-radius: 50%;
-      display: block;
-    }
-
-    .hero h1 {
-      margin-top: 0.6rem;
-      font-size: 1.9rem;
-      line-height: 1.3;
-      color: #1f2937;
-    }
-
-    .hero-lead {
-      margin-top: 0.75rem;
-      font-size: 1.05rem;
-      line-height: 1.55;
-      color: #374151;
-    }
-
-    .hero-photo img {
-      width: 100%;
-      border-radius: 14px;
       object-fit: cover;
+      display: block;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.25);
     }
 
-    .btn-primary {
-      display: inline-block;
-      padding: 0.9rem 1.4rem;
-      background: #4a787d;
-      color: #ffffff;
-      border-radius: 12px;
-      text-decoration: none;
+    .topbar-title {
+      font-family: "Raleway", system-ui, sans-serif;
       font-weight: 600;
-      margin-top: 1rem;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      color: var(--primary);
     }
 
-    .btn-secondary {
-      display: inline-block;
-      padding: 0.8rem 1.3rem;
-      background: #d1d5db;
-      color: #1f2937;
-      border-radius: 12px;
-      text-decoration: none;
-      margin-top: 1rem;
+    .topbar-tagline {
+      font-size: 0.8rem;
+      color: var(--muted);
     }
 
-    main {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 0 1.2rem;
+    .topbar-right {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: right;
+      margin-right: 3.2rem; /* Platz für Burger-Button */
     }
 
-    h2 {
-      color: #1f2937;
-      margin-top: 2.2rem;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
+    /* Burger-Menü */
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    @media (min-width: 768px) {
-      .grid-2 {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 1.2rem;
-      border: 1px solid #e5e7eb;
-    }
-
-    .card-title {
-      font-weight: 600;
-      margin-bottom: 0.6rem;
-      color: #4a787d;
-    }
-
-    /* BURGER MENU */
     .menu-toggle {
-      position: fixed;
-      right: 18px;
-      top: 18px;
-      background: white;
+      position: absolute;
+      right: 16px;
+      top: 14px;
+      background: #ffffff;
       border: 1px solid #e5e7eb;
-      padding: 0.5rem;
+      padding: 0.35rem 0.5rem;
       border-radius: 10px;
       cursor: pointer;
-      z-index: 50;
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 3px;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
     }
 
     .menu-burger {
-      width: 22px;
-      height: 3px;
+      width: 20px;
+      height: 2px;
       background: #111827;
-      margin: 3px 0;
-      border-radius: 50px;
+      border-radius: 999px;
     }
 
     .menu-panel-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.35);
+      background: rgba(0, 0, 0, 0.35);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease;
@@ -162,15 +139,17 @@
 
     .menu-panel {
       position: fixed;
-      right: -260px;
+      right: -270px;
       top: 0;
       height: 100%;
-      width: 260px;
+      width: 270px;
       background: #ffffff;
       border-left: 1px solid #e5e7eb;
-      padding: 1.2rem;
+      padding: 1.2rem 1.1rem;
       z-index: 45;
       transition: right 0.25s ease;
+      font-size: 0.9rem;
+      overflow-y: auto;
     }
 
     .menu-panel.open {
@@ -179,62 +158,916 @@
 
     .menu-section-title {
       text-transform: uppercase;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: #9ca3af;
-      margin-top: 1rem;
+      margin-top: 0.7rem;
+      margin-bottom: 0.15rem;
     }
 
     .menu-link {
       display: block;
-      padding: 0.4rem 0;
-      color: #111827;
-      text-decoration: none;
+      padding: 0.35rem 0;
+    }
+
+    .menu-link span {
+      font-size: 0.8rem;
+      color: #6b7280;
+      display: block;
+    }
+
+    .menu-link:hover {
+      color: var(--primary);
+    }
+
+    /* Buttons */
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.7rem;
+      border-radius: 999px;
+      font-weight: 600;
       font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #1f2933;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--primary);
+      border: 1px solid rgba(148, 163, 184, 0.85);
+    }
+
+    .btn-wa {
+      background: var(--wa);
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-wa:hover {
+      filter: brightness(1.03);
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+
+    header.hero {
+      padding: 2.8rem 1.6rem 2.6rem;
+      border-bottom: 1px solid var(--border);
+      background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 45%, #e0f2fe 100%);
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-text {
+      flex: 1 1 260px;
+      min-width: 0;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.15rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-label span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      margin: 0 0 0.7rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-lead {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      max-width: 36rem;
+      font-size: 0.98rem;
+    }
+
+    .hero-lead strong { color: var(--primary); }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.8rem 0 1.2rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.32rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: #ffffff;
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08);
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    .hero-photo {
+      flex: 0 0 280px;
+      text-align: right;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .hero-photo img {
+      max-width: 320px;
+      height: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tagcard {
+      position: absolute;
+      bottom: 0;
+      right: 10px;
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 0.55rem 0.9rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+      z-index: 2;
+      max-width: 240px;
+    }
+
+    .hero-tagcard-title {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-tagcard-line {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .hero-tagcard-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    main {
+      padding: 1.8rem 1.6rem 2.4rem;
+      flex: 1;
+      background: linear-gradient(to bottom, #ffffff 0, #f9fafb 100%);
+    }
+
+    section { margin-bottom: 2rem; }
+
+    h2 {
+      font-family: "Raleway", system-ui, sans-serif;
+      margin: 0 0 0.4rem;
+      font-size: 1.45rem;
+      color: var(--primary);
+    }
+
+    .section-subtitle {
+      margin-bottom: 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    /* Karten-Design wie bei BU, aber mit mehr Farbakzenten */
+
+    .card {
+      background: linear-gradient(to bottom right, #f1fafb, #ffffff);
+      border-radius: 26px;
+      border: 1px solid #a5d5d9;
+      box-shadow: 0 18px 32px rgba(15, 23, 42, 0.06);
+      padding: 1.2rem 1.3rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      position: relative;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 26px;
+      border-top: 4px solid var(--primary);
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    .card-title {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .card ul {
+      margin: 0.2rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .card li { margin-bottom: 0.18rem; }
+
+    .highlight-box {
+      background: #fff7ed;
+      border-radius: 18px;
+      border: 1px solid #fed7aa;
+      padding: 0.9rem 1rem;
+      font-size: 0.9rem;
+      color: #7c2d12;
+      margin-top: 0.8rem;
+    }
+
+    /* Sparten-Chips */
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      background: #e5f3f4;
+      color: #064e3b;
+    }
+
+    .chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    .chip.hp { background: #eef2ff; color: #3730a3; }
+    .chip.hr { background: #fff7ed; color: #9a3412; }
+    .chip.wg { background: #ecfdf3; color: #166534; }
+    .chip.glas { background: #e0f2fe; color: #075985; }
+    .chip.unfall { background: #fce7f3; color: #9d174d; }
+    .chip.rs { background: #ede9fe; color: #5b21b6; }
+
+    .chip.hp .chip-dot { background: #6366f1; }
+    .chip.hr .chip-dot { background: #f97316; }
+    .chip.wg .chip-dot { background: #22c55e; }
+    .chip.glas .chip-dot { background: #0ea5e9; }
+    .chip.unfall .chip-dot { background: #ec4899; }
+    .chip.rs .chip-dot { background: #8b5cf6; }
+
+    /* Schadensbeispiele */
+
+    .damage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 0.9rem;
+    }
+
+    .damage-card {
+      border-radius: 26px;
+      padding: 1rem 1.1rem 1.1rem;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+      font-size: 0.9rem;
+      color: var(--muted);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .damage-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.3rem;
+    }
+
+    .damage-card-title {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 600;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .damage-tag {
+      font-size: 0.78rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      background: #f3f4f6;
+      color: #4b5563;
+    }
+
+    .damage-body {
+      margin-top: 0.2rem;
+      font-size: 0.88rem;
+    }
+
+    .damage-amount-row {
+      margin-top: 0.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .damage-label {
+      font-size: 0.83rem;
+      color: #6b7280;
+    }
+
+    .damage-amount {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .damage-amount.hp { color: var(--hp); }
+    .damage-amount.hr { color: var(--hr); }
+    .damage-amount.wg { color: var(--wg); }
+    .damage-amount.glas { color: var(--glas); }
+    .damage-amount.unfall { color: var(--unfall); }
+    .damage-amount.rs { color: var(--rs); }
+
+    .damage-note {
+      margin-top: 0.3rem;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    .damage-bg-strip {
+      position: absolute;
+      inset: auto -40px -40px auto;
+      height: 80px;
+      background: radial-gradient(circle at right, rgba(148, 163, 184, 0.15), transparent);
+      pointer-events: none;
+    }
+
+    /* Gründe/Mehrwert-Boxen */
+
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.8rem;
+    }
+
+    .reason-box {
+      border-radius: 24px;
+      border: 1px solid #a5d5d9;
+      background: linear-gradient(to bottom, #f1fafb, #ffffff);
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.04);
+      padding: 0.85rem 0.95rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      position: relative;
+    }
+
+    .reason-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      border-top: 3px solid var(--accent);
+      pointer-events: none;
+    }
+
+    .reason-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-right: 0.4rem;
+    }
+
+    .centered-cta {
+      text-align: center;
+      margin-top: 1.4rem;
+    }
+
+    .centered-cta .btn-primary {
+      width: 100%;
+      max-width: 520px;
+      white-space: normal;
+      line-height: 1.4;
+      padding-inline: 1.4rem;
+    }
+
+    .back-link {
+      margin-top: 1.4rem;
+      text-align: center;
+      font-size: 0.88rem;
+    }
+
+    .back-link a {
+      color: var(--primary);
+      text-decoration: underline;
     }
 
     footer {
-      text-align: center;
-      padding: 3rem 1rem;
+      padding: 1rem 1.6rem 1.4rem;
+      font-size: 0.78rem;
       color: #6b7280;
-      font-size: 0.85rem;
-      margin-top: 4rem;
+      border-top: 1px solid var(--border);
+      background: #f9fafb;
+    }
+
+    @media (max-width: 768px) {
+      .topbar { padding-inline: 1rem; }
+      .topbar-right { margin-right: 2.8rem; }
+      .menu-toggle { right: 12px; top: 12px; }
+
+      header.hero { padding: 2.2rem 1rem 2.2rem; }
+      main { padding: 1.6rem 1rem 2.2rem; }
+
+      .hero-inner {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+
+      .hero h1 { font-size: 1.6rem; }
+      .hero-lead { font-size: 0.92rem; }
+
+      .hero-photo img { max-width: 280px; }
+
+      .hero-tagcard {
+        position: static;
+        transform: none;
+        margin-top: 0.6rem;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+        max-width: 260px;
+        text-align: left;
+      }
+
+      .btn-primary,
+      .btn-secondary,
+      .btn-wa {
+        width: 100%;
+      }
     }
   </style>
 </head>
-
 <body>
+<div class="page">
 
-<!-- 🔥 BURGER BUTTON -->
-<button class="menu-toggle" id="menu-toggle">
-  <div class="menu-burger"></div>
-  <div class="menu-burger"></div>
-  <div class="menu-burger"></div>
-</button>
+  <!-- Burger-Button -->
+  <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen">
+    <div class="menu-burger"></div>
+    <div class="menu-burger"></div>
+    <div class="menu-burger"></div>
+  </button>
 
-<!-- 🔥 BURGER OVERLAY + PANEL -->
-<div id="menu-backdrop" class="menu-panel-backdrop"></div>
+  <!-- Burger-Overlay & Panel -->
+  <div id="menu-backdrop" class="menu-panel-backdrop"></div>
 
-<nav id="menu-panel" class="menu-panel">
-  <div class="menu-section-title">Absicherung & Schutz</div>
-  <a class="menu-link" href="arbeitskraftabsicherung.html">Arbeitskraft & BU</a>
-  <a class="menu-link" href="haftpflicht-hausrat-gebaeude.html">Haftpflicht / Hausrat / Gebäude</a>
-  <a class="menu-link" href="risikoleben.html">Risikoleben</a>
+  <nav id="menu-panel" class="menu-panel">
+    <div class="menu-section-title">Start & Überblick</div>
+    <a class="menu-link" href="leistung.html">Startseite</a>
+    <a class="menu-link" href="index.html">Eltern-Renten-Check</a>
 
-  <div class="menu-section-title">Vorsorge & Rente</div>
-  <a class="menu-link" href="riester.html">Riester</a>
-  <a class="menu-link" href="basisrente.html">Rürup / Basisrente</a>
-  <a class="menu-link" href="bav.html">Betriebliche Altersvorsorge</a>
+    <div class="menu-section-title">Absicherung & Schutz</div>
+    <a class="menu-link" href="arbeitskraftabsicherung.html">Arbeitskraft & BU</a>
+    <a class="menu-link" href="haftpflicht-hausrat-gebaeude.html">Haftpflicht · Hausrat · Gebäude</a>
+    <a class="menu-link" href="risikoleben.html">Risikoleben für Familie & Immobilien</a>
 
-  <div class="menu-section-title">Vermögensaufbau & Sparen</div>
-  <a class="menu-link" href="fondssparen.html">Fondssparen</a>
-  <a class="menu-link" href="einmalanlagen.html">Einmalanlagen</a>
-  <a class="menu-link" href="vermoegensstruktur.html">Vermögensstruktur</a>
+    <div class="menu-section-title">Vorsorge & Rente</div>
+    <a class="menu-link" href="riester.html">Riester-Rente mit Zulagen</a>
+    <a class="menu-link" href="basisrente.html">Rürup / Basisrente</a>
+    <a class="menu-link" href="bav.html">Betriebliche Altersvorsorge</a>
 
-  <div class="menu-section-title">Familie & Kinder</div>
-  <a class="menu-link" href="eltern-retter-kindererziehungszeiten.html">Eltern-Retter</a>
-  <a class="menu-link" href="kinder-absichern.html">Kinder absichern</a>
-  <a class="menu-link" href="ausbildung-und-zukunft.html">Ausbildung & Zukunft</a>
-</nav>
+    <div class="menu-section-title">Familie & Kinder</div>
+    <a class="menu-link" href="eltern-retter-kindererziehungszeiten.html">Eltern-Retter & Kindererziehungszeiten</a>
+    <a class="menu-link" href="kinder-absichern.html">Kinder absichern</a>
+    <a class="menu-link" href="ausbildung-und-zukunft.html">Ausbildung & Zukunft</a>
+  </nav>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-portrait">
+        <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
+      </div>
+      <div>
+        <div class="topbar-title">Jonas Plener</div>
+        <div class="topbar-tagline">
+          Agentur für Deutsche Vermögensberatung<br />
+          (Region Kinzigtal / Ortenau)
+        </div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      Eltern, Familien & Selbstständige<br />
+      im Kinzigtal & der Ortenau
+    </div>
+  </div>
+
+  <!-- HERO -->
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-label">
+          <span class="dot"></span>
+          Sachversicherung · Haftpflicht, Hausrat, Wohngebäude & mehr
+        </div>
+
+        <h1>Wenn Dinge kaputt gehen – und das Konto nicht gleich mit</h1>
+
+        <p class="hero-lead">
+          Ob Rotwein auf dem Parkett, Leitungswasserschaden, Sturm am Dach, zerbrochene Glasdusche
+          oder Streit mit dem Arbeitgeber: <strong>Sach- und Haftpflichtversicherungen fangen
+          Schäden ab, bevor sie dein Vermögen auffressen</strong>. Hier geht es um dein Zuhause,
+          deine Sachen – und darum, wenn du anderen etwas kaputt machst.
+        </p>
+
+        <div class="highlight-box">
+          Typischer Gedanke: <strong>„Ich passe ja gut auf, bei mir passiert nichts.“</strong>
+          Die Schadenpraxis zeigt: <strong>Schäden passieren täglich</strong> – durch Wasser, Feuer,
+          Glasbruch, Missgeschicke oder rechtliche Konflikte. Entscheidend ist, ob dann jemand da ist,
+          der zahlt.
+        </div>
+
+        <div class="hero-badges">
+          <div class="badge">Haftpflicht, Hausrat, Wohngebäude, Glas, Unfall, Rechtsschutz</div>
+          <div class="badge">Von Smartphone-Display bis Wohnhausbrand – alles hat seinen Preis</div>
+        </div>
+
+        <div class="cta-row">
+          <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" class="btn-primary" target="_blank">
+            Gespräch zu deinem Sach- & Haftpflichtschutz vereinbaren
+          </a>
+          <a href="https://wa.me/4917663796605" class="btn-wa" target="_blank">
+            Kurzfrage per WhatsApp stellen
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-photo">
+        <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
+        <div class="hero-tagcard">
+          <div class="hero-tagcard-title">Dein Ansprechpartner</div>
+          <div class="hero-tagcard-line">
+            <span class="hero-tagcard-dot"></span>
+            <span>Schutz für Zuhause, Alltag & Freizeit</span>
+          </div>
+          <div class="hero-tagcard-line">
+            <span class="hero-tagcard-dot"></span>
+            <span>Beratung digital & vor Ort</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Überblick: Was wird abgesichert? -->
+    <section>
+      <h2>Was Sach- & Haftpflichtversicherungen überhaupt abdecken</h2>
+      <p class="section-subtitle">
+        Es geht um zwei Dinge: <strong>dein Eigentum</strong> und <strong>die Schäden, die du bei
+        anderen anrichtest</strong>. Dazu kommen Bausteine, die dich bei Unfällen und rechtlichen
+        Auseinandersetzungen entlasten.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Haftpflicht – wenn du anderen etwas kaputt machst</div>
+          <div class="chip-row">
+            <div class="chip hp"><span class="chip-dot"></span>Privathaftpflicht</div>
+            <div class="chip hp"><span class="chip-dot"></span>Tierhalter, Haus- & Grundbesitz</div>
+          </div>
+          <ul>
+            <li>Schützt dich, wenn <strong>du jemand anderem einen Schaden zufügst</strong> – Sach-, Personen- oder Vermögensschaden.</li>
+            <li>Typisch: Missgeschicke im Alltag, Kinder, die etwas zerstören, Schäden in gemieteten Wohnungen.</li>
+            <li>Ohne Haftpflicht haftest du mit deinem gesamten Privatvermögen – im Extremfall ein Leben lang.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Hausrat & Wohngebäude – dein Zuhause</div>
+          <div class="chip-row">
+            <div class="chip hr"><span class="chip-dot"></span>Hausrat</div>
+            <div class="chip wg"><span class="chip-dot"></span>Wohngebäude</div>
+          </div>
+          <ul>
+            <li><strong>Hausrat</strong> versichert alles, was man mitnehmen könnte, wenn man umzieht: Möbel, Kleidung, Technik, Küche usw.</li>
+            <li><strong>Wohngebäude</strong> schützt das eigentliche Haus: Dach, Wände, Leitungen, fest verbaute Teile.</li>
+            <li>Wichtige Gefahren: Feuer, Leitungswasser, Sturm/Hagel, Einbruchdiebstahl, Elementargefahren.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:1rem;">
+        <div class="card">
+          <div class="card-title">Glas – wenn es splittert</div>
+          <div class="chip-row">
+            <div class="chip glas"><span class="chip-dot"></span>Glas / Scheiben</div>
+            <div class="chip glas"><span class="chip-dot"></span>Duschkabine, Ceranfeld, Türen</div>
+          </div>
+          <ul>
+            <li>Schützt Glasflächen im und am Haus: Fenster, Türen, Spiegel, Duschkabinen, teilweise auch Kochfelder.</li>
+            <li>Glasbruch ist schnell passiert und meist <strong>nicht über Hausrat oder Gebäude mitversichert</strong>.</li>
+            <li>Reparatur und Montage sind oft teurer als das Glas selbst.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Unfall & Rechtsschutz – wenn es kompliziert wird</div>
+          <div class="chip-row">
+            <div class="chip unfall"><span class="chip-dot"></span>Unfall</div>
+            <div class="chip rs"><span class="chip-dot"></span>Rechtsschutz</div>
+          </div>
+          <ul>
+            <li><strong>Unfallversicherung</strong> springt ein, wenn ein Unfall zu dauerhaften Einschränkungen führt – unabhängig von der Schuldfrage.</li>
+            <li><strong>Rechtsschutz</strong> übernimmt Anwalts- und Gerichtskosten z. B. bei Ärger mit Arbeitgeber, Vermieter oder nach einem Kauf.</li>
+            <li>Gerade bei Arbeitsrecht, Mietrecht und Verkehrsrecht können die Kosten schnell mehrere Tausend Euro erreichen.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schadensbeispiele mit animierten Beträgen -->
+    <section id="schadensbeispiele">
+      <h2>Schadensbeispiele: was wirklich passieren kann</h2>
+      <p class="section-subtitle">
+        Die Beispiele orientieren sich an realen Schadenfällen aus der Praxis. Wichtig ist die Kombination:
+        <strong>Schäden, die häufig vorkommen</strong>, und Schäden, die zwar seltener sind, aber <strong>finanziell
+        existenzbedrohend werden können</strong>.
+      </p>
+
+      <div class="damage-grid">
+
+        <!-- Haftpflicht -->
+        <div class="damage-card">
+          <div class="damage-bg-strip"></div>
+          <div class="damage-card-header">
+            <div class="damage-card-title">Haftpflicht – kleiner Fehler, große Rechnung</div>
+            <span class="damage-tag">häufig + teuer für den Einzelnen</span>
+          </div>
+          <div class="damage-body">
+            <p>
+              Bei Freunden läuft ein Wassereimer um, das Parkett im Wohnzimmer quillt auf. Der komplette Boden
+              muss raus, Möbel werden eingelagert, es entstehen Trocknungskosten und Hotelübernachtungen.
+            </p>
+            <div class="damage-amount-row">
+              <span class="damage-label">Schadenhöhe (Beispiel):</span>
+              <span class="damage-amount hp" data-target="28000">0&nbsp;€</span>
+            </div>
+            <p class="damage-note">
+              Solche Sachschäden sind im Alltag gar nicht so selten – ohne Haftpflicht würde der Verursacher die
+              <strong>kompletten 28.000&nbsp;€ privat zahlen</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Hausrat -->
+        <div class="damage-card">
+          <div class="damage-bg-strip"></div>
+          <div class="damage-card-header">
+            <div class="damage-card-title">Hausrat – Einbruch mit Folgen</div>
+            <span class="damage-tag">häufiger Schaden</span>
+          </div>
+          <div class="damage-body">
+            <p>
+              Ein Einbruchdiebstahl: Türen werden aufgehebelt, Technik, Schmuck und Markenbekleidung werden gestohlen.
+              Dazu kommen Kosten für Notverglasung und Aufräumen.
+            </p>
+            <div class="damage-amount-row">
+              <span class="damage-label">Schadenhöhe (Beispiel):</span>
+              <span class="damage-amount hr" data-target="8500">0&nbsp;€</span>
+            </div>
+            <p class="damage-note">
+              Viele unterschätzen den Wert ihres Hausrats – <strong>8.500&nbsp;€ sind schnell erreicht</strong>,
+              wenn mehrere Zimmer betroffen sind.
+            </p>
+          </div>
+        </div>
+
+        <!-- Wohngebäude -->
+        <div class="damage-card">
+          <div class="damage-bg-strip"></div>
+          <div class="damage-card-header">
+            <div class="damage-card-title">Wohngebäude – Leitungswasser im Einfamilienhaus</div>
+            <span class="damage-tag">hohe Schäden möglich</span>
+          </div>
+          <div class="damage-body">
+            <p>
+              Ein geplatztes Rohr im Obergeschoss: Wasser läuft über Stunden in Wände und Decken. Estrich,
+              Dämmung, Bodenbeläge und Teile der Elektrik müssen erneuert werden.
+            </p>
+            <div class="damage-amount-row">
+              <span class="damage-label">Schadenhöhe (Beispiel):</span>
+              <span class="damage-amount wg" data-target="48000">0&nbsp;€</span>
+            </div>
+            <p class="damage-note">
+              Leitungswasserschäden zählen zu den häufigsten Gebäudeschäden – und liegen bei Häusern schnell im
+              Bereich von <strong>zehntausenden Euro</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Glas -->
+        <div class="damage-card">
+          <div class="damage-bg-strip"></div>
+          <div class="damage-card-header">
+            <div class="damage-card-title">Glas – zerborstene Duschkabine</div>
+            <span class="damage-tag">oft unterschätzt</span>
+          </div>
+          <div class="damage-body">
+            <p>
+              Beim Duschen springt die Glasdusche: Sicherheitsglas zerbricht vollständig, Fliesen werden zerkratzt,
+              Armaturen beschädigt – inklusive Entsorgung und Neueinbau.
+            </p>
+            <div class="damage-amount-row">
+              <span class="damage-label">Schadenhöhe (Beispiel):</span>
+              <span class="damage-amount glas" data-target="1800">0&nbsp;€</span>
+            </div>
+            <p class="damage-note">
+              Glasbruch klingt harmlos – mit Montage und Nebenarbeiten können <strong>über 1.800&nbsp;€</strong>
+              zusammenkommen.
+            </p>
+          </div>
+        </div>
+
+        <!-- Unfall -->
+        <div class="damage-card">
+          <div class="damage-bg-strip"></div>
+          <div class="damage-card-header">
+            <div class="damage-card-title">Unfall – Sturz mit dauerhafter Einschränkung</div>
+            <span class="damage-tag">selten, aber existenziell</span>
+          </div>
+          <div class="damage-body">
+            <p>
+              Ein Sturz von der Leiter führt zu einer dauerhaften Beeinträchtigung der Handfunktion. Der bisherige
+              Beruf ist nur noch eingeschränkt möglich, die Wohnung muss umgebaut werden.
+            </p>
+            <div class="damage-amount-row">
+              <span class="damage-label">Leistung aus Unfallversicherung (Beispiel):</span>
+              <span class="damage-amount unfall" data-target="70000">0&nbsp;€</span>
+            </div>
+            <p class="damage-note">
+              Mit Progression können aus einer vereinbarten Grundsumme <strong>70.000&nbsp;€ und mehr</strong> werden –
+              wichtig für Umbau, Hilfsmittel und Einkommensersatz.
+            </p>
+          </div>
+        </div>
+
+        <!-- Rechtsschutz -->
+        <div class="damage-card">
+          <div class="damage-bg-strip"></div>
+          <div class="damage-card-header">
+            <div class="damage-card-title">Rechtsschutz – Kündigung vom Arbeitgeber</div>
+            <span class="damage-tag">teuer, wenn man verliert</span>
+          </div>
+          <div class="damage-body">
+            <p>
+              Eine arbeitgeberseitige Kündigung wird vor Gericht angefochten. Es folgen mehrere Verhandlungstermine,
+              Gutachten und Anwaltsstunden – am Ende ein Vergleich.
+            </p>
+            <div class="damage-amount-row">
+              <span class="damage-label">Anwalts- & Gerichtskosten (Beispiel):</span>
+              <span class="damage-amount rs" data-target="4200">0&nbsp;€</span>
+            </div>
+            <p class="damage-note">
+              Ohne Rechtsschutz können <strong>über 4.000&nbsp;€</strong> an Kosten anfallen – unabhängig davon,
+              ob du den Prozess gewinnst oder nicht.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="small-note" style="margin-top:0.8rem;">
+        Die Beispiele sind grob gerundete Praxisfälle und dienen zur Orientierung. Entscheidend sind immer die
+        konkreten Bedingungen und Summen in deinem Vertrag.
+      </p>
+    </section>
+
+    <!-- Warum sauberer Schutz wichtig ist -->
+    <section>
+      <h2>Warum ein sauberer Sachschutz dein Vermögen schützt</h2>
+      <p class="section-subtitle">
+        Sach- und Haftpflichtversicherungen gehören zu den Grundlagen. Sie sind nicht „nice to have“, sondern
+        schützen vor Schäden, die <strong>deine gesamte Finanzplanung durcheinanderbringen</strong> können.
+      </p>
+
+      <div class="reasons-grid">
+        <div class="reason-box">
+          <div><span class="reason-number">1</span><strong>Existenzschutz für wenig Beitrag</strong></div>
+          <p style="margin:0.4rem 0 0;">
+            Gerade Haftpflicht und Hausrat kosten im Verhältnis zur möglichen Schadenshöhe relativ wenig –
+            sichern aber Schäden ab, die du <strong>allein nicht tragen könntest</strong>.
+          </p>
+        </div>
+
+        <div class="reason-box">
+          <div><span class="reason-number">2</span><strong>Vermögensaufbau bleibt unangetastet</strong></div>
+          <p style="margin:0.4rem 0 0;">
+            Ohne passenden Schutz werden Schäden aus Rücklagen oder Depot bezahlt. Mit Versicherung bleibt dein
+            <strong>Vermögensaufbau für später erhalten</strong>.
+          </p>
+        </div>
+
+        <div class="reason-box">
+          <div><span class="reason-number">3</span><strong>Rechtssicherheit im Streitfall</strong></div>
+          <p style="margin:0.4rem 0 0;">
+            Rechtsschutz sorgt dafür, dass du dir gute anwaltliche Vertretung leisten kannst – und nicht aus
+            Kostengründen auf berechtigte Ansprüche verzichtest.
+          </p>
+        </div>
+      </div>
+
+      <div class="centered-cta">
+        <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" class="btn-primary" target="_blank">
+          Sach- & Haftpflichtschutz mit mir durchgehen
+        </a>
+      </div>
+
+      <div class="back-link">
+        <a href="leistung.html">← Zurück zu „Meine Leistungen“</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Diese Seite ersetzt keine individuelle Rechts-, Steuer- oder Rechtsberatung.
+    Alle Angaben ohne Gewähr. Maßgeblich sind die gesetzlichen Regelungen und die Informationen
+    der jeweiligen Anbieter.
+  </footer>
+
+</div>
 
 <script>
   const menuToggle = document.getElementById("menu-toggle");
@@ -250,149 +1083,50 @@
     menuPanel.classList.remove("open");
     menuBackdrop.classList.remove("open");
   });
+
+  // Animierte Schadensbeträge
+  document.addEventListener("DOMContentLoaded", () => {
+    const amountEls = document.querySelectorAll(".damage-amount");
+    if (!amountEls.length) return;
+
+    const animateAmount = (el) => {
+      if (el.dataset.animated === "true") return;
+      const target = parseInt(el.getAttribute("data-target"), 10);
+      if (isNaN(target)) return;
+
+      el.dataset.animated = "true";
+      let start = 0;
+      const duration = 1200;
+      const startTime = performance.now();
+
+      const step = (now) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const value = Math.floor(progress * target);
+        el.innerHTML = value.toLocaleString("de-DE") + "&nbsp;€";
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.innerHTML = target.toLocaleString("de-DE") + "&nbsp;€";
+        }
+      };
+
+      requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateAmount(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    amountEls.forEach((el) => observer.observe(el));
+  });
 </script>
-
-<!-- ========================================================= -->
-<!-- 🚀 PAGE CONTENT – diesen Teil tauscht du aus! -->
-<!-- ========================================================= -->
-
-<!-- PAGE CONTENT START -->
-
-<header class="hero">
-  <div class="hero-inner">
-    <div class="hero-text animate-on-scroll">
-      <div class="hero-label">
-        <span class="dot"></span>
-        Absicherung & Schutz · Haftpflicht · Hausrat · Wohngebäude
-      </div>
-
-      <h1>Haftpflicht, Hausrat & Wohngebäude – Schutz für dich, dein Zuhause & dein Vermögen</h1>
-
-      <p class="hero-lead">
-        Ein kleiner Fehler kann Millionen kosten. Ein Wohnungsbrand kann dein komplettes Eigentum
-        vernichten. Undichte Leitungen können Häuser ruinieren.
-        Mit diesen drei Verträgen schützt du nicht nur Dinge – sondern deine Existenz.
-      </p>
-
-      <div class="hero-badges">
-        <div class="badge">Privat-Haftpflicht als Fundament</div>
-        <div class="badge">Hausrat & Gebäude richtig abgesichert</div>
-      </div>
-
-      <div class="cta-row">
-        <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" class="btn-primary" target="_blank">
-          Schaden-Check starten
-        </a>
-      </div>
-    </div>
-
-    <div class="hero-photo animate-on-scroll">
-      <img src="sach-symbol.png" alt="Sachversicherungen" />
-    </div>
-  </div>
-</header>
-
-<main>
-
-  <section class="animate-on-scroll">
-    <h2>Die wichtigsten Bausteine</h2>
-
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-title">Privat-Haftpflicht</div>
-        <ul>
-          <li>Zahlt Schäden an fremdem Eigentum oder Personen</li>
-          <li>Verhindert Millionenforderungen gegen dich</li>
-          <li>Verteidigt dich gegen unberechtigte Forderungen</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Hausrat & Wohngebäude</div>
-        <ul>
-          <li><strong>Hausrat:</strong> Möbel, Elektronik, Kleidung, Schmuck, Fahrräder</li>
-          <li><strong>Gebäude:</strong> Schäden am Haus (Dach, Leitungen, Wände)</li>
-          <li>Schutz bei Feuer, Leitungswasser, Sturm/Hagel und optional Elementar</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="animate-on-scroll">
-    <h2>Echte Schadenbeispiele</h2>
-    <div class="grid-2">
-
-      <div class="card">
-        <div class="card-title">Wasserrohrbruch – 38.400 € Schaden</div>
-        <p>
-          Durch einen geplatzten Schlauch in der Küche wurde das Laminat zerstört,
-          Möbel unbrauchbar, darunterliegende Wohnung ebenfalls betroffen.
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Brand durch Mehrfachsteckdose – 112.000 € Schaden</div>
-        <p>
-          Ein technischer Defekt löste ein Feuer aus. Der komplette Hausrat musste ersetzt werden.
-          Ohne Versicherung: finanzieller Totalschaden.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="animate-on-scroll">
-    <h2>Was passiert ohne Schutz?</h2>
-    <div class="grid-2">
-
-      <div class="card">
-        <div class="card-title">Ohne Versicherung</div>
-        <ul class="risk-list">
-          <li>Du haftest privat mit deinem gesamten Vermögen</li>
-          <li>Totalschäden am Eigentum müssen selbst bezahlt werden</li>
-          <li>Vermögen & Rücklagen können komplett verloren gehen</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Mit Versicherung</div>
-        <ul>
-          <li>Du bist finanziell abgesichert</li>
-          <li>Schäden werden repariert oder ersetzt</li>
-          <li>Du hast klare Ansprechpartner & Unterstützung</li>
-        </ul>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="animate-on-scroll">
-    <h2>Nächster Schritt</h2>
-    <p class="section-subtitle">Wir prüfen Wohnsituation, Wert des Hausrats und mögliche Risiken.</p>
-
-    <div class="centered-cta">
-      <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" class="btn-primary" target="_blank">
-        Absicherungs-Check starten
-      </a>
-    </div>
-
-    <div class="centered-cta" style="margin-top:1rem;">
-      <a href="leistung.html#absicherung" class="btn-secondary">
-        Zurück zur Übersicht
-      </a>
-    </div>
-  </section>
-
-</main>
-
-<!-- PAGE CONTENT END -->
-
-
-<!-- ========================================================= -->
-
-<footer>
-  © 2025 Jonas Plener – Beratung digital & vor Ort
-</footer>
-
 </body>
 </html>
