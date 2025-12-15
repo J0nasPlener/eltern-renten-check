@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Eltern-Renten-Check – Jonas Plener</title>
+  <title>Sachversicherung – Haftpflicht, Hausrat, Wohngebäude & mehr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Google Fonts -->
@@ -12,13 +12,15 @@
     :root {
       --primary: #4a787d;
       --accent: #f4be69;
-      --text: #111111;
+      --accent-soft: #fef3c7;
+      --text: #111827;
       --muted: #4b5563;
       --bg: #f4f8f8;
       --bg-soft: #f9fbfb;
-      --border: #e5e7eb;
-      --good: #16a34a;
-      --bad: #dc2626;
+      --border: #d1d5db;
+      --danger: #b91c1c;
+      --good: #15803d;
+      --info: #2563eb;
     }
 
     * { box-sizing: border-box; }
@@ -43,18 +45,25 @@
       flex-direction: column;
     }
 
-    /* Topbar */
+    /* TOPBAR + BURGER */
 
     .topbar {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.8rem 1.8rem;
+      padding: 0.9rem 1.6rem;
       border-bottom: 1px solid var(--border);
       background: linear-gradient(to right, #ffffff, #fef3c7);
+      z-index: 10;
     }
 
-    .topbar-left { display: flex; align-items: center; gap: 0.75rem; }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 0;
+    }
 
     .topbar-portrait img {
       height: 54px;
@@ -62,16 +71,17 @@
       border-radius: 50%;
       object-fit: cover;
       display: block;
-      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.25);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
     }
 
     .topbar-title {
       font-family: "Raleway", system-ui, sans-serif;
       font-weight: 600;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
       font-size: 0.95rem;
       text-transform: uppercase;
       color: var(--primary);
+      white-space: nowrap;
     }
 
     .topbar-tagline {
@@ -83,14 +93,123 @@
       font-size: 0.8rem;
       color: var(--muted);
       text-align: right;
+      max-width: 210px;
     }
 
-    /* Hero */
+    .burger-btn {
+      position: absolute;
+      right: 1.1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+    }
+
+    .burger-lines {
+      width: 18px;
+      height: 14px;
+      position: relative;
+    }
+
+    .burger-lines span {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 999px;
+      transition: transform 0.25s ease, top 0.25s ease, opacity 0.2s ease;
+    }
+
+    .burger-lines span:nth-child(1) { top: 0; }
+    .burger-lines span:nth-child(2) { top: 6px; }
+    .burger-lines span:nth-child(3) { top: 12px; }
+
+    .burger-btn.open .burger-lines span:nth-child(1) {
+      top: 6px;
+      transform: rotate(45deg);
+    }
+    .burger-btn.open .burger-lines span:nth-child(2) { opacity: 0; }
+    .burger-btn.open .burger-lines span:nth-child(3) {
+      top: 6px;
+      transform: rotate(-45deg);
+    }
+
+    .menu-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 40;
+    }
+    .menu-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .menu-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(290px, 80vw);
+      height: 100vh;
+      background: #ffffff;
+      box-shadow: -8px 0 25px rgba(15, 23, 42, 0.3);
+      transform: translateX(100%);
+      transition: transform 0.25s ease;
+      z-index: 41;
+      display: flex;
+      flex-direction: column;
+      padding: 1.4rem 1.2rem 1.6rem;
+      gap: 1rem;
+    }
+
+    .menu-panel.open { transform: translateX(0); }
+
+    .menu-title {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .menu-group { margin-bottom: 0.6rem; }
+    .menu-group-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ca3af;
+      margin-bottom: 0.25rem;
+    }
+    .menu-link {
+      display: block;
+      padding: 0.38rem 0.2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-radius: 6px;
+    }
+    .menu-link:hover {
+      background: #f3f4f6;
+      color: var(--primary);
+    }
+
+    /* HERO */
 
     header.hero {
-      padding: 2rem 1.4rem 2.2rem;
+      padding: 2.1rem 1.6rem 2.3rem;
       border-bottom: 1px solid var(--border);
-      background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 40%, #e0f2fe 100%);
+      background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 45%, #e0f2fe 100%);
     }
 
     .hero-inner {
@@ -106,15 +225,14 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.15rem 0.65rem;
+      padding: 0.15rem 0.7rem;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.8);
-      font-size: 0.8rem;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      font-size: 0.78rem;
       color: var(--muted);
       margin-bottom: 0.6rem;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.94);
     }
-
     .hero-label span.dot {
       width: 6px;
       height: 6px;
@@ -126,39 +244,41 @@
       font-family: "Raleway", system-ui, sans-serif;
       font-weight: 700;
       font-size: 2rem;
-      margin: 0 0 0.7rem;
+      margin: 0 0 0.6rem;
       letter-spacing: 0.02em;
     }
 
-    .hero-lead {
-      margin: 0 0 1rem;
+    .hero-text p {
+      margin: 0 0 0.8rem;
       color: var(--muted);
-      max-width: 33rem;
       font-size: 0.98rem;
     }
 
-    .hero-lead strong { font-weight: 700; color: var(--primary); }
+    .hero-text p strong {
+      color: var(--primary);
+      font-weight: 700;
+    }
 
     .hero-badges {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 0.6rem 0 1.1rem;
+      gap: 0.45rem;
+      margin: 0.7rem 0 1.1rem;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 0.32rem;
-      padding: 0.3rem 0.7rem;
+      padding: 0.32rem 0.7rem;
       border-radius: 999px;
       border: 1px solid rgba(148, 163, 184, 0.9);
       font-size: 0.8rem;
       color: var(--muted);
       background: #ffffff;
       box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08);
+      cursor: pointer;
     }
-
     .badge .arrow { font-size: 0.9rem; color: var(--primary); }
 
     .cta-row {
@@ -170,8 +290,8 @@
     }
 
     .btn-primary,
-    .btn-secondary,
     .btn-wa,
+    .btn-secondary,
     .btn-gold {
       display: inline-flex;
       align-items: center;
@@ -192,41 +312,34 @@
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
     }
 
-    .btn-secondary {
-      background: #ffffff;
-      color: var(--primary);
-      border: 1px solid rgba(148, 163, 184, 0.85);
-    }
-
     .btn-wa {
       background: #25d366;
       color: #ffffff;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
     }
 
-    .btn-gold {
-      background: var(--accent);
-      color: #1f2933;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--primary);
+      border: 1px solid rgba(148, 163, 184, 0.9);
     }
 
     .btn-primary:hover,
-    .btn-secondary:hover,
     .btn-wa:hover,
-    .btn-gold:hover {
+    .btn-secondary:hover {
       filter: brightness(1.03);
       transform: translateY(-1px);
     }
 
     .hero-photo {
-      flex: 0 0 280px;
+      flex: 0 0 260px;
       text-align: right;
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      gap: 0.7rem;
+      gap: 0.5rem;
     }
 
     .hero-photo::before {
@@ -235,14 +348,14 @@
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      background: radial-gradient(circle, #f4be69 0, #ffffff 50%, #93c5fd 100%);
-      opacity: 0.6;
-      top: 10px;
+      background: radial-gradient(circle, #f4be69 0, #ffffff 55%, #e5f3ff 100%);
+      opacity: 0.55;
+      top: 16px;
       z-index: 0;
     }
 
     .hero-photo img {
-      max-width: 320px;
+      max-width: 280px;
       height: auto;
       position: relative;
       z-index: 1;
@@ -251,11 +364,11 @@
     .hero-tagcard {
       position: absolute;
       bottom: 0;
-      right: 10px;
+      right: 4px;
       background: #ffffff;
       border-radius: 14px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 0.55rem 0.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      padding: 0.55rem 0.8rem;
       font-size: 0.78rem;
       color: var(--muted);
       box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
@@ -266,9 +379,9 @@
     .hero-tagcard-title {
       font-family: "Raleway", system-ui, sans-serif;
       font-weight: 600;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--primary);
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.25rem;
     }
 
     .hero-tagcard-line {
@@ -286,12 +399,12 @@
     }
 
     main {
-      padding: 1.8rem 1.4rem 2.4rem;
+      padding: 1.9rem 1.6rem 2.4rem;
       flex: 1;
       background: linear-gradient(to bottom, #ffffff 0, #f9fafb 100%);
     }
 
-    section { margin-bottom: 2rem; }
+    section { margin-bottom: 2.2rem; }
 
     h2 {
       font-family: "Raleway", system-ui, sans-serif;
@@ -306,331 +419,392 @@
       font-size: 0.9rem;
     }
 
-    .section-subtitle strong {
-      font-weight: 700;
-      color: var(--primary);
-    }
+    .section-subtitle strong { color: var(--primary); }
 
-    .grid-2 {
+    .grid-3 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1rem;
     }
 
-    .card {
+    .prod-card {
       background: var(--bg-soft);
-      border-radius: 14px;
-      padding: 0.9rem 1rem;
-      border: 1px solid var(--border);
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .card-title {
-      font-family: "Raleway", system-ui, sans-serif;
-      font-weight: 600;
-      margin-bottom: 0.35rem;
-      color: var(--text);
-      font-size: 1rem;
-    }
-
-    .card ul { margin: 0.2rem 0 0; padding-left: 1.1rem; }
-    .card li { margin-bottom: 0.18rem; }
-
-    .num { font-weight: 700; color: var(--primary); }
-
-    /* Rechner */
-
-    .calc-wrapper {
       border-radius: 18px;
-      padding: 1.2rem 1.1rem 1.4rem;
-      background: linear-gradient(to right, #fef3c7 0, #ffffff 45%, #e0f2fe 100%);
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-      margin-top: 0.6rem;
-    }
-
-    .calc-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-      gap: 1.2rem;
-    }
-
-    .calc-inputs label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 500;
-      margin-bottom: 0.25rem;
-    }
-
-    .calc-inputs input {
-      width: 100%;
-      padding: 0.55rem 0.6rem;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      font-size: 0.9rem;
-    }
-
-    .calc-inputs .field { margin-bottom: 0.7rem; }
-
-    .calc-btn-row { margin-top: 0.3rem; }
-    .calc-btn-row button { width: 100%; }
-
-    .calc-result {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 14px;
-      padding: 0.9rem 1rem;
-      border: 1px solid var(--border);
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .calc-expl {
-      font-size: 0.9rem;
-      margin-bottom: 0.6rem;
-      color: var(--muted);
-    }
-
-    .calc-expl strong { font-weight: 700; }
-
-    /* Ergebnis-Kästen */
-
-    .calc-values {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 0.6rem;
-      margin-top: 0.4rem;
-    }
-
-    .calc-value-box {
-      padding: 0.55rem 0.7rem;
-      border-radius: 10px;
-      background: #ffffff;
-      border: 2px solid var(--border);
-    }
-
-    /* 1 = Rente heute (rot) */
-    .calc-value-box.today {
-      border-color: rgba(220, 38, 38, 0.7);
-      background: #fee2e2;
-    }
-
-    /* 2 = Rente mit Förderung (neutral/schwarz) */
-    .calc-value-box.boosted {
-      border-color: #111827;
-      background: #f3f4f6;
-    }
-
-    /* 3 = Mehr-Rente (grün) */
-    .calc-value-box.diff {
-      border-color: rgba(22, 163, 74, 0.8);
-      background: #dcfce7;
-    }
-
-    /* 4 = Summe bis 100 – kann so bleiben */
-    .calc-value-box.total {
-      border-color: rgba(148, 163, 184, 0.7);
-      background: #eff6ff;
-    }
-
-    .calc-value-label {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.1rem;
-    }
-
-    /* Zahlen schön mittig im Kasten, alle auf gleicher Höhe */
-    .calc-value-number {
-      display: block;
-      font-weight: 700;
-      font-size: 1.05rem;
-      margin-top: 2px;
-    }
-
-    /* Farben der Zahlen */
-    .calc-value-number.red   { color: #dc2626; }   /* Rente heute */
-    .calc-value-number.green { color: #16a34a; }   /* Mehr-Rente */
-    .calc-value-number.black { color: #111827; }   /* Rente mit Förderung */
-
-    .calc-note {
-      margin-top: 0.6rem;
-      font-size: 0.78rem;
-      color: #6b7280;
-    }
-
-    .calc-cta-row {
-      margin-top: 0.8rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
-
-    .calc-examples-link {
-      margin-top: 0.6rem;
-      font-size: 0.85rem;
-      color: var(--primary);
-      text-decoration: underline;
-      cursor: pointer;
-    }
-
-    /* Beispielkarten */
-
-    .example-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-      margin-top: 0.8rem;
-    }
-
-    .example-card {
-      background: #ffffff;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      padding: 1rem 1.1rem 1.1rem;
+      padding: 1rem 1rem 1.1rem;
+      border: 1px solid rgba(148, 163, 184, 0.8);
       box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
       font-size: 0.9rem;
       color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
 
-    .example-title {
+    .prod-card.header-haftpflicht { border-top: 4px solid var(--primary); }
+    .prod-card.header-hausrat { border-top: 4px solid var(--accent); }
+    .prod-card.header-gebaeude { border-top: 4px solid var(--info); }
+    .prod-card.header-unfall { border-top: 4px solid #f97316; }
+    .prod-card.header-rechtsschutz { border-top: 4px solid #7c3aed; }
+    .prod-card.header-reise { border-top: 4px solid #059669; }
+    .prod-card.header-pv { border-top: 4px solid #ea580c; }
+
+    .prod-title {
       font-family: "Raleway", system-ui, sans-serif;
       font-weight: 600;
-      margin-bottom: 0.4rem;
+      font-size: 1.02rem;
       color: var(--text);
-      font-size: 1.05rem;
+      margin-bottom: 0.15rem;
     }
 
-    .example-row {
+    .prod-intro { margin: 0; font-size: 0.9rem; }
+
+    .prod-highlights { margin: 0.45rem 0 0.4rem; padding-left: 1.1rem; }
+    .prod-highlights li { margin-bottom: 0.18rem; }
+
+    .damage-box {
+      margin-top: 0.5rem;
+      padding: 0.6rem 0.7rem;
+      border-radius: 14px;
+      border: 1px dashed rgba(148, 163, 184, 0.9);
+      background: #ffffff;
+    }
+
+    .damage-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ca3af;
+      margin-bottom: 0.1rem;
+    }
+
+    .damage-amount {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--danger);
+      margin-bottom: 0.1rem;
+    }
+
+    .damage-text {
+      font-size: 0.85rem;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .prod-more {
+      margin-top: 0.6rem;
+      align-self: flex-start;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.82rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      background: #ffffff;
+      cursor: pointer;
+      color: var(--primary);
+    }
+    .prod-more:hover { background: #f3f4f6; }
+
+    /* Scroll-Grafiken */
+
+    .chart-section {
+      background: var(--bg-soft);
+      border-radius: 18px;
+      padding: 1rem 1.1rem 1.1rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    .figure-grid {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      gap: 0.3rem;
+      margin-top: 0.7rem;
+      margin-bottom: 0.4rem;
+      justify-items: center;
+    }
+
+    .figure-icon {
+      width: 22px;
+      height: 32px;
+      border-radius: 999px 999px 8px 8px;
+      border: 2px solid rgba(148, 163, 184, 0.8);
+      background: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+    .figure-icon::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--primary);
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    .figure-icon.filled::before { transform: translateY(0); }
+
+    .figure-caption {
+      font-size: 0.83rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    .donut-wrapper {
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 0.8rem;
+    }
+
+    .donut-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .donut-chart {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      position: relative;
+      margin: 0 auto;
+      max-width: 100%;
+      transform: rotate(-90deg);
+      overflow: hidden;
+    }
+
+    .donut-base {
+      position: absolute;
+      inset: 0;
+      background: conic-gradient(
+        #ef4444 0deg 126deg,
+        #f97316 126deg 216deg,
+        #3b82f6 216deg 306deg,
+        #6b7280 306deg 360deg
+      );
+    }
+
+    .donut-fill {
+      position: absolute;
+      inset: 0;
+      background: conic-gradient(
+        #ef4444 0deg 126deg,
+        #f97316 126deg 216deg,
+        #3b82f6 216deg 306deg,
+        #6b7280 306deg 360deg
+      );
+      clip-path: polygon(50% 50%, 100% 0, 100% 0, 100% 0);
+      transition: clip-path 1s ease-out;
+    }
+
+    .donut-fill.active {
+      clip-path: polygon(50% 50%, 100% 0, 100% 100%, 0 100%, 0 0, 100% 0);
+    }
+
+    .donut-chart::before {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border-radius: 50%;
+      background: #ffffff;
+      z-index: 1;
+    }
+
+    .donut-center-label {
+      position: absolute;
+      inset: 36px;
+      border-radius: 999px;
+      background: #ffffff;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      transform: rotate(90deg);
+    }
+
+    .donut-legend {
+      flex: 1;
+      min-width: 210px;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
       margin-bottom: 0.2rem;
     }
 
-    .example-row strong { font-weight: 700; }
-
-    .example-highlight {
-      margin-top: 0.6rem;
-      font-weight: 700;
-      color: var(--good);
-    }
-
-    .bar-track {
-      width: 100%;
-      height: 16px;
+    .legend-dot {
+      width: 12px;
+      height: 12px;
       border-radius: 999px;
-      background: #d1d5db;
-      overflow: hidden;
-      margin-top: 0.25rem;
-      margin-bottom: 0.4rem;
     }
 
-    .bar-fill-before {
-      height: 100%;
-      background: var(--primary);
-      width: 65%;
-    }
+    .legend-psyche { background: #ef4444; }
+    .legend-ruecken { background: #f97316; }
+    .legend-sonstige { background: #3b82f6; }
+    .legend-unfall { background: #6b7280; }
 
-    .bar-fill-after {
-      height: 100%;
-      background: var(--accent);
+    /* Modals */
+
+    .detail-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 1rem;
+    }
+    .detail-modal.open { display: flex; }
+
+    .detail-content {
+      max-width: 520px;
       width: 100%;
+      max-height: 85vh;
+      overflow: auto;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.1rem 1.2rem 1.2rem;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.4);
+      font-size: 0.9rem;
+      color: var(--muted);
+      position: relative;
     }
 
-    .example-footnote {
-      font-size: 0.8rem;
+    .detail-content h3 {
+      margin-top: 0;
+      margin-bottom: 0.3rem;
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    .detail-close {
+      border: none;
+      background: transparent;
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+      position: absolute;
+      top: 0.6rem;
+      right: 0.85rem;
       color: #6b7280;
-      margin-top: 0.4rem;
     }
 
-    /* Bottom CTA */
+    .detail-content ul {
+      margin: 0.35rem 0 0.35rem;
+      padding-left: 1.1rem;
+    }
 
     .bottom-cta {
-      margin-top: 1.6rem;
-      padding: 1.1rem 1.1rem 1.3rem;
+      margin-top: 1.8rem;
+      padding: 1.2rem 1.1rem 1.3rem;
       border-radius: 18px;
       background: linear-gradient(to right, #e0f2fe, #fef3c7);
       border: 1px solid var(--border);
       text-align: center;
       font-size: 0.95rem;
+      color: var(--muted);
     }
 
-    .bottom-cta p { margin: 0 0 0.8rem; color: var(--muted); }
+    .bottom-cta-buttons {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+    }
+
+    .back-link {
+      margin-top: 0.9rem;
+      text-align: center;
+      font-size: 0.85rem;
+    }
 
     footer {
-      padding: 1rem 1.4rem 1.3rem;
+      padding: 1rem 1.6rem 1.3rem;
       font-size: 0.78rem;
       color: #6b7280;
       border-top: 1px solid var(--border);
       background: #f9fafb;
     }
 
-    /* Animation */
-
-    .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .animate-on-scroll.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     @media (max-width: 768px) {
-      .topbar { padding-inline: 1rem; }
+      .topbar { padding-inline: 1.1rem; }
+      .topbar-right { display: none; }
 
-      header.hero { padding: 1.6rem 1rem 1.8rem; }
+      header.hero { padding: 1.7rem 1.1rem 1.9rem; }
+      main { padding: 1.7rem 1.1rem 2.3rem; }
 
-      main { padding: 1.6rem 1rem 2.2rem; }
+      .hero-inner {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
 
-      .hero-inner { flex-direction: column-reverse; align-items: flex-start; }
+      .hero h1 { font-size: 1.6rem; }
 
-      .hero h1 { font-size: 1.5rem; }
-      .hero-lead { font-size: 0.9rem; }
-
-      .hero-photo { width: 100%; justify-content: center; align-items: center; }
-
-      .hero-photo::before { width: 180px; height: 180px; top: 10px; }
-
-      .hero-photo img { max-width: 280px; }
+      .hero-photo {
+        width: 100%;
+        align-items: center;
+      }
+      .hero-photo::before {
+        width: 190px;
+        height: 190px;
+        top: 8px;
+      }
+      .hero-photo img { max-width: 240px; }
 
       .hero-tagcard {
         position: static;
-        transform: none;
         margin-top: 0.6rem;
-        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
-        max-width: 260px;
-        text-align: left;
+        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
       }
 
-      section { margin-bottom: 1.7rem; }
-
-      .grid-2,
-      .example-grid { gap: 0.8rem; }
-
-      .card,
-      .example-card { padding: 0.85rem 0.9rem; }
-
-      .calc-grid { grid-template-columns: minmax(0, 1fr); }
-
-      .calc-btn-row button { width: 100%; }
-
-      .cta-row { gap: 0.5rem; }
-
       .btn-primary,
-      .btn-secondary,
       .btn-wa,
-      .btn-gold { width: 100%; justify-content: center; }
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .grid-3 { gap: 0.9rem; }
+      .detail-content { max-width: 100%; }
     }
   </style>
 </head>
 <body>
 <div class="page">
 
+  <!-- Burger-Overlay -->
+  <div class="menu-backdrop" id="menu-backdrop"></div>
+  <nav class="menu-panel" id="menu-panel">
+    <div class="menu-title">Navigation</div>
+
+    <div class="menu-group">
+      <div class="menu-group-label">Allgemein</div>
+      <a href="leistung.html" class="menu-link">Startseite – Leistungen</a>
+      <a href="index.html" class="menu-link">Eltern-Renten-Check</a>
+    </div>
+
+    <div class="menu-group">
+      <div class="menu-group-label">Schwerpunkte</div>
+      <a href="arbeitskraftabsicherung.html" class="menu-link">Arbeitskraftabsicherung (BU)</a>
+      <a href="sachversicherung.html" class="menu-link">Sachversicherung &amp; Eigentum</a>
+      <a href="eltern-retter.html" class="menu-link">Eltern-Retter &amp; Kinder</a>
+    </div>
+  </nav>
+
   <!-- TOPBAR -->
-  <div class="topbar">
+  <header class="topbar">
     <div class="topbar-left">
       <div class="topbar-portrait">
         <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
@@ -643,74 +817,73 @@
         </div>
       </div>
     </div>
+
     <div class="topbar-right">
-      Eltern, Selbstständige und Angestellte<br />
-      im Kinzigtal & der Ortenau
+      Eltern, Familien &amp; Selbstständige<br />
+      im Kinzigtal &amp; der Ortenau
     </div>
-  </div>
+
+    <button class="burger-btn" id="burger-btn" aria-label="Menü öffnen">
+      <div class="burger-lines">
+        <span></span><span></span><span></span>
+      </div>
+    </button>
+  </header>
 
   <!-- HERO -->
   <header class="hero">
     <div class="hero-inner">
-      <div class="hero-text animate-on-scroll">
+      <div class="hero-text">
         <div class="hero-label">
           <span class="dot"></span>
-          Eltern-Renten-Check · unverbindlich
+          Sachversicherung · verständlich &amp; auf Augenhöhe
         </div>
-        <h1>Bis zu <strong>120 €</strong> pro Kind: Weißt Du, ob Du alles bekommst?</h1>
-        <p class="hero-lead">
-          Ich bin Jonas Plener. Viele Eltern verschenken jeden Monat Rentenansprüche und staatliche Förderungen,
-          weil niemand das Thema mit ihnen klar durchgeht. Genau da setze ich an:
-          <strong>kurz, verständlich und auf Augenhöhe.</strong>
+        <h1>Sachversicherung: Wenn Dinge kaputt gehen, soll nicht gleich alles wackeln</h1>
+        <p>
+          Ein Missgeschick, ein Rohrbruch, ein Sturm – und plötzlich geht es um
+          fünfstellige Beträge. Gute <strong>Haftpflicht-, Hausrat- und Wohngebäude­versicherungen</strong>
+          sorgen dafür, dass ein Schaden nicht dein Konto, deine Pläne oder deine Familie aus der Bahn wirft.
+        </p>
+        <p>
+          Wir schauen gemeinsam, welche Bausteine zu dir passen – von
+          <strong>Privat-Haftpflicht</strong> über <strong>Hausrat, Wohngebäude,
+          Reise- und Rechtsschutz</strong> bis hin zu <strong>Tierhalter- und Photovoltaik­schutz</strong>.
         </p>
 
-        <!-- 4 Badges -->
         <div class="hero-badges">
-          <a href="#kez" class="badge">
-            <span>Kindererziehungszeiten prüfen</span>
-            <span class="arrow">↓</span>
+          <a href="#bereich-sach" class="badge">
+            <span>Welche Bausteine gehören zu deinem Schutz?</span><span class="arrow">↓</span>
           </a>
-          <a href="#rente" class="badge">
-            <span>bAV und Riester richtig nutzen</span>
-            <span class="arrow">↓</span>
-          </a>
-          <a href="#foerderung" class="badge">
-            <span>Rentenlücke klar sehen</span>
-            <span class="arrow">↓</span>
-          </a>
-          <a href="#beispiele" class="badge">
-            <span>Beispiele in Zahlen</span>
-            <span class="arrow">↓</span>
+          <a href="#bereich-grafiken" class="badge">
+            <span>Wie oft passieren Schäden wirklich?</span><span class="arrow">↓</span>
           </a>
         </div>
 
-        <!-- CTAs -->
         <div class="cta-row">
           <a href="https://forms.cloud.microsoft/e/DYguRWAj0N"
              target="_blank"
              class="btn-primary">
-            Eltern-Renten-Check starten
+            Gespräch zu deinem Sachschutz vereinbaren
           </a>
-
           <a href="https://wa.me/4917663796605"
              target="_blank"
              class="btn-wa">
-            Schreib mir auf WhatsApp
+            Kurzfrage per WhatsApp stellen
           </a>
         </div>
       </div>
 
-      <div class="hero-photo animate-on-scroll">
+      <div class="hero-photo">
         <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
         <div class="hero-tagcard">
           <div class="hero-tagcard-title">Dein Ansprechpartner</div>
           <div class="hero-tagcard-line">
             <span class="hero-tagcard-dot"></span>
-            <span>Eltern und Familien im Fokus</span>
+            <span>Eltern, Familien &amp; Selbstständige im Fokus</span>
           </div>
           <div class="hero-tagcard-line">
             <span class="hero-tagcard-dot"></span>
-            <span>Beratung digital und vor Ort</span>
+            <span>Beratung digital &amp; vor Ort</span>
           </div>
         </div>
       </div>
@@ -719,273 +892,294 @@
 
   <main>
 
-    <!-- RECHNER -->
-    <section>
-      <h2>Was kann Deine Rente mit Förderung werden?</h2>
+    <!-- Überblick -->
+    <section id="bereich-sach">
+      <h2>Dein Schutzbereich „Sachversicherung“ im Überblick</h2>
       <div class="section-subtitle">
-        Trag Deine Daten ein und sieh, welchen Unterschied Förderung für Deine Rente machen kann.
+        Es geht nicht nur um Möbel oder ein paar Alltagsunfälle, sondern um <strong>Vermögenswerte im
+        fünf- und sechsstelligen Bereich</strong>. Diese Bausteine bilden das Fundament:
       </div>
 
-      <div class="calc-wrapper">
-        <div class="calc-grid">
-          <div class="calc-inputs">
-            <div class="field">
-              <label for="birthdate">Dein Geburtsdatum</label>
-              <input type="date" id="birthdate" />
-            </div>
-            <div class="field">
-              <label for="brutto">Dein monatliches Brutto-Einkommen (in €)</label>
-              <input type="number" id="brutto" min="0" step="50" placeholder="z. B. 3.000" />
-            </div>
-            <div class="field">
-              <label for="children">Wie viele Kinder werden berücksichtigt?</label>
-              <input type="number" id="children" min="0" max="10" step="1" placeholder="Anzahl der Kinder" />
-            </div>
-
-            <div class="calc-btn-row">
-              <button type="button" class="btn-primary" onclick="calculatePension()">
-                Renten-Check berechnen
-              </button>
-            </div>
-          </div>
-
-          <div class="calc-result" id="calc-result">
-            <p class="calc-expl">
-              Unten siehst Du vier Zahlen:
-              <br /><strong>1. Rente heute</strong> ist das, was Deine Rente ungefähr wäre, wenn Du nichts änderst.
-              <br /><strong>2. Rente mit Förderung</strong> zeigt, was möglich sein kann, wenn Du die passenden Bausteine nutzt.
-              <br /><strong>3. Mehr-Rente pro Monat</strong> ist die Differenz zwischen heute und mit Förderung.
-              <br /><strong>4. Summe bis 100 Jahre</strong> ist das Geld, das sich daraus bis zu Deinem 100. Geburtstag aufsummieren kann.
+      <div class="grid-3">
+        <div class="prod-card header-haftpflicht">
+          <div class="prod-title">Privat-Haftpflicht</div>
+          <p class="prod-intro">
+            Wenn du oder deine Kinder jemand anderem einen Schaden zufügen, springt die Haftpflicht ein –
+            und zwar oft in Millionenhöhe.
+          </p>
+          <ul class="prod-highlights">
+            <li>Personen-, Sach- und Vermögensschäden im privaten Bereich abgedeckt.</li>
+            <li>Mitversicherung von Partner und Kindern je nach Tarif.</li>
+            <li>Wehrt auch unberechtigte Forderungen ab – inklusive Anwalts- und Gerichtskosten.</li>
+          </ul>
+          <div class="damage-box">
+            <div class="damage-label">Typischer Schaden</div>
+            <div class="damage-amount" data-target="25000">0 €</div>
+            <p class="damage-text">
+              Kind zerkratzt mehrere Autos auf dem Parkplatz – Lackierkosten und Gutachter summieren sich schnell.
             </p>
-
-            <div class="calc-values">
-              <!-- 1: Rente heute -->
-              <div class="calc-value-box today">
-                <div class="calc-value-label">Rente heute (ca. pro Monat)</div>
-                <div class="calc-value-number red" id="res-today">–</div>
-              </div>
-
-              <!-- 2: Rente mit Förderung -->
-              <div class="calc-value-box boosted">
-                <div class="calc-value-label">Rente mit Förderung (ca. pro Monat)</div>
-                <div class="calc-value-number black" id="res-boosted">–</div>
-              </div>
-
-              <!-- 3: Mehr-Rente -->
-              <div class="calc-value-box diff">
-                <div class="calc-value-label">Mehr-Rente pro Monat</div>
-                <div class="calc-value-number green" id="res-diff">–</div>
-              </div>
-
-              <!-- 4: Summe bis 100 Jahre -->
-              <div class="calc-value-box total">
-                <div class="calc-value-label">Zusätzliche Summe bis 100 Jahre</div>
-                <div class="calc-value-number" id="res-lifetime">–</div>
-              </div>
-            </div>
-
-            <div class="calc-note">
-              Die Werte sind eine grobe Orientierung und ersetzen keine individuelle Beratung.
-              Welche Bausteine wirklich zu Dir passen, klären wir am besten im Gespräch.
-            </div>
-
-            <div class="calc-cta-row">
-              <a href="https://forms.cloud.microsoft/e/DYguRWAj0N"
-                 target="_blank"
-                 class="btn-primary">
-                Ergebnis mit mir durchgehen
-              </a>
-              <a href="https://wa.me/4917663796605"
-                 target="_blank"
-                 class="btn-wa">
-                Ergebnis per WhatsApp schicken
-              </a>
-            </div>
-
-            <div class="calc-examples-link">
-              <a href="#beispiele">Beispiele dazu ansehen</a>
-            </div>
           </div>
+          <button class="prod-more" data-modal="modal-haftpflicht">Mehr Details anzeigen</button>
+        </div>
+
+        <div class="prod-card header-hausrat">
+          <div class="prod-title">Hausrat – alles, was in deinen vier Wänden lebt</div>
+          <p class="prod-intro">
+            Möbel, Kleidung, Technik, Spielzeug – alles zusammen ergibt oft einen Wert, der weit über das hinausgeht,
+            was man „mal eben“ ersetzen kann.
+          </p>
+          <ul class="prod-highlights">
+            <li>Schutz bei Brand, Leitungswasser, Sturm, Hagel, Einbruchdiebstahl und Vandalismus.</li>
+            <li>Fahrräder, E-Bikes &amp; Freizeit-Equipment können mit abgedeckt werden.</li>
+            <li>Optionaler Schutz bei Überspannung, grober Fahrlässigkeit und Trickdiebstahl.</li>
+          </ul>
+          <div class="damage-box">
+            <div class="damage-label">Typischer Schaden</div>
+            <div class="damage-amount" data-target="40000">0 €</div>
+            <p class="damage-text">
+              Leitungswasserschaden im Wohnzimmer – Boden, Möbel und Elektronik müssen ersetzt werden.
+            </p>
+          </div>
+          <button class="prod-more" data-modal="modal-hausrat">Mehr Details anzeigen</button>
+        </div>
+
+        <div class="prod-card header-gebaeude">
+          <div class="prod-title">Wohngebäude &amp; Photovoltaik</div>
+          <p class="prod-intro">
+            Dein Haus ist einer deiner größten Vermögenswerte. Sturmschäden, Leitungswasser oder ein Brand
+            können schnell sechsstellig werden – und auch deine PV-Anlage gehört dazu.
+          </p>
+          <ul class="prod-highlights">
+            <li>Gebäudeschutz bei Feuer, Leitungswasser, Sturm, Hagel &amp; Elementargefahren.</li>
+            <li>Photovoltaik­schutz inkl. Reparatur-, Aufräum- und Ertragsausfall­leistungen.</li>
+            <li>Auch Nebengebäude, Garage und Carport können mitversichert werden.</li>
+          </ul>
+          <div class="damage-box">
+            <div class="damage-label">Typischer Schaden</div>
+            <div class="damage-amount" data-target="60000">0 €</div>
+            <p class="damage-text">
+              Rohrbruch unterm Estrich plus Folgeschäden am Gebäude – Trocknung, Handwerker und Hotelkosten für die Familie.
+            </p>
+          </div>
+          <button class="prod-more" data-modal="modal-gebaeude">Mehr Details anzeigen</button>
         </div>
       </div>
     </section>
 
-    <!-- BEISPIELE -->
-    <section id="beispiele">
-      <h2>Wie sich das in Zahlen auswirken kann</h2>
+    <!-- Ergänzende Bausteine -->
+    <section>
+      <h2>Ergänzende Bausteine, die in der Praxis oft Gold wert sind</h2>
       <div class="section-subtitle">
-        Beispiele, damit Du ein Gefühl für die Größenordnungen bekommst.
+        Viele Schäden passieren nicht zu Hause: <strong>Unfall, Streit mit dem Arbeitgeber, Streit nach einem
+        Verkehrsunfall oder Ärger auf Reisen</strong>. Diese Bausteine fangen genau solche Situationen auf.
       </div>
 
-      <div class="example-grid">
-        <div class="example-card">
-          <div class="example-title">Beispiel 1: Mutter mit <span class="num">3 Kindern</span></div>
-
-          <div class="example-row">
-            <span>Gesetzliche Rente heute</span>
-            <span><strong class="num">1.000 €</strong></span>
+      <div class="grid-3">
+        <div class="prod-card header-unfall">
+          <div class="prod-title">Unfallversicherung</div>
+          <p class="prod-intro">
+            Unfälle passieren in der Freizeit, beim Sport oder im Haushalt – und nicht nur auf der Arbeit.
+            Eine Unfallversicherung sorgt für Kapital, wenn dauerhaft etwas zurückbleibt.
+          </p>
+          <ul class="prod-highlights">
+            <li>Einmalige Kapitalleistung bei Invalidität – flexibel einsetzbar.</li>
+            <li>Optionen wie Knochenbruch-Geld, Unfall-Krankenhaus­tagegeld und Assistance-Leistungen.</li>
+            <li>Weltweiter Schutz – auch in der Freizeit und im Urlaub.</li>
+          </ul>
+          <div class="damage-box">
+            <div class="damage-label">Typischer Schaden</div>
+            <div class="damage-amount" data-target="200000">0 €</div>
+            <p class="damage-text">
+              Sportunfall mit dauerhafter Einschränkung – Umbau der Wohnung, Verdienstausfall und Reha müssen finanziert werden.
+            </p>
           </div>
-          <div class="example-row">
-            <span>Optimierte Rente mit passenden Bausteinen</span>
-            <span><strong class="num">etwa 1.500 €</strong></span>
-          </div>
-
-          <div class="example-highlight">
-            Möglicher Mehrwert: bis zu rund <span class="num">500 €</span> pro Monat
-          </div>
-
-          <div class="example-row" style="margin-top: 0.6rem;">
-            <span>Vorher: <strong class="num">1.000 €</strong></span>
-          </div>
-          <div class="bar-track">
-            <div class="bar-fill-before" style="width: 67%;"></div>
-          </div>
-
-          <div class="example-row">
-            <span>Nachher: <strong class="num">etwa 1.500 €</strong></span>
-          </div>
-          <div class="bar-track">
-            <div class="bar-fill-after"></div>
-          </div>
-
-          <div class="example-footnote">
-            Beispielrechnung, gerundet. Konkrete Werte hängen von Jahrgängen, Beiträgen und Produkten ab.
-          </div>
+          <button class="prod-more" data-modal="modal-unfall">Mehr Details anzeigen</button>
         </div>
 
-        <div class="example-card">
-          <div class="example-title">Beispiel 2: Vater mit bAV und Basisrente</div>
+        <div class="prod-card header-rechtsschutz">
+          <div class="prod-title">Rechtsschutz</div>
+          <p class="prod-intro">
+            Ob Ärger mit dem Arbeitgeber, ein Verkehrsunfall oder Streit mit dem Vermieter:
+            Recht zu haben ist das eine – es durchzusetzen kostet ohne Rechtsschutz schnell sehr viel Geld.
+          </p>
+          <ul class="prod-highlights">
+            <li>Bausteine für Privat, Beruf, Verkehr und Wohnen.</li>
+            <li>Telefonische Erstberatung &amp; Anwalts­empfehlung – rund um die Uhr.</li>
+            <li>Übernahme von Gerichts-, Anwalts- und Gutachterkosten bis zur vereinbarten Versicherungssumme.</li>
+          </ul>
+          <div class="damage-box">
+            <div class="damage-label">Typischer Schaden</div>
+            <div class="damage-amount" data-target="5000">0 €</div>
+            <p class="damage-text">
+              Kündigungsschutzklage inklusive Anwalt, Gericht und Gutachter – ohne Rechtsschutz meist aus eigener Tasche.
+            </p>
+          </div>
+          <button class="prod-more" data-modal="modal-rechtsschutz">Mehr Details anzeigen</button>
+        </div>
 
-          <div class="example-row">
-            <span>Gesetzliche Rente heute</span>
-            <span><strong class="num">1.600 €</strong></span>
+        <div class="prod-card header-reise">
+          <div class="prod-title">Reise &amp; Urlaub</div>
+          <p class="prod-intro">
+            Wenn die Reise ins Wasser fällt oder im Ausland etwas passiert, geht es schnell um hohe Summen –
+            von Storno­kosten bis zur Auslands­krankenbehandlung.
+          </p>
+          <ul class="prod-highlights">
+            <li>Reisegepäck- und Reiserücktritts­versicherung mit hohen Entschädigungs­grenzen.</li>
+            <li>Auslands­reise­kranken­schutz inkl. medizinischer Assistance.</li>
+            <li>Schutz für alle Familienmitglieder je nach Tarif kombinierbar.</li>
+          </ul>
+          <div class="damage-box">
+            <div class="damage-label">Typischer Schaden</div>
+            <div class="damage-amount" data-target="3500">0 €</div>
+            <p class="damage-text">
+              Familienurlaub muss wegen Krankheit abgesagt werden – Storno­kosten und neue Flugbuchung werden übernommen.
+            </p>
           </div>
-          <div class="example-row">
-            <span>Optimierte Rente mit passenden Bausteinen</span>
-            <span><strong class="num">etwa 2.000 €</strong></span>
-          </div>
+          <button class="prod-more" data-modal="modal-reise">Mehr Details anzeigen</button>
+        </div>
+      </div>
 
-          <div class="example-highlight">
-            Möglicher Mehrwert: bis zu rund <span class="num">400 €</span> pro Monat
+      <div class="grid-3" style="margin-top:1rem;">
+        <div class="prod-card header-haftpflicht">
+          <div class="prod-title">Tierhalter-Haftpflicht (Hund &amp; Pferd)</div>
+          <p class="prod-intro">
+            Als Halter haftest du für dein Tier in der Regel unbegrenzt – auch wenn du selbst nichts „falsch“ gemacht hast.
+          </p>
+          <ul class="prod-highlights">
+            <li>Personen- und Sachschäden durch Hunde oder Pferde abgesichert.</li>
+            <li>Schäden an gemieteten Stallungen, Boxen oder Ferien­unterkünften je nach Tarif.</li>
+            <li>Optionale Einschlüsse für Reitbeteiligungen und Auslands­aufenthalte.</li>
+          </ul>
+          <div class="damage-box">
+            <div class="damage-label">Typischer Schaden</div>
+            <div class="damage-amount" data-target="100000">0 €</div>
+            <p class="damage-text">
+              Hund läuft auf die Straße, Autofahrer weicht aus – Personenschaden mit Schmerzensgeld und Verdienstausfall.
+            </p>
           </div>
+          <button class="prod-more" data-modal="modal-tier">Mehr Details anzeigen</button>
+        </div>
 
-          <div class="example-row" style="margin-top: 0.6rem;">
-            <span>Vorher: <strong class="num">1.600 €</strong></span>
+        <div class="prod-card header-pv">
+          <div class="prod-title">Photovoltaik &amp; Technik</div>
+          <p class="prod-intro">
+            Eine PV-Anlage ist heute oft ein eigener Vermögensbaustein. Schäden treffen nicht nur das Dach,
+            sondern auch deine Strom- und Einspeise­planung.
+          </p>
+          <ul class="prod-highlights">
+            <li>Schutz bei Sturm, Hagel, Diebstahl, Blitz- &amp; Überspannungs­schäden.</li>
+            <li>Übernahme von Aufräum-, Dekontaminations- und Entsorgungs­kosten.</li>
+            <li>Leistung bei Ertragsausfall, wenn die Anlage nach einem Schaden stillsteht.</li>
+          </ul>
+          <div class="damage-box">
+            <div class="damage-label">Typischer Schaden</div>
+            <div class="damage-amount" data-target="20000">0 €</div>
+            <p class="damage-text">
+              Hagelsturm zerstört Module – Reparatur, Gerüst, Entsorgung und fehlende Einspeise­vergütung kommen zusammen.
+            </p>
           </div>
-          <div class="bar-track">
-            <div class="bar-fill-before" style="width: 80%;"></div>
-          </div>
-
-          <div class="example-row">
-            <span>Nachher: <strong class="num">etwa 2.000 €</strong></span>
-          </div>
-          <div class="bar-track">
-            <div class="bar-fill-after"></div>
-          </div>
-
-          <div class="example-footnote">
-            Beispielrechnung, gerundet. Steuervorteile und Zuschüsse können die Wirkung zusätzlich erhöhen.
-          </div>
+          <button class="prod-more" data-modal="modal-pv">Mehr Details anzeigen</button>
         </div>
       </div>
     </section>
 
-    <!-- Kindererziehungszeiten -->
-    <section id="kez">
-      <h2>1. Kindererziehungszeiten: Dein monatlicher Renten-Booster</h2>
+    <!-- Grafiken -->
+    <section id="bereich-grafiken">
+      <h2>Wie häufig Schäden wirklich passieren</h2>
       <div class="section-subtitle">
-        Für jedes Kind kannst Du bis zu <strong class="num">120 €</strong> pro Monat an zusätzlicher Rente bekommen.
-        Viele Eltern nutzen das nicht komplett, weil der Antrag nie sauber gemacht wurde.
+        Viele unterschätzen, wie schnell aus einem „kleinen Missgeschick“ fünfstellige Beträge werden.
+        Die Grafiken sollen ein Gefühl für die Größenordnung geben – ohne Angst zu machen.
       </div>
 
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Was wichtig ist</div>
-          <ul>
-            <li>Zeiten pro Kind werden Deiner Rente gutgeschrieben.</li>
-            <li>Entscheidend ist, dass die Zeiten korrekt beantragt sind.</li>
-            <li>Das funktioniert auch, wenn Du heute schon arbeitest oder selbstständig bist.</li>
-          </ul>
+      <div class="chart-section">
+        <p><strong>1. Grafik – 20 Haushalte, mehrere größere Schäden</strong></p>
+        <p>
+          Stell dir zwanzig Haushalte vor, die heute in deiner Straße wohnen. Bei mehreren von ihnen
+          wird es in den nächsten Jahren zu einem größeren Sachschaden kommen – etwa durch
+          Leitungswasser, Einbruch, Sturm oder einen Haftpflichtfall.
+        </p>
+
+        <div class="figure-grid" id="figure-grid">
+          <!-- 20 Figuren -->
+          <div class="figure-icon"></div><div class="figure-icon"></div><div class="figure-icon"></div><div class="figure-icon"></div><div class="figure-icon"></div>
+          <div class="figure-icon"></div><div class="figure-icon"></div><div class="figure-icon"></div><div class="figure-icon"></div><div class="figure-icon"></div>
+          <div class="figure-icon"></div><div class="figure-icon"></div><div class="figure-icon"></div><div class="figure-icon"></div><div class="figure-icon"></div>
+          <div class="figure-icon"></div><div class="figure-icon"></div><div class="figure-icon"></div><div class="figure-icon"></div><div class="figure-icon"></div>
+        </div>
+        <div class="figure-caption">
+          Beim Scrollen werden nacheinander mehrere Figuren eingefärbt –
+          so viele Haushalte sind statistisch von größeren Sachschäden betroffen.
         </div>
 
-        <div class="card">
-          <div class="card-title">Was wir gemeinsam prüfen</div>
-          <ul>
-            <li>Ob alle Kinder und Zeiträume erfasst sind.</li>
-            <li>Ob sich bei Dir noch Nachmeldungen lohnen.</li>
-            <li>Wie sich das auf Deine spätere Monatsrente auswirkt.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+        <hr style="margin:1.1rem 0; border:none; border-top:1px solid #e5e7eb;" />
 
-    <!-- bAV & Riester -->
-    <section id="rente">
-      <h2>2. bAV und Riester: Förderung, die Deine Rente nach vorne bringt</h2>
-      <div class="section-subtitle">
-        Über den Arbeitgeber, über Riester oder über eine Basisrente kannst Du Dir zusätzliche Förderung sichern,
-        die Deine eigene Einzahlung deutlich verstärken kann.
-      </div>
+        <div class="donut-wrapper">
+          <p style="margin:0 0 0.2rem;"><strong>2. Grafik – welche Ursachen dominieren?</strong></p>
+          <p style="font-size:0.9rem; color:var(--muted); margin:0 0 0.4rem;">
+            In der Praxis sind es oft <strong>Wasser-, Wetter-, Einbruch- und Haftpflichtschäden</strong>, die teuer werden –
+            weniger der sprichwörtliche Großbrand. Der Kreis baut sich beim Scrollen auf.
+          </p>
 
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Riester mit Zulagen</div>
-          <ul>
-            <li>Grundzulage kann bis zu <strong class="num">175 €</strong> pro Jahr betragen.</li>
-            <li>Kinderzulagen können je nach Konstellation mehrere <strong class="num">Hundert Euro</strong> pro Jahr bringen.</li>
-            <li>Du zahlst einen Teil selbst und bekommst den Rest als Zuschuss vom Staat.</li>
-          </ul>
-        </div>
+          <div class="donut-row">
+            <div style="position:relative;">
+              <div class="donut-chart">
+                <div class="donut-base"></div>
+                <div class="donut-fill" id="donut-fill"></div>
+                <div class="donut-center-label">
+                  Verteilung typischer Schaden­ursachen<br />– grob gruppiert
+                </div>
+              </div>
+            </div>
 
-        <div class="card">
-          <div class="card-title">bAV und Basisrente</div>
-          <ul>
-            <li>Beiträge können steuerlich absetzbar sein und so Deine Netto-Belastung deutlich senken.</li>
-            <li>Gerade für Gutverdienende und Selbstständige interessant.</li>
-            <li>Wir schauen, welche Kombination für Dich sinnvoll ist.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Rentenlücke -->
-    <section id="foerderung">
-      <h2>3. Deine Rentenlücke klar sehen</h2>
-      <div class="section-subtitle">
-        Die meisten wissen, dass eine Lücke da ist, aber nicht wie groß sie wirklich ist.
-        Sobald Du Deine Zahlen kennst, kannst Du in Ruhe entscheiden, welche Schritte zu Dir passen.
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Was wir durchgehen</div>
-          <ul>
-            <li>Gesetzliche Rente aus Deiner Renteninformation.</li>
-            <li>Bestehende Verträge: was ist sinnvoll, was passt nicht mehr.</li>
-            <li>Welche Summe Dir im Monat fehlt, wenn Du so weitermachst wie bisher.</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Was Du danach hast</div>
-          <ul>
-            <li>Eine klare Zahl statt Bauchgefühl.</li>
-            <li>Ein Konzept, das Kinder, Eigentum und Vorsorge zusammendenkt.</li>
-            <li>Einen Ansprechpartner, den Du auch später noch fragen kannst.</li>
-          </ul>
+            <div class="donut-legend">
+              <div class="legend-item">
+                <span class="legend-dot legend-psyche"></span>
+                <span>Leitungswasser, Rohrbruch &amp; Feuchtigkeit – ca. 35&nbsp;%</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot legend-ruecken"></span>
+                <span>Sturm, Hagel &amp; Elementar – ca. 25&nbsp;%</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot legend-sonstige"></span>
+                <span>Einbruch, Vandalismus &amp; Diebstahl – ca. 25&nbsp;%</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot legend-unfall"></span>
+                <span>Haftpflichtschäden &amp; sonstige Ereignisse – ca. 15&nbsp;%</span>
+              </div>
+              <p style="margin-top:0.4rem; font-size:0.8rem;">
+                Die exakten Prozentwerte variieren je nach Region und Versicherer –
+                wichtig ist: <strong>es sind ganz normale Alltagsschäden, die am häufigsten auftreten.</strong>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Bottom CTA -->
     <section>
-      <div class="bottom-cta animate-on-scroll">
+      <div class="bottom-cta">
         <p>
-          Du möchtest, dass wir Deine Zahlen gemeinsam durchgehen oder die Förderung für Deine Kinder sauber aufsetzen?
+          Du möchtest wissen, welche Bausteine du wirklich brauchst – und wo sich Erweiterungen wie
+          Reise-, Tier- oder Photovoltaikschutz für dich lohnen?
         </p>
-        <a href="leistung.html" class="btn-gold">
-          Zu meinen Leistungen und allen Angeboten
-        </a>
+        <div class="bottom-cta-buttons">
+          <a href="https://forms.cloud.microsoft/e/DYguRWAj0N"
+             target="_blank"
+             class="btn-primary">
+            Gespräch zu deinem Sachschutz vereinbaren
+          </a>
+          <a href="https://wa.me/4917663796605"
+             target="_blank"
+             class="btn-wa">
+            Kurzfrage per WhatsApp stellen
+          </a>
+        </div>
+        <div class="back-link">
+          <a href="leistung.html">← Zurück zur Übersicht „Meine Leistungen“</a>
+        </div>
       </div>
     </section>
 
@@ -993,85 +1187,257 @@
 
   <footer>
     Diese Seite ersetzt keine individuelle Rechts-, Steuer- oder Sozialversicherungsberatung.
-    Alle Angaben ohne Gewähr. Maßgeblich sind die gesetzlichen Regelungen und die Informationen der jeweiligen Anbieter.
+    Alle Angaben ohne Gewähr. Maßgeblich sind die gesetzlichen Regelungen und die Informationen
+    der jeweiligen Anbieter und Versicherer.
   </footer>
 </div>
 
-<script>
-  // Animation on scroll
-  document.addEventListener("DOMContentLoaded", function () {
-    const elements = document.querySelectorAll(".animate-on-scroll");
-    const observer = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in-view");
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+<!-- DETAIL-MODALS -->
 
-    elements.forEach((el) => observer.observe(el));
+<div class="detail-modal" id="modal-haftpflicht">
+  <div class="detail-content">
+    <h3>Privat-Haftpflicht – Details &amp; Extras</h3>
+    <button class="detail-close" aria-label="Schließen">&times;</button>
+    <p>
+      Die Privat-Haftpflicht gilt als eine der wichtigsten Versicherungen überhaupt.
+      Du haftest nach Gesetz grundsätzlich mit deinem gesamten Vermögen – notfalls ein Leben lang.
+    </p>
+    <ul>
+      <li>Deckt Personen-, Sach- und daraus resultierende Vermögensschäden ab.</li>
+      <li>Mitversicherung von Kindern, Partner und – je nach Tarif – im Haushalt lebenden Angehörigen.</li>
+      <li>Schutz auch bei Gefälligkeitsschäden (z.&nbsp;B. Umzug) möglich.</li>
+      <li>Abwehr unberechtigter Forderungen – inkl. Übernahme der Anwalts- und Prozesskosten.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="detail-modal" id="modal-hausrat">
+  <div class="detail-content">
+    <h3>Hausrat – Details &amp; typische Erweiterungen</h3>
+    <button class="detail-close" aria-label="Schließen">&times;</button>
+    <p>
+      Hausrat deckt praktisch alles ab, was du aus der Wohnung „mitnehmen“ könntest:
+      Möbel, Kleidung, Technik, Spielzeug, Haushaltsgeräte, Vorräte und vieles mehr.
+    </p>
+    <ul>
+      <li>Schutz bei Brand, Blitz, Explosion, Leitungswasser, Sturm, Hagel und Einbruchdiebstahl.</li>
+      <li>Mitversicherung von Wertsachen bis zu tarifabhängigen Grenzen (z.&nbsp;B. Schmuck, Kunst, Sammlungen).</li>
+      <li>Erweiterungen wie Fahrrad- und E-Bike-Diebstahl rund um die Uhr.</li>
+      <li>Spezielle Freizeit-Bausteine für Instrumente, Sport- und Fotoequipment möglich.</li>
+      <li>Optional: grob fahrlässig verursachte Schäden (z.&nbsp;B. Herd angelassen) mitversichert.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="detail-modal" id="modal-gebaeude">
+  <div class="detail-content">
+    <h3>Wohngebäude &amp; Photovoltaik – Details</h3>
+    <button class="detail-close" aria-label="Schließen">&times;</button>
+    <p>
+      Die Wohngebäude­versicherung schützt das „fest mit dem Haus verbundene“.
+      Ein Schaden betrifft oft nicht nur einzelne Zimmer, sondern das gesamte Gebäude.
+    </p>
+    <ul>
+      <li>Feuer-, Leitungswasser-, Sturm-, Hagel- und je nach Tarif Elementarschäden.</li>
+      <li>Mitversicherung von Nebengebäuden, Carports, Zäunen und festen Außenanlagen möglich.</li>
+      <li>Übernahme von Aufräum-, Abbruch-, Entsorgungs- und Dekontaminations­kosten.</li>
+      <li>Hotel- oder Mietkosten, wenn das Haus vorübergehend unbewohnbar ist (je nach Tarif).</li>
+      <li>PV-Baustein für Module, Wechselrichter, Speicher und Ertragsausfall.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="detail-modal" id="modal-unfall">
+  <div class="detail-content">
+    <h3>Unfallversicherung – was sie leisten kann</h3>
+    <button class="detail-close" aria-label="Schließen">&times;</button>
+    <p>
+      Die Unfallversicherung zahlt unabhängig davon, ob du berufstätig bist oder nicht.
+      Entscheidend ist, ob ein Unfall dauerhafte Folgen hinterlässt.
+    </p>
+    <ul>
+      <li>Kapitalzahlung bei Invalidität – je nach Gliedertaxe und Invaliditätsgrad.</li>
+      <li>Progressionsstaffeln steigern die Leistung bei hohen Invaliditätsgraden deutlich.</li>
+      <li>Zusatzleistungen wie Unfall-Krankenhaustagegeld, Genesungsgeld oder Todesfallleistung möglich.</li>
+      <li>Sofortleistungen bei Knochenbrüchen oder Bänderrissen können schnelle Liquidität bringen.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="detail-modal" id="modal-rechtsschutz">
+  <div class="detail-content">
+    <h3>Rechtsschutz – Details &amp; Bausteine</h3>
+    <button class="detail-close" aria-label="Schließen">&times;</button>
+    <p>
+      Rechtsschutz ist kein Freifahrtschein zum Klagen, sondern soll verhindern,
+      dass du aus Kostengründen auf berechtigte Ansprüche verzichtest.
+    </p>
+    <ul>
+      <li>Privat-Rechtsschutz für viele Alltagsstreitigkeiten.</li>
+      <li>Berufs-Rechtsschutz bei Auseinandersetzungen mit dem Arbeitgeber.</li>
+      <li>Verkehrs-Rechtsschutz für Streitigkeiten nach Unfällen oder Fahrzeug­kauf.</li>
+      <li>Wohnungs- und Grundstücks-Rechtsschutz bei Konflikten mit Vermietern oder Nachbarn.</li>
+      <li>Rund-um-die-Uhr-Hotline und anwaltliche Erstberatung je nach Tarif.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="detail-modal" id="modal-reise">
+  <div class="detail-content">
+    <h3>Reiseversicherung – was alles drinstecken kann</h3>
+    <button class="detail-close" aria-label="Schließen">&times;</button>
+    <p>
+      Eine gute Reiseversicherung kombiniert mehrere Bausteine, damit aus einer Panne kein finanzielles Desaster wird.
+    </p>
+    <ul>
+      <li>Reisegepäck­schutz zum Neuwert bei Verlust, Diebstahl oder Beschädigung.</li>
+      <li>Reiserücktritts- und Reiseabbruch­versicherung inkl. Erstattung von Storno- und Mehrkosten.</li>
+      <li>Auslandsreise-Krankenversicherung mit Übernahme medizinischer Kosten und Rücktransport.</li>
+      <li>Reiseassistance mit 24/7-Notruf, z.&nbsp;B. bei Arztwahl oder Organisation eines Rücktransports.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="detail-modal" id="modal-tier">
+  <div class="detail-content">
+    <h3>Tierhalter-Haftpflicht – Details</h3>
+    <button class="detail-close" aria-label="Schließen">&times;</button>
+    <p>
+      Für Hunde und Pferde ist die Haftpflicht in vielen Bundesländern bereits Pflicht – sie schützt vor
+      hohen Forderungen nach Personen- oder Sachschäden.
+    </p>
+    <ul>
+      <li>Schäden an Dritten (Personen, Sachen, Vermögen) durch dein Tier.</li>
+      <li>Mietsachschäden an Stallungen, Boxen oder Ferienwohnungen je nach Tarif.</li>
+      <li>Mitversicherung von Reitbeteiligungen und gelegentlicher Nutzung fremder Pferde möglich.</li>
+      <li>Erweiterter Auslandsschutz je nach Deckung, z.&nbsp;B. bei Urlaubsaufenthalten.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="detail-modal" id="modal-pv">
+  <div class="detail-content">
+    <h3>Photovoltaik – Details</h3>
+    <button class="detail-close" aria-label="Schließen">&times;</button>
+    <p>
+      PV-Anlagen werden häufig separat versichert, damit sie nicht im Kleingedruckten „untergehen“
+      und alle technischen Risiken sauber abgedeckt sind.
+    </p>
+    <ul>
+      <li>Deckung bei Sturm, Hagel, Blitz, Überspannung und technischen Defekten.</li>
+      <li>Übernahme von Aufräum-, Dekontaminations- und Entsorgungs­kosten nach einem Schaden.</li>
+      <li>Mitversicherung von Batteriespeichern und Erweiterungen bis zur vereinbarten Summe.</li>
+      <li>Leistungen bei Ertragsausfall, wenn die Anlage nach einem Schaden längere Zeit ausfällt.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  // Burger-Menü
+  const burgerBtn = document.getElementById("burger-btn");
+  const menuPanel = document.getElementById("menu-panel");
+  const menuBackdrop = document.getElementById("menu-backdrop");
+
+  function closeMenu() {
+    burgerBtn.classList.remove("open");
+    menuPanel.classList.remove("open");
+    menuBackdrop.classList.remove("open");
+  }
+
+  burgerBtn.addEventListener("click", () => {
+    const open = burgerBtn.classList.toggle("open");
+    menuPanel.classList.toggle("open", open);
+    menuBackdrop.classList.toggle("open", open);
   });
 
-  // Rechner
-  function calculatePension() {
-    const birthInput = document.getElementById("birthdate").value;
-    const bruttoInput = parseFloat(
-      document.getElementById("brutto").value.replace(",", ".")
+  menuBackdrop.addEventListener("click", closeMenu);
+  menuPanel.addEventListener("click", (e) => {
+    if (e.target.classList.contains("menu-link")) {
+      closeMenu();
+    }
+  });
+
+  // Schadensbeträge animieren
+  const amountEls = document.querySelectorAll(".damage-amount");
+  const amountObserver = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.getAttribute("data-target"), 10);
+        let current = 0;
+        const duration = 1400;
+        const start = performance.now();
+
+        function tick(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          current = Math.floor(target * progress);
+          el.textContent = current.toLocaleString("de-DE") + " €";
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        obs.unobserve(el);
+      });
+    },
+    { threshold: 0.4 }
+  );
+  amountEls.forEach((el) => amountObserver.observe(el));
+
+  // Figuren animieren
+  const figureGrid = document.getElementById("figure-grid");
+  const figureIcons = figureGrid ? Array.from(figureGrid.querySelectorAll(".figure-icon")) : [];
+  const figuresToFill = 6;
+
+  if (figureGrid && figureIcons.length) {
+    const figObserver = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          figureIcons.slice(0, figuresToFill).forEach((icon, index) => {
+            setTimeout(() => icon.classList.add("filled"), index * 160);
+          });
+          obs.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.4 }
     );
-    const childrenInput = parseInt(document.getElementById("children").value, 10);
-
-    const resTodayEl = document.getElementById("res-today");
-    const resBoostedEl = document.getElementById("res-boosted");
-    const resDiffEl = document.getElementById("res-diff");
-    const resLifetimeEl = document.getElementById("res-lifetime");
-
-    if (!birthInput || isNaN(bruttoInput) || isNaN(childrenInput)) {
-      resTodayEl.textContent = "Bitte alle Felder ausfüllen.";
-      resBoostedEl.textContent = "–";
-      resDiffEl.textContent = "–";
-      resLifetimeEl.textContent = "–";
-      return;
-    }
-
-    const birthDate = new Date(birthInput);
-    const now = new Date();
-    let age = now.getFullYear() - birthDate.getFullYear();
-    const m = now.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && now.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    if (age < 18) age = 18;
-    if (age > 67) age = 67;
-
-    const rentToday = bruttoInput * 0.4;
-
-    const kezPlus = childrenInput * 120;
-    const riesterBase = 175 / 12;
-    const riesterKids = childrenInput * (300 / 12);
-
-    const monthlyPlus = kezPlus + riesterBase + riesterKids;
-
-    const rentBoosted = rentToday + monthlyPlus;
-    const diff = monthlyPlus;
-
-    const yearsLeft = Math.max(0, 100 - age);
-    const lifetimeExtra = diff * 12 * yearsLeft;
-
-    const fmt = (val) =>
-      new Intl.NumberFormat("de-DE", {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-      }).format(Math.round(val));
-
-    resTodayEl.textContent = fmt(rentToday) + " €";
-    resBoostedEl.textContent = fmt(rentBoosted) + " €";
-    resDiffEl.textContent = fmt(diff) + " €";
-    resLifetimeEl.textContent = fmt(lifetimeExtra) + " €";
+    figObserver.observe(figureGrid);
   }
+
+  // Donut animieren
+  const donutFill = document.getElementById("donut-fill");
+  if (donutFill) {
+    const donutObserver = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          donutFill.classList.add("active");
+          obs.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.4 }
+    );
+    donutObserver.observe(donutFill);
+  }
+
+  // Modals
+  document.querySelectorAll(".prod-more").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-modal");
+      const modal = document.getElementById(id);
+      if (modal) modal.classList.add("open");
+    });
+  });
+
+  document.querySelectorAll(".detail-modal").forEach((modal) => {
+    modal.addEventListener("click", (e) => {
+      if (e.target.classList.contains("detail-modal")) modal.classList.remove("open");
+    });
+    const closeBtn = modal.querySelector(".detail-close");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => modal.classList.remove("open"));
+    }
+  });
 </script>
 </body>
 </html>
