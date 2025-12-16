@@ -5,8 +5,7 @@
   <title>Sachversicherungen – Überblick & Schadenbeispiele</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
     :root{
@@ -14,12 +13,9 @@
       --accent:#f4be69;
       --text:#111111;
       --muted:#4b5563;
-      --bg:#f4f8f8;
-      --bg-soft:#f9fbfb;
       --border:#d6dde3;
       --shadow:0 12px 35px rgba(15,23,42,.12);
       --shadowSoft:0 10px 25px rgba(15,23,42,.08);
-
       --wa:#25d366;
 
       --pillGreen:#16a34a;
@@ -53,7 +49,7 @@
       overflow:hidden;
     }
 
-    /* Topbar (wie leistung.html) */
+    /* Topbar */
     .topbar{
       display:flex;
       align-items:center;
@@ -82,7 +78,7 @@
     .topbar-meta{min-width:0}
     .topbar-title{
       font-family:"Raleway",system-ui,sans-serif;
-      font-weight:700;
+      font-weight:800;
       color:var(--primary);
       letter-spacing:.03em;
       font-size:.92rem;
@@ -103,7 +99,7 @@
       line-height:1.25;
     }
 
-    /* Burger Button (oben rechts – wie leistung.html) */
+    /* Burger */
     .burger{
       position:absolute;
       top:10px;
@@ -119,9 +115,7 @@
       z-index:10;
     }
     .burger:active{transform:translateY(1px)}
-    .burger-lines{
-      width:20px;height:14px;position:relative;
-    }
+    .burger-lines{width:20px;height:14px;position:relative}
     .burger-lines span{
       position:absolute;left:0;right:0;
       height:2px;border-radius:999px;
@@ -140,8 +134,7 @@
       z-index:50;
     }
     .menu-panel{
-      position:fixed;
-      top:0;right:0;height:100%;
+      position:fixed;top:0;right:0;height:100%;
       width:min(360px, 92vw);
       background:#fff;
       box-shadow:-18px 0 40px rgba(15,23,42,.18);
@@ -160,7 +153,7 @@
     }
     .menu-head .ttl{
       font-family:"Raleway",system-ui,sans-serif;
-      font-weight:700;
+      font-weight:800;
       color:var(--primary);
     }
     .menu-close{
@@ -171,10 +164,7 @@
       display:grid;place-items:center;
     }
     .menu-close:active{transform:translateY(1px)}
-    .menu-body{
-      padding:.6rem 1rem 1rem;
-      overflow:auto;
-    }
+    .menu-body{padding:.6rem 1rem 1rem;overflow:auto}
     .menu-group{
       margin:.9rem 0;
       border:1px solid rgba(148,163,184,.55);
@@ -190,13 +180,10 @@
       cursor:pointer;
       display:flex;align-items:center;justify-content:space-between;
       font-family:"Raleway",system-ui,sans-serif;
-      font-weight:700;
+      font-weight:800;
       color:var(--text);
     }
-    .menu-group button .chev{
-      color:var(--primary);
-      font-weight:900;
-    }
+    .menu-group button .chev{color:var(--primary);font-weight:900}
     .menu-sub{
       border-top:1px solid rgba(148,163,184,.45);
       display:none;
@@ -228,7 +215,7 @@
       justify-content:center;
       padding:.92rem 1.2rem;
       border-radius:999px;
-      font-weight:700;
+      font-weight:800;
       font-size:.98rem;
       border:0;
       cursor:pointer;
@@ -254,6 +241,12 @@
     }
     .btn:hover{filter:brightness(1.03);transform:translateY(-1px)}
     .btn:active{transform:translateY(0)}
+    .btn[disabled], .btn[aria-disabled="true"]{
+      opacity:.55;
+      cursor:not-allowed;
+      transform:none !important;
+      filter:none !important;
+    }
 
     /* Hero */
     header.hero{
@@ -285,15 +278,14 @@
     .hero-label .dot{width:7px;height:7px;border-radius:999px;background:var(--accent)}
     .hero h1{
       font-family:"Raleway",system-ui,sans-serif;
-      font-weight:800;
-      letter-spacing:.01em;
+      font-weight:900;
       margin:.15rem 0 .65rem;
       font-size:2.0rem;
       line-height:1.15;
+      letter-spacing:.01em;
     }
     .hero p{margin:.35rem 0;color:var(--muted);font-size:1.02rem;max-width:46rem}
     .hero p strong{color:var(--primary)}
-
     .hero-quick{
       display:flex;
       gap:.6rem;
@@ -315,73 +307,43 @@
     }
     .quick-pill .arr{color:var(--primary);font-weight:900}
 
-    .hero-card{
-      flex:0 0 340px;
-      max-width:420px;
-      margin-top:.2rem;
-    }
+    .hero-card{flex:0 0 340px;max-width:420px;margin-top:.2rem}
     .contact-card{
       border-radius:18px;
       border:1px solid rgba(148,163,184,.75);
       background: radial-gradient(circle at top, rgba(255,255,255,.95), rgba(255,255,255,.86));
       box-shadow:0 18px 40px rgba(15,23,42,.12);
-      padding:1rem 1rem 1rem;
-      position:relative;
+      padding:1rem;
       overflow:hidden;
     }
-    .contact-top{
-      display:flex;
-      gap:.9rem;
-      align-items:center;
-      margin-bottom:.75rem;
-    }
+    .contact-top{display:flex;gap:.9rem;align-items:center;margin-bottom:.75rem}
     .mini-avatar{
-      width:74px;height:74px;
-      border-radius:16px;
+      width:74px;height:74px;border-radius:16px;
       border:1px solid rgba(148,163,184,.7);
-      background:#fff;
-      display:grid;place-items:center;
-      overflow:hidden;
-      flex:0 0 auto;
+      background:#fff;overflow:hidden;flex:0 0 auto;
     }
     .mini-avatar img{width:100%;height:100%;object-fit:cover}
     .contact-top h3{
       margin:0;
       font-family:"Raleway",system-ui,sans-serif;
-      font-weight:800;
+      font-weight:900;
       color:var(--primary);
       font-size:1.1rem;
       line-height:1.2;
     }
     .contact-top p{margin:.2rem 0 0;color:var(--muted);font-size:.95rem}
-    .contact-list{
-      margin:.6rem 0 0;
-      padding-left:0;
-      list-style:none;
-      display:grid;
-      gap:.55rem;
-    }
-    .contact-list li{
-      display:flex;
-      gap:.6rem;
-      align-items:flex-start;
-      color:var(--muted);
-      font-size:.98rem;
-    }
-    .bullet{
-      width:10px;height:10px;border-radius:999px;background:var(--accent);
-      flex:0 0 auto;margin-top:.45rem;
-    }
+    .contact-list{margin:.6rem 0 0;padding:0;list-style:none;display:grid;gap:.55rem}
+    .contact-list li{display:flex;gap:.6rem;align-items:flex-start;color:var(--muted);font-size:.98rem}
+    .bullet{width:10px;height:10px;border-radius:999px;background:var(--accent);flex:0 0 auto;margin-top:.45rem}
 
     main{
       padding:1.65rem 1.25rem 2.2rem;
       flex:1;
       background:linear-gradient(to bottom, #ffffff 0, #f9fafb 100%);
     }
-
     h2{
       font-family:"Raleway",system-ui,sans-serif;
-      font-weight:800;
+      font-weight:900;
       color:var(--primary);
       margin:0 0 .4rem;
       font-size:1.55rem;
@@ -392,11 +354,7 @@
       font-size:1rem;
       max-width:60rem;
     }
-
-    /* Blocks wie leistung.html */
-    .section{
-      margin:1.2rem 0 2rem;
-    }
+    .section{margin:1.2rem 0 2rem}
 
     .grid-3{
       display:grid;
@@ -405,27 +363,31 @@
       align-items:stretch;
     }
 
+    /* Cards (wie leistung.html, mehr Farbe) */
     .card{
       border-radius:18px;
-      border:1px solid rgba(148,163,184,.55);
-      background: radial-gradient(circle at top, #ffffff 0, #fbfdff 55%, #f6fbff 100%);
+      border:1px solid rgba(74,120,125,.35);
+      background:
+        radial-gradient(circle at top left, rgba(244,190,105,.22), rgba(255,255,255,0) 55%),
+        radial-gradient(circle at bottom right, rgba(59,130,246,.14), rgba(255,255,255,0) 60%),
+        linear-gradient(to bottom, #ffffff 0, #fbfdff 55%, #f6fbff 100%);
       box-shadow:var(--shadowSoft);
       padding:1rem 1.05rem 1.05rem;
       position:relative;
       overflow:hidden;
     }
-    .card::before{
+    .card::after{
       content:"";
-      position:absolute;inset:-120px -180px auto auto;
-      width:320px;height:320px;border-radius:50%;
-      background:radial-gradient(circle, rgba(244,190,105,.38) 0, rgba(255,255,255,0) 65%);
-      transform:rotate(10deg);
+      position:absolute;
+      inset:auto -120px -140px auto;
+      width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(74,120,125,.14) 0, rgba(255,255,255,0) 65%);
       pointer-events:none;
     }
     .card h3{
       margin:.1rem 0 .55rem;
       font-family:"Raleway",system-ui,sans-serif;
-      font-weight:800;
+      font-weight:900;
       font-size:1.15rem;
       color:var(--text);
       position:relative;
@@ -448,11 +410,10 @@
     .tag{
       display:inline-flex;
       align-items:center;
-      gap:.4rem;
       padding:.35rem .7rem;
       border-radius:999px;
       font-size:.88rem;
-      font-weight:800;
+      font-weight:900;
       border:1px solid rgba(148,163,184,.65);
       background:#fff;
       color:var(--muted);
@@ -468,14 +429,56 @@
       position:relative;
       z-index:1;
     }
-    .btn-sm{
-      padding:.72rem 1rem;
-      font-size:.95rem;
+    .btn-sm{padding:.72rem 1rem;font-size:.95rem;font-weight:900;border-radius:999px}
+
+    /* Counter section */
+    .counter-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+      gap:1rem;
+      margin-top:.8rem;
+    }
+    .counter-box{
+      border-radius:18px;
+      border:1px solid rgba(74,120,125,.35);
+      background:
+        radial-gradient(circle at top, rgba(244,190,105,.20), rgba(255,255,255,0) 55%),
+        linear-gradient(to bottom, #ffffff 0, #fbfdff 100%);
+      box-shadow:var(--shadowSoft);
+      padding:1rem 1.05rem;
+      position:relative;
+      overflow:hidden;
+    }
+    .counter-box .lbl{
+      color:var(--muted);
       font-weight:800;
-      border-radius:999px;
+      font-size:.95rem;
+      margin-bottom:.25rem;
+    }
+    .counter-box .val{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:900;
+      color:var(--primary);
+      font-size:1.8rem;
+      letter-spacing:.01em;
+      line-height:1.15;
+    }
+    .counter-box .hint{
+      margin-top:.35rem;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+    .gate-hint{
+      margin:.75rem 0 0;
+      color:var(--muted);
+      font-size:.98rem;
+      border-left:4px solid var(--accent);
+      padding:.45rem .7rem;
+      background:rgba(244,190,105,.12);
+      border-radius:12px;
     }
 
-    /* Donut Chart Card */
+    /* Donut Chart */
     .donut-wrap{
       display:grid;
       grid-template-columns: 220px 1fr;
@@ -483,17 +486,9 @@
       align-items:center;
       margin-top:.4rem;
     }
-    .donut{
-      width:220px;height:220px;
-      margin:0 auto;
-      position:relative;
-    }
+    .donut{width:220px;height:220px;margin:0 auto;position:relative}
     .donut svg{width:100%;height:100%}
-    .donut .ring{
-      stroke:#e5e7eb;
-      stroke-width:18;
-      fill:none;
-    }
+    .donut .ring{stroke:#e5e7eb;stroke-width:18;fill:none}
     .donut .seg{
       fill:none;
       stroke-width:18;
@@ -501,26 +496,13 @@
       transform:rotate(-90deg);
       transform-origin:50% 50%;
       stroke-dasharray:0 999;
+      stroke-dashoffset:0;
     }
-    .legend{
-      display:grid;
-      gap:.5rem;
-    }
-    .leg-row{
-      display:flex;align-items:center;gap:.65rem;
-      color:var(--muted);
-      font-size:.98rem;
-    }
-    .swatch{
-      width:12px;height:12px;border-radius:999px;
-      flex:0 0 auto;
-    }
+    .legend{display:grid;gap:.5rem}
+    .leg-row{display:flex;align-items:center;gap:.65rem;color:var(--muted);font-size:.98rem}
+    .swatch{width:12px;height:12px;border-radius:999px;flex:0 0 auto}
     .leg-row strong{color:var(--text)}
-    .note{
-      margin:.85rem 0 0;
-      color:var(--muted);
-      font-size:.98rem;
-    }
+    .note{margin:.85rem 0 0;color:var(--muted);font-size:.98rem}
 
     /* Modal */
     .modal-backdrop{
@@ -532,8 +514,7 @@
     }
     .modal-backdrop.open{opacity:1;pointer-events:auto}
     .modal{
-      position:fixed;
-      left:50%;top:50%;
+      position:fixed;left:50%;top:50%;
       transform:translate(-50%,-48%) scale(.98);
       width:min(880px, 92vw);
       max-height:84vh;
@@ -589,8 +570,10 @@
     }
     .modal-box{
       border-radius:16px;
-      border:1px solid rgba(148,163,184,.6);
-      background: radial-gradient(circle at top, #ffffff 0, #fbfdff 55%, #f6fbff 100%);
+      border:1px solid rgba(74,120,125,.28);
+      background:
+        radial-gradient(circle at top left, rgba(244,190,105,.18), rgba(255,255,255,0) 55%),
+        linear-gradient(to bottom, #ffffff 0, #fbfdff 100%);
       box-shadow:0 10px 25px rgba(15,23,42,.08);
       padding:1rem;
     }
@@ -627,18 +610,13 @@
       background:#f9fafb;
     }
 
-    /* Scroll animation helper */
     .animate-on-scroll{
       opacity:0;
       transform:translateY(18px);
       transition:opacity .7s ease, transform .7s ease;
     }
-    .animate-on-scroll.in-view{
-      opacity:1;
-      transform:translateY(0);
-    }
+    .animate-on-scroll.in-view{opacity:1;transform:translateY(0)}
 
-    /* Responsive */
     @media (max-width: 880px){
       .donut-wrap{grid-template-columns:1fr;gap:.9rem}
       .modal-grid{grid-template-columns:1fr}
@@ -664,18 +642,15 @@
 <body>
   <div class="page">
 
-    <!-- Burger button -->
     <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
       <div class="burger-lines" aria-hidden="true">
         <span></span><span></span><span></span>
       </div>
     </button>
 
-    <!-- TOPBAR -->
     <div class="topbar">
       <div class="topbar-left">
         <div class="topbar-portrait">
-          <!-- falls du oben links ein Logo willst: ersetze src -->
           <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
         </div>
         <div class="topbar-meta">
@@ -689,7 +664,7 @@
       </div>
     </div>
 
-    <!-- Slide-in Menu -->
+    <!-- Menü -->
     <div class="menu-backdrop" id="menuBackdrop"></div>
     <aside class="menu-panel" id="menuPanel" aria-label="Navigation">
       <div class="menu-head">
@@ -784,13 +759,12 @@
             <strong>Unfall</strong> &amp; mehr – als Sicherheitsplan, nicht als „Ordnerfüllung“.
           </p>
 
-          <!-- Quick Nav (klickbar) -->
           <div class="hero-quick">
+            <button class="quick-pill" data-jump="#zahlen">
+              <span>Was Schäden kosten können</span><span class="arr">↓</span>
+            </button>
             <button class="quick-pill" data-jump="#ueberblick">
               <span>Direkt zu den Sparten</span><span class="arr">↓</span>
-            </button>
-            <button class="quick-pill" data-jump="#driver">
-              <span>Warum Schäden teuer werden</span><span class="arr">↓</span>
             </button>
           </div>
         </div>
@@ -819,12 +793,45 @@
 
     <main>
 
+      <!-- NEW: Zahlencounter (Gate) -->
+      <section class="section" id="zahlen">
+        <h2>Bevor du klickst: einmal die Größenordnung sehen</h2>
+        <p class="sub">
+          Ein Schaden ist selten „Weltuntergang“ – aber finanziell oft <strong>unangenehm</strong>. Scroll kurz in die Boxen:
+          Die Beträge zählen hoch. Danach sind die Beispiele freigeschaltet.
+        </p>
+
+        <div class="counter-grid animate-on-scroll" id="counterGrid">
+          <div class="counter-box">
+            <div class="lbl">Typischer Alltags-Schaden (z. B. Missgeschick/Diebstahl)</div>
+            <div class="val"><span class="count" data-eur="3800">0</span> €</div>
+            <div class="hint">Kommt öfter vor – tut weh, wenn’s aus eigener Tasche kommt.</div>
+          </div>
+
+          <div class="counter-box">
+            <div class="lbl">Hoher Schaden (z. B. Leitungswasser / Sanierung)</div>
+            <div class="val"><span class="count" data-eur="45000">0</span> €</div>
+            <div class="hint">Hier wird’s schnell Handwerker + Trocknung + Folgeschaden.</div>
+          </div>
+
+          <div class="counter-box">
+            <div class="lbl">Extrem (z. B. Personenschaden / Haftpflicht-Folgekosten)</div>
+            <div class="val"><span class="count" data-eur="250000">0</span> €</div>
+            <div class="hint">Selten – aber genau dafür ist Haftpflicht „Pflicht“.</div>
+          </div>
+        </div>
+
+        <div class="gate-hint" id="gateHint">
+          ⏳ Hinweis: Die Buttons unten sind kurz gesperrt – sobald die Beträge hochgezählt wurden, kannst du die Schadenbeispiele öffnen.
+        </div>
+      </section>
+
       <!-- Donut / Driver -->
       <section class="section" id="driver">
         <h2>Typische Kosten-Treiber bei Sachschäden</h2>
         <p class="sub">
-          Es sind oft <strong>Wasser</strong>, <strong>Wetter</strong>, <strong>Einbruch</strong> und <strong>Haftpflichtfälle</strong> – also Dinge, die „ganz normal“ wirken,
-          aber schnell teure Ketten auslösen (Trocknung, Handwerker, Ersatz, Folgeschäden).
+          Es sind oft <strong>Wasser</strong>, <strong>Wetter</strong>, <strong>Einbruch</strong> und <strong>Haftpflichtfälle</strong> – also Dinge, die normal wirken,
+          aber schnell teure Ketten auslösen.
         </p>
 
         <div class="card animate-on-scroll">
@@ -832,8 +839,6 @@
             <div class="donut" aria-label="Donut Chart">
               <svg viewBox="0 0 120 120">
                 <circle class="ring" cx="60" cy="60" r="42"></circle>
-
-                <!-- Segmente (werden beim Scrollen animiert) -->
                 <circle class="seg" data-pct="35" cx="60" cy="60" r="42" stroke="#ef4444"></circle>
                 <circle class="seg" data-pct="25" cx="60" cy="60" r="42" stroke="#f97316"></circle>
                 <circle class="seg" data-pct="25" cx="60" cy="60" r="42" stroke="#3b82f6"></circle>
@@ -848,8 +853,7 @@
               <div class="leg-row"><span class="swatch" style="background:#64748b"></span><span><strong>Haftpflicht &amp; Sonstiges</strong> – ca. 15%</span></div>
 
               <div class="note">
-                Merke: Es sind meistens <strong>Alltagsthemen</strong>, nicht „Pech mit 1:1.000.000“.
-                Genau deshalb lohnt sich ein sauberer Sicherheitsplan.
+                Merke: Es sind meistens <strong>Alltagsthemen</strong>. Genau deshalb lohnt sich ein sauberer Sicherheitsplan.
               </div>
             </div>
           </div>
@@ -866,146 +870,119 @@
 
         <div class="grid-3">
 
-          <!-- Privathaftpflicht -->
           <div class="card animate-on-scroll">
             <h3>Privathaftpflicht</h3>
             <p class="short">Wenn du aus Versehen anderen schadest – Personen-, Sach- und Vermögensschäden.</p>
-
             <div class="tags">
               <span class="tag green">sehr häufig</span>
               <span class="tag red">kann extrem teuer</span>
             </div>
-
             <div class="card-actions">
-              <button class="btn btn-sm btn-gold" data-modal="haftpflicht">Schadenbeispiele</button>
+              <button class="btn btn-sm btn-gold gate-btn" data-modal="haftpflicht" disabled aria-disabled="true">Schadenbeispiele</button>
               <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
-          <!-- Tiere -->
           <div class="card animate-on-scroll">
             <h3>Tiere (Hund / Pferd / weitere)</h3>
             <p class="short">Tierhalterhaftpflicht: wenn dein Tier jemanden verletzt oder Sachen beschädigt.</p>
-
             <div class="tags">
               <span class="tag green">realistische Szenarien</span>
               <span class="tag red">Folgekosten möglich</span>
             </div>
-
             <div class="card-actions">
-              <button class="btn btn-sm btn-gold" data-modal="tiere">Schadenbeispiele</button>
+              <button class="btn btn-sm btn-gold gate-btn" data-modal="tiere" disabled aria-disabled="true">Schadenbeispiele</button>
               <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
-          <!-- Hausrat -->
           <div class="card animate-on-scroll">
             <h3>Hausrat</h3>
             <p class="short">Dein kompletter Haus-Inhalt: Möbel, Technik, Kleidung, Fahrrad, Wertsachen (je nach Tarif).</p>
-
             <div class="tags">
               <span class="tag green">häufig</span>
               <span class="tag blue">Einbruch &amp; Wasser</span>
             </div>
-
             <div class="card-actions">
-              <button class="btn btn-sm btn-gold" data-modal="hausrat">Schadenbeispiele</button>
+              <button class="btn btn-sm btn-gold gate-btn" data-modal="hausrat" disabled aria-disabled="true">Schadenbeispiele</button>
               <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
-          <!-- Wohngebäude -->
           <div class="card animate-on-scroll">
             <h3>Wohngebäude</h3>
-            <p class="short">Schützt das Gebäude selbst – besonders kritisch bei Leitungswasser, Sturm/Hagel und Feuer.</p>
-
+            <p class="short">Schützt die Substanz – besonders kritisch bei Leitungswasser, Sturm/Hagel, Feuer.</p>
             <div class="tags">
               <span class="tag green">häufig</span>
               <span class="tag red">hohe Summen</span>
             </div>
-
             <div class="card-actions">
-              <button class="btn btn-sm btn-gold" data-modal="wohngebaeude">Schadenbeispiele</button>
+              <button class="btn btn-sm btn-gold gate-btn" data-modal="wohngebaeude" disabled aria-disabled="true">Schadenbeispiele</button>
               <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
-          <!-- Rechtsschutz -->
           <div class="card animate-on-scroll">
             <h3>Rechtsschutz</h3>
-            <p class="short">Wenn du dein Recht durchsetzen musst – Bausteine z. B. Verkehr, Wohnen, Arbeit, Privat.</p>
-
+            <p class="short">Bausteine z. B. Verkehr, Wohnen, Arbeit, Privat – wenn du dein Recht durchsetzen musst.</p>
             <div class="tags">
               <span class="tag green">Planbarkeit</span>
               <span class="tag red">Streit wird teuer</span>
             </div>
-
             <div class="card-actions">
-              <button class="btn btn-sm btn-gold" data-modal="rechtsschutz">Schadenbeispiele</button>
+              <button class="btn btn-sm btn-gold gate-btn" data-modal="rechtsschutz" disabled aria-disabled="true">Schadenbeispiele</button>
               <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
-          <!-- Unfall -->
           <div class="card animate-on-scroll">
             <h3>Unfall</h3>
-            <p class="short">Invalidität, Einmalzahlung – plus sinnvolle Extras (z. B. Knochenbruch, Krankenhaustagegeld).</p>
-
+            <p class="short">Invalidität + sinnvolle Extras (z. B. Knochenbruch, Krankenhaustagegeld, Zahn bei Unfall).</p>
             <div class="tags">
               <span class="tag green">Freizeit-Risiko</span>
               <span class="tag red">Folgekosten</span>
             </div>
-
             <div class="card-actions">
-              <button class="btn btn-sm btn-gold" data-modal="unfall">Schadenbeispiele</button>
+              <button class="btn btn-sm btn-gold gate-btn" data-modal="unfall" disabled aria-disabled="true">Schadenbeispiele</button>
               <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
-          <!-- Glas -->
           <div class="card animate-on-scroll">
             <h3>Glas</h3>
-            <p class="short">Scheiben, Ceranfeld, Glastüren – kleine Schäden, aber oft überraschend teuer.</p>
-
+            <p class="short">Scheiben, Ceranfeld, Glastüren – klein, aber oft überraschend teuer.</p>
             <div class="tags">
               <span class="tag green">Alltag</span>
               <span class="tag gray">schnell erledigt</span>
             </div>
-
             <div class="card-actions">
-              <button class="btn btn-sm btn-gold" data-modal="glas">Schadenbeispiele</button>
+              <button class="btn btn-sm btn-gold gate-btn" data-modal="glas" disabled aria-disabled="true">Schadenbeispiele</button>
               <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
-          <!-- Reise -->
           <div class="card animate-on-scroll">
             <h3>Reise</h3>
-            <p class="short">Reise-Risiken: Rücktritt, Abbruch, Gepäck – sinnvoll je nach Reisestil &amp; Familie.</p>
-
+            <p class="short">Rücktritt/Abbruch/Gepäck – sinnvoll je nach Reisestil &amp; Familie.</p>
             <div class="tags">
               <span class="tag green">Planbarkeit</span>
               <span class="tag blue">Urlaub schützen</span>
             </div>
-
             <div class="card-actions">
-              <button class="btn btn-sm btn-gold" data-modal="reise">Schadenbeispiele</button>
+              <button class="btn btn-sm btn-gold gate-btn" data-modal="reise" disabled aria-disabled="true">Schadenbeispiele</button>
               <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
-          <!-- Photovoltaik -->
           <div class="card animate-on-scroll">
             <h3>Photovoltaik</h3>
-            <p class="short">PV-Anlage: Ertrag &amp; Technik absichern – z. B. Sturm/Hagel, Überspannung, Tierbiss.</p>
-
+            <p class="short">Technik + Ertrag absichern: Wetter, Überspannung, Tierbiss, Ertragsausfall.</p>
             <div class="tags">
               <span class="tag green">Wetter</span>
               <span class="tag red">Technik-Schäden</span>
             </div>
-
             <div class="card-actions">
-              <button class="btn btn-sm btn-gold" data-modal="pv">Schadenbeispiele</button>
+              <button class="btn btn-sm btn-gold gate-btn" data-modal="pv" disabled aria-disabled="true">Schadenbeispiele</button>
               <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
@@ -1013,21 +990,15 @@
         </div>
       </section>
 
-      <!-- Bottom CTA -->
       <section class="section">
         <div class="card animate-on-scroll" style="text-align:center">
           <h3 style="margin-bottom:.35rem">Willst du einmal „sauber“ prüfen, was wirklich Sinn macht?</h3>
           <p class="sub" style="margin:0 auto 1rem;max-width:55rem">
             Kurz-Check: Was fehlt, was ist doppelt, wo lohnt ein Upgrade – und was kann man sich sparen.
           </p>
-
           <div style="display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center">
-            <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">
-              Gespräch zu deinen Themen vereinbaren
-            </a>
-            <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">
-              Kurzfrage per WhatsApp
-            </a>
+            <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch vereinbaren</a>
+            <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">Kurzfrage per WhatsApp</a>
           </div>
         </div>
       </section>
@@ -1070,7 +1041,7 @@
 
   <script>
     // -------------------------
-    // Scroll Animations
+    // Scroll reveal
     // -------------------------
     document.addEventListener("DOMContentLoaded", () => {
       const els = document.querySelectorAll(".animate-on-scroll");
@@ -1092,26 +1063,13 @@
     const menuPanel = document.getElementById("menuPanel");
     const menuBackdrop = document.getElementById("menuBackdrop");
     const menuClose = document.getElementById("menuClose");
-
-    const openMenu = () => {
-      menuPanel.classList.add("open");
-      menuBackdrop.classList.add("open");
-    };
-    const closeMenu = () => {
-      menuPanel.classList.remove("open");
-      menuBackdrop.classList.remove("open");
-    };
-
+    const openMenu = () => { menuPanel.classList.add("open"); menuBackdrop.classList.add("open"); };
+    const closeMenu = () => { menuPanel.classList.remove("open"); menuBackdrop.classList.remove("open"); };
     burgerBtn.addEventListener("click", openMenu);
     menuClose.addEventListener("click", closeMenu);
     menuBackdrop.addEventListener("click", closeMenu);
-
-    // groups toggle
     document.querySelectorAll(".menu-toggle").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const group = btn.closest(".menu-group");
-        group.classList.toggle("open");
-      });
+      btn.addEventListener("click", () => btn.closest(".menu-group").classList.toggle("open"));
     });
 
     // -------------------------
@@ -1126,16 +1084,63 @@
     });
 
     // -------------------------
-    // Donut animation (builds while scrolling, and closes fully)
+    // Gate: buttons disabled until counters done
+    // -------------------------
+    const gateBtns = Array.from(document.querySelectorAll(".gate-btn"));
+    const gateHint = document.getElementById("gateHint");
+    function unlockExamples(){
+      gateBtns.forEach(b => {
+        b.disabled = false;
+        b.setAttribute("aria-disabled","false");
+      });
+      if(gateHint) gateHint.textContent = "✅ Freigeschaltet: Du kannst jetzt die Schadenbeispiele öffnen.";
+    }
+
+    // -------------------------
+    // Count-up animation
+    // -------------------------
+    const fmt = new Intl.NumberFormat("de-DE");
+    function animateCount(el, to){
+      const start = performance.now();
+      const dur = 1100;
+      const from = 0;
+      const tick = (t) => {
+        const p = Math.min(1, (t - start)/dur);
+        const eased = 1 - Math.pow(1-p, 3); // easeOutCubic
+        const v = Math.round(from + (to - from) * eased);
+        el.textContent = fmt.format(v);
+        if(p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+
+    const counterGrid = document.getElementById("counterGrid");
+    let countersRan = false;
+
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(!entry.isIntersecting || countersRan) return;
+        countersRan = true;
+
+        const items = Array.from(document.querySelectorAll(".count[data-eur]"));
+        items.forEach(el => animateCount(el, parseInt(el.dataset.eur, 10) || 0));
+
+        // unlock shortly after animation
+        setTimeout(unlockExamples, 1250);
+      });
+    }, {threshold:.35});
+
+    if(counterGrid) counterObs.observe(counterGrid);
+
+    // -------------------------
+    // Donut animation (builds on scroll and closes fully)
     // -------------------------
     const donutCard = document.getElementById("driver");
     const segs = Array.from(document.querySelectorAll(".donut .seg"));
     const r = 42;
     const C = 2 * Math.PI * r;
 
-    // place segments sequentially
     function setSegments(progress01){
-      // progress01 = 0..1 for entire donut build
       let built = Math.max(0, Math.min(1, progress01)) * 100;
       let offsetPct = 0;
 
@@ -1145,31 +1150,23 @@
         const dash = (drawPct/100) * C;
         const gap = C - dash;
 
-        // close ring perfectly: dasharray uses circumference
         seg.style.strokeDasharray = `${dash} ${gap}`;
-        // offset: move start forward by already allocated
-        const offset = (offsetPct/100) * C;
-        seg.style.strokeDashoffset = -offset;
+        seg.style.strokeDashoffset = -((offsetPct/100) * C);
 
         built -= drawPct;
         offsetPct += pct;
       });
     }
-
-    // init hidden
     setSegments(0);
 
     const donutObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if(!entry.isIntersecting) return;
 
-        // animate by scroll inside viewport (simple smooth animation)
         const start = performance.now();
         const dur = 900;
-
         const tick = (t) => {
           const p = Math.min(1, (t - start)/dur);
-          // easeOutCubic
           const eased = 1 - Math.pow(1-p, 3);
           setSegments(eased);
           if(p < 1) requestAnimationFrame(tick);
@@ -1179,10 +1176,10 @@
         donutObs.unobserve(entry.target);
       });
     }, {threshold: .25});
-    donutObs.observe(donutCard);
+    if(donutCard) donutObs.observe(donutCard);
 
     // -------------------------
-    // Modal content (only shown on "Schadenbeispiele")
+    // Modal
     // -------------------------
     const modalBackdrop = document.getElementById("modalBackdrop");
     const modal = document.getElementById("modal");
@@ -1203,14 +1200,13 @@
       modal.classList.remove("open");
       document.body.style.overflow = "";
     };
-
     modalBackdrop.addEventListener("click", closeModal);
     modalClose.addEventListener("click", closeModal);
     document.addEventListener("keydown", (e) => {
       if(e.key === "Escape" && modal.classList.contains("open")) closeModal();
     });
 
-    // simple inline SVG "example images" (keine externen Abhängigkeiten)
+    // Inline SVG "Beispielbilder" (ohne externe Links)
     const svgScene = (type) => {
       const commonBg = `
         <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
@@ -1231,7 +1227,7 @@
           <g transform="translate(24,26)" fill="none" stroke="${'#4a787d'}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
             ${path}
           </g>
-          <text x="22" y="250" font-family="Raleway, Arial" font-size="28" font-weight="800" fill="#111">${label}</text>
+          <text x="22" y="250" font-family="Raleway, Arial" font-size="28" font-weight="900" fill="#111">${label}</text>
         </g>
       `;
 
@@ -1243,7 +1239,7 @@
           <path d="M28 170h104"/>
           <path d="M28 210h104"/>
           <path d="M28 250h104"/>
-        `, 70, 90, "Haftpflichtfall");
+        `, 70, 90, "Haftpflicht");
       }
       if(type === "tiere"){
         content = icon(`
@@ -1251,7 +1247,7 @@
           <path d="M56 210c14 24 32 36 48 36s34-12 48-36"/>
           <path d="M44 78l-18-18"/>
           <path d="M170 78l18-18"/>
-        `, 70, 90, "Tier-Schaden");
+        `, 70, 90, "Tiere");
       }
       if(type === "hausrat"){
         content = icon(`
@@ -1268,7 +1264,7 @@
           <path d="M210 90c0 40-30 70-70 70"/>
           <path d="M210 90c0-40-30-70-70-70"/>
           <path d="M230 120h60"/>
-        `, 70, 90, "Leitungswasser");
+        `, 70, 90, "Wasser");
       }
       if(type === "rechtsschutz"){
         content = icon(`
@@ -1276,7 +1272,7 @@
           <path d="M70 70h80"/>
           <path d="M150 70c20 0 36 16 36 36s-16 36-36 36"/>
           <path d="M70 210h160"/>
-        `, 70, 90, "Rechtsschutz");
+        `, 70, 90, "Recht");
       }
       if(type === "unfall"){
         content = icon(`
@@ -1293,7 +1289,7 @@
           <path d="M40 40h140v200H40z"/>
           <path d="M40 80h140"/>
           <path d="M70 260h80"/>
-        `, 70, 90, "Glasschaden");
+        `, 70, 90, "Glas");
       }
       if(type === "reise"){
         content = icon(`
@@ -1310,7 +1306,7 @@
           <path d="M70 180v80h180v-80"/>
           <path d="M90 210h140"/>
           <path d="M90 240h140"/>
-        `, 70, 90, "PV-Anlage");
+        `, 70, 90, "PV");
       }
 
       return commonBg + content + `</svg>`;
@@ -1321,81 +1317,81 @@
         title: "Privathaftpflicht – Schadenbeispiele",
         text: "Die Privathaftpflicht springt ein, wenn du anderen aus Versehen einen Schaden zufügst – und schützt damit dein Vermögen.",
         bullets: [
-          "Typisch (häufig): Missgeschick im Alltag (z. B. etwas beschädigt, jemand stürzt).",
-          "Teuer (maximal): Personenschäden mit Folgekosten (Behandlung, Verdienstausfall, Renten).",
+          "Typisch (häufig): Missgeschick im Alltag (Personen-/Sachschäden).",
+          "Teuer (maximal): Personenschäden mit langen Folgekosten.",
           "Wichtig auch mit Kindern: kleine Fehler können große Folgen haben."
         ],
-        cap: "Beispiel: Alltags-Missgeschick → Haftpflicht verhindert, dass es finanziell eskaliert."
+        cap: "Alltags-Missgeschick → Haftpflicht verhindert, dass es finanziell eskaliert."
       },
       tiere: {
         title: "Tiere (Hund / Pferd / weitere) – Schadenbeispiele",
         text: "Tierhalterhaftpflicht: Wenn dein Tier jemanden verletzt oder Sachen beschädigt. Gerade bei Hund und Pferd oft ein Muss.",
         bullets: [
-          "Typisch (häufig): Erschrecken, Sturz, Biss – oft in Sekunden.",
-          "Teuer (maximal): Verletzungen + Behandlung + Verdienstausfall + Schmerzensgeld.",
-          "Auch relevant: weitere Tiere je nach Situation, Umgebung und Risiko."
+          "Typisch: Erschrecken, Sturz, Biss – oft in Sekunden.",
+          "Teuer: Verletzungen + Behandlung + Verdienstausfall + Schmerzensgeld.",
+          "Auch relevant: weitere Tiere je nach Situation."
         ],
-        cap: "Beispiel: Tier erschreckt jemanden → Sturz → Folgekosten."
+        cap: "Tier erschreckt jemanden → Sturz → Folgekosten."
       },
       hausrat: {
         title: "Hausrat – Schadenbeispiele",
         text: "Hausrat schützt deinen „Haus-Inhalt“: Möbel, Technik, Kleidung, Fahrrad & Wertsachen – abhängig vom Tarif.",
         bullets: [
-          "Typisch (häufig): Einbruchdiebstahl, Leitungswasser, Feuer, Sturm/Hagel.",
-          "Teuer (maximal): Kombination aus Zerstörung + Ersatz + Renovierung/Hotel (je nach Baustein).",
+          "Typisch: Einbruchdiebstahl, Leitungswasser, Feuer, Sturm/Hagel.",
+          "Teuer: Zerstörung + Ersatz + Renovierung/Hotel (je nach Baustein).",
           "Wichtig: Unterversicherung vermeiden – sonst gibt’s Abzüge."
         ],
-        cap: "Beispiel: Einbruch & Vandalismus → Ersatz + Reparaturen."
+        cap: "Einbruch & Vandalismus → Ersatz + Reparaturen."
       },
       wohngebaeude: {
         title: "Wohngebäude – Schadenbeispiele",
-        text: "Wohngebäude sichert das Gebäude selbst (Substanz). Besonders kritisch sind Leitungswasser-Schäden – oft teuer und langwierig.",
+        text: "Wohngebäude sichert das Gebäude selbst. Leitungswasser-Schäden sind besonders kritisch – oft teuer und langwierig.",
         bullets: [
-          "Typisch (häufig): Leitungswasser/ Rohrbruch → Trocknung + Handwerker + Wiederherstellung.",
-          "Teuer (maximal): großer Wasserschaden mit Folgeschäden (Estrich, Wände, Küche, Technik).",
-          "Sinnvoll ergänzbar: Elementar (je nach Lage) + ggf. PV-Baustein."
+          "Typisch: Rohrbruch/Leitungswasser → Trocknung + Handwerker + Wiederherstellung.",
+          "Teuer: großer Wasserschaden mit Folgeschäden (Estrich, Wände, Küche, Technik).",
+          "Sinnvoll: Elementar je nach Lage + ggf. PV-Baustein."
         ],
-        cap: "Beispiel: Leitungswasser → Trocknung + Sanierung + Folgeschäden."
+        cap: "Leitungswasser → Trocknung + Sanierung + Folgeschäden."
       },
       rechtsschutz: {
         title: "Rechtsschutz – Schadenbeispiele",
-        text: "Rechtsschutz hilft, dein Recht durchzusetzen – als Baukasten: z. B. Verkehr, Wohnen, Arbeit, Privat.",
+        text: "Rechtsschutz hilft, dein Recht durchzusetzen – als Baukasten: Verkehr, Wohnen, Arbeit, Privat.",
         bullets: [
-          "Typisch: Streit nach Unfall (Verkehr), Ärger mit Vermieter, Job-Konflikt.",
-          "Teuer: Anwalts- & Gerichtskosten, Gutachten – und es geht schnell.",
-          "Wichtig: Bausteine passend wählen (nicht „alles“, sondern „dein Alltag“)."
+          "Typisch: Unfall/Verkehr, Ärger mit Vermieter, Job-Konflikt.",
+          "Teuer: Anwalts- & Gerichtskosten + Gutachter.",
+          "Wichtig: Bausteine passend zum Alltag wählen."
         ],
-        cap: "Beispiel: Konflikt → Anwalt/Gericht → Kosten planbar statt Risiko."
+        cap: "Konflikt → Kosten planbar statt Risiko."
       },
       unfall: {
         title: "Unfall – Schadenbeispiele",
         text: "Unfallversicherung greift bei Unfällen (oft Freizeit). Neben Invalidität sind Extras je nach Bedarf sinnvoll.",
         bullets: [
           "Typisch: Freizeit-Unfall (Sport, Haushalt, unterwegs).",
-          "Leistungen: Invalidität (Einmalzahlung/Rente je nach Gestaltung).",
-          "Extras möglich: Knochenbruch-Sofortleistung, Krankenhaustagegeld, Zahn bei Unfall."
+          "Leistung: Invalidität (Einmalzahlung/Rente je nach Gestaltung).",
+          "Extras möglich: Knochenbruch, Krankenhaustagegeld, Zahn bei Unfall."
         ],
-        cap: "Beispiel: Unfall → Ausgaben & Einschränkungen → Leistung hilft, Handlungsspielraum zu behalten."
+        cap: "Unfall → Ausgaben & Einschränkungen → Leistung hält dich handlungsfähig."
       },
       glas: {
         title: "Glas – Schadenbeispiele",
-        text: "Glas-Schäden sind selten „dramatisch“, aber nervig und teuer (Scheiben, Ceranfeld, Glastüren).",
+        text: "Glas-Schäden sind nervig und teuer (Scheiben, Ceranfeld, Glastüren).",
         bullets: [
           "Typisch: Ceranfeld reißt, Scheibe kaputt, Glastür beschädigt.",
-          "Kosten: Austausch + Anfahrt + Montage – oft überraschend hoch.",
-          "Vorteil: schneller Ersatz ohne Diskussionen (je nach Tarif)."
+          "Kosten: Austausch + Anfahrt + Montage.",
+          "Vorteil: schneller Ersatz (je nach Tarif)."
         ],
-        cap: "Beispiel: Glasschaden → schneller Austausch statt „selbst zahlen“."
+        cap: "Glasschaden → schneller Austausch statt „selbst zahlen“."
       },
       reise: {
         title: "Reise – Schadenbeispiele",
         text: "Reiseabsicherung schützt vor Kosten bei Rücktritt/Abbruch/Gepäck – sinnvoll je nach Reisestil & Familie.",
         bullets: [
           "Typisch: Krankheit vor Abreise → Storno.",
-          "Abbruch: Rückreise + neue Tickets + Umbuchungen.",
+          "Abbruch: Rückreise + Umbuchungen.",
           "Gepäck: Ersatzbeschaffung (je nach Leistung/Limit)."
         ],
-        cap: "Beispiel: Rücktritt/Abbruch → Kosten werden abgefedert."
+        cap: "Rücktritt/Abbruch → Kosten werden abgefedert."
       },
       pv: {
         title: "Photovoltaik – Schadenbeispiele",
@@ -1403,9 +1399,9 @@
         bullets: [
           "Typisch: Sturm/Hagel beschädigt Module.",
           "Technik: Überspannung/Wechselrichter-Ausfall.",
-          "Auch möglich: Marder-/Tierbiss an Kabeln, Ertragsausfall."
+          "Auch möglich: Tierbiss + Ertragsausfall."
         ],
-        cap: "Beispiel: Wetter/Technik → Reparatur + Ertrag sichern."
+        cap: "Wetter/Technik → Reparatur + Ertrag sichern."
       }
     };
 
@@ -1416,7 +1412,6 @@
       modalTitle.textContent = d.title;
       modalText.textContent = d.text;
 
-      // bullets
       modalBullets.innerHTML = "";
       d.bullets.forEach(b => {
         const li = document.createElement("li");
@@ -1424,7 +1419,6 @@
         modalBullets.appendChild(li);
       });
 
-      // image
       modalImg.innerHTML = svgScene(key);
       modalCap.textContent = d.cap;
 
@@ -1432,7 +1426,10 @@
     }
 
     document.querySelectorAll("[data-modal]").forEach(btn => {
-      btn.addEventListener("click", () => fillModal(btn.getAttribute("data-modal")));
+      btn.addEventListener("click", () => {
+        if(btn.disabled) return;
+        fillModal(btn.getAttribute("data-modal"));
+      });
     });
   </script>
 </body>
