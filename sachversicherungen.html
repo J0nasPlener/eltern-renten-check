@@ -2,654 +2,661 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
+  <title>Sachversicherungen – Überblick & Schadenbeispiele</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sachversicherungen – Haftpflicht, Hausrat, Gebäude & mehr | Jonas Plener</title>
 
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root{
       --primary:#4a787d;
       --accent:#f4be69;
-      --text:#0f172a;
+      --text:#111111;
       --muted:#4b5563;
       --bg:#f4f8f8;
-      
-      --card:#ffffff;
-      --stroke:#d6e2e3;
-      --stroke-strong:#b9ced0;
+      --bg-soft:#f9fbfb;
+      --border:#d6dde3;
+      --shadow:0 12px 35px rgba(15,23,42,.12);
+      --shadowSoft:0 10px 25px rgba(15,23,42,.08);
 
       --wa:#25d366;
 
-      --shadow: 0 14px 38px rgba(15,23,42,.10);
-      --shadow-soft: 0 10px 26px rgba(15,23,42,.08);
-
-      --radius: 18px;
-      --radius-sm: 14px;
+      --pillGreen:#16a34a;
+      --pillRed:#dc2626;
+      --pillBlue:#2563eb;
+      --pillGray:#6b7280;
     }
 
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
+    html,body{height:100%}
     body{
-      font-family:"Arimo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      margin:0;
+      font-family:"Arimo",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       color:var(--text);
-      background: radial-gradient(circle at top, #fff7df 0, var(--bg) 38%, #dbeafe 100%);
       line-height:1.6;
+      background: radial-gradient(circle at top, #fef3c7 0, #f4f8f8 35%, #dbeafe 100%);
       overflow-x:hidden;
     }
     a{color:inherit;text-decoration:none}
-    img{max-width:100%;height:auto;display:block}
+    img{max-width:100%;display:block}
+
     .page{
       max-width:1100px;
       margin:0 auto;
       min-height:100vh;
       background:#fff;
-      box-shadow: var(--shadow);
+      box-shadow:var(--shadow);
       display:flex;
       flex-direction:column;
+      position:relative;
+      overflow:hidden;
     }
 
-    /* ===== TOPBAR (wie leistung.html Stil) ===== */
+    /* Topbar (wie leistung.html) */
     .topbar{
-      position:relative;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding: 0.85rem 1.15rem;
-      border-bottom:1px solid rgba(148,163,184,.55);
-      background: linear-gradient(to right, #ffffff, #fff1cf);
-      gap: 1rem;
+      gap:1rem;
+      padding:.9rem 1.2rem;
+      border-bottom:1px solid var(--border);
+      background: linear-gradient(to right, #ffffff, #fef3c7);
+      position:relative;
+      z-index:5;
     }
     .topbar-left{
-      display:flex;align-items:center;gap:.8rem;min-width:0;
-    }
-    .brand-text{
+      display:flex;
+      align-items:center;
+      gap:.8rem;
       min-width:0;
     }
-    .brand-title{
-      font-family:"Raleway", system-ui, sans-serif;
+    .topbar-portrait{
+      height:52px;width:52px;border-radius:50%;
+      overflow:hidden;
+      box-shadow:0 4px 10px rgba(15,23,42,.22);
+      flex:0 0 auto;
+      background:#fff;
+    }
+    .topbar-portrait img{height:100%;width:100%;object-fit:cover}
+    .topbar-meta{min-width:0}
+    .topbar-title{
+      font-family:"Raleway",system-ui,sans-serif;
       font-weight:700;
-      letter-spacing:.02em;
-      font-size:.98rem;
       color:var(--primary);
+      letter-spacing:.03em;
+      font-size:.92rem;
       text-transform:uppercase;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
     }
-    .brand-sub{
-      font-size:.82rem;
+    .topbar-tagline{
       color:var(--muted);
+      font-size:.82rem;
       line-height:1.25;
-      word-break:break-word;
+    }
+    .topbar-right{
+      color:var(--muted);
+      font-size:.82rem;
+      text-align:right;
+      line-height:1.25;
     }
 
-    /* Burger Button */
-    .burger-btn{
-      width:48px;height:48px;
+    /* Burger Button (oben rechts – wie leistung.html) */
+    .burger{
+      position:absolute;
+      top:10px;
+      right:10px;
+      width:46px;height:46px;
       border-radius:999px;
-      border:1px solid rgba(148,163,184,.8);
+      border:1px solid rgba(148,163,184,.9);
       background:#fff;
-      box-shadow: 0 10px 22px rgba(15,23,42,.12);
+      box-shadow:0 8px 20px rgba(15,23,42,.12);
       display:grid;
       place-items:center;
       cursor:pointer;
-      flex:0 0 auto;
+      z-index:10;
     }
+    .burger:active{transform:translateY(1px)}
     .burger-lines{
       width:20px;height:14px;position:relative;
     }
     .burger-lines span{
       position:absolute;left:0;right:0;
-      height:2px;border-radius:99px;
-      background: #2f4f54;
-      opacity:.9;
+      height:2px;border-radius:999px;
+      background:var(--primary);
     }
     .burger-lines span:nth-child(1){top:0}
     .burger-lines span:nth-child(2){top:6px}
-    .burger-lines span:nth-child(3){bottom:0}
+    .burger-lines span:nth-child(3){top:12px}
 
-    /* Menu overlay/panel */
+    /* Slide-in Menü */
     .menu-backdrop{
       position:fixed;inset:0;
-      background: rgba(15,23,42,.45);
+      background:rgba(15,23,42,.45);
       opacity:0;pointer-events:none;
-      transition: opacity .25s ease;
+      transition:opacity .25s ease;
       z-index:50;
     }
-    .menu-backdrop.open{opacity:1;pointer-events:auto}
-
     .menu-panel{
       position:fixed;
-      top:0; right:-420px;
-      width:min(420px, 92vw);
-      height:100vh;
+      top:0;right:0;height:100%;
+      width:min(360px, 92vw);
       background:#fff;
-      border-left:1px solid rgba(148,163,184,.55);
-      box-shadow: -18px 0 40px rgba(15,23,42,.20);
+      box-shadow:-18px 0 40px rgba(15,23,42,.18);
+      transform:translateX(105%);
+      transition:transform .25s ease;
       z-index:60;
-      transition:right .28s ease;
-      display:flex;flex-direction:column;
+      display:flex;
+      flex-direction:column;
     }
-    .menu-panel.open{right:0}
+    .menu-backdrop.open{opacity:1;pointer-events:auto}
+    .menu-panel.open{transform:translateX(0)}
     .menu-head{
-      padding: 1rem 1rem .75rem;
-      border-bottom:1px solid rgba(148,163,184,.55);
-      background: linear-gradient(to bottom, #fff7df, #ffffff);
+      padding:1rem 1rem .8rem;
+      border-bottom:1px solid var(--border);
       display:flex;align-items:center;justify-content:space-between;gap:.75rem;
     }
-    .menu-head .mh-title{
-      font-family:"Raleway", system-ui, sans-serif;
+    .menu-head .ttl{
+      font-family:"Raleway",system-ui,sans-serif;
       font-weight:700;
       color:var(--primary);
-      letter-spacing:.01em;
     }
     .menu-close{
       width:40px;height:40px;border-radius:999px;
-      border:1px solid rgba(148,163,184,.8);
+      border:1px solid rgba(148,163,184,.9);
       background:#fff;
       cursor:pointer;
       display:grid;place-items:center;
     }
-    .menu-close:before{
-      content:"×";
-      font-size:22px;line-height:1;
-      color:#334155;
-      transform: translateY(-1px);
-    }
-
+    .menu-close:active{transform:translateY(1px)}
     .menu-body{
-      padding: .85rem 1rem 1rem;
+      padding:.6rem 1rem 1rem;
       overflow:auto;
     }
-    .menu-link{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:.8rem .85rem;
-      border-radius:14px;
-      border:1px solid rgba(214,226,227,.9);
-      background: linear-gradient(to right, #ffffff, #f7fbfb);
-      margin-bottom:.6rem;
-      font-weight:600;
-      color:#0f172a;
-    }
-    .menu-link small{font-weight:500;color:var(--muted)}
     .menu-group{
-      margin-top:.9rem;
-      border:1px solid rgba(214,226,227,.9);
-      border-radius:16px;
+      margin:.9rem 0;
+      border:1px solid rgba(148,163,184,.55);
+      border-radius:14px;
       overflow:hidden;
-      background:#fff;
+      background:linear-gradient(to bottom,#fff,#fbfdff);
     }
-    .menu-group summary{
-      list-style:none;
+    .menu-group button{
+      width:100%;
+      text-align:left;
+      border:0;background:transparent;
+      padding:.85rem .95rem;
       cursor:pointer;
-      padding:.9rem .95rem;
-      font-weight:700;
-      color:#0f172a;
-      background: linear-gradient(to right, #ffffff, #f3faf9);
       display:flex;align-items:center;justify-content:space-between;
-      gap:.75rem;
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:700;
+      color:var(--text);
     }
-    .menu-group summary::-webkit-details-marker{display:none}
-    .menu-group summary .chev{
+    .menu-group button .chev{
       color:var(--primary);
       font-weight:900;
     }
     .menu-sub{
-      padding:.6rem .7rem .85rem;
-      border-top:1px solid rgba(214,226,227,.9);
-      background:#fff;
+      border-top:1px solid rgba(148,163,184,.45);
+      display:none;
+      padding:.35rem .5rem .6rem;
     }
+    .menu-group.open .menu-sub{display:block}
     .menu-sub a{
       display:block;
-      padding:.7rem .75rem;
-      border-radius:12px;
-      border:1px solid rgba(214,226,227,.9);
-      margin:.5rem 0;
-      background:#fff;
-      font-weight:600;
-      color:#0f172a;
-    }
-    .menu-sub a:hover{filter:brightness(1.02)}
-    .menu-sub a .mini{
-      display:block;
-      font-size:.82rem;
+      padding:.55rem .55rem;
+      border-radius:10px;
       color:var(--muted);
-      font-weight:500;
-      margin-top:.15rem;
+      font-size:.95rem;
     }
-
-    /* ===== HERO ===== */
-    header.hero{
-      padding: 1.7rem 1.2rem 1.6rem;
-      border-bottom:1px solid rgba(148,163,184,.45);
-      background: radial-gradient(circle at top left, #fff5d7 0, #ffffff 40%, #e0f2fe 100%);
-    }
-    .hero-inner{
+    .menu-sub a:hover{background:#f3f6f8;color:var(--text)}
+    .menu-sub a strong{color:var(--primary)}
+    .menu-foot{
+      margin-top:auto;
+      padding:1rem;
+      border-top:1px solid var(--border);
+      background:#f9fafb;
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 1.2rem;
-      align-items:center;
+      gap:.6rem;
     }
-    .hero h1{
-      font-family:"Raleway", system-ui, sans-serif;
-      font-size: 2.05rem;
-      line-height:1.1;
-      margin:0 0 .7rem;
-      letter-spacing:.01em;
-    }
-    .hero p{
-      margin:.2rem 0 1rem;
-      color:var(--muted);
-      max-width: 44rem;
-      font-size:1rem;
-      word-break:break-word;
-    }
-    .hero p strong{color:var(--primary)}
-    .pill-row{
-      display:flex;flex-wrap:wrap;gap:.55rem;
-      margin:.55rem 0 1rem;
-    }
-    .pill{
-      display:inline-flex;align-items:center;gap:.45rem;
-      padding:.38rem .7rem;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,.85);
-      background:#fff;
-      box-shadow: 0 8px 18px rgba(15,23,42,.06);
-      font-weight:600;
-      color:#111827;
-      font-size:.88rem;
-      cursor:pointer;
-    }
-    .pill .arrow{color:var(--primary);font-weight:900}
 
-    .cta-row{
-      display:flex;flex-wrap:wrap;gap:.65rem;
-      margin-top:.8rem;
-    }
+    /* Buttons */
     .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:.95rem 1.15rem;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:.92rem 1.2rem;
       border-radius:999px;
       font-weight:700;
+      font-size:.98rem;
       border:0;
       cursor:pointer;
-      white-space:normal;
-      text-align:center;
-      width:auto;
+      white-space:nowrap;
       max-width:100%;
+      text-align:center;
+      line-height:1.1;
     }
-    .btn-primary{
-      background: var(--accent);
+    .btn-gold{
+      background:var(--accent);
       color:#1f2933;
-      box-shadow: 0 10px 24px rgba(0,0,0,.12);
+      box-shadow:0 10px 22px rgba(0,0,0,.12);
+    }
+    .btn-outline{
+      background:#fff;
+      color:var(--primary);
+      border:1px solid rgba(148,163,184,.9);
     }
     .btn-wa{
-      background: var(--wa);
+      background:var(--wa);
       color:#fff;
-      box-shadow: 0 10px 24px rgba(0,0,0,.12);
+      box-shadow:0 10px 22px rgba(0,0,0,.12);
     }
-    .btn-secondary{
-      background:#fff;
-      border:1px solid rgba(148,163,184,.85);
-      color:var(--primary);
-    }
-    .btn:hover{transform: translateY(-1px);filter:brightness(1.02)}
+    .btn:hover{filter:brightness(1.03);transform:translateY(-1px)}
+    .btn:active{transform:translateY(0)}
 
-    /* Ansprechpartner box */
-    .hero-side{
-      display:flex;
-      justify-content:center;
-    }
-    .contact-card{
+    /* Hero */
+    header.hero{
+      padding:2.0rem 1.25rem 1.25rem;
+      border-bottom:1px solid var(--border);
+      background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 42%, #e0f2fe 100%);
       position:relative;
-      width:min(340px, 100%);
-      background:#fff;
-      border:1px solid rgba(148,163,184,.7);
-      border-radius: 18px;
-      box-shadow: 0 12px 28px rgba(15,23,42,.12);
-      padding: 1rem 1rem 1rem;
     }
-    .contact-top{
-      display:flex;gap:.85rem;align-items:center;
-      margin-bottom:.5rem;
+    .hero-inner{
+      display:flex;
+      gap:1.4rem;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
     }
-    .avatar{
-      width:68px;height:68px;border-radius:16px;
-      overflow:hidden;
-      border:1px solid rgba(214,226,227,.9);
-      background:#f8fafc;
-      flex:0 0 auto;
+    .hero-text{flex:1 1 520px;min-width:0}
+    .hero-label{
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+      padding:.18rem .7rem;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.85);
+      background:rgba(255,255,255,.92);
+      color:var(--muted);
+      font-size:.86rem;
+      margin-bottom:.65rem;
     }
-    .avatar img{width:100%;height:100%;object-fit:cover}
-    .ct-title{
-      font-family:"Raleway", system-ui, sans-serif;
+    .hero-label .dot{width:7px;height:7px;border-radius:999px;background:var(--accent)}
+    .hero h1{
+      font-family:"Raleway",system-ui,sans-serif;
       font-weight:800;
-      color:var(--primary);
-      margin:0;
-      font-size:1.05rem;
+      letter-spacing:.01em;
+      margin:.15rem 0 .65rem;
+      font-size:2.0rem;
       line-height:1.15;
     }
-    .ct-sub{margin:.1rem 0 0;color:var(--muted);font-size:.88rem}
-    .ct-list{margin:.7rem 0 0;padding:0;list-style:none}
-    .ct-list li{
-      display:flex;gap:.55rem;align-items:flex-start;
-      margin:.45rem 0;
-      color:#334155;
-    }
-    .dot{
-      width:10px;height:10px;border-radius:999px;background: var(--accent);
-      margin-top:.45rem;flex:0 0 auto;
-      box-shadow: 0 6px 12px rgba(244,190,105,.35);
-    }
+    .hero p{margin:.35rem 0;color:var(--muted);font-size:1.02rem;max-width:46rem}
+    .hero p strong{color:var(--primary)}
 
-    /* ===== MAIN ===== */
-    main{
-      padding: 1.6rem 1.2rem 2.2rem;
-      background: linear-gradient(to bottom, #ffffff 0, #f8fafc 100%);
-      flex:1;
+    .hero-quick{
+      display:flex;
+      gap:.6rem;
+      flex-wrap:wrap;
+      margin:1rem 0 0;
     }
-    section{margin-bottom: 1.7rem}
-    h2{
-      font-family:"Raleway", system-ui, sans-serif;
-      color:var(--primary);
-      margin:0 0 .45rem;
-      font-size:1.55rem;
-      line-height:1.2;
-    }
-    .sub{
-      margin:0 0 1rem;
+    .quick-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:.35rem;
+      padding:.55rem .85rem;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.9);
+      background:#fff;
+      box-shadow:0 6px 16px rgba(15,23,42,.08);
       color:var(--muted);
-      max-width: 62rem;
-      word-break:break-word;
+      font-size:.92rem;
+      cursor:pointer;
     }
+    .quick-pill .arr{color:var(--primary);font-weight:900}
 
-    /* Karten im „Index“-Look (mehr Farbe/ Rahmen) */
-    .cards-3{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: .9rem;
+    .hero-card{
+      flex:0 0 340px;
+      max-width:420px;
+      margin-top:.2rem;
     }
-    .card{
-      background: linear-gradient(to bottom, #ffffff, #f7fbfb);
-      border: 2px solid rgba(74,120,125,.25);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-soft);
-      padding: 1rem 1rem 1rem;
+    .contact-card{
+      border-radius:18px;
+      border:1px solid rgba(148,163,184,.75);
+      background: radial-gradient(circle at top, rgba(255,255,255,.95), rgba(255,255,255,.86));
+      box-shadow:0 18px 40px rgba(15,23,42,.12);
+      padding:1rem 1rem 1rem;
       position:relative;
       overflow:hidden;
     }
-    .card:before{
+    .contact-top{
+      display:flex;
+      gap:.9rem;
+      align-items:center;
+      margin-bottom:.75rem;
+    }
+    .mini-avatar{
+      width:74px;height:74px;
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,.7);
+      background:#fff;
+      display:grid;place-items:center;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .mini-avatar img{width:100%;height:100%;object-fit:cover}
+    .contact-top h3{
+      margin:0;
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;
+      color:var(--primary);
+      font-size:1.1rem;
+      line-height:1.2;
+    }
+    .contact-top p{margin:.2rem 0 0;color:var(--muted);font-size:.95rem}
+    .contact-list{
+      margin:.6rem 0 0;
+      padding-left:0;
+      list-style:none;
+      display:grid;
+      gap:.55rem;
+    }
+    .contact-list li{
+      display:flex;
+      gap:.6rem;
+      align-items:flex-start;
+      color:var(--muted);
+      font-size:.98rem;
+    }
+    .bullet{
+      width:10px;height:10px;border-radius:999px;background:var(--accent);
+      flex:0 0 auto;margin-top:.45rem;
+    }
+
+    main{
+      padding:1.65rem 1.25rem 2.2rem;
+      flex:1;
+      background:linear-gradient(to bottom, #ffffff 0, #f9fafb 100%);
+    }
+
+    h2{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;
+      color:var(--primary);
+      margin:0 0 .4rem;
+      font-size:1.55rem;
+    }
+    .sub{
+      color:var(--muted);
+      margin:0 0 1.1rem;
+      font-size:1rem;
+      max-width:60rem;
+    }
+
+    /* Blocks wie leistung.html */
+    .section{
+      margin:1.2rem 0 2rem;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:1rem;
+      align-items:stretch;
+    }
+
+    .card{
+      border-radius:18px;
+      border:1px solid rgba(148,163,184,.55);
+      background: radial-gradient(circle at top, #ffffff 0, #fbfdff 55%, #f6fbff 100%);
+      box-shadow:var(--shadowSoft);
+      padding:1rem 1.05rem 1.05rem;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
       content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(244,190,105,.22), transparent 45%),
-        radial-gradient(circle at 110% 40%, rgba(147,197,253,.18), transparent 50%);
+      position:absolute;inset:-120px -180px auto auto;
+      width:320px;height:320px;border-radius:50%;
+      background:radial-gradient(circle, rgba(244,190,105,.38) 0, rgba(255,255,255,0) 65%);
+      transform:rotate(10deg);
       pointer-events:none;
     }
-    .card > *{position:relative}
     .card h3{
-      margin:0 0 .35rem;
-      font-family:"Raleway", system-ui, sans-serif;
-      font-size:1.08rem;
-      line-height:1.25;
+      margin:.1rem 0 .55rem;
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;
+      font-size:1.15rem;
+      color:var(--text);
+      position:relative;
+      z-index:1;
     }
-    .bullets{margin:.3rem 0 0;padding-left: 1.1rem;color:#334155}
-    .bullets li{margin:.25rem 0;word-break:break-word}
+    .card .short{
+      color:var(--muted);
+      font-size:.98rem;
+      margin:0 0 .75rem;
+      position:relative;
+      z-index:1;
+    }
 
-    .tagrow{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0 0}
+    .tags{
+      display:flex;gap:.5rem;flex-wrap:wrap;
+      margin:.2rem 0 .85rem;
+      position:relative;
+      z-index:1;
+    }
     .tag{
       display:inline-flex;
       align-items:center;
-      padding:.25rem .55rem;
+      gap:.4rem;
+      padding:.35rem .7rem;
       border-radius:999px;
-      border:1px solid rgba(148,163,184,.75);
+      font-size:.88rem;
+      font-weight:800;
+      border:1px solid rgba(148,163,184,.65);
       background:#fff;
-      color:#334155;
-      font-weight:600;
-      font-size:.82rem;
+      color:var(--muted);
     }
-    .tag.hot{border-color: rgba(220,38,38,.35); background: rgba(254,226,226,.65)}
-    .tag.freq{border-color: rgba(22,163,74,.35); background: rgba(220,252,231,.65)}
+    .tag.green{border-color:rgba(22,163,74,.35);background:rgba(22,163,74,.08);color:#0f5132}
+    .tag.red{border-color:rgba(220,38,38,.35);background:rgba(220,38,38,.08);color:#7f1d1d}
+    .tag.blue{border-color:rgba(37,99,235,.35);background:rgba(37,99,235,.08);color:#1e3a8a}
+    .tag.gray{border-color:rgba(107,114,128,.35);background:rgba(107,114,128,.08);color:#111827}
 
     .card-actions{
-      display:flex;gap:.55rem;flex-wrap:wrap;
-      margin-top:.85rem;
+      display:flex;gap:.6rem;flex-wrap:wrap;
+      margin-top:auto;
+      position:relative;
+      z-index:1;
     }
-    .mini-btn{
-      padding:.55rem .8rem;
+    .btn-sm{
+      padding:.72rem 1rem;
+      font-size:.95rem;
+      font-weight:800;
       border-radius:999px;
-      font-weight:700;
-      border:1px solid rgba(148,163,184,.85);
-      background:#fff;
-      color:var(--primary);
-      cursor:pointer;
-    }
-    .mini-btn.primary{
-      border:0;
-      background: var(--accent);
-      color:#1f2933;
-      box-shadow: 0 10px 22px rgba(0,0,0,.10);
     }
 
-    /* Donut */
+    /* Donut Chart Card */
     .donut-wrap{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      grid-template-columns: 220px 1fr;
+      gap:1.2rem;
       align-items:center;
-      margin-top:.35rem;
+      margin-top:.4rem;
     }
-    .donut-card{
-      background: linear-gradient(to bottom, #ffffff, #f7fbfb);
-      border: 2px solid rgba(74,120,125,.25);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-soft);
-      padding: 1rem;
+    .donut{
+      width:220px;height:220px;
+      margin:0 auto;
       position:relative;
-      overflow:hidden;
     }
-    .donut-card:before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(circle at 10% 0%, rgba(244,190,105,.25), transparent 50%),
-        radial-gradient(circle at 120% 60%, rgba(147,197,253,.20), transparent 60%);
-      pointer-events:none;
+    .donut svg{width:100%;height:100%}
+    .donut .ring{
+      stroke:#e5e7eb;
+      stroke-width:18;
+      fill:none;
     }
-    .donut-card > *{position:relative}
-    .donut-title{
-      font-family:"Raleway", system-ui, sans-serif;
-      font-weight:800;
-      margin:0 0 .35rem;
-      font-size:1.08rem;
+    .donut .seg{
+      fill:none;
+      stroke-width:18;
+      stroke-linecap:round;
+      transform:rotate(-90deg);
+      transform-origin:50% 50%;
+      stroke-dasharray:0 999;
     }
     .legend{
-      display:grid;gap:.35rem;margin-top:.8rem
+      display:grid;
+      gap:.5rem;
     }
-    .leg-item{
-      display:flex;align-items:center;gap:.55rem;
-      color:#334155;
-      font-weight:600;
-      flex-wrap:wrap;
+    .leg-row{
+      display:flex;align-items:center;gap:.65rem;
+      color:var(--muted);
+      font-size:.98rem;
     }
     .swatch{
-      width:12px;height:12px;border-radius:4px;
+      width:12px;height:12px;border-radius:999px;
       flex:0 0 auto;
     }
-    .leg-item small{font-weight:500;color:var(--muted)}
-    .donut-center-note{
+    .leg-row strong{color:var(--text)}
+    .note{
+      margin:.85rem 0 0;
       color:var(--muted);
-      font-size:.92rem;
-      margin:.35rem 0 0;
-      word-break:break-word;
+      font-size:.98rem;
     }
 
-    /* SVG scaling */
-    .donut-svg{
-      width:100%;
-      max-width: 320px;
-      margin: 0 auto;
-      display:block;
-    }
-
-    /* Schadenbeispiele */
-    .examples{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: .9rem;
-    }
-    .ex{
-      background:#fff;
-      border: 2px solid rgba(74,120,125,.22);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-soft);
-      padding: 1rem;
-      overflow:hidden;
-      position:relative;
-    }
-    .ex:before{
-      content:"";
-      position:absolute;inset:0;
-      background: radial-gradient(circle at 10% 0%, rgba(244,190,105,.18), transparent 55%);
-      pointer-events:none;
-    }
-    .ex > *{position:relative}
-    .ex-top{
-      display:flex;gap:.8rem;align-items:flex-start;
-    }
-    .ex-illus{
-      width:64px;height:64px;border-radius:16px;
-      border:1px solid rgba(214,226,227,.95);
-      background: linear-gradient(to bottom, #fff, #f8fafc);
-      flex:0 0 auto;
-      display:grid;place-items:center;
-      overflow:hidden;
-    }
-    .ex h3{
-      margin:0;
-      font-family:"Raleway", system-ui, sans-serif;
-      font-size:1.08rem;
-      line-height:1.2;
-    }
-    .ex p{
-      margin:.35rem 0 0;
-      color:var(--muted);
-      font-size:.95rem;
-      word-break:break-word;
-    }
-    .money{
-      margin-top:.75rem;
-      display:flex;align-items:baseline;justify-content:space-between;
-      gap:.75rem;flex-wrap:wrap;
-    }
-    .money .label{color:#64748b;font-weight:700;font-size:.85rem}
-    .money .value{
-      font-family:"Raleway", system-ui, sans-serif;
-      font-weight:900;
-      font-size:1.5rem;
-      color:#0f172a;
-      letter-spacing:.01em;
-    }
-    .disclaimer{
-      font-size:.82rem;color:#64748b;margin-top:.6rem
-    }
-
-    /* Modal (zusätzliche Details) */
+    /* Modal */
     .modal-backdrop{
-      position:fixed; inset:0;
-      background: rgba(15,23,42,.50);
-      opacity:0; pointer-events:none;
-      transition: opacity .2s ease;
-      z-index:80;
+      position:fixed;inset:0;
+      background:rgba(15,23,42,.55);
+      opacity:0;pointer-events:none;
+      transition:opacity .2s ease;
+      z-index:100;
     }
     .modal-backdrop.open{opacity:1;pointer-events:auto}
     .modal{
       position:fixed;
-      left:50%; top:52%;
-      transform: translate(-50%, -50%);
-      width:min(760px, 92vw);
-      max-height: 78vh;
-      overflow:auto;
+      left:50%;top:50%;
+      transform:translate(-50%,-48%) scale(.98);
+      width:min(880px, 92vw);
+      max-height:84vh;
       background:#fff;
-      border-radius: 22px;
+      border-radius:18px;
       border:1px solid rgba(148,163,184,.7);
-      box-shadow: 0 26px 70px rgba(15,23,42,.25);
-      opacity:0; pointer-events:none;
-      transition: opacity .2s ease, top .2s ease;
-      z-index:90;
+      box-shadow:0 30px 70px rgba(15,23,42,.28);
+      overflow:hidden;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .2s ease, transform .2s ease;
+      z-index:110;
+      display:flex;
+      flex-direction:column;
     }
-    .modal.open{opacity:1;pointer-events:auto; top:50%}
+    .modal.open{
+      opacity:1;
+      pointer-events:auto;
+      transform:translate(-50%,-50%) scale(1);
+    }
     .modal-head{
-      padding: 1rem 1rem .85rem;
-      border-bottom:1px solid rgba(148,163,184,.55);
-      background: linear-gradient(to bottom, #fff7df, #ffffff);
-      display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+      padding:1rem 1rem .85rem;
+      border-bottom:1px solid var(--border);
+      display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;
+      background:linear-gradient(to right, #ffffff, #fef3c7);
     }
     .modal-title{
-      font-family:"Raleway", system-ui, sans-serif;
-      font-weight:900;color:var(--primary);
-      margin:0;font-size:1.15rem;
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:900;
+      color:var(--primary);
+      margin:0;
+      font-size:1.2rem;
+      line-height:1.2;
     }
     .modal-close{
       width:42px;height:42px;border-radius:999px;
-      border:1px solid rgba(148,163,184,.85);
+      border:1px solid rgba(148,163,184,.9);
       background:#fff;
       cursor:pointer;
       display:grid;place-items:center;
+      flex:0 0 auto;
     }
-    .modal-close:before{content:"×";font-size:22px;color:#334155;transform:translateY(-1px)}
-    .modal-body{padding: 1rem}
-    .modal-body p{margin:.2rem 0 .7rem;color:var(--muted)}
+    .modal-body{
+      padding:1rem;
+      overflow:auto;
+      background:linear-gradient(to bottom, #ffffff 0, #f9fafb 100%);
+    }
     .modal-grid{
       display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap:.85rem;
-      margin-top:.75rem;
+      grid-template-columns: 1.1fr .9fr;
+      gap:1rem;
+      align-items:start;
     }
-    .mini-box{
-      border:2px solid rgba(74,120,125,.20);
-      background: linear-gradient(to bottom, #ffffff, #f7fbfb);
-      border-radius: 16px;
-      padding:.9rem .95rem;
+    .modal-box{
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,.6);
+      background: radial-gradient(circle at top, #ffffff 0, #fbfdff 55%, #f6fbff 100%);
+      box-shadow:0 10px 25px rgba(15,23,42,.08);
+      padding:1rem;
     }
-    .mini-box h4{
-      margin:0 0 .35rem;
-      font-family:"Raleway", system-ui, sans-serif;
-      font-size:1.02rem;
+    .modal-box h4{
+      margin:.1rem 0 .6rem;
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:900;
+      font-size:1.05rem;
     }
-    .mini-box ul{margin:.2rem 0 0;padding-left:1.1rem;color:#334155}
-    .mini-box li{margin:.22rem 0}
+    .modal-box p{margin:.25rem 0;color:var(--muted);font-size:1rem}
+    .modal-box ul{margin:.35rem 0 0;padding-left:1.1rem;color:var(--muted)}
+    .modal-box li{margin:.25rem 0}
 
-    /* Footer */
+    .example-img{
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,.65);
+      overflow:hidden;
+      background:#fff;
+      box-shadow:0 10px 25px rgba(15,23,42,.08);
+    }
+    .example-img .cap{
+      padding:.65rem .8rem;
+      border-top:1px solid rgba(148,163,184,.55);
+      color:var(--muted);
+      font-size:.92rem;
+      background:#fbfdff;
+    }
+
     footer{
-      padding: 1rem 1.2rem 1.25rem;
-      font-size:.78rem;
+      padding:1rem 1.25rem 1.25rem;
+      font-size:.82rem;
       color:#6b7280;
-      border-top:1px solid rgba(148,163,184,.45);
-      background:#f8fafc;
+      border-top:1px solid var(--border);
+      background:#f9fafb;
+    }
+
+    /* Scroll animation helper */
+    .animate-on-scroll{
+      opacity:0;
+      transform:translateY(18px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+    .animate-on-scroll.in-view{
+      opacity:1;
+      transform:translateY(0);
     }
 
     /* Responsive */
-    @media (max-width: 920px){
-      .hero-inner{grid-template-columns: 1fr; gap: 1rem}
-      .hero-side{justify-content:flex-start}
-      .cards-3{grid-template-columns: 1fr}
-      .donut-wrap{grid-template-columns: 1fr}
-      .examples{grid-template-columns: 1fr}
-      .modal-grid{grid-template-columns: 1fr}
-      .btn{width:100%}
+    @media (max-width: 880px){
+      .donut-wrap{grid-template-columns:1fr;gap:.9rem}
+      .modal-grid{grid-template-columns:1fr}
     }
-    @media (max-width: 520px){
-      header.hero{padding: 1.35rem 1rem 1.25rem}
-      main{padding: 1.35rem 1rem 1.85rem}
-      .hero h1{font-size:1.62rem}
-      .contact-top{align-items:flex-start}
-      .avatar{width:62px;height:62px}
-      .burger-btn{width:46px;height:46px}
-      .money .value{font-size:1.35rem}
+    @media (max-width: 768px){
+      header.hero{padding:1.6rem 1rem 1.1rem}
+      main{padding:1.35rem 1rem 2rem}
+      .topbar{padding:.85rem 1rem}
+      .topbar-right{display:none}
+      .hero h1{font-size:1.55rem}
+      .hero-card{flex:1 1 100%;max-width:520px}
+      .burger{top:9px;right:9px}
+    }
+    @media (max-width: 420px){
+      .btn{width:100%}
+      .card-actions .btn-sm{width:100%}
+      .quick-pill{width:100%;justify-content:space-between}
+      .donut{width:200px;height:200px}
     }
   </style>
 </head>
@@ -657,161 +664,153 @@
 <body>
   <div class="page">
 
+    <!-- Burger button -->
+    <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
+      <div class="burger-lines" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </button>
+
     <!-- TOPBAR -->
     <div class="topbar">
       <div class="topbar-left">
-        <div class="brand-text">
-          <div class="brand-title">Jonas Plener</div>
-          <div class="brand-sub">Eltern, Familien & Selbstständige im Kinzigtal & der Ortenau</div>
+        <div class="topbar-portrait">
+          <!-- falls du oben links ein Logo willst: ersetze src -->
+          <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
+        </div>
+        <div class="topbar-meta">
+          <div class="topbar-title">Jonas Plener</div>
+          <div class="topbar-tagline">Agentur für Deutsche Vermögensberatung<br>(Region Kinzigtal / Ortenau)</div>
         </div>
       </div>
 
-      <button class="burger-btn" id="burgerBtn" aria-label="Menü öffnen">
-        <div class="burger-lines" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </div>
-      </button>
+      <div class="topbar-right">
+        Eltern, Familien &amp; Selbstständige<br>im Kinzigtal &amp; der Ortenau
+      </div>
     </div>
 
-    <!-- MENU -->
+    <!-- Slide-in Menu -->
     <div class="menu-backdrop" id="menuBackdrop"></div>
     <aside class="menu-panel" id="menuPanel" aria-label="Navigation">
       <div class="menu-head">
-        <div class="mh-title">Menü</div>
-        <button class="menu-close" id="menuClose" aria-label="Menü schließen"></button>
+        <div class="ttl">Menü</div>
+        <button class="menu-close" id="menuClose" aria-label="Menü schließen">✕</button>
       </div>
 
       <div class="menu-body">
-        <!-- Wichtig: Starseite = leistung.html, Eltern-Renten-Check = index.html -->
-        <a class="menu-link" href="leistung.html">
-          <span>Starseite</span>
-          <small>Übersicht</small>
+        <div class="menu-group">
+          <button type="button" class="menu-toggle">
+            <span>Startseite</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="leistung.html"><strong>Meine Leistungen</strong></a>
+            <a href="index.html">Eltern-Renten-Check</a>
+          </div>
+        </div>
+
+        <div class="menu-group open">
+          <button type="button" class="menu-toggle">
+            <span>Absicherung &amp; Schutz</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="arbeitskraftabsicherung.html">Berufsunfähigkeit &amp; Arbeitskraft</a>
+            <a href="sachversicherungen.html"><strong>Sachversicherungen</strong></a>
+            <a href="risikoleben.html">Risikoleben</a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle">
+            <span>Vorsorge &amp; Rente</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="riester.html">Riester</a>
+            <a href="ruerup.html">Rürup / Basisrente</a>
+            <a href="bav.html">Betriebliche Altersvorsorge</a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle">
+            <span>Vermögensaufbau &amp; Sparen</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="fonds-sparplaene.html">Investment- &amp; Fondssparpläne</a>
+            <a href="einmalanlage.html">Einmalanlage</a>
+            <a href="vermoegensstruktur.html">Vermögensstruktur</a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle">
+            <span>Familie &amp; Kinder</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="eltern-retter.html">Eltern-Retter &amp; Kindererziehungszeiten</a>
+            <a href="kinder-absichern.html">Kinder absichern</a>
+            <a href="ausbildung-zukunft.html">Ausbildung &amp; Zukunft</a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle">
+            <span>Unternehmer</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="unternehmer-termin.html">Termin für Unternehmer</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-foot">
+        <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">
+          Gespräch vereinbaren
         </a>
-        <a class="menu-link" href="index.html">
-          <span>Eltern-Renten-Check</span>
-          <small>Rechner</small>
+        <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">
+          Kurzfrage per WhatsApp
         </a>
-
-        <details class="menu-group" open>
-          <summary>
-            Absicherung &amp; Schutz
-            <span class="chev">▾</span>
-          </summary>
-          <div class="menu-sub">
-            <a href="arbeitskraftabsicherung.html">Berufsunfähigkeit &amp; Arbeitskraft<span class="mini">Einkommen sichern</span></a>
-            <a href="sachversicherungen.html">Sachversicherungen (Haftpflicht, Hausrat, Gebäude …)<span class="mini">Alltag &amp; große Schäden</span></a>
-            <a href="risikoleben.html">Risikoleben<span class="mini">Familie &amp; Kredite absichern</span></a>
-          </div>
-        </details>
-
-        <details class="menu-group">
-          <summary>
-            Vorsorge &amp; Rente
-            <span class="chev">▾</span>
-          </summary>
-          <div class="menu-sub">
-            <a href="riester.html">Riester<span class="mini">Zulagen nutzen</span></a>
-            <a href="ruerup.html">Rürup / Basisrente<span class="mini">Steuern &amp; Vorsorge</span></a>
-            <a href="bav.html">bAV<span class="mini">Arbeitgeber-Vorteile</span></a>
-          </div>
-        </details>
-
-        <details class="menu-group">
-          <summary>
-            Vermögensaufbau &amp; Sparen
-            <span class="chev">▾</span>
-          </summary>
-          <div class="menu-sub">
-            <a href="fonds-sparplaene.html">Investment- &amp; Fondssparpläne<span class="mini">langfristig aufbauen</span></a>
-            <a href="einmalanlage.html">Einmalanlagen<span class="mini">Strategie &amp; Struktur</span></a>
-            <a href="vermoegensstruktur.html">Vermögensstruktur<span class="mini">Ziele &amp; Plan</span></a>
-          </div>
-        </details>
-
-        <details class="menu-group">
-          <summary>
-            Familie &amp; Kinder
-            <span class="chev">▾</span>
-          </summary>
-          <div class="menu-sub">
-            <a href="eltern-retter.html">Eltern-Retter &amp; Kindererziehungszeiten<span class="mini">Rente optimieren</span></a>
-            <a href="kinder-absichern.html">Kinder absichern<span class="mini">Unfall / Gesundheit / frühe BU</span></a>
-            <a href="ausbildung-zukunft.html">Ausbildung &amp; Zukunft<span class="mini">Sparen fürs Kind</span></a>
-          </div>
-        </details>
-
-        <details class="menu-group">
-          <summary>
-            Unternehmer
-            <span class="chev">▾</span>
-          </summary>
-          <div class="menu-sub">
-            <a href="unternehmer-termin.html">Termin für Unternehmer<span class="mini">BAV/BKV &amp; Konzepte</span></a>
-          </div>
-        </details>
-
-        <details class="menu-group">
-          <summary>
-            Karriere
-            <span class="chev">▾</span>
-          </summary>
-          <div class="menu-sub">
-            <a href="karriere.html">Job-Alternative / Karriere<span class="mini">Chancen &amp; Einstieg</span></a>
-          </div>
-        </details>
-
       </div>
     </aside>
 
     <!-- HERO -->
-    <header class="hero" id="top">
+    <header class="hero">
       <div class="hero-inner">
-        <div>
-          <h1>Sachversicherungen: kleine Beiträge – große Ruhe</h1>
+        <div class="hero-text animate-on-scroll">
+          <div class="hero-label"><span class="dot"></span> Sachversicherungen · verständlich &amp; praxisnah</div>
+          <h1>Schäden passieren selten „dramatisch“ – aber oft <span style="color:var(--primary)">teuer</span>.</h1>
           <p>
-            Viele denken bei Versicherungen an „nice to have“. In der Praxis sind es aber oft
-            <strong>Alltagsschäden</strong>, die dich finanziell ausbremsen: ein Missgeschick,
-            ein Einbruch, Leitungswasser oder ein Streit, der vor Gericht endet.
+            Sachversicherungen sind dafür da, dass ein normaler Alltags-Schaden nicht dein Budget sprengt:
+            <strong>Haftpflicht</strong>, <strong>Hausrat</strong>, <strong>Wohngebäude</strong>, <strong>Rechtsschutz</strong>,
+            <strong>Unfall</strong> &amp; mehr – als Sicherheitsplan, nicht als „Ordnerfüllung“.
           </p>
 
-          <!-- Klickbare Kästchen (springen) -->
-          <div class="pill-row">
-            <a class="pill" href="#produkte" aria-label="Zu den Sparten springen">
-              <span>Zu den Sparten</span> <span class="arrow">↓</span>
-            </a>
-            <a class="pill" href="#beispiele" aria-label="Zu den Schadenbeispielen springen">
-              <span>Zu Schadenbeispielen</span> <span class="arrow">↓</span>
-            </a>
-          </div>
-
-          <div class="cta-row">
-            <!-- Forms-Link wie auf deiner Leistungsseite -->
-            <a class="btn btn-primary" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">
-              Gespräch zu deinen Themen vereinbaren
-            </a>
-            <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">
-              Kurzfrage per WhatsApp stellen
-            </a>
+          <!-- Quick Nav (klickbar) -->
+          <div class="hero-quick">
+            <button class="quick-pill" data-jump="#ueberblick">
+              <span>Direkt zu den Sparten</span><span class="arr">↓</span>
+            </button>
+            <button class="quick-pill" data-jump="#driver">
+              <span>Warum Schäden teuer werden</span><span class="arr">↓</span>
+            </button>
           </div>
         </div>
 
-        <!-- Ansprechpartner -->
-        <div class="hero-side">
+        <div class="hero-card animate-on-scroll">
           <div class="contact-card">
             <div class="contact-top">
-              <div class="avatar">
-                <!-- Dein Bild -->
+              <div class="mini-avatar">
                 <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
               </div>
               <div>
-                <p class="ct-title">Dein Ansprechpartner</p>
-                <p class="ct-sub">Sicherheitsplan, Vorsorge &amp; Familie – digital &amp; vor Ort</p>
+                <h3>Dein Ansprechpartner</h3>
+                <p>Sicherheitsplan, Vorsorge &amp; Familie – digital &amp; vor Ort</p>
               </div>
             </div>
-            <ul class="ct-list">
-              <li><span class="dot"></span><span>Schutz so planen, dass er im Ernstfall wirklich trägt.</span></li>
-              <li><span class="dot"></span><span>Einfach erklärt – ohne Fachchinesisch.</span></li>
-              <li><span class="dot"></span><span>Wir prüfen, was fehlt, doppelt ist oder günstiger geht.</span></li>
+
+            <ul class="contact-list">
+              <li><span class="bullet"></span><span>Schutz so planen, dass er im Ernstfall wirklich trägt.</span></li>
+              <li><span class="bullet"></span><span>Einfach erklärt – ohne Fachchinesisch.</span></li>
+              <li><span class="bullet"></span><span>Wir prüfen, was fehlt, doppelt ist oder günstiger geht.</span></li>
             </ul>
           </div>
         </div>
@@ -820,953 +819,620 @@
 
     <main>
 
-      <!-- DONUT / Ursachen -->
-      <section id="overview">
-        <h2>Was in der Praxis am häufigsten teuer wird</h2>
+      <!-- Donut / Driver -->
+      <section class="section" id="driver">
+        <h2>Typische Kosten-Treiber bei Sachschäden</h2>
         <p class="sub">
-          Nicht der spektakuläre „Großbrand“ ist der Normalfall – sondern <strong>Wasser, Wetter, Einbruch</strong> und
-          klassische <strong>Haftpflicht</strong>-Situationen. Der Kreis baut sich beim Scrollen auf, damit man die Verteilung
-          sofort versteht.
+          Es sind oft <strong>Wasser</strong>, <strong>Wetter</strong>, <strong>Einbruch</strong> und <strong>Haftpflichtfälle</strong> – also Dinge, die „ganz normal“ wirken,
+          aber schnell teure Ketten auslösen (Trocknung, Handwerker, Ersatz, Folgeschäden).
         </p>
 
-        <div class="donut-wrap">
-          <div class="donut-card">
-            <p class="donut-title">Typische „Kosten-Treiber“ bei Sachschäden (vereinfacht)</p>
+        <div class="card animate-on-scroll">
+          <div class="donut-wrap">
+            <div class="donut" aria-label="Donut Chart">
+              <svg viewBox="0 0 120 120">
+                <circle class="ring" cx="60" cy="60" r="42"></circle>
 
-            <!-- Donut SVG (animiert beim Scrollen) -->
-            <svg class="donut-svg" viewBox="0 0 240 240" aria-label="Donut: Ursachen von Sachschäden">
-              <!-- Hintergrund -->
-              <circle cx="120" cy="120" r="78" fill="none" stroke="#e5e7eb" stroke-width="24"></circle>
-
-              <!-- Segmente (werden per JS animiert: stroke-dashoffset) -->
-              <g transform="rotate(-90 120 120)">
-                <circle class="seg s1" cx="120" cy="120" r="78" fill="none" stroke="#ef4444" stroke-width="24" stroke-linecap="round"></circle>
-                <circle class="seg s2" cx="120" cy="120" r="78" fill="none" stroke="#f97316" stroke-width="24" stroke-linecap="round"></circle>
-                <circle class="seg s3" cx="120" cy="120" r="78" fill="none" stroke="#3b82f6" stroke-width="24" stroke-linecap="round"></circle>
-                <circle class="seg s4" cx="120" cy="120" r="78" fill="none" stroke="#64748b" stroke-width="24" stroke-linecap="round"></circle>
-              </g>
-
-              <!-- Innenkreis -->
-              <circle cx="120" cy="120" r="54" fill="#ffffff"></circle>
-              <text x="120" y="112" text-anchor="middle" font-family="Raleway, sans-serif" font-size="14" font-weight="800" fill="#0f172a">
-                Überblick
-              </text>
-              <text x="120" y="132" text-anchor="middle" font-family="Arimo, sans-serif" font-size="12" font-weight="600" fill="#4b5563">
-                Ursachen (grob)
-              </text>
-            </svg>
-
-            <p class="donut-center-note">
-              Merke: Es sind meist <strong>normale Alltagsthemen</strong>, nicht „Pech mit 1:1.000.000“.
-              Genau deshalb lohnt sich ein sauberer Sicherheitsplan.
-            </p>
-          </div>
-
-          <div class="donut-card">
-            <p class="donut-title">So kannst du das lesen</p>
-            <p class="sub" style="margin:.2rem 0 .6rem">
-              Die Prozentwerte sind bewusst grob gehalten (je nach Region/Bestand leicht anders).
-              Der Mehrwert: Du siehst sofort, <strong>wo</strong> die meisten hohen Rechnungen herkommen.
-            </p>
-
-            <div class="legend">
-              <div class="leg-item">
-                <span class="swatch" style="background:#ef4444"></span>
-                Leitungswasser / Rohrbruch / Feuchte
-                <small>ca. 35%</small>
-              </div>
-              <div class="leg-item">
-                <span class="swatch" style="background:#f97316"></span>
-                Sturm / Hagel / Elementar
-                <small>ca. 25%</small>
-              </div>
-              <div class="leg-item">
-                <span class="swatch" style="background:#3b82f6"></span>
-                Einbruch / Vandalismus / Diebstahl
-                <small>ca. 25%</small>
-              </div>
-              <div class="leg-item">
-                <span class="swatch" style="background:#64748b"></span>
-                Haftpflicht &amp; sonstige Ereignisse
-                <small>ca. 15%</small>
-              </div>
+                <!-- Segmente (werden beim Scrollen animiert) -->
+                <circle class="seg" data-pct="35" cx="60" cy="60" r="42" stroke="#ef4444"></circle>
+                <circle class="seg" data-pct="25" cx="60" cy="60" r="42" stroke="#f97316"></circle>
+                <circle class="seg" data-pct="25" cx="60" cy="60" r="42" stroke="#3b82f6"></circle>
+                <circle class="seg" data-pct="15" cx="60" cy="60" r="42" stroke="#64748b"></circle>
+              </svg>
             </div>
 
-            <div class="tagrow">
-              <span class="tag freq">häufig</span>
-              <span class="tag hot">kann teuer werden</span>
-              <span class="tag">planbar absichern</span>
+            <div class="legend">
+              <div class="leg-row"><span class="swatch" style="background:#ef4444"></span><span><strong>Leitungswasser</strong> / Rohrbruch / Feuchtigkeit – ca. 35%</span></div>
+              <div class="leg-row"><span class="swatch" style="background:#f97316"></span><span><strong>Sturm / Hagel</strong> / Elementar – ca. 25%</span></div>
+              <div class="leg-row"><span class="swatch" style="background:#3b82f6"></span><span><strong>Einbruch</strong> / Vandalismus – ca. 25%</span></div>
+              <div class="leg-row"><span class="swatch" style="background:#64748b"></span><span><strong>Haftpflicht &amp; Sonstiges</strong> – ca. 15%</span></div>
+
+              <div class="note">
+                Merke: Es sind meistens <strong>Alltagsthemen</strong>, nicht „Pech mit 1:1.000.000“.
+                Genau deshalb lohnt sich ein sauberer Sicherheitsplan.
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- PRODUKTE -->
-      <section id="produkte">
-        <h2>Dein Schutz – klar sortiert</h2>
+      <!-- Overview -->
+      <section class="section" id="ueberblick">
+        <h2>Deine wichtigsten Sach-Themen im Überblick</h2>
         <p class="sub">
-          Hier sind die wichtigsten Bereiche, die wir im Alltag prüfen. Du siehst die Kernpunkte sofort – und kannst
-          zusätzliche Details über den Button öffnen (als eigenes Fenster, das du wieder schließen kannst).
+          Klick bei einer Sparte auf <strong>„Schadenbeispiele“</strong> – dann öffnet sich ein Fenster mit:
+          <strong>kurzer Erklärung</strong> + <strong>Bild</strong> + <strong>typischem Schaden</strong>.
         </p>
 
-        <div class="cards-3">
+        <div class="grid-3">
 
-          <!-- Haftpflicht -->
-          <div class="card">
+          <!-- Privathaftpflicht -->
+          <div class="card animate-on-scroll">
             <h3>Privathaftpflicht</h3>
-            <ul class="bullets">
-              <li>Wenn du aus Versehen <strong>anderen</strong> einen Schaden verursachst (Personen-, Sach-, Vermögensschäden).</li>
-              <li>Schützt dein Vermögen: „ein Moment“ kann schnell fünf- oder sechsstellig werden.</li>
-              <li>Wichtig auch bei Kindern (Missgeschicke passieren).</li>
-            </ul>
-            <div class="tagrow">
-              <span class="tag freq">sehr häufig</span>
-              <span class="tag hot">im Extrem sehr teuer</span>
+            <p class="short">Wenn du aus Versehen anderen schadest – Personen-, Sach- und Vermögensschäden.</p>
+
+            <div class="tags">
+              <span class="tag green">sehr häufig</span>
+              <span class="tag red">kann extrem teuer</span>
             </div>
+
             <div class="card-actions">
-              <button class="mini-btn primary" data-modal="m-haftpflicht">Mehr Details</button>
-              <a class="mini-btn" href="#beispiele-haftpflicht">Schadenbeispiele</a>
+              <button class="btn btn-sm btn-gold" data-modal="haftpflicht">Schadenbeispiele</button>
+              <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
-          <!-- Tiere separat -->
-          <div class="card">
+          <!-- Tiere -->
+          <div class="card animate-on-scroll">
             <h3>Tiere (Hund / Pferd / weitere)</h3>
-            <ul class="bullets">
-              <li>Tierhalterhaftpflicht: wenn dein Tier jemanden verletzt oder Sachen beschädigt.</li>
-              <li>Relevant bei <strong>Hund</strong>, <strong>Pferd</strong> – je nach Situation auch weitere Tiere.</li>
-              <li>Typisch: Biss, Sturz, Erschrecken → Folgekosten.</li>
-            </ul>
-            <div class="tagrow">
-              <span class="tag freq">realistische Szenarien</span>
-              <span class="tag hot">Folgekosten möglich</span>
+            <p class="short">Tierhalterhaftpflicht: wenn dein Tier jemanden verletzt oder Sachen beschädigt.</p>
+
+            <div class="tags">
+              <span class="tag green">realistische Szenarien</span>
+              <span class="tag red">Folgekosten möglich</span>
             </div>
+
             <div class="card-actions">
-              <button class="mini-btn primary" data-modal="m-tiere">Mehr Details</button>
-              <a class="mini-btn" href="#beispiele-tiere">Schadenbeispiele</a>
+              <button class="btn btn-sm btn-gold" data-modal="tiere">Schadenbeispiele</button>
+              <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
           <!-- Hausrat -->
-          <div class="card">
+          <div class="card animate-on-scroll">
             <h3>Hausrat</h3>
-            <ul class="bullets">
-              <li>Dein kompletter „Haus-Inhalt“: Möbel, Technik, Kleidung, Fahrrad, Wertsachen (je nach Tarif).</li>
-              <li>Typisch: Einbruch, Leitungswasser, Feuer, Sturm/Hagel.</li>
-              <li>Wichtig: <strong>Unterversicherung</strong> vermeiden (sonst gibt’s Abzüge).</li>
-            </ul>
-            <div class="tagrow">
-              <span class="tag freq">häufig</span>
-              <span class="tag hot">Einbruch &amp; Wasser</span>
-            </div>
-            <div class="card-actions">
-              <button class="mini-btn primary" data-modal="m-hausrat">Mehr Details</button>
-              <a class="mini-btn" href="#beispiele-hausrat">Schadenbeispiele</a>
-            </div>
-          </div>
+            <p class="short">Dein kompletter Haus-Inhalt: Möbel, Technik, Kleidung, Fahrrad, Wertsachen (je nach Tarif).</p>
 
-          <!-- Glas -->
-          <div class="card">
-            <h3>Glas</h3>
-            <ul class="bullets">
-              <li>Fenster, Türen, Glasflächen – je nach Absicherung auch Ceranfeld/Glaskeramik.</li>
-              <li>Praktisch: kleine Unfälle im Haushalt passieren öfter als man denkt.</li>
-              <li>Oft „nicht ruinös“, aber nervig &amp; teuer genug, um’s sauber zu lösen.</li>
-            </ul>
-            <div class="tagrow">
-              <span class="tag freq">Alltagsschaden</span>
-              <span class="tag">schnell geregelt</span>
+            <div class="tags">
+              <span class="tag green">häufig</span>
+              <span class="tag blue">Einbruch &amp; Wasser</span>
             </div>
+
             <div class="card-actions">
-              <button class="mini-btn primary" data-modal="m-glas">Mehr Details</button>
-              <a class="mini-btn" href="#beispiele-glas">Schadenbeispiele</a>
+              <button class="btn btn-sm btn-gold" data-modal="hausrat">Schadenbeispiele</button>
+              <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
           <!-- Wohngebäude -->
-          <div class="card">
+          <div class="card animate-on-scroll">
             <h3>Wohngebäude</h3>
-            <ul class="bullets">
-              <li>Schützt das Haus selbst: Leitungswasser, Feuer, Sturm/Hagel – ggf. Elementar.</li>
-              <li>Hier entstehen oft die größten Rechnungen (Trocknung, Sanierung, Folgeschäden).</li>
-              <li>Wichtig bei Eigentum &amp; Finanzierung (Banken schauen hin).</li>
-            </ul>
-            <div class="tagrow">
-              <span class="tag hot">hohe Schäden möglich</span>
-              <span class="tag freq">Wasser ist Klassiker</span>
+            <p class="short">Schützt das Gebäude selbst – besonders kritisch bei Leitungswasser, Sturm/Hagel und Feuer.</p>
+
+            <div class="tags">
+              <span class="tag green">häufig</span>
+              <span class="tag red">hohe Summen</span>
             </div>
+
             <div class="card-actions">
-              <button class="mini-btn primary" data-modal="m-gebaeude">Mehr Details</button>
-              <a class="mini-btn" href="#beispiele-gebaeude">Schadenbeispiele</a>
+              <button class="btn btn-sm btn-gold" data-modal="wohngebaeude">Schadenbeispiele</button>
+              <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
           <!-- Rechtsschutz -->
-          <div class="card">
+          <div class="card animate-on-scroll">
             <h3>Rechtsschutz</h3>
-            <ul class="bullets">
-              <li>Wenn’s eskaliert: Anwalt, Gericht, Gutachten.</li>
-              <li>Bausteine: Verkehr, Wohnen/Miete, Arbeit/Beruf, Privat (je nach Bedarf).</li>
-              <li>Du triffst Entscheidungen ruhiger, wenn Kosten nicht der Gegner sind.</li>
-            </ul>
-            <div class="tagrow">
-              <span class="tag freq">kommt öfter vor als man denkt</span>
-              <span class="tag hot">kann lang &amp; teuer werden</span>
+            <p class="short">Wenn du dein Recht durchsetzen musst – Bausteine z. B. Verkehr, Wohnen, Arbeit, Privat.</p>
+
+            <div class="tags">
+              <span class="tag green">Planbarkeit</span>
+              <span class="tag red">Streit wird teuer</span>
             </div>
+
             <div class="card-actions">
-              <button class="mini-btn primary" data-modal="m-rechtsschutz">Mehr Details</button>
-              <a class="mini-btn" href="#beispiele-rechtsschutz">Schadenbeispiele</a>
+              <button class="btn btn-sm btn-gold" data-modal="rechtsschutz">Schadenbeispiele</button>
+              <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
           <!-- Unfall -->
-          <div class="card">
+          <div class="card animate-on-scroll">
             <h3>Unfall</h3>
-            <ul class="bullets">
-              <li>Wenn durch Unfall dauerhafte Folgen bleiben: Invalidität, Umbauten, Unterstützung.</li>
-              <li>Optionen: Sofortleistung (z. B. Knochenbruch), Krankenhaustagegeld, Reha-Bausteine.</li>
-              <li>Gerade wichtig, wenn Familie/Alltag sonst hängen.</li>
-            </ul>
-            <div class="tagrow">
-              <span class="tag">stark individuell</span>
-              <span class="tag hot">Folgekosten möglich</span>
+            <p class="short">Invalidität, Einmalzahlung – plus sinnvolle Extras (z. B. Knochenbruch, Krankenhaustagegeld).</p>
+
+            <div class="tags">
+              <span class="tag green">Freizeit-Risiko</span>
+              <span class="tag red">Folgekosten</span>
             </div>
+
             <div class="card-actions">
-              <button class="mini-btn primary" data-modal="m-unfall">Mehr Details</button>
-              <a class="mini-btn" href="#beispiele-unfall">Schadenbeispiele</a>
+              <button class="btn btn-sm btn-gold" data-modal="unfall">Schadenbeispiele</button>
+              <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
+            </div>
+          </div>
+
+          <!-- Glas -->
+          <div class="card animate-on-scroll">
+            <h3>Glas</h3>
+            <p class="short">Scheiben, Ceranfeld, Glastüren – kleine Schäden, aber oft überraschend teuer.</p>
+
+            <div class="tags">
+              <span class="tag green">Alltag</span>
+              <span class="tag gray">schnell erledigt</span>
+            </div>
+
+            <div class="card-actions">
+              <button class="btn btn-sm btn-gold" data-modal="glas">Schadenbeispiele</button>
+              <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
           <!-- Reise -->
-          <div class="card">
+          <div class="card animate-on-scroll">
             <h3>Reise</h3>
-            <ul class="bullets">
-              <li>Reiseabbruch/-rücktritt, Gepäck, medizinische Notfälle (Baustein-abhängig).</li>
-              <li>Gerade bei Familie/Kindern: „kurz krank“ kann teuer werden.</li>
-              <li>Passt gut als Ergänzung, wenn du öfter unterwegs bist.</li>
-            </ul>
-            <div class="tagrow">
-              <span class="tag freq">klassischer Stress-Vermeider</span>
-              <span class="tag">Baustein</span>
+            <p class="short">Reise-Risiken: Rücktritt, Abbruch, Gepäck – sinnvoll je nach Reisestil &amp; Familie.</p>
+
+            <div class="tags">
+              <span class="tag green">Planbarkeit</span>
+              <span class="tag blue">Urlaub schützen</span>
             </div>
+
             <div class="card-actions">
-              <button class="mini-btn primary" data-modal="m-reise">Mehr Details</button>
-              <a class="mini-btn" href="#beispiele-reise">Schadenbeispiele</a>
+              <button class="btn btn-sm btn-gold" data-modal="reise">Schadenbeispiele</button>
+              <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
-          <!-- PV / Technik -->
-          <div class="card">
-            <h3>Photovoltaik &amp; Technik</h3>
-            <ul class="bullets">
-              <li>PV-Anlage / Wechselrichter / Ertragsausfall (je nach Lösung).</li>
-              <li>Ergänzungen: Überspannung, Blitz, Sturm, Tierverbiss.</li>
-              <li>Wichtig, wenn PV Teil deiner Finanzierung/Planung ist.</li>
-            </ul>
-            <div class="tagrow">
-              <span class="tag hot">teure Bauteile</span>
-              <span class="tag">Ertrag schützen</span>
+          <!-- Photovoltaik -->
+          <div class="card animate-on-scroll">
+            <h3>Photovoltaik</h3>
+            <p class="short">PV-Anlage: Ertrag &amp; Technik absichern – z. B. Sturm/Hagel, Überspannung, Tierbiss.</p>
+
+            <div class="tags">
+              <span class="tag green">Wetter</span>
+              <span class="tag red">Technik-Schäden</span>
             </div>
+
             <div class="card-actions">
-              <button class="mini-btn primary" data-modal="m-pv">Mehr Details</button>
-              <a class="mini-btn" href="#beispiele-pv">Schadenbeispiele</a>
+              <button class="btn btn-sm btn-gold" data-modal="pv">Schadenbeispiele</button>
+              <a class="btn btn-sm btn-outline" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch</a>
             </div>
           </div>
 
         </div>
       </section>
 
-      <!-- BEISPIELE -->
-      <section id="beispiele">
-        <h2>Schadenbeispiele – anschaulich in Zahlen</h2>
-        <p class="sub">
-          Die Beträge sind <strong>Beispielwerte</strong> zur Einordnung (sie variieren je nach Fall).
-          Die Summen zählen beim Scrollen hoch – damit man das „Gewicht“ einer Rechnung wirklich spürt.
-        </p>
+      <!-- Bottom CTA -->
+      <section class="section">
+        <div class="card animate-on-scroll" style="text-align:center">
+          <h3 style="margin-bottom:.35rem">Willst du einmal „sauber“ prüfen, was wirklich Sinn macht?</h3>
+          <p class="sub" style="margin:0 auto 1rem;max-width:55rem">
+            Kurz-Check: Was fehlt, was ist doppelt, wo lohnt ein Upgrade – und was kann man sich sparen.
+          </p>
 
-        <div class="examples">
-
-          <!-- Haftpflicht -->
-          <div class="ex" id="beispiele-haftpflicht">
-            <div class="ex-top">
-              <div class="ex-illus" aria-hidden="true">
-                <!-- simple svg -->
-                <svg width="40" height="40" viewBox="0 0 64 64">
-                  <path d="M10 40c8-6 16-9 22-8 8 1 12 6 22 2" fill="none" stroke="#4a787d" stroke-width="4" stroke-linecap="round"/>
-                  <circle cx="18" cy="26" r="7" fill="#f4be69"/>
-                  <circle cx="46" cy="26" r="7" fill="#93c5fd"/>
-                </svg>
-              </div>
-              <div>
-                <h3>Privathaftpflicht: Personenschaden nach Missgeschick</h3>
-                <p>Ein Sturz kann Reha, Verdienstausfall und langfristige Kosten auslösen.</p>
-                <div class="tagrow">
-                  <span class="tag hot">hoher Schaden</span>
-                </div>
-              </div>
-            </div>
-            <div class="money">
-              <span class="label">Beispiel-Gesamtkosten</span>
-              <span class="value" data-count="250000">0 €</span>
-            </div>
-            <div class="disclaimer">Hinweis: Personenschäden können deutlich höher ausfallen.</div>
+          <div style="display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center">
+            <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">
+              Gespräch zu deinen Themen vereinbaren
+            </a>
+            <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">
+              Kurzfrage per WhatsApp
+            </a>
           </div>
-
-          <!-- Tiere -->
-          <div class="ex" id="beispiele-tiere">
-            <div class="ex-top">
-              <div class="ex-illus" aria-hidden="true">
-                <svg width="40" height="40" viewBox="0 0 64 64">
-                  <path d="M14 40c6 4 10 4 14 0 5 5 9 5 14 0" fill="none" stroke="#4a787d" stroke-width="4" stroke-linecap="round"/>
-                  <path d="M18 28c2-8 10-10 14-4 6-6 14-4 14 4" fill="none" stroke="#f97316" stroke-width="4" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div>
-                <h3>Tiere: Sturz / Verletzung mit Folgekosten</h3>
-                <p>Gerade bei Pferden können Behandlung &amp; Folgeschäden schnell groß werden.</p>
-                <div class="tagrow">
-                  <span class="tag hot">Folgekosten</span>
-                </div>
-              </div>
-            </div>
-            <div class="money">
-              <span class="label">Beispiel-Kosten</span>
-              <span class="value" data-count="85000">0 €</span>
-            </div>
-            <div class="disclaimer">Je nach Verletzung/Haftung können Summen deutlich steigen.</div>
-          </div>
-
-          <!-- Hausrat -->
-          <div class="ex" id="beispiele-hausrat">
-            <div class="ex-top">
-              <div class="ex-illus" aria-hidden="true">
-                <svg width="40" height="40" viewBox="0 0 64 64">
-                  <path d="M12 30l20-16 20 16v22H12z" fill="none" stroke="#4a787d" stroke-width="4" stroke-linejoin="round"/>
-                  <path d="M24 52V36h16v16" fill="none" stroke="#93c5fd" stroke-width="4"/>
-                </svg>
-              </div>
-              <div>
-                <h3>Hausrat: Einbruch &amp; Diebstahl</h3>
-                <p>Technik, Schmuck, Fahrräder – plus Vandalismus-Spuren.</p>
-                <div class="tagrow">
-                  <span class="tag freq">häufig</span>
-                </div>
-              </div>
-            </div>
-            <div class="money">
-              <span class="label">Beispiel-Schaden</span>
-              <span class="value" data-count="9500">0 €</span>
-            </div>
-            <div class="disclaimer">Wichtig: passende Versicherungssumme &amp; Wertsachenregelung.</div>
-          </div>
-
-          <!-- Glas -->
-          <div class="ex" id="beispiele-glas">
-            <div class="ex-top">
-              <div class="ex-illus" aria-hidden="true">
-                <svg width="40" height="40" viewBox="0 0 64 64">
-                  <rect x="14" y="12" width="36" height="40" rx="6" fill="none" stroke="#4a787d" stroke-width="4"/>
-                  <path d="M20 22h24M20 32h24M20 42h24" stroke="#f4be69" stroke-width="4" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div>
-                <h3>Glas: Fenster/Schiebetür beschädigt</h3>
-                <p>Ein falscher Moment – und die Scheibe ist hin. Austausch ist selten billig.</p>
-              </div>
-            </div>
-            <div class="money">
-              <span class="label">Beispiel-Kosten</span>
-              <span class="value" data-count="1800">0 €</span>
-            </div>
-            <div class="disclaimer">Je nach Größe/Einbau (Sicherheitsglas) höher möglich.</div>
-          </div>
-
-          <!-- Gebäude -->
-          <div class="ex" id="beispiele-gebaeude">
-            <div class="ex-top">
-              <div class="ex-illus" aria-hidden="true">
-                <svg width="40" height="40" viewBox="0 0 64 64">
-                  <path d="M10 28l22-16 22 16v26H10z" fill="none" stroke="#4a787d" stroke-width="4" stroke-linejoin="round"/>
-                  <path d="M20 44c6-8 12-8 18 0" fill="none" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div>
-                <h3>Wohngebäude: Leitungswasser (klassischer „Riesen-Schaden“)</h3>
-                <p>Rohrbruch/Undichtigkeit → Trocknung, Estrich, Boden, Maler, Folgeschäden.</p>
-                <div class="tagrow">
-                  <span class="tag hot">sehr teuer</span>
-                  <span class="tag freq">kommt oft vor</span>
-                </div>
-              </div>
-            </div>
-            <div class="money">
-              <span class="label">Beispiel-Gesamtkosten</span>
-              <span class="value" data-count="28000">0 €</span>
-            </div>
-            <div class="disclaimer">Bei mehreren Räumen/Schimmel kann es deutlich höher werden.</div>
-          </div>
-
-          <!-- Rechtsschutz -->
-          <div class="ex" id="beispiele-rechtsschutz">
-            <div class="ex-top">
-              <div class="ex-illus" aria-hidden="true">
-                <svg width="40" height="40" viewBox="0 0 64 64">
-                  <path d="M26 16h12v8h10v10c0 10-8 18-16 18S16 44 16 34V24h10z" fill="none" stroke="#4a787d" stroke-width="4"/>
-                  <path d="M22 36h20" stroke="#f4be69" stroke-width="4" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div>
-                <h3>Rechtsschutz: Streit eskaliert (Anwalt + Gericht + Gutachten)</h3>
-                <p>Schon ein „normaler“ Konflikt kann mehrere Instanzen ziehen.</p>
-                <div class="tagrow">
-                  <span class="tag hot">teuer</span>
-                </div>
-              </div>
-            </div>
-            <div class="money">
-              <span class="label">Beispiel-Kosten</span>
-              <span class="value" data-count="12000">0 €</span>
-            </div>
-            <div class="disclaimer">Mit Bausteinen passend zum Leben (Verkehr/Wohnen/Arbeit).</div>
-          </div>
-
-          <!-- Unfall -->
-          <div class="ex" id="beispiele-unfall">
-            <div class="ex-top">
-              <div class="ex-illus" aria-hidden="true">
-                <svg width="40" height="40" viewBox="0 0 64 64">
-                  <circle cx="32" cy="16" r="7" fill="#f4be69"/>
-                  <path d="M18 52c2-14 10-22 14-22s12 8 14 22" fill="none" stroke="#4a787d" stroke-width="4" stroke-linecap="round"/>
-                  <path d="M28 28l-8 10" stroke="#93c5fd" stroke-width="4" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div>
-                <h3>Unfall: dauerhafte Einschränkung &amp; Umbauten</h3>
-                <p>Reha, Hilfsmittel, Umbau, Ausgleich – je nach Verlauf schnell fünfstellig.</p>
-              </div>
-            </div>
-            <div class="money">
-              <span class="label">Beispiel-Kosten</span>
-              <span class="value" data-count="45000">0 €</span>
-            </div>
-            <div class="disclaimer">Leistungen hängen stark von Bedingungen/Progression ab.</div>
-          </div>
-
-          <!-- Reise -->
-          <div class="ex" id="beispiele-reise">
-            <div class="ex-top">
-              <div class="ex-illus" aria-hidden="true">
-                <svg width="40" height="40" viewBox="0 0 64 64">
-                  <path d="M14 46l36-28" stroke="#4a787d" stroke-width="4" stroke-linecap="round"/>
-                  <path d="M24 50l-4-12 12 4z" fill="#f4be69"/>
-                  <circle cx="46" cy="20" r="6" fill="#93c5fd"/>
-                </svg>
-              </div>
-              <div>
-                <h3>Reise: Abbruch / Rücktritt (krank, Kind, Notfall)</h3>
-                <p>Mehrere Personen + Unterkunft + Flüge – das summiert sich.</p>
-              </div>
-            </div>
-            <div class="money">
-              <span class="label">Beispiel-Kosten</span>
-              <span class="value" data-count="3200">0 €</span>
-            </div>
-            <div class="disclaimer">Je nach Reise/Zeitraum auch deutlich mehr möglich.</div>
-          </div>
-
-          <!-- PV -->
-          <div class="ex" id="beispiele-pv">
-            <div class="ex-top">
-              <div class="ex-illus" aria-hidden="true">
-                <svg width="40" height="40" viewBox="0 0 64 64">
-                  <rect x="14" y="22" width="36" height="20" rx="4" fill="none" stroke="#4a787d" stroke-width="4"/>
-                  <path d="M18 28h28M18 34h28" stroke="#93c5fd" stroke-width="4" stroke-linecap="round"/>
-                  <path d="M32 46v8" stroke="#f4be69" stroke-width="4" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div>
-                <h3>Photovoltaik: Überspannung / Wechselrichter defekt</h3>
-                <p>Teure Komponenten + ggf. Ertragsausfall, bis wieder alles läuft.</p>
-              </div>
-            </div>
-            <div class="money">
-              <span class="label">Beispiel-Kosten</span>
-              <span class="value" data-count="11000">0 €</span>
-            </div>
-            <div class="disclaimer">Je nach Anlage/Schadenbild variabel (Bausteine prüfen).</div>
-          </div>
-
-        </div>
-
-        <div style="margin-top:1.1rem" class="cta-row">
-          <a class="btn btn-primary" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">
-            Gespräch zu deinen Themen vereinbaren
-          </a>
-          <a class="btn btn-secondary" href="leistung.html">
-            ← Zurück zu Starseite
-          </a>
         </div>
       </section>
 
     </main>
 
     <footer>
-      Diese Seite ersetzt keine individuelle Rechts-, Steuer- oder Sozialversicherungsberatung.
-      Alle Angaben sind Beispiele zur Einordnung und ohne Gewähr. Maßgeblich sind die Bedingungen des jeweiligen Anbieters.
+      Diese Seite ersetzt keine individuelle Rechts-, Steuer- oder Sozialversicherungsberatung. Alle Angaben ohne Gewähr.
+      Maßgeblich sind die gesetzlichen Regelungen und die Bedingungen der jeweiligen Anbieter.
     </footer>
+
   </div>
 
-  <!-- MODALS -->
+  <!-- Modal -->
   <div class="modal-backdrop" id="modalBackdrop"></div>
-
-  <div class="modal" id="m-haftpflicht" role="dialog" aria-modal="true" aria-label="Details Privathaftpflicht">
+  <div class="modal" id="modal">
     <div class="modal-head">
-      <p class="modal-title">Privathaftpflicht – Details</p>
-      <button class="modal-close" data-close="1" aria-label="Schließen"></button>
+      <h3 class="modal-title" id="modalTitle">Schadenbeispiele</h3>
+      <button class="modal-close" id="modalClose" aria-label="Fenster schließen">✕</button>
     </div>
     <div class="modal-body">
-      <p>Typische Punkte, auf die wir in der Praxis schauen (damit es im Schadenfall nicht „hakt“):</p>
       <div class="modal-grid">
-        <div class="mini-box">
-          <h4>Wofür sie da ist</h4>
-          <ul>
-            <li>Personen-, Sach- &amp; Vermögensschäden</li>
-            <li>Schutz deines Vermögens / deines Einkommens</li>
-            <li>Auch bei Kindern: Missgeschicke passieren</li>
-          </ul>
+        <div class="modal-box">
+          <h4 id="modalH4">Worum geht’s?</h4>
+          <p id="modalText"></p>
+          <ul id="modalBullets"></ul>
+          <div style="margin-top:.9rem;display:flex;gap:.6rem;flex-wrap:wrap">
+            <a class="btn btn-gold" style="width:auto" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Beratung anfragen</a>
+            <a class="btn btn-wa" style="width:auto" href="https://wa.me/4917663796605" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
         </div>
-        <div class="mini-box">
-          <h4>Typische Erweiterungen</h4>
-          <ul>
-            <li>Mietsachschäden (Wohnung)</li>
-            <li>Gefälligkeitsschäden (wenn sinnvoll)</li>
-            <li>Schlüsselverlust (je nach Bedarf)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="modal" id="m-tiere" role="dialog" aria-modal="true" aria-label="Details Tiere">
-    <div class="modal-head">
-      <p class="modal-title">Tiere – Details (Hund / Pferd / weitere)</p>
-      <button class="modal-close" data-close="1" aria-label="Schließen"></button>
-    </div>
-    <div class="modal-body">
-      <p>Hier trennen wir bewusst, weil Tier-Fälle eigene Risiken haben:</p>
-      <div class="modal-grid">
-        <div class="mini-box">
-          <h4>Typische Fälle</h4>
-          <ul>
-            <li>Biss / Sturz / Erschrecken</li>
-            <li>Schaden an Dritten (Person/Sache)</li>
-            <li>Folgekosten durch Behandlung</li>
-          </ul>
-        </div>
-        <div class="mini-box">
-          <h4>Erweiterungen je nach Leben</h4>
-          <ul>
-            <li>Hund &amp; Pferd separat prüfen</li>
-            <li>Reitbeteiligung / Fremdreiter (wenn relevant)</li>
-            <li>Haftung bei Veranstaltungen/Training (Einzelfall)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="m-hausrat" role="dialog" aria-modal="true" aria-label="Details Hausrat">
-    <div class="modal-head">
-      <p class="modal-title">Hausrat – Details</p>
-      <button class="modal-close" data-close="1" aria-label="Schließen"></button>
-    </div>
-    <div class="modal-body">
-      <p>Wichtig ist weniger „ob Hausrat“, sondern <strong>wie</strong> er aufgebaut ist:</p>
-      <div class="modal-grid">
-        <div class="mini-box">
-          <h4>Wofür gut</h4>
-          <ul>
-            <li>Einbruch/Diebstahl, Feuer, Leitungswasser</li>
-            <li>Sturm/Hagel (je nach Definition)</li>
-            <li>Wertsachen/Fahrrad regelbar</li>
-          </ul>
-        </div>
-        <div class="mini-box">
-          <h4>Typische Stolpersteine</h4>
-          <ul>
-            <li>Unterversicherung / falsche Wohnfläche</li>
-            <li>Wertsachenbegrenzungen</li>
-            <li>Fahrrad nur „nachts im Keller“ (je nach Tarif)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="m-glas" role="dialog" aria-modal="true" aria-label="Details Glas">
-    <div class="modal-head">
-      <p class="modal-title">Glas – Details</p>
-      <button class="modal-close" data-close="1" aria-label="Schließen"></button>
-    </div>
-    <div class="modal-body">
-      <p>Glas lohnt sich besonders, wenn du große Flächen/Schiebetüren/Ceranfeld hast:</p>
-      <div class="modal-grid">
-        <div class="mini-box">
-          <h4>Typische Leistungen</h4>
-          <ul>
-            <li>Fenster / Türen / Glasflächen</li>
-            <li>Glaskeramik/Ceranfeld (tarifabhängig)</li>
-            <li>Oft schnelle Regulierung</li>
-          </ul>
-        </div>
-        <div class="mini-box">
-          <h4>Praxis-Tipp</h4>
-          <ul>
-            <li>Selbstbeteiligung prüfen</li>
-            <li>Innen/außen sinnvoll definieren</li>
-            <li>Glas ist „nervig“ – aber sehr häufig</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="m-gebaeude" role="dialog" aria-modal="true" aria-label="Details Wohngebäude">
-    <div class="modal-head">
-      <p class="modal-title">Wohngebäude – Details</p>
-      <button class="modal-close" data-close="1" aria-label="Schließen"></button>
-    </div>
-    <div class="modal-body">
-      <p>Bei Eigentum ist Wohngebäude oft die „größte“ Sach-Absicherung im Haushalt.</p>
-      <div class="modal-grid">
-        <div class="mini-box">
-          <h4>Häufig &amp; teuer</h4>
-          <ul>
-            <li>Leitungswasser / Rohrbruch</li>
-            <li>Trocknung &amp; Sanierung</li>
-            <li>Folgeschäden (Schimmel etc.)</li>
-          </ul>
-        </div>
-        <div class="mini-box">
-          <h4>Bausteine</h4>
-          <ul>
-            <li>Elementar (Region/Objekt prüfen)</li>
-            <li>Überspannung/Blitz</li>
-            <li>Photovoltaik ggf. extra</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="m-rechtsschutz" role="dialog" aria-modal="true" aria-label="Details Rechtsschutz">
-    <div class="modal-head">
-      <p class="modal-title">Rechtsschutz – Details</p>
-      <button class="modal-close" data-close="1" aria-label="Schließen"></button>
-    </div>
-    <div class="modal-body">
-      <p>Rechtsschutz ist „Plan B“ für Konflikte – und wird oft genutzt, bevor man es erwartet.</p>
-      <div class="modal-grid">
-        <div class="mini-box">
-          <h4>Typische Bausteine</h4>
-          <ul>
-            <li>Verkehr</li>
-            <li>Wohnen / Miete</li>
-            <li>Arbeit / Beruf</li>
-            <li>Privat</li>
-          </ul>
-        </div>
-        <div class="mini-box">
-          <h4>Warum wichtig</h4>
-          <ul>
-            <li>Du gehst nicht „aus Angst vor Kosten“ zurück</li>
-            <li>Gutachten/Instanzen können teuer werden</li>
-            <li>Beratung/Telefon-Service (tarifabhängig)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="m-unfall" role="dialog" aria-modal="true" aria-label="Details Unfall">
-    <div class="modal-head">
-      <p class="modal-title">Unfall – Details</p>
-      <button class="modal-close" data-close="1" aria-label="Schließen"></button>
-    </div>
-    <div class="modal-body">
-      <p>Unfall ist kein „BU-Ersatz“, kann aber bei Folgen richtig helfen.</p>
-      <div class="modal-grid">
-        <div class="mini-box">
-          <h4>Kernideen</h4>
-          <ul>
-            <li>Invalidität (dauerhafte Einschränkung)</li>
-            <li>Umbauten/Hilfsmittel</li>
-            <li>Unterstützung im Alltag</li>
-          </ul>
-        </div>
-        <div class="mini-box">
-          <h4>Optionen (Beispiele)</h4>
-          <ul>
-            <li>Krankenhaustagegeld</li>
-            <li>Sofortleistung (z. B. Knochenbruch)</li>
-            <li>Reha-/Assistenz-Bausteine</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="m-reise" role="dialog" aria-modal="true" aria-label="Details Reise">
-    <div class="modal-head">
-      <p class="modal-title">Reise – Details</p>
-      <button class="modal-close" data-close="1" aria-label="Schließen"></button>
-    </div>
-    <div class="modal-body">
-      <p>Wenn du regelmäßig reist, ist das ein typischer „Stress-Reduzierer“.</p>
-      <div class="modal-grid">
-        <div class="mini-box">
-          <h4>Häufige Themen</h4>
-          <ul>
-            <li>Reiseabbruch / Rücktritt</li>
-            <li>Gepäck</li>
-            <li>Notfall-Organisation (tarifabhängig)</li>
-          </ul>
-        </div>
-        <div class="mini-box">
-          <h4>Wann sinnvoll</h4>
-          <ul>
-            <li>Familienreisen</li>
-            <li>höhere Reisekosten</li>
-            <li>mehrere Trips pro Jahr</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="m-pv" role="dialog" aria-modal="true" aria-label="Details Photovoltaik">
-    <div class="modal-head">
-      <p class="modal-title">Photovoltaik &amp; Technik – Details</p>
-      <button class="modal-close" data-close="1" aria-label="Schließen"></button>
-    </div>
-    <div class="modal-body">
-      <p>PV ist ein eigener Wert – und oft ein Finanzierungsbaustein. Daher sauber prüfen.</p>
-      <div class="modal-grid">
-        <div class="mini-box">
-          <h4>Was oft passiert</h4>
-          <ul>
-            <li>Überspannung / Blitz</li>
-            <li>Wechselrichter defekt</li>
-            <li>Sturm / Hagel</li>
-          </ul>
-        </div>
-        <div class="mini-box">
-          <h4>Ergänzungen</h4>
-          <ul>
-            <li>Ertragsausfall</li>
-            <li>Tierverbiss (z. B. Marder)</li>
-            <li>Drohne/Boot extra prüfen (eigene Risiken)</li>
-          </ul>
+        <div class="example-img">
+          <div id="modalImg"></div>
+          <div class="cap" id="modalCap"></div>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    /* ===== Burger Menü ===== */
+    // -------------------------
+    // Scroll Animations
+    // -------------------------
+    document.addEventListener("DOMContentLoaded", () => {
+      const els = document.querySelectorAll(".animate-on-scroll");
+      const obs = new IntersectionObserver((entries, o) => {
+        entries.forEach(e => {
+          if(e.isIntersecting){
+            e.target.classList.add("in-view");
+            o.unobserve(e.target);
+          }
+        });
+      }, {threshold:.18});
+      els.forEach(el => obs.observe(el));
+    });
+
+    // -------------------------
+    // Burger menu
+    // -------------------------
     const burgerBtn = document.getElementById("burgerBtn");
     const menuPanel = document.getElementById("menuPanel");
     const menuBackdrop = document.getElementById("menuBackdrop");
     const menuClose = document.getElementById("menuClose");
 
-    function openMenu(){
+    const openMenu = () => {
       menuPanel.classList.add("open");
       menuBackdrop.classList.add("open");
-      document.body.style.overflow = "hidden";
-    }
-    function closeMenu(){
+    };
+    const closeMenu = () => {
       menuPanel.classList.remove("open");
       menuBackdrop.classList.remove("open");
-      document.body.style.overflow = "";
-    }
+    };
+
     burgerBtn.addEventListener("click", openMenu);
     menuClose.addEventListener("click", closeMenu);
     menuBackdrop.addEventListener("click", closeMenu);
 
-    /* ===== Modal System ===== */
-    const modalBackdrop = document.getElementById("modalBackdrop");
-    const modals = Array.from(document.querySelectorAll(".modal"));
-
-    function openModal(id){
-      const m = document.getElementById(id);
-      if(!m) return;
-      modalBackdrop.classList.add("open");
-      m.classList.add("open");
-      document.body.style.overflow = "hidden";
-    }
-    function closeAllModals(){
-      modalBackdrop.classList.remove("open");
-      modals.forEach(m => m.classList.remove("open"));
-      document.body.style.overflow = "";
-    }
-    document.querySelectorAll("[data-modal]").forEach(btn=>{
-      btn.addEventListener("click", ()=> openModal(btn.dataset.modal));
-    });
-    document.querySelectorAll("[data-close]").forEach(btn=>{
-      btn.addEventListener("click", closeAllModals);
-    });
-    modalBackdrop.addEventListener("click", closeAllModals);
-    document.addEventListener("keydown", (e)=>{
-      if(e.key === "Escape"){
-        closeAllModals();
-        closeMenu();
-      }
+    // groups toggle
+    document.querySelectorAll(".menu-toggle").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const group = btn.closest(".menu-group");
+        group.classList.toggle("open");
+      });
     });
 
-    /* ===== Donut Animation (Scroll -> Kreis schließt komplett) ===== */
-    const donut = document.querySelector(".donut-svg");
-    const segs = {
-      s1: document.querySelector(".seg.s1"),
-      s2: document.querySelector(".seg.s2"),
-      s3: document.querySelector(".seg.s3"),
-      s4: document.querySelector(".seg.s4"),
-    };
+    // -------------------------
+    // Quick jump pills
+    // -------------------------
+    document.querySelectorAll("[data-jump]").forEach(b => {
+      b.addEventListener("click", () => {
+        const sel = b.getAttribute("data-jump");
+        const target = document.querySelector(sel);
+        if(target) target.scrollIntoView({behavior:"smooth", block:"start"});
+      });
+    });
 
-    // Werte (sum = 100)
-    const parts = [
-      { key:"s1", pct: 35 },
-      { key:"s2", pct: 25 },
-      { key:"s3", pct: 25 },
-      { key:"s4", pct: 15 },
-    ];
+    // -------------------------
+    // Donut animation (builds while scrolling, and closes fully)
+    // -------------------------
+    const donutCard = document.getElementById("driver");
+    const segs = Array.from(document.querySelectorAll(".donut .seg"));
+    const r = 42;
+    const C = 2 * Math.PI * r;
 
-    function initDonut(){
-      const r = 78;
-      const C = 2 * Math.PI * r;
+    // place segments sequentially
+    function setSegments(progress01){
+      // progress01 = 0..1 for entire donut build
+      let built = Math.max(0, Math.min(1, progress01)) * 100;
+      let offsetPct = 0;
 
-      let offset = 0;
-      parts.forEach(p=>{
-        const len = C * (p.pct/100);
-        const el = segs[p.key];
-        el.style.strokeDasharray = `${len} ${C}`;
-        el.style.strokeDashoffset = `${C - offset}`;
-        // Startzustand "unsichtbar"
-        el.dataset.fullOffset = (C - offset).toString();
-        el.dataset.targetOffset = (C - offset - len).toString();
-        el.style.strokeDashoffset = el.dataset.fullOffset;
-        offset += len;
+      segs.forEach(seg => {
+        const pct = parseFloat(seg.dataset.pct || "0");
+        const drawPct = Math.max(0, Math.min(pct, built));
+        const dash = (drawPct/100) * C;
+        const gap = C - dash;
+
+        // close ring perfectly: dasharray uses circumference
+        seg.style.strokeDasharray = `${dash} ${gap}`;
+        // offset: move start forward by already allocated
+        const offset = (offsetPct/100) * C;
+        seg.style.strokeDashoffset = -offset;
+
+        built -= drawPct;
+        offsetPct += pct;
       });
     }
 
-    function animateDonut(progress){
-      // progress 0..1 -> wir „zeichnen“ im Uhrzeigersinn alle Segmente zusammen
-      const r = 78;
-      const C = 2 * Math.PI * r;
+    // init hidden
+    setSegments(0);
 
-      // Gesamtlänge die gezeichnet werden soll
-      const drawLen = C * progress;
-
-      // Wir verteilen drawLen über die Segmente in Reihenfolge
-      let remaining = drawLen;
-      let offset = 0;
-
-      for(const p of parts){
-        const len = C * (p.pct/100);
-        const el = segs[p.key];
-
-        const startOffset = (C - offset);
-        const endOffset   = (C - offset - len);
-
-        if(remaining <= 0){
-          el.style.strokeDashoffset = startOffset; // nichts gezeichnet
-        } else if(remaining >= len){
-          el.style.strokeDashoffset = endOffset;   // komplett gezeichnet
-        } else {
-          // Teilstück: Offset von start -> end anteilig
-          const partProgress = remaining / len;
-          const current = startOffset - (len * partProgress);
-          el.style.strokeDashoffset = current;
-        }
-        remaining -= len;
-        offset += len;
-      }
-    }
-
-    initDonut();
-
-    // Observer: Donut animieren, wenn sichtbar
-    const donutObserver = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
+    const donutObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
         if(!entry.isIntersecting) return;
 
-        let started = false;
-        const target = entry.target;
+        // animate by scroll inside viewport (simple smooth animation)
+        const start = performance.now();
+        const dur = 900;
 
-        const onScroll = ()=>{
-          const rect = target.getBoundingClientRect();
-          const vh = window.innerHeight || document.documentElement.clientHeight;
-
-          // Progress: wenn donut in View kommt (unten) bis wenn er mittig ist
-          const start = vh * 0.95;
-          const end   = vh * 0.35;
-          const p = (start - rect.top) / (start - end);
-          const clamped = Math.max(0, Math.min(1, p));
-
-          animateDonut(clamped);
-          started = true;
-
-          if(clamped >= 1){
-            window.removeEventListener("scroll", onScroll, { passive:true });
-          }
+        const tick = (t) => {
+          const p = Math.min(1, (t - start)/dur);
+          // easeOutCubic
+          const eased = 1 - Math.pow(1-p, 3);
+          setSegments(eased);
+          if(p < 1) requestAnimationFrame(tick);
         };
+        requestAnimationFrame(tick);
 
-        if(!started){
-          onScroll();
-          window.addEventListener("scroll", onScroll, { passive:true });
-        }
-
-        donutObserver.unobserve(target);
+        donutObs.unobserve(entry.target);
       });
-    }, { threshold: 0.2 });
+    }, {threshold: .25});
+    donutObs.observe(donutCard);
 
-    if(donut) donutObserver.observe(donut);
+    // -------------------------
+    // Modal content (only shown on "Schadenbeispiele")
+    // -------------------------
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const modal = document.getElementById("modal");
+    const modalClose = document.getElementById("modalClose");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalText = document.getElementById("modalText");
+    const modalBullets = document.getElementById("modalBullets");
+    const modalImg = document.getElementById("modalImg");
+    const modalCap = document.getElementById("modalCap");
 
-    /* ===== Count-Up für Beträge beim Scrollen ===== */
-    const moneyEls = Array.from(document.querySelectorAll("[data-count]"));
+    const openModal = () => {
+      modalBackdrop.classList.add("open");
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    };
+    const closeModal = () => {
+      modalBackdrop.classList.remove("open");
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
+    };
 
-    function formatEUR(n){
-      return new Intl.NumberFormat("de-DE", { maximumFractionDigits:0 }).format(n) + " €";
-    }
+    modalBackdrop.addEventListener("click", closeModal);
+    modalClose.addEventListener("click", closeModal);
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && modal.classList.contains("open")) closeModal();
+    });
 
-    function animateCount(el){
-      const target = parseInt(el.getAttribute("data-count"), 10) || 0;
-      const duration = 1100;
-      const startTime = performance.now();
-      const startVal = 0;
+    // simple inline SVG "example images" (keine externen Abhängigkeiten)
+    const svgScene = (type) => {
+      const commonBg = `
+        <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0" stop-color="#fef3c7"/>
+              <stop offset="1" stop-color="#e0f2fe"/>
+            </linearGradient>
+          </defs>
+          <rect width="900" height="520" rx="26" fill="url(#g)"/>
+          <circle cx="760" cy="120" r="120" fill="rgba(74,120,125,.12)"/>
+          <circle cx="180" cy="430" r="160" fill="rgba(244,190,105,.18)"/>
+      `;
 
-      function tick(now){
-        const t = Math.min(1, (now - startTime) / duration);
-        // easeOut
-        const eased = 1 - Math.pow(1 - t, 3);
-        const val = Math.round(startVal + (target - startVal) * eased);
-        el.textContent = formatEUR(val);
-        if(t < 1) requestAnimationFrame(tick);
+      const icon = (path, x, y, label) => `
+        <g transform="translate(${x},${y})">
+          <rect width="260" height="300" rx="18" fill="#fff" opacity=".92" stroke="rgba(148,163,184,.7)"/>
+          <g transform="translate(24,26)" fill="none" stroke="${'#4a787d'}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+            ${path}
+          </g>
+          <text x="22" y="250" font-family="Raleway, Arial" font-size="28" font-weight="800" fill="#111">${label}</text>
+        </g>
+      `;
+
+      let content = "";
+
+      if(type === "haftpflicht"){
+        content = icon(`
+          <path d="M80 40c30 0 54 24 54 54s-24 54-54 54-54-24-54-54 24-54 54-54z"/>
+          <path d="M28 170h104"/>
+          <path d="M28 210h104"/>
+          <path d="M28 250h104"/>
+        `, 70, 90, "Haftpflichtfall");
       }
-      requestAnimationFrame(tick);
+      if(type === "tiere"){
+        content = icon(`
+          <path d="M30 120c0-40 30-70 74-70s74 30 74 70-30 70-74 70-74-30-74-70z"/>
+          <path d="M56 210c14 24 32 36 48 36s34-12 48-36"/>
+          <path d="M44 78l-18-18"/>
+          <path d="M170 78l18-18"/>
+        `, 70, 90, "Tier-Schaden");
+      }
+      if(type === "hausrat"){
+        content = icon(`
+          <path d="M30 160l70-70 70 70"/>
+          <path d="M55 160v78h90v-78"/>
+          <path d="M88 238v-46h24v46"/>
+          <path d="M190 92l40 40"/>
+        `, 70, 90, "Hausrat");
+      }
+      if(type === "wohngebaeude"){
+        content = icon(`
+          <path d="M30 160l70-70 70 70"/>
+          <path d="M55 160v78h90v-78"/>
+          <path d="M210 90c0 40-30 70-70 70"/>
+          <path d="M210 90c0-40-30-70-70-70"/>
+          <path d="M230 120h60"/>
+        `, 70, 90, "Leitungswasser");
+      }
+      if(type === "rechtsschutz"){
+        content = icon(`
+          <path d="M70 40v170"/>
+          <path d="M70 70h80"/>
+          <path d="M150 70c20 0 36 16 36 36s-16 36-36 36"/>
+          <path d="M70 210h160"/>
+        `, 70, 90, "Rechtsschutz");
+      }
+      if(type === "unfall"){
+        content = icon(`
+          <path d="M120 40c0 22-18 40-40 40s-40-18-40-40"/>
+          <path d="M80 84v120"/>
+          <path d="M80 144l-56 36"/>
+          <path d="M80 144l56 36"/>
+          <path d="M80 204l-44 66"/>
+          <path d="M80 204l44 66"/>
+        `, 70, 90, "Unfall");
+      }
+      if(type === "glas"){
+        content = icon(`
+          <path d="M40 40h140v200H40z"/>
+          <path d="M40 80h140"/>
+          <path d="M70 260h80"/>
+        `, 70, 90, "Glasschaden");
+      }
+      if(type === "reise"){
+        content = icon(`
+          <path d="M40 220c120-160 220-160 340 0"/>
+          <path d="M110 140l40-40"/>
+          <path d="M150 100l40 40"/>
+          <path d="M260 240v70"/>
+          <path d="M230 310h60"/>
+        `, 70, 90, "Reise");
+      }
+      if(type === "pv"){
+        content = icon(`
+          <path d="M40 200l120-60 120 60"/>
+          <path d="M70 180v80h180v-80"/>
+          <path d="M90 210h140"/>
+          <path d="M90 240h140"/>
+        `, 70, 90, "PV-Anlage");
+      }
+
+      return commonBg + content + `</svg>`;
+    };
+
+    const DATA = {
+      haftpflicht: {
+        title: "Privathaftpflicht – Schadenbeispiele",
+        text: "Die Privathaftpflicht springt ein, wenn du anderen aus Versehen einen Schaden zufügst – und schützt damit dein Vermögen.",
+        bullets: [
+          "Typisch (häufig): Missgeschick im Alltag (z. B. etwas beschädigt, jemand stürzt).",
+          "Teuer (maximal): Personenschäden mit Folgekosten (Behandlung, Verdienstausfall, Renten).",
+          "Wichtig auch mit Kindern: kleine Fehler können große Folgen haben."
+        ],
+        cap: "Beispiel: Alltags-Missgeschick → Haftpflicht verhindert, dass es finanziell eskaliert."
+      },
+      tiere: {
+        title: "Tiere (Hund / Pferd / weitere) – Schadenbeispiele",
+        text: "Tierhalterhaftpflicht: Wenn dein Tier jemanden verletzt oder Sachen beschädigt. Gerade bei Hund und Pferd oft ein Muss.",
+        bullets: [
+          "Typisch (häufig): Erschrecken, Sturz, Biss – oft in Sekunden.",
+          "Teuer (maximal): Verletzungen + Behandlung + Verdienstausfall + Schmerzensgeld.",
+          "Auch relevant: weitere Tiere je nach Situation, Umgebung und Risiko."
+        ],
+        cap: "Beispiel: Tier erschreckt jemanden → Sturz → Folgekosten."
+      },
+      hausrat: {
+        title: "Hausrat – Schadenbeispiele",
+        text: "Hausrat schützt deinen „Haus-Inhalt“: Möbel, Technik, Kleidung, Fahrrad & Wertsachen – abhängig vom Tarif.",
+        bullets: [
+          "Typisch (häufig): Einbruchdiebstahl, Leitungswasser, Feuer, Sturm/Hagel.",
+          "Teuer (maximal): Kombination aus Zerstörung + Ersatz + Renovierung/Hotel (je nach Baustein).",
+          "Wichtig: Unterversicherung vermeiden – sonst gibt’s Abzüge."
+        ],
+        cap: "Beispiel: Einbruch & Vandalismus → Ersatz + Reparaturen."
+      },
+      wohngebaeude: {
+        title: "Wohngebäude – Schadenbeispiele",
+        text: "Wohngebäude sichert das Gebäude selbst (Substanz). Besonders kritisch sind Leitungswasser-Schäden – oft teuer und langwierig.",
+        bullets: [
+          "Typisch (häufig): Leitungswasser/ Rohrbruch → Trocknung + Handwerker + Wiederherstellung.",
+          "Teuer (maximal): großer Wasserschaden mit Folgeschäden (Estrich, Wände, Küche, Technik).",
+          "Sinnvoll ergänzbar: Elementar (je nach Lage) + ggf. PV-Baustein."
+        ],
+        cap: "Beispiel: Leitungswasser → Trocknung + Sanierung + Folgeschäden."
+      },
+      rechtsschutz: {
+        title: "Rechtsschutz – Schadenbeispiele",
+        text: "Rechtsschutz hilft, dein Recht durchzusetzen – als Baukasten: z. B. Verkehr, Wohnen, Arbeit, Privat.",
+        bullets: [
+          "Typisch: Streit nach Unfall (Verkehr), Ärger mit Vermieter, Job-Konflikt.",
+          "Teuer: Anwalts- & Gerichtskosten, Gutachten – und es geht schnell.",
+          "Wichtig: Bausteine passend wählen (nicht „alles“, sondern „dein Alltag“)."
+        ],
+        cap: "Beispiel: Konflikt → Anwalt/Gericht → Kosten planbar statt Risiko."
+      },
+      unfall: {
+        title: "Unfall – Schadenbeispiele",
+        text: "Unfallversicherung greift bei Unfällen (oft Freizeit). Neben Invalidität sind Extras je nach Bedarf sinnvoll.",
+        bullets: [
+          "Typisch: Freizeit-Unfall (Sport, Haushalt, unterwegs).",
+          "Leistungen: Invalidität (Einmalzahlung/Rente je nach Gestaltung).",
+          "Extras möglich: Knochenbruch-Sofortleistung, Krankenhaustagegeld, Zahn bei Unfall."
+        ],
+        cap: "Beispiel: Unfall → Ausgaben & Einschränkungen → Leistung hilft, Handlungsspielraum zu behalten."
+      },
+      glas: {
+        title: "Glas – Schadenbeispiele",
+        text: "Glas-Schäden sind selten „dramatisch“, aber nervig und teuer (Scheiben, Ceranfeld, Glastüren).",
+        bullets: [
+          "Typisch: Ceranfeld reißt, Scheibe kaputt, Glastür beschädigt.",
+          "Kosten: Austausch + Anfahrt + Montage – oft überraschend hoch.",
+          "Vorteil: schneller Ersatz ohne Diskussionen (je nach Tarif)."
+        ],
+        cap: "Beispiel: Glasschaden → schneller Austausch statt „selbst zahlen“."
+      },
+      reise: {
+        title: "Reise – Schadenbeispiele",
+        text: "Reiseabsicherung schützt vor Kosten bei Rücktritt/Abbruch/Gepäck – sinnvoll je nach Reisestil & Familie.",
+        bullets: [
+          "Typisch: Krankheit vor Abreise → Storno.",
+          "Abbruch: Rückreise + neue Tickets + Umbuchungen.",
+          "Gepäck: Ersatzbeschaffung (je nach Leistung/Limit)."
+        ],
+        cap: "Beispiel: Rücktritt/Abbruch → Kosten werden abgefedert."
+      },
+      pv: {
+        title: "Photovoltaik – Schadenbeispiele",
+        text: "PV absichern heißt: Technik + Ertrag schützen – z. B. bei Wetter, Überspannung oder Tierbiss.",
+        bullets: [
+          "Typisch: Sturm/Hagel beschädigt Module.",
+          "Technik: Überspannung/Wechselrichter-Ausfall.",
+          "Auch möglich: Marder-/Tierbiss an Kabeln, Ertragsausfall."
+        ],
+        cap: "Beispiel: Wetter/Technik → Reparatur + Ertrag sichern."
+      }
+    };
+
+    function fillModal(key){
+      const d = DATA[key];
+      if(!d) return;
+
+      modalTitle.textContent = d.title;
+      modalText.textContent = d.text;
+
+      // bullets
+      modalBullets.innerHTML = "";
+      d.bullets.forEach(b => {
+        const li = document.createElement("li");
+        li.textContent = b;
+        modalBullets.appendChild(li);
+      });
+
+      // image
+      modalImg.innerHTML = svgScene(key);
+      modalCap.textContent = d.cap;
+
+      openModal();
     }
 
-    const countObserver = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          animateCount(entry.target);
-          countObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.35 });
-
-    moneyEls.forEach(el=>{
-      el.textContent = "0 €";
-      countObserver.observe(el);
+    document.querySelectorAll("[data-modal]").forEach(btn => {
+      btn.addEventListener("click", () => fillModal(btn.getAttribute("data-modal")));
     });
   </script>
 </body>
