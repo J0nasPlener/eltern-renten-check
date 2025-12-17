@@ -20,6 +20,9 @@
       --riskGreen:#16a34a;
       --riskGold:#f59e0b;
       --riskRed:#dc2626;
+
+      --shadow: 0 10px 25px rgba(15,23,42,.06);
+      --shadowStrong: 0 18px 45px rgba(15,23,42,.12);
     }
 
     *{box-sizing:border-box}
@@ -103,14 +106,14 @@
     .hero-lead{
       margin:0 0 .9rem;
       color:var(--muted);
-      max-width:44rem;
+      max-width:46rem;
       font-size:.98rem;
     }
     .hero-lead strong{font-weight:800;color:var(--primary)}
 
     .jump-row{
       display:flex;flex-wrap:wrap;
-      gap:.6rem;margin-top:.8rem;
+      gap:.6rem;margin-top:.85rem;
     }
     .jump{
       flex:1 1 260px;
@@ -118,12 +121,12 @@
       border:2px solid rgba(74,120,125,.22);
       border-radius:16px;
       padding:.85rem .95rem;
-      box-shadow:0 10px 25px rgba(15,23,42,.06);
+      box-shadow:var(--shadow);
       display:flex;align-items:center;justify-content:space-between;gap:.8rem;
       cursor:pointer;
-      transition:transform .15s ease, filter .15s ease;
+      transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
     }
-    .jump:hover{transform:translateY(-1px);filter:brightness(1.01)}
+    .jump:hover{transform:translateY(-1px);filter:brightness(1.01);box-shadow:var(--shadowStrong)}
     .jump .t{
       font-family:"Raleway",system-ui,sans-serif;
       font-weight:800;color:#111;line-height:1.2;
@@ -157,8 +160,30 @@
       margin:0 0 1rem;
       color:var(--muted);
       font-size:.92rem;
-      max-width:58rem;
+      max-width:60rem;
     }
+
+    /* Legende (macht die Farben sofort verständlich) */
+    .legend{
+      margin: 0 0 1rem;
+      padding:.85rem .95rem;
+      border-radius:16px;
+      border:2px solid rgba(74,120,125,.18);
+      background:linear-gradient(to right, rgba(224,242,254,.35), rgba(254,243,199,.35));
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:.7rem;
+    }
+    .legend-title{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;
+      color:#111;
+      font-size:1rem;
+    }
+    .legend-items{display:flex;flex-wrap:wrap;gap:.5rem}
 
     .grid{
       display:grid;
@@ -170,10 +195,12 @@
       background:linear-gradient(to bottom,#fff,#fbfdff);
       border-radius:18px;
       border:2px solid rgba(74,120,125,.18);
-      box-shadow:0 10px 25px rgba(15,23,42,.06);
+      box-shadow:var(--shadow);
       padding:1rem 1.05rem 1.05rem;
       min-width:0;
+      transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
     }
+    .card:hover{transform:translateY(-1px);box-shadow:var(--shadowStrong);filter:brightness(1.005)}
     .card-head{
       display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;
       margin-bottom:.25rem;
@@ -186,34 +213,59 @@
       margin:0;
     }
 
-    /* === Risiko Badges (farbig) === */
+    /* === Risiko Badges (deutlich farbiger) === */
     .risk-row{
       display:flex;
       flex-wrap:wrap;
-      gap:.45rem;
+      gap:.5rem;
       margin:.55rem 0 .25rem;
     }
     .risk{
       display:inline-flex;
       align-items:center;
-      gap:.42rem;
-      padding:.28rem .65rem;
+      gap:.45rem;
+      padding:.34rem .72rem;
       border-radius:999px;
-      font-size:.8rem;
-      font-weight:800;
+      font-size:.82rem;
+      font-weight:900;
       border:2px solid transparent;
       background:#fff;
-      box-shadow:0 8px 16px rgba(15,23,42,.06);
       line-height:1;
+      box-shadow: 0 10px 18px rgba(15,23,42,.10);
     }
     .risk .dot{
-      width:9px;height:9px;border-radius:999px;
+      width:10px;height:10px;border-radius:999px;
       background:currentColor;
       display:inline-block;
+      box-shadow:0 0 0 4px rgba(255,255,255,.85);
     }
-    .risk.green{color:var(--riskGreen);border-color:rgba(22,163,74,.35);background:rgba(220,252,231,.65)}
-    .risk.gold{color:var(--riskGold);border-color:rgba(245,158,11,.35);background:rgba(254,243,199,.75)}
-    .risk.red{color:var(--riskRed);border-color:rgba(220,38,38,.35);background:rgba(254,226,226,.75)}
+    .risk.green{
+      color:var(--riskGreen);
+      border-color:rgba(22,163,74,.38);
+      background:linear-gradient(to right, rgba(220,252,231,.95), rgba(220,252,231,.55));
+    }
+    .risk.gold{
+      color:var(--riskGold);
+      border-color:rgba(245,158,11,.42);
+      background:linear-gradient(to right, rgba(254,243,199,.98), rgba(254,243,199,.55));
+    }
+    .risk.red{
+      color:var(--riskRed);
+      border-color:rgba(220,38,38,.42);
+      background:linear-gradient(to right, rgba(254,226,226,.98), rgba(254,226,226,.55));
+    }
+
+    /* Hervorhebung wichtiger Punkte in jedem Card */
+    .keyline{
+      margin-top:.6rem;
+      padding:.55rem .7rem;
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,.7);
+      background:#fff;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    .keyline strong{color:#111}
 
     .card p{
       margin:.45rem 0 0;
@@ -222,27 +274,28 @@
       overflow-wrap:anywhere;
     }
 
-    /* === Schadenshöhe CountUp === */
+    /* === Schadenshöhe CountUp (noch auffälliger) === */
     .damage-row{
       margin-top:.75rem;
-      padding:.65rem .75rem;
+      padding:.7rem .8rem;
       border-radius:16px;
-      border:2px solid rgba(74,120,125,.22);
-      background:linear-gradient(to right, rgba(224,242,254,.55), rgba(254,243,199,.55));
+      border:2px solid rgba(74,120,125,.25);
+      background:linear-gradient(to right, rgba(224,242,254,.62), rgba(254,243,199,.62));
       display:flex;
       align-items:baseline;
       justify-content:space-between;
       gap:.75rem;
+      box-shadow: 0 14px 28px rgba(15,23,42,.10);
     }
     .damage-label{
-      font-weight:800;
+      font-weight:900;
       color:#111;
       font-size:.92rem;
     }
     .damage-amount{
       font-weight:900;
       color:#111;
-      font-size:1.05rem;
+      font-size:1.08rem;
       white-space:nowrap;
     }
 
@@ -254,15 +307,15 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:.85rem 1.1rem;
+      padding:.88rem 1.15rem;
       border-radius:999px;
-      font-weight:800;
+      font-weight:900;
       font-size:.95rem;
       border:0;
       cursor:pointer;
       text-align:center;
       white-space:nowrap;
-      box-shadow:0 8px 18px rgba(15,23,42,.10);
+      box-shadow:0 10px 22px rgba(15,23,42,.12);
     }
     .btn-outline{background:#fff;border:1px solid rgba(148,163,184,.85);box-shadow:none;color:var(--primary)}
     .btn-gold{background:var(--accent);color:#1f2933}
@@ -276,7 +329,7 @@
       padding:1.1rem 1.1rem 1.2rem;
       background:linear-gradient(to right,#e0f2fe,#fef3c7);
       text-align:center;
-      box-shadow:0 10px 25px rgba(15,23,42,.06);
+      box-shadow:var(--shadow);
     }
     .bottom-cta p{margin:0 0 .8rem;color:var(--muted)}
 
@@ -349,7 +402,7 @@
       background:linear-gradient(to bottom,#fff,#fbfdff);
       border-radius:16px;
       border:2px solid rgba(74,120,125,.18);
-      box-shadow:0 10px 25px rgba(15,23,42,.06);
+      box-shadow:var(--shadow);
       padding:.95rem 1rem;
       color:var(--muted);
       font-size:.95rem;
@@ -368,7 +421,7 @@
       border:1px solid rgba(148,163,184,.65);
       overflow:hidden;
       background:#f3f4f6;
-      box-shadow:0 10px 25px rgba(15,23,42,.06);
+      box-shadow:var(--shadow);
     }
     .modal-img img{width:100%;height:auto}
     .modal-note{margin-top:.7rem;font-size:.82rem;color:#6b7280}
@@ -451,9 +504,9 @@
     .menu-foot .btn{
       display:inline-flex;align-items:center;justify-content:center;
       padding:.92rem 1.2rem;border-radius:999px;
-      font-weight:800;font-size:.98rem;border:0;cursor:pointer;
+      font-weight:900;font-size:.98rem;border:0;cursor:pointer;
       white-space:nowrap;text-align:center;text-decoration:none;
-      box-shadow:0 8px 18px rgba(15,23,42,.10);
+      box-shadow:0 10px 22px rgba(15,23,42,.12);
     }
     .menu-foot .btn-gold{background:var(--accent);color:#1f2933}
     .menu-foot .btn-wa{background:var(--wa);color:#fff}
@@ -470,6 +523,7 @@
       .damage-row{flex-direction:column;align-items:flex-start}
       .damage-amount{font-size:1.12rem}
       .btn{width:100%}
+      .legend{gap:.5rem}
     }
   </style>
 </head>
@@ -592,11 +646,11 @@
     <header class="hero">
       <div class="hero-inner">
         <div class="hero-text">
-          <div class="hero-label"><span class="dot"></span> Sachversicherungen · verständlich &amp; anschaulich</div>
+          <div class="hero-label"><span class="dot"></span> Sachversicherungen · klar &amp; anschaulich</div>
           <h1>Schäden passieren selten geplant – aber sie kosten fast immer unverschämt viel.</h1>
           <p class="hero-lead">
-            Sachversicherungen sind oft der Unterschied zwischen <strong>„kurz ärgerlich“</strong> und
-            <strong>„finanziell richtig bitter“</strong>. Hier bekommst du einen klaren Überblick – inklusive Schadensbeispiele.
+            Hier siehst du pro Bereich sofort: <strong>Wie wahrscheinlich</strong> es ist, wie <strong>hoch</strong> es werden kann
+            – und bekommst per Klick konkrete Beispiele.
           </p>
 
           <div class="jump-row">
@@ -624,192 +678,153 @@
       <section id="bereiche">
         <h2>Die wichtigsten Sachbereiche im Überblick</h2>
         <p class="section-sub">
-          Pro Bereich siehst du: <strong>Risiko-Einschätzung</strong> (farbige Badges) + <strong>typischen hohen Schaden</strong> (CountUp beim Scrollen).
-          Per Klick bekommst du Details &amp; Beispielbild.
+          Die farbigen Labels sind bewusst „auf einen Blick“: <strong>grün = häufig</strong>, <strong>gold = schnell teuer</strong>, <strong>rot = Maximalschaden</strong>.
+          Die Schadenshöhe zählt beim Scrollen hoch.
         </p>
+
+        <div class="legend">
+          <div class="legend-title">Legende</div>
+          <div class="legend-items">
+            <span class="risk green"><span class="dot"></span>oft</span>
+            <span class="risk gold"><span class="dot"></span>wahrscheinlicher Schaden hoch</span>
+            <span class="risk red"><span class="dot"></span>Maximalschaden hoch</span>
+          </div>
+        </div>
 
         <div class="grid">
 
-          <!-- Privathaftpflicht -->
           <article class="card" id="haftpflicht">
-            <div class="card-head">
-              <h3 class="card-title">Privathaftpflicht</h3>
-            </div>
-
+            <div class="card-head"><h3 class="card-title">Privathaftpflicht</h3></div>
             <div class="risk-row">
               <span class="risk green"><span class="dot"></span>oft</span>
               <span class="risk gold"><span class="dot"></span>wahrscheinlicher Schaden hoch</span>
               <span class="risk red"><span class="dot"></span>Maximalschaden hoch</span>
             </div>
-
+            <div class="keyline"><strong>Merksatz:</strong> Ein Missgeschick kann dich jahrelang finanziell verfolgen.</div>
             <p>Wenn du jemand anderem einen Schaden zufügst (Person, Sache, Vermögen), haftest du – im schlimmsten Fall sehr lange.</p>
-
             <div class="damage-row">
               <span class="damage-label">Typischer hoher Schaden:</span>
               <span class="damage-amount"><span class="countup" data-target="250000" data-prefix="bis zu ">0</span> €</span>
             </div>
-
             <div class="card-actions">
               <button class="btn btn-outline" data-open="m-haftpflicht">Beispiele &amp; Details</button>
             </div>
           </article>
 
-          <!-- Tiere -->
           <article class="card" id="tiere">
-            <div class="card-head">
-              <h3 class="card-title">Tiere (Hund / Pferd &amp; mehr)</h3>
-            </div>
-
+            <div class="card-head"><h3 class="card-title">Tiere (Hund / Pferd &amp; mehr)</h3></div>
             <div class="risk-row">
               <span class="risk gold"><span class="dot"></span>wahrscheinlicher Schaden hoch</span>
               <span class="risk red"><span class="dot"></span>Maximalschaden hoch</span>
             </div>
-
+            <div class="keyline"><strong>Merksatz:</strong> Halterhaftung heißt: Du zahlst – auch ohne „Schuld“.</div>
             <p>Tiere handeln unberechenbar: Umrennen, Beißen, Unfall auslösen – und du bist als Halter in der Verantwortung.</p>
-
             <div class="damage-row">
               <span class="damage-label">Typischer hoher Schaden:</span>
               <span class="damage-amount"><span class="countup" data-target="150000" data-prefix="bis zu ">0</span> €</span>
             </div>
-
             <div class="card-actions">
               <button class="btn btn-outline" data-open="m-tiere">Beispiele &amp; Details</button>
             </div>
           </article>
 
-          <!-- Hausrat -->
           <article class="card" id="hausrat">
-            <div class="card-head">
-              <h3 class="card-title">Hausrat</h3>
-            </div>
-
+            <div class="card-head"><h3 class="card-title">Hausrat</h3></div>
             <div class="risk-row">
               <span class="risk green"><span class="dot"></span>oft</span>
               <span class="risk gold"><span class="dot"></span>wahrscheinlicher Schaden hoch</span>
             </div>
-
-            <p>Alles, was du in der Wohnung besitzt (Möbel, Technik, Kleidung) – kann bei Einbruch, Brand oder Leitungswasser schnell teuer werden.</p>
-
+            <div class="keyline"><strong>Merksatz:</strong> Nicht der Fernseher tut weh – sondern der komplette Wiederaufbau.</div>
+            <p>Alles, was du in der Wohnung besitzt, kann bei Einbruch, Brand oder Leitungswasser schnell teuer werden.</p>
             <div class="damage-row">
               <span class="damage-label">Typischer hoher Schaden:</span>
               <span class="damage-amount"><span class="countup" data-target="40000" data-prefix="bis zu ">0</span> €</span>
             </div>
-
             <div class="card-actions">
               <button class="btn btn-outline" data-open="m-hausrat">Beispiele &amp; Details</button>
             </div>
           </article>
 
-          <!-- Glas -->
           <article class="card" id="glas">
-            <div class="card-head">
-              <h3 class="card-title">Glas</h3>
-            </div>
-
+            <div class="card-head"><h3 class="card-title">Glas</h3></div>
             <div class="risk-row">
               <span class="risk green"><span class="dot"></span>oft</span>
               <span class="risk gold"><span class="dot"></span>wahrscheinlicher Schaden hoch</span>
             </div>
-
+            <div class="keyline"><strong>Merksatz:</strong> Glas ist schnell kaputt – und selten „billig“.</div>
             <p>Große Scheiben, Glastüren, Duschkabinen: Der Schaden passiert schnell – Ersatz/Einbau ist der Kostentreiber.</p>
-
             <div class="damage-row">
               <span class="damage-label">Typischer hoher Schaden:</span>
               <span class="damage-amount"><span class="countup" data-target="3500" data-prefix="bis zu ">0</span> €</span>
             </div>
-
             <div class="card-actions">
               <button class="btn btn-outline" data-open="m-glas">Beispiele &amp; Details</button>
             </div>
           </article>
 
-          <!-- Unfall -->
           <article class="card" id="unfall">
-            <div class="card-head">
-              <h3 class="card-title">Unfall</h3>
-            </div>
-
+            <div class="card-head"><h3 class="card-title">Unfall</h3></div>
             <div class="risk-row">
               <span class="risk green"><span class="dot"></span>oft</span>
               <span class="risk gold"><span class="dot"></span>wahrscheinlicher Schaden hoch</span>
             </div>
-
+            <div class="keyline"><strong>Merksatz:</strong> Unfall = Folgekosten. Nicht nur „Gips“.</div>
             <p>Unfälle passieren häufig außerhalb der Arbeit. Bausteine (Invalidität, Sofortleistung, Tagegeld, Reha) können entscheidend sein.</p>
-
             <div class="damage-row">
               <span class="damage-label">Typischer hoher Schaden:</span>
               <span class="damage-amount"><span class="countup" data-target="80000" data-prefix="bis zu ">0</span> €</span>
             </div>
-
             <div class="card-actions">
               <button class="btn btn-outline" data-open="m-unfall">Beispiele &amp; Details</button>
             </div>
           </article>
 
-          <!-- Wohngebäude -->
           <article class="card" id="wohngebaeude">
-            <div class="card-head">
-              <h3 class="card-title">Wohngebäude</h3>
-            </div>
-
+            <div class="card-head"><h3 class="card-title">Wohngebäude</h3></div>
             <div class="risk-row">
               <span class="risk gold"><span class="dot"></span>wahrscheinlicher Schaden hoch</span>
               <span class="risk red"><span class="dot"></span>Maximalschaden hoch</span>
             </div>
-
-            <p>„Leitungswasser“ ist ein Klassiker: Rohrbruch, Durchfeuchtung, Trocknung, Sanierung – das eskaliert schnell.</p>
-
+            <div class="keyline"><strong>Merksatz:</strong> Leitungswasser ist der Klassiker – und wird schnell „groß“.</div>
+            <p>Rohrbruch, Durchfeuchtung, Trocknung, Sanierung – das eskaliert meist nicht beim Schaden, sondern bei der Sanierung.</p>
             <div class="damage-row">
               <span class="damage-label">Typischer hoher Schaden:</span>
               <span class="damage-amount"><span class="countup" data-target="60000" data-prefix="bis zu ">0</span> €</span>
             </div>
-
             <div class="card-actions">
               <button class="btn btn-outline" data-open="m-wohngebaeude">Beispiele &amp; Details</button>
             </div>
           </article>
 
-          <!-- Rechtsschutz -->
           <article class="card" id="rechtsschutz">
-            <div class="card-head">
-              <h3 class="card-title">Rechtsschutz</h3>
-            </div>
-
+            <div class="card-head"><h3 class="card-title">Rechtsschutz</h3></div>
             <div class="risk-row">
               <span class="risk green"><span class="dot"></span>oft</span>
               <span class="risk gold"><span class="dot"></span>wahrscheinlicher Schaden hoch</span>
             </div>
-
-            <p>Streit kostet: Anwalt, Gericht, Gutachter. Sinnvoll mit Bausteinen wie Verkehr, Wohnen/Miete, Arbeit, Privat.</p>
-
+            <div class="keyline"><strong>Merksatz:</strong> Recht haben ist das eine – es durchsetzen das andere.</div>
+            <p>Anwalt, Gericht, Gutachter: Die Kosten können hoch werden. Sinnvoll mit Bausteinen wie Verkehr, Wohnen/Miete, Arbeit, Privat.</p>
             <div class="damage-row">
               <span class="damage-label">Typischer hoher Schaden:</span>
               <span class="damage-amount"><span class="countup" data-target="15000" data-prefix="bis zu ">0</span> €</span>
             </div>
-
             <div class="card-actions">
               <button class="btn btn-outline" data-open="m-rechtsschutz">Beispiele &amp; Details</button>
             </div>
           </article>
 
-          <!-- Reise -->
           <article class="card" id="reise">
-            <div class="card-head">
-              <h3 class="card-title">Reise (Baustein)</h3>
-            </div>
-
+            <div class="card-head"><h3 class="card-title">Reise (Baustein)</h3></div>
             <div class="risk-row">
               <span class="risk gold"><span class="dot"></span>wahrscheinlicher Schaden hoch</span>
               <span class="risk red"><span class="dot"></span>Maximalschaden hoch</span>
             </div>
-
+            <div class="keyline"><strong>Merksatz:</strong> Im Ausland wird „normal“ schnell extrem teuer.</div>
             <p>Krankheit/Unfall im Ausland: Behandlung, Rücktransport, Reiseabbruch kann teuer werden – oft unterschätzt, bis es passiert.</p>
-
             <div class="damage-row">
               <span class="damage-label">Typischer hoher Schaden:</span>
               <span class="damage-amount"><span class="countup" data-target="25000" data-prefix="bis zu ">0</span> €</span>
             </div>
-
             <div class="card-actions">
               <button class="btn btn-outline" data-open="m-reise">Beispiele &amp; Details</button>
             </div>
@@ -841,7 +856,7 @@
   <!-- MODAL BACKDROP -->
   <div class="modal-backdrop" id="modalBackdrop"></div>
 
-  <!-- MODALS (Bilder sind Platzhalter – du ersetzt die Dateien später) -->
+  <!-- MODALS (Platzhalterbilder – du ersetzt später nur die asset-Dateien) -->
   <div class="modal" id="m-haftpflicht" role="dialog" aria-modal="true">
     <div class="modal-head">
       <div class="ttl">Privathaftpflicht – warum das so wichtig ist</div>
