@@ -169,8 +169,6 @@
       border-bottom:1px solid var(--border);
       background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 40%, #e0f2fe 100%);
     }
-    .hero-inner{display:flex;flex-wrap:wrap;gap:1.6rem;align-items:flex-start}
-    .hero-text{flex:1 1 360px;min-width:0}
     .hero-label{
       display:inline-flex;align-items:center;gap:.45rem;
       padding:.15rem .7rem;border-radius:999px;
@@ -188,42 +186,13 @@
       letter-spacing:.02em;
     }
     .hero-lead{
-      margin:0 0 .9rem;
+      margin:0;
       color:var(--muted);
-      max-width:55rem;
+      max-width:60rem;
       font-size:.98rem;
     }
     .hero-lead strong{font-weight:800;color:var(--primary)}
 
-    .jump-row{
-      display:flex;flex-wrap:wrap;
-      gap:.6rem;margin-top:.85rem;
-    }
-    .jump{
-      flex:1 1 260px;
-      background:#fff;
-      border:2px solid rgba(74,120,125,.22);
-      border-radius:16px;
-      padding:.85rem .95rem;
-      box-shadow:var(--shadow);
-      display:flex;align-items:center;justify-content:space-between;gap:.8rem;
-      cursor:pointer;
-      transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
-    }
-    .jump:hover{transform:translateY(-1px);filter:brightness(1.01);box-shadow:var(--shadowStrong)}
-    .jump .t{font-family:"Raleway",system-ui,sans-serif;font-weight:800;color:#111;line-height:1.2}
-    .jump .s{color:var(--muted);font-size:.88rem;margin-top:.15rem}
-    .jump .arr{
-      width:36px;height:36px;border-radius:999px;
-      display:grid;place-items:center;
-      background:linear-gradient(to right, rgba(254,243,199,.95), rgba(224,242,254,.9));
-      border:1px solid rgba(148,163,184,.7);
-      color:var(--primary);
-      font-weight:900;
-      flex:0 0 auto;
-    }
-
-    /* MAIN */
     main{
       padding:1.7rem 1.4rem 2.4rem;
       background:linear-gradient(to bottom,#fff 0,#f9fafb 100%);
@@ -249,7 +218,6 @@
       grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
       gap:1rem;
     }
-
     .card{
       background:linear-gradient(to bottom,#fff,#fbfdff);
       border-radius:18px;
@@ -257,9 +225,7 @@
       box-shadow:var(--shadow);
       padding:1rem 1.05rem 1.05rem;
       min-width:0;
-      transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
     }
-    .card:hover{transform:translateY(-1px);box-shadow:var(--shadowStrong);filter:brightness(1.005)}
     .card-title{
       font-family:"Raleway",system-ui,sans-serif;
       font-weight:800;
@@ -268,17 +234,6 @@
       margin:0 0 .4rem;
     }
     .card p{margin:.35rem 0 0;color:var(--muted);font-size:.92rem}
-
-    .keyline{
-      margin-top:.6rem;
-      padding:.6rem .75rem;
-      border-radius:14px;
-      border:1px solid rgba(148,163,184,.7);
-      background:#fff;
-      color:var(--muted);
-      font-size:.9rem;
-    }
-    .keyline strong{color:#111}
 
     /* Rechner */
     .calc-wrap{
@@ -311,12 +266,7 @@
       font-size:.92rem;
       background:#fff;
     }
-
-    .row-2{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:.7rem;
-    }
+    .row-2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
 
     .btn{
       display:inline-flex;
@@ -367,7 +317,6 @@
     .val.warn{border-color:rgba(245,158,11,.55);background:#fef3c7}
     .val.bad{border-color:rgba(220,38,38,.55);background:#fee2e2}
 
-    /* Förder-Kürzungs-Box */
     .cut-box{
       margin-top:.85rem;
       border-radius:16px;
@@ -376,41 +325,35 @@
       padding:.85rem .9rem;
     }
     .cut-top{
-      display:flex;
-      justify-content:space-between;
-      gap:.8rem;
-      flex-wrap:wrap;
-      align-items:baseline;
-      margin-bottom:.55rem;
+      display:flex;justify-content:space-between;gap:.8rem;
+      flex-wrap:wrap;align-items:baseline;margin-bottom:.55rem;
     }
-    .cut-top .ttl{
-      font-family:Raleway,system-ui,sans-serif;
-      font-weight:900;
-      color:#111;
-    }
+    .cut-top .ttl{font-family:Raleway,system-ui,sans-serif;font-weight:900;color:#111}
     .cut-top .sub{color:var(--muted);font-size:.88rem}
     .track{
-      width:100%;
-      height:16px;
-      border-radius:999px;
-      background:#d1d5db;
-      overflow:hidden;
+      width:100%;height:16px;border-radius:999px;background:#d1d5db;overflow:hidden;
       border:1px solid rgba(148,163,184,.65);
     }
     .fill{
-      height:100%;
-      width:0%;
+      height:100%;width:0%;
       background:linear-gradient(to right, var(--bad), var(--warn));
       transition:width .65s ease;
     }
-    .cut-foot{
-      margin-top:.5rem;
-      font-size:.82rem;
-      color:#6b7280;
+    .cut-foot{margin-top:.5rem;font-size:.82rem;color:#6b7280}
+
+    .hint{
+      margin-top:.75rem;
+      padding:.75rem .85rem;
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,.7);
+      background:#fff;
+      color:var(--muted);
+      font-size:.9rem;
     }
+    .hint strong{color:#111}
 
     .cta-box{
-      margin-top:1.1rem;
+      margin-top:1.05rem;
       border-radius:18px;
       border:1px solid var(--border);
       padding:1.05rem 1.1rem 1.15rem;
@@ -437,7 +380,6 @@
       main{padding:1.5rem 1rem 2.1rem}
       .hero h1{font-size:1.5rem}
       .hero-lead{font-size:.93rem}
-      .jump{flex:1 1 100%}
       .calc-grid{grid-template-columns:1fr}
       .row-2{grid-template-columns:1fr}
       .btn{width:100%}
@@ -562,45 +504,24 @@
 
     <!-- HERO -->
     <header class="hero">
-      <div class="hero-inner">
-        <div class="hero-text">
-          <div class="hero-label"><span class="dot"></span> Riester · Rechner · Zulagen sichtbar machen</div>
-          <h1>Riester: Förderungen sichern – und Zulagen nicht verschenken.</h1>
-          <p class="hero-lead">
-            Der wichtigste Punkt in der Praxis ist simpel:
-            <strong>Wenn der Beitrag zu niedrig ist, wird die Förderung gekürzt.</strong>
-            Genau das zeigt dir der Rechner unten – ohne komplizierte Extras.
-          </p>
-
-          <div class="jump-row">
-            <a class="jump" href="#rechner">
-              <div>
-                <div class="t">Zum Rechner</div>
-                <div class="s">Vorjahresbrutto + Kinder + Geburtsjahre → Ergebnis</div>
-              </div>
-              <div class="arr">↓</div>
-            </a>
-
-            <a class="jump" href="#wissen">
-              <div>
-                <div class="t">Kurz erklärt</div>
-                <div class="s">Mindestbeitrag, Zulagen, typische Fehler</div>
-              </div>
-              <div class="arr">→</div>
-            </a>
-          </div>
-        </div>
-      </div>
+      <div class="hero-label"><span class="dot"></span> Riester · Rechner · Förder-Kürzung sichtbar machen</div>
+      <h1>Riester: Beitrag zu niedrig? Dann wird die Zulage gekürzt.</h1>
+      <p class="hero-lead">
+        Hier ist der Rechner extra simpel gehalten:
+        <strong>Vorjahresbrutto</strong>, <strong>Anzahl Kinder</strong> und die <strong>Geburtsjahre</strong> –
+        fertig. Keine Frage, „wem das Kind zugeordnet ist“.
+        <br />
+        Der Fokus: <strong>Wie viel Mindestbeitrag</strong> braucht’s grob – und <strong>wie stark fällt die Förderung</strong>,
+        wenn du weniger einzahlst.
+      </p>
     </header>
 
     <main>
-      <!-- Rechner -->
       <section id="rechner">
-        <h2>Riester-Rechner: Mindestbeitrag, Zulagen & Förder-Kürzung</h2>
+        <h2>Riester-Rechner</h2>
         <p class="section-sub">
-          Du gibst <strong>Vorjahresbrutto</strong> und <strong>Kinder + Geburtsjahre</strong> ein.
-          Der Rechner zeigt:
-          <strong>Mindestbeitrag</strong>, <strong>Zulagen</strong> und was passiert, wenn du <strong>weniger</strong> einzahlst.
+          Ergebnis zeigt: <strong>Mindestbeitrag</strong>, <strong>Zulagen</strong> und <strong>Zulage nach Kürzung</strong>.
+          (Orientierung – keine Rechts-/Steuerberatung.)
         </p>
 
         <div class="calc-wrap">
@@ -630,10 +551,11 @@
                 <button class="btn btn-outline" type="button" id="resetBtn">Zurücksetzen</button>
               </div>
 
-              <div class="keyline" style="margin-top:.75rem">
-                <strong>Wichtig:</strong> Der Rechner ist eine <strong>Orientierung</strong>.
-                Für die genaue Zulage spielen Details (z. B. Zulageberechtigung, Zuordnung, Sonderfälle) eine Rolle.
-                Wenn du willst, checken wir das kurz sauber mit deinen echten Daten.
+              <!-- Partner-Hinweis (gewünscht) -->
+              <div class="hint">
+                <strong>Hinweis (Ehe/Partner):</strong>
+                In Ehe-/Partnerschafts-Konstellationen kann die Zulagen- und Beitragslogik je nach Situation anders wirken.
+                Der Rechner bildet das bewusst <strong>nicht</strong> kompliziert ab – wenn du magst, checken wir das im Gespräch in 2 Minuten sauber.
               </div>
             </div>
 
@@ -641,13 +563,13 @@
               <p class="calc-expl">
                 <strong>So liest du das Ergebnis:</strong><br>
                 <strong>1)</strong> Mindestbeitrag = grobe Zielgröße für volle Zulagen<br>
-                <strong>2)</strong> Wenn du weniger zahlst (z. B. 70%), wird die <strong>Förderung gekürzt</strong><br>
-                <strong>3)</strong> „Zulage nach Kürzung“ ist die realistischere Zahl bei Unterzahlung
+                <strong>2)</strong> Bei Unterzahlung wird die Förderung (hier vereinfacht) <strong>proportional gekürzt</strong><br>
+                <strong>3)</strong> „Zulage nach Kürzung“ ist die grobe Orientierung bei deinem Beitrags-Prozent
               </p>
 
               <div class="values">
                 <div class="val">
-                  <div class="k">Mindestbeitrag / Jahr</div>
+                  <div class="k">Mindestbeitrag / Jahr (Orientierung)</div>
                   <div class="v" id="vMin">–</div>
                 </div>
 
@@ -674,15 +596,15 @@
                 </div>
                 <div class="track"><div class="fill" id="cutFill"></div></div>
                 <div class="cut-foot">
-                  Faustregel: <strong>weniger Beitrag</strong> → <strong>proportional weniger Zulage</strong>.
-                  (Hier als einfache Logik dargestellt, damit du die Richtung sofort siehst.)
+                  Einfache Darstellung: <strong>weniger Beitrag</strong> → <strong>weniger Zulage</strong>.
+                  (Damit man’s sofort versteht – Details klären wir im Check.)
                 </div>
               </div>
 
               <div class="cta-box">
                 <p>
-                  Wenn du willst, machen wir daraus eine echte Entscheidung:
-                  <strong>Passt Riester zu dir – und wie viel Beitrag macht Sinn?</strong>
+                  Wenn du willst, mache ich dir daraus einen klaren Plan:
+                  <strong>Riester ja/nein?</strong> Und wenn ja: <strong>welcher Beitrag macht Sinn</strong>.
                 </p>
                 <div class="cta-actions">
                   <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch vereinbaren</a>
@@ -694,45 +616,33 @@
         </div>
       </section>
 
-      <!-- Wissen -->
       <section id="wissen">
-        <h2>Kurz erklärt: Die 4 Dinge, die bei Riester zählen</h2>
+        <h2>Riester in 60 Sekunden</h2>
         <p class="section-sub">
-          Riester ist ein Förder-System. Entscheidend ist, dass du die Förderung bekommst – und sie nicht
-          durch Kleinigkeiten verlierst.
+          Das sind die Punkte, die bei fast allen Fällen die Musik machen.
         </p>
 
         <div class="grid">
           <article class="card">
-            <div class="card-title">1) Mindestbeitrag (Orientierung)</div>
+            <div class="card-title">1) Mindestbeitrag als Ziel</div>
             <p>
-              Grob wird oft mit <strong>4% vom Vorjahresbrutto</strong> gerechnet.
-              Darauf gibt es Grenzen (Mindest- und Höchstbeitrag).
-              Wichtig ist nicht die Formel an sich – sondern: <strong>zu wenig Beitrag = gekürzte Förderung</strong>.
+              Häufig wird grob mit <strong>4% vom Vorjahresbrutto</strong> gerechnet (mit Grenzen).
+              Der Kern bleibt: <strong>zu wenig Beitrag = gekürzte Förderung</strong>.
             </p>
           </article>
 
           <article class="card">
             <div class="card-title">2) Kinderzulage hängt am Geburtsjahr</div>
             <p>
-              Deshalb fragt der Rechner die <strong>Geburtsjahre</strong> ab.
-              Sonst wäre das Ergebnis schnell ungenau.
+              Darum fragt der Rechner nur nach <strong>Geburtsjahren</strong> – sonst wäre die Zahl schnell daneben.
             </p>
           </article>
 
           <article class="card">
-            <div class="card-title">3) Produkt & Kosten entscheiden das Endergebnis</div>
+            <div class="card-title">3) Produkt & Kosten entscheiden die Netto-Wirkung</div>
             <p>
-              Förderung ist der Motor – aber Kosten, Garantie-Logik und Flexibilität sind das Getriebe.
-              Der Rechner zeigt bewusst nur den Förder-Teil.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="card-title">4) Ehepartner-Hinweis</div>
-            <p>
-              Wenn du verheiratet bist, können sich Konstellationen ergeben, bei denen Zulage-Logik und Beitrag
-              anders aussehen. Das ist oft schnell geklärt – aber im Rechner bewusst nicht „verkompliziert“.
+              Förderung ist top – aber Kosten, Flexibilität und Garantie-Logik entscheiden, ob es sich am Ende „lohnt“.
+              Das prüfen wir im Check mit echten Angeboten.
             </p>
           </article>
         </div>
@@ -767,7 +677,7 @@
       if(e.key === "Escape"){ closeMenu(); }
     });
 
-    // ===== Riester Rechner =====
+    // ===== Riester Rechner (ohne Abfrage "wem zugeordnet") =====
     const kidsInput = document.getElementById("kids");
     const kidsFields = document.getElementById("kidsFields");
     const calcBtn = document.getElementById("calcBtn");
@@ -793,10 +703,11 @@
       kidsFields.innerHTML = "";
       if(kids === 0) return;
 
-      const wrap = document.createElement("div");
-      wrap.className = "keyline";
-      wrap.innerHTML = "<strong>Geburtsjahre der Kinder</strong><br><span style='color:#6b7280'>Damit die Kinderzulage grob passt.</span>";
-      kidsFields.appendChild(wrap);
+      const head = document.createElement("div");
+      head.className = "hint";
+      head.style.marginTop = ".75rem";
+      head.innerHTML = "<strong>Geburtsjahre der Kinder</strong><br><span style='color:#6b7280'>Nur für die grobe Kinderzulage-Berechnung.</span>";
+      kidsFields.appendChild(head);
 
       for(let i=1;i<=kids;i++){
         const div = document.createElement("div");
@@ -853,17 +764,15 @@
       // Tatsächlicher Beitrag nach Prozent
       const pay = (minContribution * payPct) / 100;
 
-      // Förderrückgang (sehr einfache Logik, damit’s greifbar bleibt):
-      // Wenn du nur X% zahlst, bekommst du auch nur X% der Zulage.
+      // Sehr einfache Kürzungslogik: proportional nach Beitragsquote
       const allowanceAfterCut = fullAllowances * (payPct / 100);
 
-      // Anzeige
       vMin.textContent = fmtEUR(minContribution);
       vZulagenFull.textContent = fmtEUR(fullAllowances);
       vPay.textContent = fmtEUR(pay);
       vZulagenCut.textContent = fmtEUR(allowanceAfterCut);
 
-      const cutPct = 100 - payPct; // wie viel "Unterzahlung" in %
+      const cutPct = 100 - payPct;
       cutFill.style.width = clamp(cutPct, 0, 100).toFixed(0) + "%";
       cutInfo.textContent = (cutPct <= 0)
         ? "Keine Kürzung (100%)"
