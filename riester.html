@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Riester-Rente – Förderung & Zulagen verstehen – Jonas Plener</title>
+  <title>Riester-Rente mit Zulagen – Jonas Plener</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
@@ -333,7 +333,6 @@
     .card ul { margin: 0.2rem 0 0; padding-left: 1.1rem; }
     .card li { margin-bottom: 0.18rem; }
 
-    /* Rechner */
     .calc-wrapper {
       border-radius: 18px;
       padding: 1.2rem 1.1rem 1.4rem;
@@ -380,12 +379,7 @@
       box-shadow: 0 10px 22px rgba(15,23,42,.06);
     }
 
-    .calc-expl {
-      font-size: 0.9rem;
-      margin-bottom: 0.6rem;
-      color: var(--muted);
-    }
-
+    .calc-expl { font-size: 0.9rem; margin-bottom: 0.6rem; color: var(--muted); }
     .calc-expl strong { font-weight: 800; color: #111827; }
 
     .calc-values {
@@ -403,42 +397,14 @@
       box-shadow: 0 8px 18px rgba(15,23,42,.06);
     }
 
-    .calc-value-box.self {
-      border-color: rgba(220, 38, 38, 0.45);
-      background: #fee2e2;
-    }
-    .calc-value-box.zul {
-      border-color: rgba(22, 163, 74, 0.35);
-      background: #dcfce7;
-    }
-    .calc-value-box.total {
-      border-color: rgba(148, 163, 184, 0.7);
-      background: #eff6ff;
-    }
-    .calc-value-box.note {
-      border-color: rgba(17, 24, 39, 0.25);
-      background: #f3f4f6;
-    }
+    .calc-value-box.self { border-color: rgba(74,120,125,0.30); background: #ecfeff; }
+    .calc-value-box.sub  { border-color: rgba(22, 163, 74, 0.35); background: #dcfce7; }
+    .calc-value-box.tax  { border-color: rgba(17, 24, 39, 0.22); background: #f3f4f6; }
+    .calc-value-box.need { border-color: rgba(148, 163, 184, 0.7); background: #eff6ff; }
 
-    .calc-value-label {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.1rem;
-    }
-
-    .calc-value-number {
-      display: block;
-      font-weight: 800;
-      font-size: 1.05rem;
-      margin-top: 2px;
-      color: #111827;
-    }
-
-    .calc-note {
-      margin-top: 0.6rem;
-      font-size: 0.78rem;
-      color: #6b7280;
-    }
+    .calc-value-label { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.1rem; }
+    .calc-value-number { display: block; font-weight: 800; font-size: 1.05rem; margin-top: 2px; color: #111827; }
+    .calc-note { margin-top: 0.6rem; font-size: 0.78rem; color: #6b7280; }
 
     .calc-cta-row {
       margin-top: 0.8rem;
@@ -447,7 +413,6 @@
       gap: 0.6rem;
     }
 
-    /* Neue Grafik: „Förder-Stack“ */
     .mix-card {
       margin-top: 0.9rem;
       border-radius: 16px;
@@ -463,11 +428,7 @@
       margin: 0 0 0.2rem;
       font-size: 1.02rem;
     }
-    .mix-sub {
-      margin: 0 0 0.7rem;
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
+    .mix-sub { margin: 0 0 0.7rem; color: var(--muted); font-size: 0.88rem; }
 
     .stack {
       width: 100%;
@@ -479,10 +440,9 @@
       display: flex;
     }
     .seg { height: 100%; }
-    .seg-a { background: var(--primary); }  /* eigener Beitrag */
-    .seg-b { background: var(--accent); }   /* Zulagen */
-    .seg-c { background: #93c5fd; }        /* Steuerersparnis-Effekt */
-    .seg-d { background: #6b7280; }        /* Rest (wenn 4% nicht erreicht) */
+    .seg-self { background: var(--primary); }
+    .seg-zul  { background: var(--accent); }
+    .seg-tax  { background: #93c5fd; }
 
     .legend {
       display: flex;
@@ -501,17 +461,11 @@
       border-radius: 999px;
       padding: 0.25rem 0.55rem;
     }
-    .sw {
-      width: 10px;
-      height: 10px;
-      border-radius: 3px;
-    }
-    .sw-a { background: var(--primary); }
-    .sw-b { background: var(--accent); }
-    .sw-c { background: #93c5fd; }
-    .sw-d { background: #6b7280; }
+    .sw { width: 10px; height: 10px; border-radius: 3px; }
+    .sw-self { background: var(--primary); }
+    .sw-zul  { background: var(--accent); }
+    .sw-tax  { background: #93c5fd; }
 
-    /* Bottom CTA */
     .bottom-cta {
       margin-top: 1.6rem;
       padding: 1.1rem 1.1rem 1.3rem;
@@ -522,7 +476,6 @@
       font-size: 0.95rem;
       box-shadow: 0 10px 25px rgba(15,23,42,.06);
     }
-
     .bottom-cta p { margin: 0 0 0.8rem; color: var(--muted); }
 
     footer {
@@ -533,7 +486,6 @@
       background: #f9fafb;
     }
 
-    /* Animation */
     .animate-on-scroll {
       opacity: 0;
       transform: translateY(18px);
@@ -541,7 +493,7 @@
     }
     .animate-on-scroll.in-view { opacity: 1; transform: translateY(0); }
 
-    /* Burger Menü (wie deine anderen Seiten) */
+    /* Burger Menü */
     .burger{
       position:absolute;
       top:10px;
@@ -679,18 +631,14 @@
     @media (max-width: 768px) {
       .topbar { padding-inline: 1rem; }
       .topbar-right{display:none;}
-
       header.hero { padding: 1.6rem 1rem 1.8rem; }
       main { padding: 1.6rem 1rem 2.2rem; }
-
       .hero-inner { flex-direction: column-reverse; align-items: flex-start; }
       .hero h1 { font-size: 1.5rem; }
       .hero-lead { font-size: 0.9rem; }
-
       .hero-photo { width: 100%; justify-content: center; align-items: center; }
       .hero-photo::before { width: 180px; height: 180px; top: 10px; }
       .hero-photo img { max-width: 280px; }
-
       .hero-tagcard {
         position: static;
         transform: none;
@@ -699,7 +647,6 @@
         max-width: 260px;
         text-align: left;
       }
-
       .calc-grid { grid-template-columns: minmax(0, 1fr); }
       .btn-primary, .btn-secondary, .btn-wa, .btn-gold { width: 100%; }
     }
@@ -725,7 +672,7 @@
     </div>
 
     <div class="topbar-right">
-      Eltern, Familien & Selbstständige<br />
+      Eltern, Familien & Angestellte<br />
       im Kinzigtal & der Ortenau
     </div>
 
@@ -765,7 +712,6 @@
         <div class="menu-sub">
           <a href="arbeitskraftabsicherung.html">Arbeitskraft &amp; Berufsunfähigkeit</a>
           <a href="haftpflicht-hausrat-gebaeude.html">Sachversicherungen</a>
-          <a href="risikoleben.html">Risikoleben</a>
         </div>
       </div>
 
@@ -777,6 +723,7 @@
           <a class="active" href="riester.html"><strong>Riester</strong></a>
           <a href="basisrente.html">Rürup / Basisrente</a>
           <a href="bav.html">Betriebliche Altersvorsorge</a>
+          <a href="risikoleben.html">Risikolebenversicherung</a>
         </div>
       </div>
 
@@ -829,27 +776,28 @@
       <div class="hero-text animate-on-scroll">
         <div class="hero-label">
           <span class="dot"></span>
-          Riester-Rente · Zulagen & Förderung
+          Riester-Rente · Zulagen & Steuervorteile
         </div>
 
-        <h1>Riester lohnt sich nicht „immer“ – aber manchmal brutal.</h1>
+        <!-- geändert -->
+        <h1>Hol dir die Zulagen – und mach Riester richtig planbar</h1>
 
         <p class="hero-lead">
-          Riester ist am stärksten dort, wo <strong>Zulagen</strong> richtig reinknallen:
-          Familien mit Kindern, bestimmte Einkommenssituationen und stabile Beitragsjahre.
-          Entscheidend ist: <strong>4%-Regel</strong>, richtige Zulagen und saubere Beantragung.
+          Riester wird nicht „besser“, weil man es toll findet – sondern weil man die <strong>Zulagen</strong>
+          sauber mitnimmt und den Beitrag richtig einstellt. Besonders spannend ist das oft mit <strong>Kindern</strong>
+          und wenn die <strong>Steuer</strong> zusätzlich mitwirkt.
         </p>
 
         <div class="hero-badges">
-          <a href="#rechner" class="badge"><span>Riester-Beitrag & Zulagen rechnen</span><span class="arrow">↓</span></a>
-          <a href="#inhalt" class="badge"><span>Wichtigste Riester-Inhalte</span><span class="arrow">↓</span></a>
-          <a href="#fallen" class="badge"><span>Häufige Stolperfallen</span><span class="arrow">↓</span></a>
-          <a href="#check" class="badge"><span>Riester-Check in 5 Minuten</span><span class="arrow">↓</span></a>
+          <a href="#rechner" class="badge"><span>Zulagen-Rechner</span><span class="arrow">↓</span></a>
+          <a href="#inhalt" class="badge"><span>Worauf es ankommt</span><span class="arrow">↓</span></a>
+          <a href="#typen" class="badge"><span>Riester-Typen</span><span class="arrow">↓</span></a>
+          <a href="#check" class="badge"><span>5-Minuten-Check</span><span class="arrow">↓</span></a>
         </div>
 
         <div class="cta-row">
           <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-primary">
-            Riester kostenlos kurz prüfen lassen
+            Riester kurz prüfen lassen
           </a>
           <a href="https://wa.me/4917663796605" target="_blank" class="btn-wa">
             Kurzfrage per WhatsApp
@@ -861,8 +809,8 @@
         <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
         <div class="hero-tagcard">
           <div class="hero-tagcard-title">Dein Ansprechpartner</div>
-          <div class="hero-tagcard-line"><span class="hero-tagcard-dot"></span><span>Zulagen & Förderlogik erklärt</span></div>
-          <div class="hero-tagcard-line"><span class="hero-tagcard-dot"></span><span>Beratung digital & vor Ort</span></div>
+          <div class="hero-tagcard-line"><span class="hero-tagcard-dot"></span><span>Zulagen & Förderung im Fokus</span></div>
+          <div class="hero-tagcard-line"><span class="hero-tagcard-dot"></span><span>Einfach, klar, ohne Fachchinesisch</span></div>
         </div>
       </div>
     </div>
@@ -870,21 +818,19 @@
 
   <main>
 
-    <!-- RECHNER -->
     <section id="rechner">
-      <h2>Riester-Rechner: 4% Beitrag, Zulagen & Förder-Quote</h2>
+      <h2>Riester-Zulagen: Wie viel bekommst du wirklich?</h2>
       <div class="section-subtitle">
-        Du bekommst eine schnelle Orientierung: <strong>Mindesteigenbeitrag</strong> nach 4%-Regel,
-        erwartete <strong>Zulagen</strong> und wie stark die Förderung deine Einzahlung „verstärkt“.
+        Orientierung: Der Mindestbeitrag liegt typischerweise bei <strong>4% vom rentenversicherungspflichtigen Vorjahresbrutto</strong>
+        (gedeckelt) <strong>minus Zulagen</strong>. Unten rechnen wir das vereinfacht – plus „Riester-Booster“-Grafik.
       </div>
 
       <div class="calc-wrapper">
         <div class="calc-grid">
           <div class="calc-inputs">
-
             <div class="field">
-              <label for="bruttoVorjahr">Brutto-Vorjahreseinkommen (in €)</label>
-              <input type="number" id="bruttoVorjahr" min="0" step="500" placeholder="z. B. 42000" />
+              <label for="bruttoYear">Vorjahres-Brutto (rentenversicherungspflichtig) (in €)</label>
+              <input type="number" id="bruttoYear" min="0" step="500" placeholder="z. B. 42000" />
             </div>
 
             <div class="field">
@@ -893,30 +839,26 @@
             </div>
 
             <div class="field">
-              <label for="kinderAltNeu">Kinder-Zulage-Typ (vereinfachte Logik)</label>
-              <select id="kinderAltNeu">
-                <option value="mixed" selected>Gemischt / unbekannt</option>
-                <option value="old">Nur „alt“ (185 € pro Kind)</option>
-                <option value="new">Nur „neu“ (300 € pro Kind)</option>
+              <label for="kidsRate">Kinderzulage pro Kind (vereinfachte Annahme)</label>
+              <select id="kidsRate">
+                <option value="300" selected>300 € / Jahr (typisch neuere Jahrgänge)</option>
+                <option value="185">185 € / Jahr (typisch ältere Jahrgänge)</option>
               </select>
             </div>
 
             <div class="field">
-              <label for="eigenBeitragMonat">Dein Riester-Beitrag (monatlich) (in €)</label>
-              <input type="number" id="eigenBeitragMonat" min="0" step="5" placeholder="z. B. 80" />
+              <label for="taxRate">Dein Grenz-Steuersatz (grob) (in %)</label>
+              <input type="number" id="taxRate" min="0" max="50" step="1" placeholder="z. B. 30" />
             </div>
 
             <div class="field">
-              <label for="zulagenAntrag">Zulagen-Antrag läuft automatisch?</label>
-              <select id="zulagenAntrag">
-                <option value="yes" selected>Ja (Dauerzulagenantrag)</option>
-                <option value="no">Nein / unsicher</option>
-              </select>
+              <label for="yourPay">Dein eigener Jahresbeitrag (wenn du ihn kennst) (in €)</label>
+              <input type="number" id="yourPay" min="0" step="50" placeholder="leer lassen = wir berechnen Mindestbeitrag" />
             </div>
 
             <div class="calc-btn-row">
               <button type="button" class="btn-primary" id="calcBtn">
-                Riester-Förderung berechnen
+                Riester berechnen
               </button>
             </div>
           </div>
@@ -924,66 +866,65 @@
           <div class="calc-result">
             <p class="calc-expl">
               Du bekommst vier Werte:
-              <br /><strong>1. Mindesteigenbeitrag</strong> (4% vom Brutto - Zulagen)
-              <br /><strong>2. Deine Zulagen</strong> (Grundzulage + Kinder)
-              <br /><strong>3. Förderquote</strong> (Zulagen im Verhältnis zu deinem Beitrag)
-              <br /><strong>4. Hinweis</strong> (ob du die 4% voraussichtlich erreichst)
+              <br /><strong>1. Zulagen</strong> (Grund + Kinder)
+              <br /><strong>2. Mindestbeitrag</strong> (4% – Zulagen, vereinfacht)
+              <br /><strong>3. Steuer-Extra</strong> (grob, wenn relevant)
+              <br /><strong>4. Förderquote</strong> (wie viel % deiner Einzahlung „geschenkt“ wirkt)
             </p>
 
             <div class="calc-values">
+              <div class="calc-value-box sub">
+                <div class="calc-value-label">Zulagen pro Jahr</div>
+                <div class="calc-value-number" id="res-zul">–</div>
+              </div>
+
+              <div class="calc-value-box need">
+                <div class="calc-value-label">Mindestbeitrag (Jahr)</div>
+                <div class="calc-value-number" id="res-min">–</div>
+              </div>
+
+              <div class="calc-value-box tax">
+                <div class="calc-value-label">Steuer-Extra (grob/Jahr)</div>
+                <div class="calc-value-number" id="res-tax">–</div>
+              </div>
+
               <div class="calc-value-box self">
-                <div class="calc-value-label">Mindesteigenbeitrag (Jahr)</div>
-                <div class="calc-value-number" id="res-minYear">–</div>
-              </div>
-
-              <div class="calc-value-box zul">
-                <div class="calc-value-label">Zulagen (Jahr)</div>
-                <div class="calc-value-number" id="res-zulYear">–</div>
-              </div>
-
-              <div class="calc-value-box total">
                 <div class="calc-value-label">Förderquote</div>
-                <div class="calc-value-number" id="res-quote">–</div>
-              </div>
-
-              <div class="calc-value-box note">
-                <div class="calc-value-label">Hinweis</div>
-                <div class="calc-value-number" id="res-hint">–</div>
+                <div class="calc-value-number" id="res-rate">–</div>
               </div>
             </div>
 
             <div class="mix-card">
-              <div class="mix-title">Neue Grafik: Förder-Stack (dein Geld + Staat)</div>
+              <div class="mix-title">„Riester-Booster“</div>
               <div class="mix-sub">
-                Die Balken zeigen, wie dein Beitrag durch Zulagen (und als grobe Logik: Steuer-Effekt) „aufgepumpt“ wird.
+                Balken zeigt: <strong>dein Beitrag</strong> vs. <strong>Zulagen</strong> vs. <strong>Steuerwirkung</strong>.
+                (Steuerwirkung = grobe Näherung.)
               </div>
 
-              <div class="stack" aria-label="Balken: Eigener Beitrag, Zulagen, Steuer, Lücke">
-                <div class="seg seg-a" id="seg-a" style="width:40%"></div>
-                <div class="seg seg-b" id="seg-b" style="width:30%"></div>
-                <div class="seg seg-c" id="seg-c" style="width:20%"></div>
-                <div class="seg seg-d" id="seg-d" style="width:10%"></div>
+              <div class="stack" aria-label="Balken: Eigenbeitrag, Zulagen, Steuer">
+                <div class="seg seg-self" id="seg-self" style="width:45%"></div>
+                <div class="seg seg-zul" id="seg-zul" style="width:35%"></div>
+                <div class="seg seg-tax" id="seg-tax" style="width:20%"></div>
               </div>
 
               <div class="legend">
-                <div class="leg"><span class="sw sw-a"></span><span id="leg-a">Dein Beitrag: –</span></div>
-                <div class="leg"><span class="sw sw-b"></span><span id="leg-b">Zulagen: –</span></div>
-                <div class="leg"><span class="sw sw-c"></span><span id="leg-c">Steuer-Effekt (grob): –</span></div>
-                <div class="leg"><span class="sw sw-d"></span><span id="leg-d">Lücke zur 4%-Logik: –</span></div>
+                <div class="leg"><span class="sw sw-self"></span><span id="leg-self">Du: –</span></div>
+                <div class="leg"><span class="sw sw-zul"></span><span id="leg-zul">Zulagen: –</span></div>
+                <div class="leg"><span class="sw sw-tax"></span><span id="leg-tax">Steuer: –</span></div>
               </div>
             </div>
 
             <div class="calc-note">
-              Vereinfachter Rechner: echte Steuerwirkung hängt von Steuerklasse, Kinderfreibeträgen, weiteren Vorsorgeaufwendungen usw. ab.
-              Die Zulagenlogik bei Kindern ist je nach Geburtsjahr unterschiedlich – hier vereinfachen wir bewusst.
+              Vereinfachte Rechnung (Orientierung). Ob Riester für dich sinnvoll ist, hängt u. a. von Kindern,
+              Einkommen, Steuer, Laufzeit, Produktkosten und deiner Planung ab.
             </div>
 
             <div class="calc-cta-row">
               <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-primary">
-                Riester-Check mit mir machen
+                Ergebnis mit mir durchgehen
               </a>
               <a href="https://wa.me/4917663796605" target="_blank" class="btn-wa">
-                Screenshot per WhatsApp schicken
+                Ergebnis per WhatsApp
               </a>
             </div>
           </div>
@@ -992,76 +933,74 @@
       </div>
     </section>
 
-    <!-- Inhalte -->
     <section id="inhalt">
-      <h2>Was fachlich bei Riester wirklich zählt</h2>
+      <h2>Worauf es bei Riester wirklich ankommt</h2>
       <div class="section-subtitle">
-        Riester ist ein Fördersystem mit Regeln. Wenn die Regeln passen, ist die Förderung stark – wenn nicht,
-        „versickert“ sie durch falsche Beiträge, fehlende Anträge oder falsche Konstellationen.
+        Riester ist ein Förder-System mit Regeln. Wenn die Regeln passen, wirken Zulagen & Steuer richtig.
       </div>
 
       <div class="grid-2">
         <div class="card">
-          <div class="card-title">Riester-Kernelemente (die sitzen müssen)</div>
+          <div class="card-title">Die wichtigsten fachlichen Punkte</div>
           <ul>
-            <li><strong>4%-Regel</strong>: Mindesteinzahlung ≈ 4% vom Vorjahresbrutto (abzgl. Zulagen) – sonst gekürzte Zulagen.</li>
-            <li><strong>Grundzulage</strong>: jährlich (hier im Rechner als 175 € angenommen).</li>
-            <li><strong>Kinderzulage</strong>: je nach Geburtsjahr des Kindes unterschiedlich.</li>
-            <li><strong>Dauerzulagenantrag</strong>: spart Ärger, damit Zulagen nicht „vergessen“ werden.</li>
+            <li><strong>Mindestbeitrag treffen</strong>: sonst verlierst du Zulagen.</li>
+            <li><strong>Zulagenantrag</strong> (Dauerzulage) sauber stellen.</li>
+            <li><strong>Kinderzulage korrekt zuordnen</strong> (wer bekommt sie?).</li>
+            <li><strong>Kosten & Modell</strong>: Kosten dürfen die Förderung nicht auffressen.</li>
+            <li><strong>Wohn-Riester</strong>: eigene Regeln – nur nutzen, wenn man’s wirklich verstanden hat.</li>
           </ul>
         </div>
 
         <div class="card">
-          <div class="card-title">Wichtige Praxis-Punkte</div>
+          <div class="card-title">Die typischen „Riester-Fallen“</div>
           <ul>
-            <li><strong>Zulagenberechtigung</strong>: nicht jeder kann Riester – wir prüfen das sauber.</li>
-            <li><strong>Produktlogik</strong>: Fonds/klassisch/Hybrid – muss zur Person passen, sonst wird’s unruhig.</li>
-            <li><strong>Kosten & Rentenfaktor</strong>: am Ende zählt, was netto rauskommt – nicht nur „Zulage“.</li>
-            <li><strong>Flexibilität</strong>: Beitragsänderungen, Pausen, Anpassungen – ohne Chaos.</li>
+            <li><strong>Zu wenig Beitrag</strong> → Zulagen werden gekürzt.</li>
+            <li><strong>Beitragsfrei</strong> → Förderung stoppt, Effekt bricht.</li>
+            <li><strong>Falsche Tarifstruktur</strong> für den Zeithorizont.</li>
+            <li><strong>Vertrag „liegt rum“</strong> ohne regelmäßigen Check.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Stolperfallen -->
-    <section id="fallen">
-      <h2>Die häufigsten Riester-Stolperfallen (und wie man sie vermeidet)</h2>
+    <section id="typen">
+      <h2>Für wen Riester oft passt – und für wen eher nicht</h2>
       <div class="section-subtitle">
-        Das sind die Klassiker, warum Leute sagen „Riester bringt bei mir nichts“ – obwohl es oft nur falsch aufgesetzt ist.
+        Entscheidend ist die Förderquote: Wie viel kommt vom Staat im Verhältnis zu deiner Einzahlung?
       </div>
 
       <div class="grid-2">
         <div class="card">
-          <div class="card-title">Fehler, die Geld kosten</div>
+          <div class="card-title">Riester kann stark sein, wenn …</div>
           <ul>
-            <li><strong>Zu wenig Beitrag</strong> → Zulage wird gekürzt (statt „gratis Geld“ gibt’s nur anteilig).</li>
-            <li><strong>Kein Zulagenantrag</strong> → Zulage kommt nicht automatisch.</li>
-            <li><strong>Kindergeld-Wechsel</strong> (z. B. Elternteil) → Zulagenzuordnung kann falsch laufen.</li>
-            <li><strong>Beitrag läuft, aber Einkommen ändert sich</strong> → 4%-Wert verschiebt sich.</li>
+            <li>du <strong>Kinder</strong> hast.</li>
+            <li>du eine <strong>planbare Zusatzrente</strong> willst.</li>
+            <li>du die Regeln sauber einhältst (Beitrag, Zulagen, Zuordnung).</li>
           </ul>
         </div>
 
         <div class="card">
-          <div class="card-title">Fehler, die psychologisch nerven</div>
+          <div class="card-title">Riester ist oft kritisch, wenn …</div>
           <ul>
-            <li><strong>„Ich sehe nix“</strong>: Riester wirkt stark über Jahre, nicht in 6 Monaten.</li>
-            <li><strong>Falsche Erwartung</strong>: Riester ist Förderung + Altersvorsorge, kein Spekulationsprodukt.</li>
-            <li><strong>Schlechtes Bauchgefühl</strong> wegen alten Medienberichten → wir rechnen nüchtern.</li>
-            <li><strong>Zu kompliziert</strong>: wenn es kompliziert bleibt, ist es schlecht erklärt – nicht „zu schwer“.</li>
+            <li>du kaum Zulagen bekommst und die Steuerwirkung gering ist.</li>
+            <li>du ständig beitragsfrei stellst oder sehr kurze Laufzeit hast.</li>
+            <li>Kosten/Produkt passen nicht zu dir.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Bottom CTA -->
     <section id="check">
+      <h2>5-Minuten-Check: Ist dein Riester richtig eingestellt?</h2>
+      <div class="section-subtitle">
+        Du schickst mir (wenn vorhanden) kurz: <strong>Vorjahresbrutto</strong>, <strong>Kinder</strong>,
+        <strong>aktueller Beitrag</strong> und ob du <strong>Wohn-Riester</strong> nutzt.
+      </div>
+
       <div class="bottom-cta animate-on-scroll">
-        <p>
-          Wenn du willst, checke ich dir Riester in 5 Minuten: 4%-Wert, Zulagen, Antrag, Produktlogik.
-          Dann weißt du sofort: <strong>passt</strong> oder <strong>optimieren</strong>.
-        </p>
+        <p>Riester muss nicht kompliziert sein – wenn Beitrag & Zulagen sauber laufen.</p>
         <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-gold">
-          Riester-Check starten
+          Termin zur Riester-Prüfung
         </a>
       </div>
     </section>
@@ -1070,7 +1009,7 @@
 
   <footer>
     Diese Seite ersetzt keine individuelle Rechts-, Steuer- oder Sozialversicherungsberatung.
-    Alle Angaben ohne Gewähr. Maßgeblich sind Vertragsbedingungen, Zulagenrecht und gesetzliche Regelungen.
+    Alle Angaben ohne Gewähr. Maßgeblich sind Vertragsbedingungen und gesetzliche Regelungen.
   </footer>
 </div>
 
@@ -1121,87 +1060,59 @@
     if (e.key === "Escape" && menuPanel.classList.contains("open")) closeMenu();
   });
 
-  // Rechner + Grafik (vereinfachte Riester-Logik)
+  // Rechner + Grafik
   const byId = (id) => document.getElementById(id);
   const fmt = (val) => new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(val)) + " €";
-  const pct = (val) => new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(val)) + " %";
   function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
-  function calcRiester(){
-    const brutto = parseFloat(byId("bruttoVorjahr").value || "0");
+  function calc(){
+    const bruttoYear = parseFloat(byId("bruttoYear").value || "0");
     const kinder = parseInt(byId("kinder").value || "0", 10);
-    const type = byId("kinderAltNeu").value;
-    const beitragMonat = parseFloat(byId("eigenBeitragMonat").value || "0");
-    const dauerAntrag = byId("zulagenAntrag").value;
+    const kidsRate = parseFloat(byId("kidsRate").value || "300");
+    const taxRate = (parseFloat(byId("taxRate").value || "0") / 100);
+    const yourPayInput = parseFloat(byId("yourPay").value || "NaN");
 
-    // Vereinfachte Zulagen
-    const grundZulage = 175; // grobe Standard-Logik
-    let kinderZulagePro = 250; // "mixed" als Mittelwert
-    if(type === "old") kinderZulagePro = 185;
-    if(type === "new") kinderZulagePro = 300;
+    const grundzulage = 175;
+    const kinderzulage = kinder * kidsRate;
+    const zulagen = grundzulage + kinderzulage;
 
-    const zulagen = grundZulage + (kinder * kinderZulagePro);
+    const fourPct = bruttoYear * 0.04;
+    const minBeitrag = Math.max(60, fourPct - zulagen);
+    const yourPay = isNaN(yourPayInput) ? minBeitrag : Math.max(0, yourPayInput);
 
-    // 4%-Regel (vereinfacht): 4% vom Brutto (max/Details ignoriert) - Zulagen
-    const vierProzent = brutto * 0.04;
-    const mindestEigen = Math.max(0, vierProzent - zulagen);
+    const taxExtra = Math.max(0, ((yourPay + zulagen) * taxRate) - zulagen);
+    const rate = yourPay > 0 ? (zulagen + taxExtra) / yourPay : 0;
 
-    const eigenerJahr = beitragMonat * 12;
+    byId("res-zul").textContent = fmt(zulagen);
+    byId("res-min").textContent = fmt(minBeitrag);
+    byId("res-tax").textContent = fmt(taxExtra);
+    byId("res-rate").textContent = (rate * 100).toFixed(0) + " %";
 
-    // Förderquote: Zulagen / eigener Beitrag
-    const quote = eigenerJahr > 0 ? (zulagen / eigenerJahr) * 100 : 0;
+    const total = (yourPay + zulagen + taxExtra) || 1;
+    const pctSelf = clamp((yourPay/total)*100, 0, 100);
+    const pctZul  = clamp((zulagen/total)*100, 0, 100);
+    const pctTax  = clamp((taxExtra/total)*100, 0, 100);
 
-    // Hinweis: 4% erreicht?
-    const diff = eigenerJahr - mindestEigen;
-    let hint = "";
-    if(brutto <= 0) hint = "Brutto eintragen";
-    else if(eigenerJahr <= 0) hint = "Beitrag eintragen";
-    else if(diff >= 0) hint = "4%-Logik voraussichtlich erfüllt";
-    else hint = "zu wenig Beitrag → Zulage ggf. gekürzt";
+    byId("seg-self").style.width = pctSelf.toFixed(2) + "%";
+    byId("seg-zul").style.width  = pctZul.toFixed(2) + "%";
+    byId("seg-tax").style.width  = pctTax.toFixed(2) + "%";
 
-    if(dauerAntrag === "no") {
-      hint += " · Zulagenantrag prüfen";
-    }
-
-    byId("res-minYear").textContent = fmt(mindestEigen);
-    byId("res-zulYear").textContent = fmt(zulagen);
-    byId("res-quote").textContent = pct(quote);
-    byId("res-hint").textContent = hint;
-
-    // Steuer-Effekt (nur grob als Visual – nicht als Steuerberatung!)
-    // Wir nehmen konservativ: 0% bis 10% vom eigenen Jahresbeitrag als „möglicher Effekt“.
-    const steuerEff = Math.min(eigenerJahr * 0.10, 600); // Deckel, damit Grafik nicht overhyped
-
-    // Lücke zur 4%-Logik (wenn Beitrag zu gering)
-    const luecke = Math.max(0, mindestEigen - eigenerJahr);
-
-    const parts = [
-      { key: "a", name: "Dein Beitrag", val: eigenerJahr },
-      { key: "b", name: "Zulagen", val: zulagen },
-      { key: "c", name: "Steuer-Effekt (grob)", val: steuerEff },
-      { key: "d", name: "Lücke zur 4%-Logik", val: luecke },
-    ];
-
-    const total = parts.reduce((s,p)=>s+p.val,0) || 1;
-
-    parts.forEach(p => {
-      const w = clamp((p.val/total)*100, 0, 100);
-      byId("seg-" + p.key).style.width = w.toFixed(2) + "%";
-      byId("leg-" + p.key).textContent = `${p.name}: ${fmt(p.val)} (${Math.round(w)}%)`;
-    });
+    byId("leg-self").textContent = `Du: ${fmt(yourPay)} (${Math.round(pctSelf)}%)`;
+    byId("leg-zul").textContent  = `Zulagen: ${fmt(zulagen)} (${Math.round(pctZul)}%)`;
+    byId("leg-tax").textContent  = `Steuer: ${fmt(taxExtra)} (${Math.round(pctTax)}%)`;
   }
 
-  byId("calcBtn").addEventListener("click", calcRiester);
-  ["bruttoVorjahr","kinder","kinderAltNeu","eigenBeitragMonat","zulagenAntrag"].forEach(id=>{
-    byId(id).addEventListener("input", calcRiester);
-    byId(id).addEventListener("change", calcRiester);
+  byId("calcBtn").addEventListener("click", calc);
+  ["bruttoYear","kinder","kidsRate","taxRate","yourPay"].forEach(id=>{
+    byId(id).addEventListener("input", calc);
+    byId(id).addEventListener("change", calc);
   });
 
   document.addEventListener("DOMContentLoaded", () => {
-    if(!byId("bruttoVorjahr").value) byId("bruttoVorjahr").value = 42000;
+    if(!byId("bruttoYear").value) byId("bruttoYear").value = 42000;
     if(!byId("kinder").value) byId("kinder").value = 2;
-    if(!byId("eigenBeitragMonat").value) byId("eigenBeitragMonat").value = 80;
-    calcRiester();
+    if(!byId("taxRate").value) byId("taxRate").value = 30;
+    calc();
   });
 </script>
 
