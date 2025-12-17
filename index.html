@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Eltern-Renten-Check – Jonas Plener</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@600;700;800&display=swap" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
     :root{
@@ -13,8 +14,11 @@
       --accent:#f4be69;
       --text:#111111;
       --muted:#4b5563;
-      --border:#e5e7eb;
       --bg:#f4f8f8;
+      --bg-soft:#f9fbfb;
+      --border:#e5e7eb;
+      --good:#16a34a;
+      --bad:#dc2626;
       --wa:#25d366;
 
       --shadow: 0 10px 25px rgba(15,23,42,.06);
@@ -24,13 +28,12 @@
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family:"Arimo", system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-family:"Arimo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: radial-gradient(circle at top, #fef3c7 0, #f4f8f8 35%, #dbeafe 100%);
       color:var(--text);
       line-height:1.6;
     }
     a{color:inherit;text-decoration:none}
-    img{max-width:100%;height:auto;display:block}
 
     .page{
       max-width:1100px;
@@ -40,6 +43,7 @@
       box-shadow:0 12px 35px rgba(15,23,42,.12);
       display:flex;
       flex-direction:column;
+      overflow:hidden; /* schützt Layout, Menü ist fixed */
     }
 
     /* TOPBAR */
@@ -48,20 +52,20 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:1rem;
-      padding:.85rem 1.8rem;
+      padding:.8rem 1.8rem;
       border-bottom:1px solid var(--border);
-      background:linear-gradient(to right,#ffffff,#fef3c7);
+      background:linear-gradient(to right, #ffffff, #fef3c7);
+      gap:1rem;
     }
     .topbar-left{display:flex;align-items:center;gap:.75rem;min-width:0}
     .topbar-portrait img{
       width:54px;height:54px;border-radius:50%;
-      object-fit:cover;
+      object-fit:cover;display:block;
       box-shadow:0 4px 10px rgba(15,23,42,.25);
     }
     .topbar-title{
       font-family:"Raleway",system-ui,sans-serif;
-      font-weight:800;
+      font-weight:700;
       letter-spacing:.03em;
       font-size:.95rem;
       text-transform:uppercase;
@@ -71,182 +75,392 @@
     .topbar-right{
       font-size:.8rem;color:var(--muted);
       text-align:right;
-      padding-right:54px;
+      padding-right:54px; /* Platz für Burger */
       white-space:nowrap;
     }
 
     /* HERO */
     header.hero{
-      padding:2rem 1.4rem 1.9rem;
+      padding:2rem 1.4rem 2.2rem;
       border-bottom:1px solid var(--border);
       background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 40%, #e0f2fe 100%);
     }
-    .hero-inner{display:flex;flex-wrap:wrap;gap:1.6rem;align-items:flex-start}
-    .hero-text{flex:1 1 340px;min-width:0}
-    .hero-label{
-      display:inline-flex;align-items:center;gap:.45rem;
-      padding:.15rem .7rem;border-radius:999px;
-      border:1px solid rgba(148,163,184,.8);
-      font-size:.82rem;color:var(--muted);
-      background:rgba(255,255,255,.9);
-      margin-bottom:.6rem;
+    .hero-inner{
+      display:flex;
+      flex-wrap:wrap;
+      gap:2rem;
+      align-items:center;
     }
-    .hero-label .dot{width:6px;height:6px;border-radius:999px;background:var(--accent)}
+    .hero-text{flex:1 1 260px;min-width:0}
+    .hero-label{
+      display:inline-flex;
+      align-items:center;
+      gap:.4rem;
+      padding:.15rem .65rem;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.8);
+      font-size:.8rem;
+      color:var(--muted);
+      margin-bottom:.6rem;
+      background:rgba(255,255,255,.9);
+    }
+    .hero-label .dot{
+      width:6px;height:6px;border-radius:999px;background:var(--accent)
+    }
     .hero h1{
       font-family:"Raleway",system-ui,sans-serif;
       font-weight:800;
-      font-size:2.0rem;
-      margin:0 0 .65rem;
+      font-size:2rem;
+      margin:0 0 .7rem;
       letter-spacing:.02em;
     }
+    .hero h1 strong{color:var(--primary)}
     .hero-lead{
-      margin:0 0 .9rem;
+      margin:0 0 1rem;
       color:var(--muted);
-      max-width:52rem;
-      font-size:1.02rem;
+      max-width:33rem;
+      font-size:.98rem;
     }
     .hero-lead strong{font-weight:800;color:var(--primary)}
 
-    .pill-row{
-      display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.7rem;
+    .hero-badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.5rem;
+      margin:.6rem 0 1.1rem;
     }
-    .pill{
-      display:inline-flex;align-items:center;gap:.5rem;
-      padding:.55rem .8rem;
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:.32rem;
+      padding:.3rem .7rem;
       border-radius:999px;
+      border:1px solid rgba(148,163,184,.9);
+      font-size:.8rem;
+      color:var(--muted);
       background:#fff;
-      border:2px solid rgba(74,120,125,.18);
-      box-shadow:var(--shadow);
-      color:#111;
-      font-weight:800;
-      font-size:.92rem;
+      box-shadow:0 3px 8px rgba(15,23,42,.08);
     }
-    .pill small{font-weight:600;color:var(--muted)}
+    .badge .arrow{font-size:.9rem;color:var(--primary)}
 
-    .jump-row{
-      display:flex;flex-wrap:wrap;
-      gap:.6rem;margin-top:1rem;
+    .cta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.7rem;
+      align-items:center;
+      margin-top:1rem;
     }
-    .jump{
-      flex:1 1 260px;
-      background:#fff;
-      border:2px solid rgba(74,120,125,.22);
-      border-radius:16px;
-      padding:.85rem .95rem;
-      box-shadow:var(--shadow);
-      display:flex;align-items:center;justify-content:space-between;gap:.8rem;
+
+    .btn-primary, .btn-secondary, .btn-wa, .btn-gold{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:.9rem 1.7rem;
+      border-radius:999px;
+      font-weight:700;
+      font-size:.95rem;
       cursor:pointer;
-      transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
+      border:none;
+      text-align:center;
+      white-space:nowrap;
+      transition:transform .12s ease, filter .12s ease;
     }
-    .jump:hover{transform:translateY(-1px);filter:brightness(1.01);box-shadow:var(--shadowStrong)}
-    .jump .t{
-      font-family:"Raleway",system-ui,sans-serif;
-      font-weight:800;color:#111;line-height:1.2;
+    .btn-primary, .btn-gold{
+      background:var(--accent);
+      color:#1f2933;
+      box-shadow:0 6px 18px rgba(0,0,0,.12);
     }
-    .jump .s{color:var(--muted);font-size:.88rem;margin-top:.15rem}
-    .jump .arr{
-      width:36px;height:36px;border-radius:999px;
-      display:grid;place-items:center;
-      background:linear-gradient(to right, rgba(254,243,199,.95), rgba(224,242,254,.9));
-      border:1px solid rgba(148,163,184,.7);
+    .btn-secondary{
+      background:#fff;
       color:var(--primary);
-      font-weight:900;
-      flex:0 0 auto;
+      border:1px solid rgba(148,163,184,.85);
+    }
+    .btn-wa{
+      background:var(--wa);
+      color:#fff;
+      box-shadow:0 6px 18px rgba(0,0,0,.12);
+    }
+    .btn-primary:hover, .btn-secondary:hover, .btn-wa:hover, .btn-gold:hover{
+      filter:brightness(1.03);
+      transform:translateY(-1px);
+    }
+
+    .hero-photo{
+      flex:0 0 280px;
+      text-align:right;
+      position:relative;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      gap:.7rem;
+    }
+    .hero-photo::before{
+      content:"";
+      position:absolute;
+      width:220px;height:220px;border-radius:50%;
+      background: radial-gradient(circle, #f4be69 0, #ffffff 50%, #93c5fd 100%);
+      opacity:.6;
+      top:10px;
+      z-index:0;
+    }
+    .hero-photo img{
+      max-width:320px;
+      height:auto;
+      position:relative;
+      z-index:1;
+      display:block;
+    }
+    .hero-tagcard{
+      position:absolute;
+      bottom:0;
+      right:10px;
+      background:#fff;
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,.6);
+      padding:.55rem .7rem;
+      font-size:.78rem;
+      color:var(--muted);
+      box-shadow:0 8px 20px rgba(15,23,42,.2);
+      z-index:2;
+      max-width:220px;
+    }
+    .hero-tagcard-title{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;
+      font-size:.8rem;
+      color:var(--primary);
+      margin-bottom:.2rem;
+    }
+    .hero-tagcard-line{
+      display:flex;
+      align-items:center;
+      gap:.35rem;
+      margin-bottom:.1rem;
+    }
+    .hero-tagcard-dot{
+      width:6px;height:6px;border-radius:999px;background:var(--accent)
     }
 
     /* MAIN */
     main{
-      padding:1.7rem 1.4rem 2.4rem;
-      background:linear-gradient(to bottom,#fff 0,#f9fafb 100%);
+      padding:1.8rem 1.4rem 2.4rem;
       flex:1;
+      background:linear-gradient(to bottom, #ffffff 0, #f9fafb 100%);
     }
-    section{margin-bottom:1.7rem}
+    section{margin-bottom:2rem}
     h2{
       font-family:"Raleway",system-ui,sans-serif;
-      font-weight:800;
+      margin:0 0 .4rem;
       font-size:1.45rem;
       color:var(--primary);
-      margin:0 0 .4rem;
+      font-weight:800;
     }
-    .section-sub{
-      margin:0 0 1rem;
+    .section-subtitle{
+      margin-bottom:1rem;
       color:var(--muted);
-      font-size:.95rem;
-      max-width:60rem;
+      font-size:.9rem;
     }
+    .section-subtitle strong{font-weight:800;color:var(--primary)}
 
-    .grid{
+    .grid-2{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
       gap:1rem;
     }
-
     .card{
-      background:linear-gradient(to bottom,#fff,#fbfdff);
-      border-radius:18px;
-      border:2px solid rgba(74,120,125,.18);
+      background:linear-gradient(to bottom,#fff,var(--bg-soft));
+      border-radius:16px;
+      padding:1rem 1.05rem;
+      border:2px solid rgba(74,120,125,.20);
       box-shadow:var(--shadow);
-      padding:1rem 1.05rem 1.05rem;
-      min-width:0;
-      transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+      font-size:.92rem;
+      color:var(--muted);
     }
-    .card:hover{transform:translateY(-1px);box-shadow:var(--shadowStrong);filter:brightness(1.005)}
     .card-title{
       font-family:"Raleway",system-ui,sans-serif;
       font-weight:800;
-      color:#111;
-      font-size:1.05rem;
-      margin:0 0 .35rem;
+      margin-bottom:.35rem;
+      color:var(--text);
+      font-size:1rem;
     }
-    .card p{
-      margin:.35rem 0 0;
+    .card ul{margin:.2rem 0 0;padding-left:1.1rem}
+    .card li{margin-bottom:.18rem}
+    .num{font-weight:800;color:var(--primary)}
+
+    /* Rechner */
+    .calc-wrapper{
+      border-radius:18px;
+      padding:1.2rem 1.1rem 1.4rem;
+      background:linear-gradient(to right, #fef3c7 0, #ffffff 45%, #e0f2fe 100%);
+      border:1px solid var(--border);
+      box-shadow:0 10px 25px rgba(15,23,42,.08);
+      margin-top:.6rem;
+    }
+    .calc-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+      gap:1.2rem;
+    }
+    .calc-inputs label{
+      display:block;
+      font-size:.85rem;
+      font-weight:700;
+      margin-bottom:.25rem;
+    }
+    .calc-inputs input{
+      width:100%;
+      padding:.55rem .6rem;
+      border-radius:10px;
+      border:1px solid var(--border);
+      font-size:.9rem;
+    }
+    .calc-inputs .field{margin-bottom:.7rem}
+    .calc-btn-row{margin-top:.3rem}
+    .calc-btn-row button{width:100%}
+
+    .calc-result{
+      background:rgba(255,255,255,.9);
+      border-radius:14px;
+      padding:.9rem 1rem;
+      border:1px solid var(--border);
+      font-size:.9rem;
       color:var(--muted);
-      font-size:.95rem;
-      overflow-wrap:anywhere;
     }
-
-    .tagrow{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.65rem}
-    .tag{
-      display:inline-flex;align-items:center;gap:.4rem;
-      padding:.32rem .6rem;border-radius:999px;
-      font-size:.82rem;font-weight:900;
-      border:2px solid rgba(148,163,184,.55);
+    .calc-expl{
+      font-size:.9rem;
+      margin-bottom:.6rem;
+      color:var(--muted);
+    }
+    .calc-expl strong{font-weight:800}
+    .calc-values{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+      gap:.6rem;
+      margin-top:.4rem;
+    }
+    .calc-value-box{
+      padding:.55rem .7rem;
+      border-radius:12px;
       background:#fff;
-      color:#111;
+      border:2px solid var(--border);
+      box-shadow:0 8px 18px rgba(15,23,42,.06);
     }
-    .tag .dot{width:9px;height:9px;border-radius:999px;background:var(--accent)}
-    .tag.muted{color:var(--muted);font-weight:800}
+    .calc-value-box.today{
+      border-color:rgba(220,38,38,.55);
+      background:#fee2e2;
+    }
+    .calc-value-box.boosted{
+      border-color:#111827;
+      background:#f3f4f6;
+    }
+    .calc-value-box.diff{
+      border-color:rgba(22,163,74,.55);
+      background:#dcfce7;
+    }
+    .calc-value-box.total{
+      border-color:rgba(148,163,184,.7);
+      background:#eff6ff;
+    }
+    .calc-value-label{
+      font-size:.8rem;
+      color:var(--muted);
+      margin-bottom:.1rem;
+    }
+    .calc-value-number{
+      display:block;
+      font-weight:800;
+      font-size:1.05rem;
+      margin-top:2px;
+    }
+    .calc-value-number.red{color:#dc2626}
+    .calc-value-number.green{color:#16a34a}
+    .calc-value-number.black{color:#111827}
 
-    .cta-box{
-      margin-top:1.2rem;
+    .calc-note{
+      margin-top:.6rem;
+      font-size:.78rem;
+      color:#6b7280;
+    }
+    .calc-cta-row{
+      margin-top:.8rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:.6rem;
+    }
+    .calc-examples-link{
+      margin-top:.6rem;
+      font-size:.85rem;
+      color:var(--primary);
+      text-decoration:underline;
+      cursor:pointer;
+    }
+
+    /* Beispielkarten */
+    .example-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:1rem;
+      margin-top:.8rem;
+    }
+    .example-card{
+      background:#fff;
       border-radius:18px;
       border:1px solid var(--border);
-      padding:1.1rem 1.1rem 1.2rem;
-      background:linear-gradient(to right,#e0f2fe,#fef3c7);
+      padding:1rem 1.1rem 1.1rem;
+      box-shadow:var(--shadow);
+      font-size:.9rem;
+      color:var(--muted);
+    }
+    .example-title{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;
+      margin-bottom:.4rem;
+      color:var(--text);
+      font-size:1.05rem;
+    }
+    .example-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      margin-bottom:.2rem;
+      gap:.75rem;
+    }
+    .example-row strong{font-weight:800}
+    .example-highlight{
+      margin-top:.6rem;
+      font-weight:800;
+      color:var(--good);
+    }
+    .bar-track{
+      width:100%;
+      height:16px;
+      border-radius:999px;
+      background:#d1d5db;
+      overflow:hidden;
+      margin-top:.25rem;
+      margin-bottom:.4rem;
+    }
+    .bar-fill-before{height:100%;background:var(--primary)}
+    .bar-fill-after{height:100%;background:var(--accent);width:100%}
+    .example-footnote{
+      font-size:.8rem;
+      color:#6b7280;
+      margin-top:.4rem;
+    }
+
+    /* Bottom CTA */
+    .bottom-cta{
+      margin-top:1.6rem;
+      padding:1.1rem 1.1rem 1.3rem;
+      border-radius:18px;
+      background:linear-gradient(to right, #e0f2fe, #fef3c7);
+      border:1px solid var(--border);
       text-align:center;
+      font-size:.95rem;
       box-shadow:var(--shadow);
     }
-    .cta-box p{margin:0 0 .8rem;color:var(--muted)}
-    .btnrow{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:.9rem 1.15rem;
-      border-radius:999px;
-      font-weight:900;
-      font-size:.98rem;
-      border:0;
-      cursor:pointer;
-      text-align:center;
-      white-space:nowrap;
-      box-shadow:0 10px 22px rgba(15,23,42,.12);
-    }
-    .btn-outline{background:#fff;border:1px solid rgba(148,163,184,.85);box-shadow:none;color:var(--primary)}
-    .btn-gold{background:var(--accent);color:#1f2933}
-    .btn-wa{background:var(--wa);color:#fff}
-    .btn:hover{filter:brightness(1.02);transform:translateY(-1px)}
+    .bottom-cta p{margin:0 0 .8rem;color:var(--muted)}
 
     footer{
       padding:1rem 1.4rem 1.3rem;
@@ -256,7 +470,18 @@
       background:#f9fafb;
     }
 
-    /* =============== Burger Menü =============== */
+    /* Animation */
+    .animate-on-scroll{
+      opacity:0;
+      transform:translateY(18px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+    .animate-on-scroll.in-view{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* =============== Burger Menü (neu) =============== */
     .burger{
       position:absolute;top:10px;right:10px;
       width:46px;height:46px;border-radius:999px;
@@ -269,16 +494,19 @@
     .burger:active{transform:translateY(1px)}
     .burger-lines{width:20px;height:14px;position:relative}
     .burger-lines span{
-      position:absolute;left:0;right:0;
-      height:2px;border-radius:999px;background:var(--primary);
+      position:absolute;left:0;right:0;height:2px;border-radius:999px;
+      background:var(--primary);
     }
     .burger-lines span:nth-child(1){top:0}
     .burger-lines span:nth-child(2){top:6px}
     .burger-lines span:nth-child(3){top:12px}
 
     .menu-backdrop{
-      position:fixed;inset:0;background:rgba(15,23,42,.45);
-      opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1200;
+      position:fixed;inset:0;
+      background:rgba(15,23,42,.45);
+      opacity:0;pointer-events:none;
+      transition:opacity .25s ease;
+      z-index:1200;
     }
     .menu-panel{
       position:fixed;top:0;right:0;height:100%;
@@ -298,58 +526,111 @@
       display:flex;align-items:center;justify-content:space-between;gap:.75rem;
       background:linear-gradient(to right,#ffffff,#fef3c7);
     }
-    .menu-head .ttl{font-family:Raleway,system-ui,sans-serif;font-weight:800;color:var(--primary)}
+    .menu-head .ttl{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;
+      color:var(--primary);
+    }
     .menu-close{
       width:40px;height:40px;border-radius:999px;
       border:1px solid rgba(148,163,184,.9);
-      background:#fff;cursor:pointer;display:grid;place-items:center;
+      background:#fff;
+      cursor:pointer;
+      display:grid;place-items:center;
     }
+    .menu-close:active{transform:translateY(1px)}
     .menu-body{padding:.6rem 1rem 1rem;overflow:auto}
+
     .menu-group{
-      margin:.9rem 0;border:1px solid rgba(148,163,184,.55);
-      border-radius:14px;overflow:hidden;background:linear-gradient(to bottom,#fff,#fbfdff);
+      margin:.9rem 0;
+      border:1px solid rgba(148,163,184,.55);
+      border-radius:14px;
+      overflow:hidden;
+      background:linear-gradient(to bottom,#fff,#fbfdff);
     }
     .menu-group button.menu-toggle{
-      width:100%;text-align:left;border:0;background:transparent;
-      padding:.85rem .95rem;cursor:pointer;
+      width:100%;
+      text-align:left;
+      border:0;background:transparent;
+      padding:.85rem .95rem;
+      cursor:pointer;
       display:flex;align-items:center;justify-content:space-between;
-      font-family:Raleway,system-ui,sans-serif;font-weight:800;color:#111;
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;
+      color:#111;
     }
     .menu-group button .chev{color:var(--primary);font-weight:900}
     .menu-sub{
       border-top:1px solid rgba(148,163,184,.45);
-      display:none;padding:.35rem .5rem .6rem;
+      display:none;
+      padding:.35rem .5rem .6rem;
     }
     .menu-group.open .menu-sub{display:block}
     .menu-sub a{
-      display:block;padding:.55rem .55rem;border-radius:10px;
-      color:var(--muted);font-size:.95rem;
+      display:block;
+      padding:.55rem .55rem;
+      border-radius:10px;
+      color:var(--muted);
+      font-size:.95rem;
     }
     .menu-sub a:hover{background:#f3f6f8;color:#111}
     .menu-sub a strong{color:var(--primary)}
+
     .menu-foot{
-      margin-top:auto;padding:1rem;border-top:1px solid var(--border);
-      background:#f9fafb;display:grid;gap:.6rem;
+      margin-top:auto;
+      padding:1rem;
+      border-top:1px solid var(--border);
+      background:#f9fafb;
+      display:grid;
+      gap:.6rem;
     }
     .menu-foot .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:.92rem 1.2rem;border-radius:999px;
-      font-weight:900;font-size:.98rem;border:0;cursor:pointer;
-      white-space:nowrap;text-align:center;text-decoration:none;
-      box-shadow:0 10px 22px rgba(15,23,42,.12);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:.92rem 1.2rem;
+      border-radius:999px;
+      font-weight:800;
+      font-size:.98rem;
+      border:0;
+      cursor:pointer;
+      white-space:nowrap;
+      text-align:center;
+      text-decoration:none;
     }
     .menu-foot .btn-gold{background:var(--accent);color:#1f2933}
     .menu-foot .btn-wa{background:var(--wa);color:#fff}
 
+    /* Responsive */
     @media (max-width:768px){
       .topbar{padding-inline:1rem}
       .topbar-right{display:none}
-      header.hero{padding:1.6rem 1rem 1.5rem}
-      main{padding:1.5rem 1rem 2.1rem}
-      .hero h1{font-size:1.55rem}
-      .hero-lead{font-size:.96rem}
-      .jump{flex:1 1 100%}
-      .btn{width:100%}
+
+      header.hero{padding:1.6rem 1rem 1.8rem}
+      main{padding:1.6rem 1rem 2.2rem}
+
+      .hero-inner{flex-direction:column-reverse;align-items:flex-start}
+      .hero h1{font-size:1.5rem}
+      .hero-lead{font-size:.9rem}
+
+      .hero-photo{width:100%;justify-content:center;align-items:center}
+      .hero-photo::before{width:180px;height:180px;top:10px}
+      .hero-photo img{max-width:280px}
+
+      .hero-tagcard{
+        position:static;
+        transform:none;
+        margin-top:.6rem;
+        box-shadow:0 4px 14px rgba(15,23,42,.15);
+        max-width:260px;
+        text-align:left;
+      }
+
+      .calc-grid{grid-template-columns:minmax(0,1fr)}
+      .calc-btn-row button{width:100%}
+
+      .cta-row{gap:.5rem}
+      .btn-primary,.btn-secondary,.btn-wa,.btn-gold{width:100%;justify-content:center}
     }
   </style>
 </head>
@@ -363,7 +644,7 @@
         <div class="topbar-portrait">
           <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
         </div>
-        <div style="min-width:0">
+        <div>
           <div class="topbar-title">Jonas Plener</div>
           <div class="topbar-tagline">
             Agentur für Deutsche Vermögensberatung<br />
@@ -387,6 +668,7 @@
 
     <!-- Menü Backdrop + Panel -->
     <div class="menu-backdrop" id="menuBackdrop"></div>
+
     <aside class="menu-panel" id="menuPanel" aria-label="Navigation">
       <div class="menu-head">
         <div class="ttl">Menü</div>
@@ -394,6 +676,7 @@
       </div>
 
       <div class="menu-body">
+
         <div class="menu-group open">
           <button type="button" class="menu-toggle">
             <span>Startseite</span><span class="chev">▾</span>
@@ -456,6 +739,7 @@
             <a href="unternehmer-termin.html">Termin für Unternehmer</a>
           </div>
         </div>
+
       </div>
 
       <div class="menu-foot">
@@ -471,139 +755,408 @@
     <!-- HERO -->
     <header class="hero">
       <div class="hero-inner">
-        <div class="hero-text">
-          <div class="hero-label"><span class="dot"></span> Eltern-Renten-Check · klar &amp; strukturiert</div>
-          <h1>Damit du später nicht denkst: „Hätten wir das mal früher gewusst.“</h1>
+        <div class="hero-text animate-on-scroll">
+          <div class="hero-label"><span class="dot"></span>Eltern-Renten-Check · unverbindlich</div>
+          <h1>Bis zu <strong>120 €</strong> pro Kind: Weißt Du, ob Du alles bekommst?</h1>
+
           <p class="hero-lead">
-            In wenigen Minuten siehst du, ob bei euch <strong>Kindererziehungszeiten</strong>, <strong>Absicherung</strong>
-            und <strong>Vorsorge</strong> logisch zusammenpassen – oder ob irgendwo Geld, Förderung oder Schutz liegen bleibt.
+            Ich bin Jonas Plener. Viele Eltern verschenken jeden Monat Rentenansprüche und staatliche Förderungen,
+            weil niemand das Thema mit ihnen klar durchgeht. Genau da setze ich an:
+            <strong>kurz, verständlich und auf Augenhöhe.</strong>
           </p>
 
-          <div class="pill-row">
-            <div class="pill"><span class="dot" style="width:9px;height:9px;border-radius:999px;background:var(--accent)"></span> 10–15 Min. <small>Quick-Check</small></div>
-            <div class="pill"><span class="dot" style="width:9px;height:9px;border-radius:999px;background:var(--accent)"></span> keine Verkaufs-Show <small>nur Klarheit</small></div>
-            <div class="pill"><span class="dot" style="width:9px;height:9px;border-radius:999px;background:var(--accent)"></span> regional <small>Kinzigtal/Ortenau</small></div>
+          <div class="hero-badges">
+            <a href="#kez" class="badge"><span>Kindererziehungszeiten prüfen</span><span class="arrow">↓</span></a>
+            <a href="#rente" class="badge"><span>bAV und Riester richtig nutzen</span><span class="arrow">↓</span></a>
+            <a href="#foerderung" class="badge"><span>Rentenlücke klar sehen</span><span class="arrow">↓</span></a>
+            <a href="#beispiele" class="badge"><span>Beispiele in Zahlen</span><span class="arrow">↓</span></a>
           </div>
 
-          <div class="jump-row">
-            <a class="jump" href="#was-du-bekommst">
-              <div>
-                <div class="t">Was du bekommst</div>
-                <div class="s">Checkliste &amp; klare Empfehlung – ohne Fachchinesisch</div>
-              </div>
-              <div class="arr">↓</div>
+          <div class="cta-row">
+            <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener" class="btn-primary">
+              Eltern-Renten-Check starten
             </a>
+            <a href="https://wa.me/4917663796605" target="_blank" rel="noopener" class="btn-wa">
+              Schreib mir auf WhatsApp
+            </a>
+          </div>
+        </div>
 
-            <a class="jump" href="#cta">
-              <div>
-                <div class="t">Kurz prüfen lassen</div>
-                <div class="s">Wenn du willst: 10 Minuten, fertig</div>
-              </div>
-              <div class="arr">→</div>
-            </a>
+        <div class="hero-photo animate-on-scroll">
+          <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
+          <div class="hero-tagcard">
+            <div class="hero-tagcard-title">Dein Ansprechpartner</div>
+            <div class="hero-tagcard-line"><span class="hero-tagcard-dot"></span><span>Eltern und Familien im Fokus</span></div>
+            <div class="hero-tagcard-line"><span class="hero-tagcard-dot"></span><span>Beratung digital und vor Ort</span></div>
           </div>
         </div>
       </div>
     </header>
 
     <main>
-      <section id="was-du-bekommst">
-        <h2>Was der Eltern-Renten-Check klärt</h2>
-        <p class="section-sub">
-          Ziel ist nicht „mehr Verträge“, sondern: <strong>sauberer Überblick</strong> + <strong>Prioritäten</strong>.
-          Du weißt danach, was wirklich wichtig ist – und was du dir sparen kannst.
-        </p>
 
-        <div class="grid">
-          <article class="card">
-            <h3 class="card-title">Kindererziehungszeiten &amp; Rentenpunkte</h3>
-            <p>Wer bekommt welche Zeiten? Was ist korrekt gemeldet? Wo gehen Punkte verloren, weil es nie geprüft wurde?</p>
-            <div class="tagrow">
-              <span class="tag"><span class="dot"></span>prüfbar</span>
-              <span class="tag muted">oft vergessen</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title">Absicherung (wenn’s knallt)</h3>
-            <p>Welche Risiken sind wirklich existenziell (Arbeitskraft/Haftpflicht)? Und wo ist etwas doppelt oder falsch gesetzt?</p>
-            <div class="tagrow">
-              <span class="tag"><span class="dot"></span>Priorität</span>
-              <span class="tag muted">klar sortiert</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title">Vorsorge &amp; Struktur</h3>
-            <p>Passt eure Vorsorge zum Leben (Elternzeit, Teilzeit, Selbstständigkeit)? Oder zahlt ihr in die falsche Ecke?</p>
-            <div class="tagrow">
-              <span class="tag"><span class="dot"></span>einfach erklärt</span>
-              <span class="tag muted">ohne Fachkram</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title">Sparen fürs Kind</h3>
-            <p>Wenn ihr fürs Kind spart: Ist das Ziel klar? Ist das Produkt passend? Oder ist es nur „irgendwas abgeschlossen“?</p>
-            <div class="tagrow">
-              <span class="tag"><span class="dot"></span>zielorientiert</span>
-              <span class="tag muted">realistisch</span>
-            </div>
-          </article>
+      <!-- RECHNER -->
+      <section id="rentencheck">
+        <h2>Was kann Deine Rente mit Förderung werden?</h2>
+        <div class="section-subtitle">
+          Trag Deine Daten ein und sieh, welchen Unterschied Förderung für Deine Rente machen kann.
         </div>
-      </section>
 
-      <section id="ablauf">
-        <h2>So läuft’s ab</h2>
-        <p class="section-sub">
-          Kurz, strukturiert, ohne Drama. Du bekommst am Ende eine klare Aussage: <strong>passt / anpassen / unnötig</strong>.
-        </p>
+        <div class="calc-wrapper">
+          <div class="calc-grid">
 
-        <div class="grid">
-          <article class="card">
-            <h3 class="card-title">1) Überblick</h3>
-            <p>Was ist da? Was fehlt? Was ist doppelt? (Keine Sorge: du musst nicht alles perfekt vorbereitet haben.)</p>
-          </article>
-          <article class="card">
-            <h3 class="card-title">2) Prioritäten</h3>
-            <p>Wir sortieren nach Wirkung: erst existenziell, dann sinnvoll, dann „nice to have“.</p>
-          </article>
-          <article class="card">
-            <h3 class="card-title">3) Empfehlung</h3>
-            <p>Du bekommst eine klare Empfehlung – und entscheidest komplett selbst, ob du etwas änderst.</p>
-          </article>
-        </div>
-      </section>
+            <div class="calc-inputs">
+              <div class="field">
+                <label for="birthdate">Dein Geburtsdatum</label>
+                <input type="date" id="birthdate" />
+              </div>
 
-      <section id="cta">
-        <div class="cta-box">
-          <p>
-            Wenn du willst, prüfen wir das gemeinsam in <strong>10 Minuten</strong>:
-            Was ist wichtig? Was ist doppelt? Wo ist eine Lücke?
-          </p>
-          <div class="btnrow">
-            <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch vereinbaren</a>
-            <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">Kurz per WhatsApp</a>
+              <div class="field">
+                <label for="brutto">Dein monatliches Brutto-Einkommen (in €)</label>
+                <input type="number" id="brutto" min="0" step="50" placeholder="z. B. 3.000" />
+              </div>
+
+              <div class="field">
+                <label for="children">Wie viele Kinder werden berücksichtigt?</label>
+                <input type="number" id="children" min="0" max="10" step="1" placeholder="Anzahl der Kinder" />
+              </div>
+
+              <div class="calc-btn-row">
+                <button type="button" class="btn-primary" id="calcBtn">Renten-Check berechnen</button>
+              </div>
+            </div>
+
+            <div class="calc-result" id="calc-result">
+              <p class="calc-expl">
+                Unten siehst Du vier Zahlen:
+                <br /><strong>1. Rente heute</strong> ist das, was Deine Rente ungefähr wäre, wenn Du nichts änderst.
+                <br /><strong>2. Rente mit Förderung</strong> zeigt, was möglich sein kann, wenn Du die passenden Bausteine nutzt.
+                <br /><strong>3. Mehr-Rente pro Monat</strong> ist die Differenz zwischen heute und mit Förderung.
+                <br /><strong>4. Summe bis 100 Jahre</strong> ist das Geld, das sich daraus bis zu Deinem 100. Geburtstag aufsummieren kann.
+              </p>
+
+              <div class="calc-values">
+                <div class="calc-value-box today">
+                  <div class="calc-value-label">Rente heute (ca. pro Monat)</div>
+                  <div class="calc-value-number red" id="res-today">–</div>
+                </div>
+
+                <div class="calc-value-box boosted">
+                  <div class="calc-value-label">Rente mit Förderung (ca. pro Monat)</div>
+                  <div class="calc-value-number black" id="res-boosted">–</div>
+                </div>
+
+                <div class="calc-value-box diff">
+                  <div class="calc-value-label">Mehr-Rente pro Monat</div>
+                  <div class="calc-value-number green" id="res-diff">–</div>
+                </div>
+
+                <div class="calc-value-box total">
+                  <div class="calc-value-label">Zusätzliche Summe bis 100 Jahre</div>
+                  <div class="calc-value-number" id="res-lifetime">–</div>
+                </div>
+              </div>
+
+              <div class="calc-note">
+                Die Werte sind eine grobe Orientierung und ersetzen keine individuelle Beratung.
+                Welche Bausteine wirklich zu Dir passen, klären wir am besten im Gespräch.
+              </div>
+
+              <div class="calc-cta-row">
+                <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener" class="btn-primary">
+                  Ergebnis mit mir durchgehen
+                </a>
+                <a href="https://wa.me/4917663796605" target="_blank" rel="noopener" class="btn-wa">
+                  Ergebnis per WhatsApp schicken
+                </a>
+              </div>
+
+              <div class="calc-examples-link">
+                <a href="#beispiele">Beispiele dazu ansehen</a>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
+
+      <!-- BEISPIELE -->
+      <section id="beispiele">
+        <h2>Wie sich das in Zahlen auswirken kann</h2>
+        <div class="section-subtitle">
+          Beispiele, damit Du ein Gefühl für die Größenordnungen bekommst.
+        </div>
+
+        <div class="example-grid">
+          <div class="example-card">
+            <div class="example-title">Beispiel 1: Mutter mit <span class="num">3 Kindern</span></div>
+
+            <div class="example-row">
+              <span>Gesetzliche Rente heute</span>
+              <span><strong class="num">1.000 €</strong></span>
+            </div>
+            <div class="example-row">
+              <span>Optimierte Rente mit passenden Bausteinen</span>
+              <span><strong class="num">etwa 1.500 €</strong></span>
+            </div>
+
+            <div class="example-highlight">
+              Möglicher Mehrwert: bis zu rund <span class="num">500 €</span> pro Monat
+            </div>
+
+            <div class="example-row" style="margin-top:.6rem;">
+              <span>Vorher: <strong class="num">1.000 €</strong></span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill-before" style="width:67%;"></div>
+            </div>
+
+            <div class="example-row">
+              <span>Nachher: <strong class="num">etwa 1.500 €</strong></span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill-after"></div>
+            </div>
+
+            <div class="example-footnote">
+              Beispielrechnung, gerundet. Konkrete Werte hängen von Jahrgängen, Beiträgen und Produkten ab.
+            </div>
+          </div>
+
+          <div class="example-card">
+            <div class="example-title">Beispiel 2: Vater mit bAV und Basisrente</div>
+
+            <div class="example-row">
+              <span>Gesetzliche Rente heute</span>
+              <span><strong class="num">1.600 €</strong></span>
+            </div>
+            <div class="example-row">
+              <span>Optimierte Rente mit passenden Bausteinen</span>
+              <span><strong class="num">etwa 2.000 €</strong></span>
+            </div>
+
+            <div class="example-highlight">
+              Möglicher Mehrwert: bis zu rund <span class="num">400 €</span> pro Monat
+            </div>
+
+            <div class="example-row" style="margin-top:.6rem;">
+              <span>Vorher: <strong class="num">1.600 €</strong></span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill-before" style="width:80%;"></div>
+            </div>
+
+            <div class="example-row">
+              <span>Nachher: <strong class="num">etwa 2.000 €</strong></span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill-after"></div>
+            </div>
+
+            <div class="example-footnote">
+              Beispielrechnung, gerundet. Steuervorteile und Zuschüsse können die Wirkung zusätzlich erhöhen.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Kindererziehungszeiten -->
+      <section id="kez">
+        <h2>1. Kindererziehungszeiten: Dein monatlicher Renten-Booster</h2>
+        <div class="section-subtitle">
+          Für jedes Kind kannst Du bis zu <strong class="num">120 €</strong> pro Monat an zusätzlicher Rente bekommen.
+          Viele Eltern nutzen das nicht komplett, weil der Antrag nie sauber gemacht wurde.
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Was wichtig ist</div>
+            <ul>
+              <li>Zeiten pro Kind werden Deiner Rente gutgeschrieben.</li>
+              <li>Entscheidend ist, dass die Zeiten korrekt beantragt sind.</li>
+              <li>Das funktioniert auch, wenn Du heute schon arbeitest oder selbstständig bist.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Was wir gemeinsam prüfen</div>
+            <ul>
+              <li>Ob alle Kinder und Zeiträume erfasst sind.</li>
+              <li>Ob sich bei Dir noch Nachmeldungen lohnen.</li>
+              <li>Wie sich das auf Deine spätere Monatsrente auswirkt.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- bAV & Riester -->
+      <section id="rente">
+        <h2>2. bAV und Riester: Förderung, die Deine Rente nach vorne bringt</h2>
+        <div class="section-subtitle">
+          Über den Arbeitgeber, über Riester oder über eine Basisrente kannst Du Dir zusätzliche Förderung sichern,
+          die Deine eigene Einzahlung deutlich verstärken kann.
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Riester mit Zulagen</div>
+            <ul>
+              <li>Grundzulage kann bis zu <strong class="num">175 €</strong> pro Jahr betragen.</li>
+              <li>Kinderzulagen können je nach Konstellation mehrere <strong class="num">Hundert Euro</strong> pro Jahr bringen.</li>
+              <li>Du zahlst einen Teil selbst und bekommst den Rest als Zuschuss vom Staat.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-title">bAV und Basisrente</div>
+            <ul>
+              <li>Beiträge können steuerlich absetzbar sein und so Deine Netto-Belastung deutlich senken.</li>
+              <li>Gerade für Gutverdienende und Selbstständige interessant.</li>
+              <li>Wir schauen, welche Kombination für Dich sinnvoll ist.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Rentenlücke -->
+      <section id="foerderung">
+        <h2>3. Deine Rentenlücke klar sehen</h2>
+        <div class="section-subtitle">
+          Die meisten wissen, dass eine Lücke da ist, aber nicht wie groß sie wirklich ist.
+          Sobald Du Deine Zahlen kennst, kannst Du in Ruhe entscheiden, welche Schritte zu Dir passen.
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Was wir durchgehen</div>
+            <ul>
+              <li>Gesetzliche Rente aus Deiner Renteninformation.</li>
+              <li>Bestehende Verträge: was ist sinnvoll, was passt nicht mehr.</li>
+              <li>Welche Summe Dir im Monat fehlt, wenn Du so weitermachst wie bisher.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Was Du danach hast</div>
+            <ul>
+              <li>Eine klare Zahl statt Bauchgefühl.</li>
+              <li>Ein Konzept, das Kinder, Eigentum und Vorsorge zusammendenkt.</li>
+              <li>Einen Ansprechpartner, den Du auch später noch fragen kannst.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom CTA -->
+      <section>
+        <div class="bottom-cta animate-on-scroll">
+          <p>
+            Du möchtest, dass wir Deine Zahlen gemeinsam durchgehen oder die Förderung für Deine Kinder sauber aufsetzen?
+          </p>
+          <a href="leistung.html" class="btn-gold">
+            Zu meinen Leistungen und allen Angeboten
+          </a>
+        </div>
+      </section>
+
     </main>
 
     <footer>
       Diese Seite ersetzt keine individuelle Rechts-, Steuer- oder Sozialversicherungsberatung.
-      Alle Angaben ohne Gewähr. Maßgeblich sind die Vertragsbedingungen und die gesetzlichen Regelungen.
+      Alle Angaben ohne Gewähr. Maßgeblich sind die gesetzlichen Regelungen und die Informationen der jeweiligen Anbieter.
     </footer>
   </div>
 
   <script>
+    // Animation on scroll
+    document.addEventListener("DOMContentLoaded", () => {
+      const elements = document.querySelectorAll(".animate-on-scroll");
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      elements.forEach((el) => observer.observe(el));
+    });
+
+    // Rechner
+    function calculatePension() {
+      const birthInput = document.getElementById("birthdate").value;
+      const bruttoRaw = (document.getElementById("brutto").value || "").toString().replace(",", ".");
+      const bruttoInput = parseFloat(bruttoRaw);
+      const childrenInput = parseInt(document.getElementById("children").value, 10);
+
+      const resTodayEl = document.getElementById("res-today");
+      const resBoostedEl = document.getElementById("res-boosted");
+      const resDiffEl = document.getElementById("res-diff");
+      const resLifetimeEl = document.getElementById("res-lifetime");
+
+      if (!birthInput || Number.isNaN(bruttoInput) || Number.isNaN(childrenInput)) {
+        resTodayEl.textContent = "Bitte alle Felder ausfüllen.";
+        resBoostedEl.textContent = "–";
+        resDiffEl.textContent = "–";
+        resLifetimeEl.textContent = "–";
+        return;
+      }
+
+      const birthDate = new Date(birthInput);
+      const now = new Date();
+      let age = now.getFullYear() - birthDate.getFullYear();
+      const m = now.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && now.getDate() < birthDate.getDate())) age--;
+      if (age < 18) age = 18;
+      if (age > 67) age = 67;
+
+      const rentToday = bruttoInput * 0.4;
+
+      const kezPlus = childrenInput * 120;
+      const riesterBase = 175 / 12;
+      const riesterKids = childrenInput * (300 / 12);
+
+      const monthlyPlus = kezPlus + riesterBase + riesterKids;
+      const rentBoosted = rentToday + monthlyPlus;
+      const diff = monthlyPlus;
+
+      const yearsLeft = Math.max(0, 100 - age);
+      const lifetimeExtra = diff * 12 * yearsLeft;
+
+      const fmt = (val) =>
+        new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(val));
+
+      resTodayEl.textContent = fmt(rentToday) + " €";
+      resBoostedEl.textContent = fmt(rentBoosted) + " €";
+      resDiffEl.textContent = fmt(diff) + " €";
+      resLifetimeEl.textContent = fmt(lifetimeExtra) + " €";
+    }
+
+    // Button klick + Enter in Inputs
+    document.getElementById("calcBtn")?.addEventListener("click", calculatePension);
+    ["birthdate","brutto","children"].forEach(id => {
+      document.getElementById(id)?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") calculatePension();
+      });
+    });
+
     // Burger Menü
     const burgerBtn = document.getElementById("burgerBtn");
     const menuPanel = document.getElementById("menuPanel");
     const menuBackdrop = document.getElementById("menuBackdrop");
     const menuClose = document.getElementById("menuClose");
 
-    const openMenu = () => { menuPanel.classList.add("open"); menuBackdrop.classList.add("open"); };
-    const closeMenu = () => { menuPanel.classList.remove("open"); menuBackdrop.classList.remove("open"); };
+    const openMenu = () => {
+      menuPanel.classList.add("open");
+      menuBackdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    };
+    const closeMenu = () => {
+      menuPanel.classList.remove("open");
+      menuBackdrop.classList.remove("open");
+      document.body.style.overflow = "";
+    };
 
     burgerBtn?.addEventListener("click", openMenu);
     menuClose?.addEventListener("click", closeMenu);
@@ -613,8 +1166,13 @@
       btn.addEventListener("click", () => btn.closest(".menu-group")?.classList.toggle("open"));
     });
 
+    // Menü schließt nach Link-Klick automatisch
+    document.querySelectorAll(".menu-sub a").forEach(a => {
+      a.addEventListener("click", closeMenu);
+    });
+
     document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape"){ closeMenu(); }
+      if (e.key === "Escape") closeMenu();
     });
   </script>
 </body>
