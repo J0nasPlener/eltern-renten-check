@@ -3,1118 +3,926 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Riester-Rente mit Zulagen – Jonas Plener</title>
+  <title>Riester-Rechner & Zulagen-Check – Jonas Plener</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@600;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    :root {
-      --primary: #4a787d;
-      --accent: #f4be69;
-      --text: #111111;
-      --muted: #4b5563;
-      --bg: #f4f8f8;
-      --bg-soft: #f9fbfb;
-      --border: #e5e7eb;
-      --good: #16a34a;
-      --bad: #dc2626;
-      --wa: #25d366;
+    :root{
+      --primary:#4a787d;
+      --accent:#f4be69;
+      --text:#111111;
+      --muted:#4b5563;
+      --border:#e5e7eb;
+      --bg:#f4f8f8;
+      --wa:#25d366;
+
+      --good:#16a34a;
+      --bad:#dc2626;
+
+      --shadow: 0 10px 25px rgba(15,23,42,.06);
+      --shadowStrong: 0 18px 45px rgba(15,23,42,.12);
     }
 
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: "Arimo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Arimo", system-ui, -apple-system, "Segoe UI", sans-serif;
       background: radial-gradient(circle at top, #fef3c7 0, #f4f8f8 35%, #dbeafe 100%);
-      color: var(--text);
-      line-height: 1.6;
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+
+    .page{
+      max-width:1100px;
+      margin:0 auto;
+      min-height:100vh;
+      background:#fff;
+      box-shadow:0 12px 35px rgba(15,23,42,.12);
+      display:flex;
+      flex-direction:column;
+      position:relative;
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    .page {
-      max-width: 1100px;
-      margin: 0 auto;
-      min-height: 100vh;
-      background: #ffffff;
-      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12);
-      display: flex;
-      flex-direction: column;
+    /* TOPBAR */
+    .topbar{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      padding:.85rem 1.8rem;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(to right,#ffffff,#fef3c7);
+    }
+    .topbar-left{display:flex;align-items:center;gap:.75rem;min-width:0}
+    .topbar-portrait img{
+      width:54px;height:54px;border-radius:50%;
+      object-fit:cover;
+      box-shadow:0 4px 10px rgba(15,23,42,.25);
+    }
+    .topbar-title{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;
+      letter-spacing:.03em;
+      font-size:.95rem;
+      text-transform:uppercase;
+      color:var(--primary);
+    }
+    .topbar-tagline{font-size:.8rem;color:var(--muted)}
+    .topbar-right{
+      font-size:.8rem;color:var(--muted);
+      text-align:right;
+      padding-right:54px; /* Platz für Burger */
+      white-space:nowrap;
     }
 
-    /* Topbar */
-    .topbar {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.8rem 1.8rem;
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(to right, #ffffff, #fef3c7);
-      gap: 1rem;
-    }
-
-    .topbar-left { display: flex; align-items: center; gap: 0.75rem; }
-
-    .topbar-portrait img {
-      height: 54px;
-      width: 54px;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.25);
-    }
-
-    .topbar-title {
-      font-family: "Raleway", system-ui, sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      color: var(--primary);
-    }
-
-    .topbar-tagline {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .topbar-right {
-      font-size: 0.8rem;
-      color: var(--muted);
-      text-align: right;
-      padding-right: 54px;
-    }
-
-    /* HERO */
-    header.hero {
-      padding: 2rem 1.4rem 2.2rem;
-      border-bottom: 1px solid var(--border);
-      background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 40%, #e0f2fe 100%);
-    }
-
-    .hero-inner {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .hero-text { flex: 1 1 260px; min-width: 0; }
-
-    .hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.15rem 0.65rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.8);
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
-      background: rgba(255, 255, 255, 0.9);
-    }
-
-    .hero-label span.dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--accent);
-    }
-
-    .hero h1 {
-      font-family: "Raleway", system-ui, sans-serif;
-      font-weight: 800;
-      font-size: 2rem;
-      margin: 0 0 0.7rem;
-      letter-spacing: 0.02em;
-    }
-
-    .hero-lead {
-      margin: 0 0 1rem;
-      color: var(--muted);
-      max-width: 40rem;
-      font-size: 0.98rem;
-    }
-
-    .hero-lead strong { font-weight: 800; color: var(--primary); }
-
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 0.6rem 0 1.1rem;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.32rem;
-      padding: 0.3rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.9);
-      font-size: 0.8rem;
-      color: var(--muted);
-      background: #ffffff;
-      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08);
-    }
-
-    .badge .arrow { font-size: 0.9rem; color: var(--primary); }
-
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      align-items: center;
-      margin-top: 1rem;
-    }
-
-    .btn-primary,
-    .btn-secondary,
-    .btn-wa,
-    .btn-gold {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.9rem 1.7rem;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      border: none;
-      text-align: center;
-      white-space: nowrap;
-      transition: transform .15s ease, filter .15s ease;
-    }
-
-    .btn-primary, .btn-gold {
-      background: var(--accent);
-      color: #1f2933;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-    }
-
-    .btn-secondary {
-      background: #ffffff;
-      color: var(--primary);
-      border: 1px solid rgba(148, 163, 184, 0.85);
-    }
-
-    .btn-wa {
-      background: var(--wa);
-      color: #ffffff;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-    }
-
-    .btn-primary:hover,
-    .btn-secondary:hover,
-    .btn-wa:hover,
-    .btn-gold:hover {
-      filter: brightness(1.03);
-      transform: translateY(-1px);
-    }
-
-    .hero-photo {
-      flex: 0 0 280px;
-      text-align: right;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-
-    .hero-photo::before {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #f4be69 0, #ffffff 50%, #93c5fd 100%);
-      opacity: 0.6;
-      top: 10px;
-      z-index: 0;
-    }
-
-    .hero-photo img {
-      max-width: 320px;
-      height: auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-tagcard {
-      position: absolute;
-      bottom: 0;
-      right: 10px;
-      background: #ffffff;
-      border-radius: 14px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 0.55rem 0.7rem;
-      font-size: 0.78rem;
-      color: var(--muted);
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
-      z-index: 2;
-      max-width: 250px;
-    }
-
-    .hero-tagcard-title {
-      font-family: "Raleway", system-ui, sans-serif;
-      font-weight: 800;
-      font-size: 0.8rem;
-      color: var(--primary);
-      margin-bottom: 0.2rem;
-    }
-
-    .hero-tagcard-line {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      margin-bottom: 0.1rem;
-    }
-
-    .hero-tagcard-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--accent);
-    }
-
-    main {
-      padding: 1.8rem 1.4rem 2.4rem;
-      flex: 1;
-      background: linear-gradient(to bottom, #ffffff 0, #f9fafb 100%);
-    }
-
-    section { margin-bottom: 2rem; }
-
-    h2 {
-      font-family: "Raleway", system-ui, sans-serif;
-      margin: 0 0 0.4rem;
-      font-size: 1.45rem;
-      color: var(--primary);
-      font-weight: 800;
-    }
-
-    .section-subtitle {
-      margin-bottom: 1rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-      max-width: 62rem;
-    }
-
-    .section-subtitle strong { font-weight: 800; color: var(--primary); }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-    }
-
-    .card {
-      background: linear-gradient(to bottom, #ffffff, var(--bg-soft));
-      border-radius: 16px;
-      padding: 1rem 1.05rem;
-      border: 2px solid rgba(74,120,125,0.20);
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
-      font-size: 0.92rem;
-      color: var(--muted);
-    }
-
-    .card-title {
-      font-family: "Raleway", system-ui, sans-serif;
-      font-weight: 800;
-      margin-bottom: 0.35rem;
-      color: var(--text);
-      font-size: 1rem;
-    }
-
-    .card ul { margin: 0.2rem 0 0; padding-left: 1.1rem; }
-    .card li { margin-bottom: 0.18rem; }
-
-    .calc-wrapper {
-      border-radius: 18px;
-      padding: 1.2rem 1.1rem 1.4rem;
-      background: linear-gradient(to right, #fef3c7 0, #ffffff 45%, #e0f2fe 100%);
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-      margin-top: 0.6rem;
-    }
-
-    .calc-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-      gap: 1.2rem;
-      align-items: start;
-    }
-
-    .calc-inputs label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 0.25rem;
-    }
-
-    .calc-inputs input, .calc-inputs select {
-      width: 100%;
-      padding: 0.55rem 0.6rem;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      font-size: 0.9rem;
-      background: #fff;
-    }
-
-    .calc-inputs .field { margin-bottom: 0.7rem; }
-    .calc-btn-row { margin-top: 0.3rem; }
-    .calc-btn-row button { width: 100%; }
-
-    .calc-result {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 14px;
-      padding: 0.9rem 1rem;
-      border: 1px solid var(--border);
-      font-size: 0.9rem;
-      color: var(--muted);
-      box-shadow: 0 10px 22px rgba(15,23,42,.06);
-    }
-
-    .calc-expl { font-size: 0.9rem; margin-bottom: 0.6rem; color: var(--muted); }
-    .calc-expl strong { font-weight: 800; color: #111827; }
-
-    .calc-values {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 0.6rem;
-      margin-top: 0.4rem;
-    }
-
-    .calc-value-box {
-      padding: 0.55rem 0.7rem;
-      border-radius: 12px;
-      background: #ffffff;
-      border: 2px solid var(--border);
-      box-shadow: 0 8px 18px rgba(15,23,42,.06);
-    }
-
-    .calc-value-box.self { border-color: rgba(74,120,125,0.30); background: #ecfeff; }
-    .calc-value-box.sub  { border-color: rgba(22, 163, 74, 0.35); background: #dcfce7; }
-    .calc-value-box.tax  { border-color: rgba(17, 24, 39, 0.22); background: #f3f4f6; }
-    .calc-value-box.need { border-color: rgba(148, 163, 184, 0.7); background: #eff6ff; }
-
-    .calc-value-label { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.1rem; }
-    .calc-value-number { display: block; font-weight: 800; font-size: 1.05rem; margin-top: 2px; color: #111827; }
-    .calc-note { margin-top: 0.6rem; font-size: 0.78rem; color: #6b7280; }
-
-    .calc-cta-row {
-      margin-top: 0.8rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
-
-    .mix-card {
-      margin-top: 0.9rem;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: #fff;
-      padding: 0.9rem 1rem 1rem;
-      box-shadow: 0 10px 25px rgba(15,23,42,.06);
-    }
-    .mix-title {
-      font-family: "Raleway", system-ui, sans-serif;
-      font-weight: 800;
-      color: #111827;
-      margin: 0 0 0.2rem;
-      font-size: 1.02rem;
-    }
-    .mix-sub { margin: 0 0 0.7rem; color: var(--muted); font-size: 0.88rem; }
-
-    .stack {
-      width: 100%;
-      height: 16px;
-      border-radius: 999px;
-      background: #e5e7eb;
-      overflow: hidden;
-      border: 1px solid rgba(148,163,184,.35);
-      display: flex;
-    }
-    .seg { height: 100%; }
-    .seg-self { background: var(--primary); }
-    .seg-zul  { background: var(--accent); }
-    .seg-tax  { background: #93c5fd; }
-
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.65rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-    .leg {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      border: 1px solid rgba(148,163,184,.5);
-      background: #fff;
-      border-radius: 999px;
-      padding: 0.25rem 0.55rem;
-    }
-    .sw { width: 10px; height: 10px; border-radius: 3px; }
-    .sw-self { background: var(--primary); }
-    .sw-zul  { background: var(--accent); }
-    .sw-tax  { background: #93c5fd; }
-
-    .bottom-cta {
-      margin-top: 1.6rem;
-      padding: 1.1rem 1.1rem 1.3rem;
-      border-radius: 18px;
-      background: linear-gradient(to right, #e0f2fe, #fef3c7);
-      border: 1px solid var(--border);
-      text-align: center;
-      font-size: 0.95rem;
-      box-shadow: 0 10px 25px rgba(15,23,42,.06);
-    }
-    .bottom-cta p { margin: 0 0 0.8rem; color: var(--muted); }
-
-    footer {
-      padding: 1rem 1.4rem 1.3rem;
-      font-size: 0.78rem;
-      color: #6b7280;
-      border-top: 1px solid var(--border);
-      background: #f9fafb;
-    }
-
-    .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .animate-on-scroll.in-view { opacity: 1; transform: translateY(0); }
-
-    /* Burger Menü */
+    /* BURGER */
     .burger{
-      position:absolute;
-      top:10px;
-      right:10px;
-      width:46px;height:46px;
-      border-radius:999px;
+      position:absolute;top:10px;right:10px;
+      width:46px;height:46px;border-radius:999px;
       border:1px solid rgba(148,163,184,.9);
       background:#fff;
       box-shadow:0 8px 20px rgba(15,23,42,.12);
-      display:grid;
-      place-items:center;
-      cursor:pointer;
-      z-index:1000;
+      display:grid;place-items:center;
+      cursor:pointer;z-index:1000;
     }
     .burger:active{transform:translateY(1px)}
     .burger-lines{width:20px;height:14px;position:relative}
     .burger-lines span{
       position:absolute;left:0;right:0;
-      height:2px;border-radius:999px;
-      background:var(--primary);
+      height:2px;border-radius:999px;background:var(--primary);
     }
     .burger-lines span:nth-child(1){top:0}
     .burger-lines span:nth-child(2){top:6px}
     .burger-lines span:nth-child(3){top:12px}
 
     .menu-backdrop{
-      position:fixed;inset:0;
-      background:rgba(15,23,42,.45);
-      opacity:0;pointer-events:none;
-      transition:opacity .25s ease;
-      z-index:1200;
+      position:fixed;inset:0;background:rgba(15,23,42,.45);
+      opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1200;
     }
     .menu-panel{
       position:fixed;top:0;right:0;height:100%;
-      width:min(360px, 92vw);
+      width:min(360px,92vw);
       background:#fff;
       box-shadow:-18px 0 40px rgba(15,23,42,.18);
       transform:translateX(105%);
       transition:transform .25s ease;
       z-index:1300;
-      display:flex;
-      flex-direction:column;
+      display:flex;flex-direction:column;
     }
     .menu-backdrop.open{opacity:1;pointer-events:auto}
     .menu-panel.open{transform:translateX(0)}
-
     .menu-head{
       padding:1rem 1rem .8rem;
       border-bottom:1px solid var(--border);
       display:flex;align-items:center;justify-content:space-between;gap:.75rem;
-      background:linear-gradient(to right, #ffffff, #fef3c7);
+      background:linear-gradient(to right,#ffffff,#fef3c7);
     }
-    .menu-head .ttl{
-      font-family:Raleway, system-ui, sans-serif;
-      font-weight:800;
-      color:var(--primary);
-    }
+    .menu-head .ttl{font-family:Raleway,system-ui,sans-serif;font-weight:800;color:var(--primary)}
     .menu-close{
       width:40px;height:40px;border-radius:999px;
       border:1px solid rgba(148,163,184,.9);
-      background:#fff;
-      cursor:pointer;
-      display:grid;place-items:center;
+      background:#fff;cursor:pointer;display:grid;place-items:center;
     }
-    .menu-close:active{transform:translateY(1px)}
     .menu-body{padding:.6rem 1rem 1rem;overflow:auto}
-
     .menu-group{
-      margin:.9rem 0;
-      border:1px solid rgba(148,163,184,.55);
-      border-radius:14px;
-      overflow:hidden;
-      background:linear-gradient(to bottom,#fff,#fbfdff);
+      margin:.9rem 0;border:1px solid rgba(148,163,184,.55);
+      border-radius:14px;overflow:hidden;background:linear-gradient(to bottom,#fff,#fbfdff);
     }
     .menu-group button.menu-toggle{
-      width:100%;
-      text-align:left;
-      border:0;background:transparent;
-      padding:.85rem .95rem;
-      cursor:pointer;
+      width:100%;text-align:left;border:0;background:transparent;
+      padding:.85rem .95rem;cursor:pointer;
       display:flex;align-items:center;justify-content:space-between;
-      font-family:Raleway, system-ui, sans-serif;
-      font-weight:800;
-      color:#111;
+      font-family:Raleway,system-ui,sans-serif;font-weight:800;color:#111;
     }
     .menu-group button .chev{color:var(--primary);font-weight:900}
     .menu-sub{
       border-top:1px solid rgba(148,163,184,.45);
-      display:none;
-      padding:.35rem .5rem .6rem;
+      display:none;padding:.35rem .5rem .6rem;
     }
     .menu-group.open .menu-sub{display:block}
-
     .menu-sub a{
-      display:block;
-      padding:.55rem .55rem;
-      border-radius:10px;
-      color:var(--muted);
-      font-size:.95rem;
-      text-decoration:none;
+      display:block;padding:.55rem .55rem;border-radius:10px;
+      color:var(--muted);font-size:.95rem;
     }
     .menu-sub a:hover{background:#f3f6f8;color:#111}
     .menu-sub a strong{color:var(--primary)}
-    .menu-sub a.active{
-      background: rgba(244,190,105,.25);
-      border: 1px solid rgba(244,190,105,.55);
-      color:#111;
-    }
-
     .menu-foot{
-      margin-top:auto;
-      padding:1rem;
-      border-top:1px solid var(--border);
-      background:#f9fafb;
-      display:grid;
-      gap:.6rem;
+      margin-top:auto;padding:1rem;border-top:1px solid var(--border);
+      background:#f9fafb;display:grid;gap:.6rem;
     }
     .menu-foot .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:.92rem 1.2rem;
-      border-radius:999px;
-      font-weight:800;
-      font-size:.98rem;
-      border:0;
-      cursor:pointer;
-      white-space:nowrap;
-      text-align:center;
-      text-decoration:none;
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:.92rem 1.2rem;border-radius:999px;
+      font-weight:900;font-size:.98rem;border:0;cursor:pointer;
+      white-space:nowrap;text-align:center;text-decoration:none;
+      box-shadow:0 10px 22px rgba(15,23,42,.12);
     }
     .menu-foot .btn-gold{background:var(--accent);color:#1f2933}
     .menu-foot .btn-wa{background:var(--wa);color:#fff}
 
-    @media (max-width: 768px) {
-      .topbar { padding-inline: 1rem; }
-      .topbar-right{display:none;}
-      header.hero { padding: 1.6rem 1rem 1.8rem; }
-      main { padding: 1.6rem 1rem 2.2rem; }
-      .hero-inner { flex-direction: column-reverse; align-items: flex-start; }
-      .hero h1 { font-size: 1.5rem; }
-      .hero-lead { font-size: 0.9rem; }
-      .hero-photo { width: 100%; justify-content: center; align-items: center; }
-      .hero-photo::before { width: 180px; height: 180px; top: 10px; }
-      .hero-photo img { max-width: 280px; }
-      .hero-tagcard {
-        position: static;
-        transform: none;
-        margin-top: 0.6rem;
-        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
-        max-width: 260px;
-        text-align: left;
-      }
-      .calc-grid { grid-template-columns: minmax(0, 1fr); }
-      .btn-primary, .btn-secondary, .btn-wa, .btn-gold { width: 100%; }
+    /* HERO */
+    header.hero{
+      padding:2rem 1.4rem 1.9rem;
+      border-bottom:1px solid var(--border);
+      background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 40%, #e0f2fe 100%);
+    }
+    .hero-inner{display:flex;flex-wrap:wrap;gap:1.6rem;align-items:flex-start}
+    .hero-text{flex:1 1 360px;min-width:0}
+    .hero-label{
+      display:inline-flex;align-items:center;gap:.45rem;
+      padding:.15rem .7rem;border-radius:999px;
+      border:1px solid rgba(148,163,184,.8);
+      font-size:.82rem;color:var(--muted);
+      background:rgba(255,255,255,.9);
+      margin-bottom:.6rem;
+    }
+    .hero-label .dot{width:6px;height:6px;border-radius:999px;background:var(--accent)}
+    .hero h1{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;
+      font-size:1.9rem;
+      margin:0 0 .65rem;
+      letter-spacing:.02em;
+    }
+    .hero-lead{
+      margin:0 0 .9rem;
+      color:var(--muted);
+      max-width:52rem;
+      font-size:.98rem;
+    }
+    .hero-lead strong{font-weight:800;color:var(--primary)}
+    .cta-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.75rem}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:.88rem 1.15rem;border-radius:999px;
+      font-weight:900;font-size:.95rem;border:0;cursor:pointer;
+      text-align:center;white-space:nowrap;
+      box-shadow:0 10px 22px rgba(15,23,42,.12);
+    }
+    .btn-outline{background:#fff;border:1px solid rgba(148,163,184,.85);box-shadow:none;color:var(--primary)}
+    .btn-gold{background:var(--accent);color:#1f2933}
+    .btn-wa{background:var(--wa);color:#fff}
+    .btn:hover{filter:brightness(1.02);transform:translateY(-1px)}
+
+    /* MAIN */
+    main{
+      padding:1.7rem 1.4rem 2.4rem;
+      background:linear-gradient(to bottom,#fff 0,#f9fafb 100%);
+      flex:1;
+    }
+    section{margin-bottom:1.7rem}
+    h2{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;
+      font-size:1.45rem;
+      color:var(--primary);
+      margin:0 0 .4rem;
+    }
+    .section-sub{
+      margin:0 0 1rem;
+      color:var(--muted);
+      font-size:.92rem;
+      max-width:60rem;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1rem;
+    }
+
+    .card{
+      background:linear-gradient(to bottom,#fff,#fbfdff);
+      border-radius:18px;
+      border:2px solid rgba(74,120,125,.18);
+      box-shadow:var(--shadow);
+      padding:1rem 1.05rem 1.05rem;
+      min-width:0;
+      transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    }
+    .card:hover{transform:translateY(-1px);box-shadow:var(--shadowStrong);filter:brightness(1.005)}
+    .card-title{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;
+      color:#111;
+      font-size:1.05rem;
+      margin:0 0 .25rem;
+    }
+    .card p{margin:.35rem 0 0;color:var(--muted);font-size:.92rem}
+    .card ul{margin:.35rem 0 0;padding-left:1.05rem;color:var(--muted);font-size:.92rem}
+    .card li{margin:.25rem 0}
+
+    /* Rechner */
+    .calc-wrap{
+      border-radius:18px;
+      padding:1.1rem 1.05rem 1.2rem;
+      background:linear-gradient(to right, rgba(254,243,199,.9), #ffffff 45%, rgba(224,242,254,.9));
+      border:1px solid var(--border);
+      box-shadow:0 10px 25px rgba(15,23,42,.08);
+    }
+    .calc-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
+      gap:1.1rem;
+    }
+    .field{margin-bottom:.75rem}
+    label{display:block;font-size:.85rem;font-weight:900;margin-bottom:.25rem;color:#111}
+    input, select{
+      width:100%;
+      padding:.58rem .62rem;
+      border-radius:12px;
+      border:1px solid var(--border);
+      font-size:.92rem;
+      background:#fff;
+      outline:none;
+    }
+    input:focus, select:focus{border-color:rgba(74,120,125,.55);box-shadow:0 0 0 4px rgba(74,120,125,.10)}
+    .mini{font-size:.8rem;color:var(--muted);margin-top:.25rem}
+    .two-cols{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:.8rem;
+    }
+
+    .calc-result{
+      background:rgba(255,255,255,.92);
+      border-radius:16px;
+      padding:.95rem 1rem;
+      border:1px solid var(--border);
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .values{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+      gap:.6rem;
+      margin-top:.75rem;
+    }
+    .vbox{
+      padding:.62rem .72rem;
+      border-radius:14px;
+      background:#fff;
+      border:2px solid var(--border);
+      box-shadow:0 8px 18px rgba(15,23,42,.06);
+    }
+    .vlabel{font-size:.8rem;color:var(--muted);margin-bottom:.1rem}
+    .vnum{display:block;font-weight:900;font-size:1.06rem;margin-top:2px;color:#111}
+    .vnum.good{color:var(--good)}
+    .vnum.bad{color:var(--bad)}
+    .vnum.primary{color:var(--primary)}
+
+    /* Aha-Box */
+    .kicker-box{
+      margin-top:.75rem;
+      border-radius:16px;
+      border:2px solid rgba(244,190,105,.55);
+      background: linear-gradient(to right, rgba(244,190,105,.22), rgba(224,242,254,.35));
+      padding:.75rem .85rem;
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    .kicker-title{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:900;
+      color:#111827;
+      font-size:.95rem;
+      margin-bottom:.25rem;
+    }
+    .kicker-text{color:var(--muted);font-size:.9rem}
+    .kicker-text strong{color:#111827;font-weight:900}
+    .kicker-text .warn{color:var(--bad);font-weight:900}
+
+    /* neue Grafik: Zulagen-Balken (CSS) */
+    .zulagen-chart{
+      margin-top:.75rem;
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,.65);
+      background:#fff;
+      padding:.75rem .85rem .85rem;
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    .zulagen-chart .ttl{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:900;
+      color:#111;
+      font-size:.95rem;
+      margin-bottom:.45rem;
+    }
+    .bar{
+      width:100%;
+      height:14px;
+      border-radius:999px;
+      background:#e5e7eb;
+      overflow:hidden;
+      position:relative;
+    }
+    .bar > span{
+      display:block;height:100%;
+      width:0%;
+      background:linear-gradient(to right, rgba(74,120,125,.95), rgba(244,190,105,.95));
+      border-radius:999px;
+      transition:width .35s ease;
+    }
+    .bar-row{
+      display:flex;justify-content:space-between;align-items:baseline;
+      gap:.8rem;margin-top:.5rem;color:var(--muted);font-size:.9rem;
+    }
+    .bar-row strong{color:#111}
+    .note{
+      margin-top:.55rem;
+      font-size:.8rem;
+      color:#6b7280;
+    }
+
+    .bottom-cta{
+      margin-top:1.2rem;
+      border-radius:18px;
+      border:1px solid var(--border);
+      padding:1.1rem 1.1rem 1.2rem;
+      background:linear-gradient(to right,#e0f2fe,#fef3c7);
+      text-align:center;
+      box-shadow:var(--shadow);
+    }
+    .bottom-cta p{margin:0 0 .8rem;color:var(--muted)}
+
+    footer{
+      padding:1rem 1.4rem 1.3rem;
+      font-size:.78rem;
+      color:#6b7280;
+      border-top:1px solid var(--border);
+      background:#f9fafb;
+    }
+
+    @media (max-width:768px){
+      .topbar{padding-inline:1rem}
+      .topbar-right{display:none}
+      header.hero{padding:1.6rem 1rem 1.5rem}
+      main{padding:1.5rem 1rem 2.1rem}
+      .hero h1{font-size:1.5rem}
+      .hero-lead{font-size:.93rem}
+      .calc-grid{grid-template-columns:1fr}
+      .two-cols{grid-template-columns:1fr}
+      .btn{width:100%}
     }
   </style>
 </head>
 
 <body>
-<div class="page">
+  <div class="page">
 
-  <!-- TOPBAR -->
-  <div class="topbar">
-    <div class="topbar-left">
-      <div class="topbar-portrait">
-        <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
-      </div>
-      <div>
-        <div class="topbar-title">Jonas Plener</div>
-        <div class="topbar-tagline">
-          Agentur für Deutsche Vermögensberatung<br />
-          (Region Kinzigtal / Ortenau)
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-portrait">
+          <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
         </div>
-      </div>
-    </div>
-
-    <div class="topbar-right">
-      Eltern, Familien & Angestellte<br />
-      im Kinzigtal & der Ortenau
-    </div>
-
-    <!-- Burger Button -->
-    <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
-      <div class="burger-lines" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </div>
-    </button>
-  </div>
-
-  <!-- Menü Backdrop + Panel -->
-  <div class="menu-backdrop" id="menuBackdrop"></div>
-
-  <aside class="menu-panel" id="menuPanel" aria-label="Navigation">
-    <div class="menu-head">
-      <div class="ttl">Menü</div>
-      <button class="menu-close" id="menuClose" aria-label="Menü schließen">✕</button>
-    </div>
-
-    <div class="menu-body">
-
-      <div class="menu-group open">
-        <button type="button" class="menu-toggle">
-          <span>Startseite</span><span class="chev">▾</span>
-        </button>
-        <div class="menu-sub">
-          <a href="leistung.html"><strong>Meine Leistungen</strong></a>
-          <a href="index.html">Eltern-Renten-Check</a>
-        </div>
-      </div>
-
-      <div class="menu-group">
-        <button type="button" class="menu-toggle">
-          <span>Sachversicherungen</span><span class="chev">▾</span>
-        </button>
-        <div class="menu-sub">
-          <a href="arbeitskraftabsicherung.html">Arbeitskraft &amp; Berufsunfähigkeit</a>
-          <a href="haftpflicht-hausrat-gebaeude.html">Sachversicherungen</a>
-        </div>
-      </div>
-
-      <div class="menu-group open">
-        <button type="button" class="menu-toggle">
-          <span>Vorsorge &amp; Rente</span><span class="chev">▾</span>
-        </button>
-        <div class="menu-sub">
-          <a class="active" href="riester.html"><strong>Riester</strong></a>
-          <a href="basisrente.html">Rürup / Basisrente</a>
-          <a href="bav.html">Betriebliche Altersvorsorge</a>
-          <a href="risikoleben.html">Risikolebenversicherung</a>
-        </div>
-      </div>
-
-      <div class="menu-group">
-        <button type="button" class="menu-toggle">
-          <span>Vermögensaufbau &amp; Sparen</span><span class="chev">▾</span>
-        </button>
-        <div class="menu-sub">
-          <a href="fonds-sparplaene.html">Investment- &amp; Fondssparpläne</a>
-          <a href="einmalanlage.html">Einmalanlage</a>
-          <a href="vermoegensstruktur.html">Vermögensstruktur</a>
-        </div>
-      </div>
-
-      <div class="menu-group">
-        <button type="button" class="menu-toggle">
-          <span>Familie &amp; Kinder</span><span class="chev">▾</span>
-        </button>
-        <div class="menu-sub">
-          <a href="eltern-retter-kindererziehungszeiten.html">Eltern-Retter &amp; Kindererziehungszeiten</a>
-          <a href="kinder-absichern.html">Kinder absichern</a>
-          <a href="ausbildung-und-zukunft.html">Ausbildung &amp; Zukunft</a>
-        </div>
-      </div>
-
-      <div class="menu-group">
-        <button type="button" class="menu-toggle">
-          <span>Unternehmer</span><span class="chev">▾</span>
-        </button>
-        <div class="menu-sub">
-          <a href="unternehmer-termin.html">Termin für Unternehmer</a>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="menu-foot">
-      <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">
-        Gespräch vereinbaren
-      </a>
-      <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">
-        Kurzfrage per WhatsApp
-      </a>
-    </div>
-  </aside>
-
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="hero-text animate-on-scroll">
-        <div class="hero-label">
-          <span class="dot"></span>
-          Riester-Rente · Zulagen & Steuervorteile
-        </div>
-
-        <!-- geändert -->
-        <h1>Hol dir die Zulagen – und mach Riester richtig planbar</h1>
-
-        <p class="hero-lead">
-          Riester wird nicht „besser“, weil man es toll findet – sondern weil man die <strong>Zulagen</strong>
-          sauber mitnimmt und den Beitrag richtig einstellt. Besonders spannend ist das oft mit <strong>Kindern</strong>
-          und wenn die <strong>Steuer</strong> zusätzlich mitwirkt.
-        </p>
-
-        <div class="hero-badges">
-          <a href="#rechner" class="badge"><span>Zulagen-Rechner</span><span class="arrow">↓</span></a>
-          <a href="#inhalt" class="badge"><span>Worauf es ankommt</span><span class="arrow">↓</span></a>
-          <a href="#typen" class="badge"><span>Riester-Typen</span><span class="arrow">↓</span></a>
-          <a href="#check" class="badge"><span>5-Minuten-Check</span><span class="arrow">↓</span></a>
-        </div>
-
-        <div class="cta-row">
-          <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-primary">
-            Riester kurz prüfen lassen
-          </a>
-          <a href="https://wa.me/4917663796605" target="_blank" class="btn-wa">
-            Kurzfrage per WhatsApp
-          </a>
-        </div>
-      </div>
-
-      <div class="hero-photo animate-on-scroll">
-        <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
-        <div class="hero-tagcard">
-          <div class="hero-tagcard-title">Dein Ansprechpartner</div>
-          <div class="hero-tagcard-line"><span class="hero-tagcard-dot"></span><span>Zulagen & Förderung im Fokus</span></div>
-          <div class="hero-tagcard-line"><span class="hero-tagcard-dot"></span><span>Einfach, klar, ohne Fachchinesisch</span></div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-
-    <section id="rechner">
-      <h2>Riester-Zulagen: Wie viel bekommst du wirklich?</h2>
-      <div class="section-subtitle">
-        Orientierung: Der Mindestbeitrag liegt typischerweise bei <strong>4% vom rentenversicherungspflichtigen Vorjahresbrutto</strong>
-        (gedeckelt) <strong>minus Zulagen</strong>. Unten rechnen wir das vereinfacht – plus „Riester-Booster“-Grafik.
-      </div>
-
-      <div class="calc-wrapper">
-        <div class="calc-grid">
-          <div class="calc-inputs">
-            <div class="field">
-              <label for="bruttoYear">Vorjahres-Brutto (rentenversicherungspflichtig) (in €)</label>
-              <input type="number" id="bruttoYear" min="0" step="500" placeholder="z. B. 42000" />
-            </div>
-
-            <div class="field">
-              <label for="kinder">Kinder (Anzahl)</label>
-              <input type="number" id="kinder" min="0" max="10" step="1" placeholder="z. B. 2" />
-            </div>
-
-            <div class="field">
-              <label for="kidsRate">Kinderzulage pro Kind (vereinfachte Annahme)</label>
-              <select id="kidsRate">
-                <option value="300" selected>300 € / Jahr (typisch neuere Jahrgänge)</option>
-                <option value="185">185 € / Jahr (typisch ältere Jahrgänge)</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="taxRate">Dein Grenz-Steuersatz (grob) (in %)</label>
-              <input type="number" id="taxRate" min="0" max="50" step="1" placeholder="z. B. 30" />
-            </div>
-
-            <div class="field">
-              <label for="yourPay">Dein eigener Jahresbeitrag (wenn du ihn kennst) (in €)</label>
-              <input type="number" id="yourPay" min="0" step="50" placeholder="leer lassen = wir berechnen Mindestbeitrag" />
-            </div>
-
-            <div class="calc-btn-row">
-              <button type="button" class="btn-primary" id="calcBtn">
-                Riester berechnen
-              </button>
-            </div>
+        <div style="min-width:0">
+          <div class="topbar-title">Jonas Plener</div>
+          <div class="topbar-tagline">
+            Agentur für Deutsche Vermögensberatung<br />
+            (Region Kinzigtal / Ortenau)
           </div>
+        </div>
+      </div>
 
-          <div class="calc-result">
-            <p class="calc-expl">
-              Du bekommst vier Werte:
-              <br /><strong>1. Zulagen</strong> (Grund + Kinder)
-              <br /><strong>2. Mindestbeitrag</strong> (4% – Zulagen, vereinfacht)
-              <br /><strong>3. Steuer-Extra</strong> (grob, wenn relevant)
-              <br /><strong>4. Förderquote</strong> (wie viel % deiner Einzahlung „geschenkt“ wirkt)
-            </p>
+      <div class="topbar-right">
+        Eltern, Selbstständige und Angestellte<br />
+        im Kinzigtal &amp; der Ortenau
+      </div>
 
-            <div class="calc-values">
-              <div class="calc-value-box sub">
-                <div class="calc-value-label">Zulagen pro Jahr</div>
-                <div class="calc-value-number" id="res-zul">–</div>
-              </div>
+      <!-- Burger Button -->
+      <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
+        <div class="burger-lines" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </button>
+    </div>
 
-              <div class="calc-value-box need">
-                <div class="calc-value-label">Mindestbeitrag (Jahr)</div>
-                <div class="calc-value-number" id="res-min">–</div>
-              </div>
+    <!-- Menü Backdrop + Panel -->
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+    <aside class="menu-panel" id="menuPanel" aria-label="Navigation">
+      <div class="menu-head">
+        <div class="ttl">Menü</div>
+        <button class="menu-close" id="menuClose" aria-label="Menü schließen">✕</button>
+      </div>
 
-              <div class="calc-value-box tax">
-                <div class="calc-value-label">Steuer-Extra (grob/Jahr)</div>
-                <div class="calc-value-number" id="res-tax">–</div>
-              </div>
-
-              <div class="calc-value-box self">
-                <div class="calc-value-label">Förderquote</div>
-                <div class="calc-value-number" id="res-rate">–</div>
-              </div>
-            </div>
-
-            <div class="mix-card">
-              <div class="mix-title">„Riester-Booster“</div>
-              <div class="mix-sub">
-                Balken zeigt: <strong>dein Beitrag</strong> vs. <strong>Zulagen</strong> vs. <strong>Steuerwirkung</strong>.
-                (Steuerwirkung = grobe Näherung.)
-              </div>
-
-              <div class="stack" aria-label="Balken: Eigenbeitrag, Zulagen, Steuer">
-                <div class="seg seg-self" id="seg-self" style="width:45%"></div>
-                <div class="seg seg-zul" id="seg-zul" style="width:35%"></div>
-                <div class="seg seg-tax" id="seg-tax" style="width:20%"></div>
-              </div>
-
-              <div class="legend">
-                <div class="leg"><span class="sw sw-self"></span><span id="leg-self">Du: –</span></div>
-                <div class="leg"><span class="sw sw-zul"></span><span id="leg-zul">Zulagen: –</span></div>
-                <div class="leg"><span class="sw sw-tax"></span><span id="leg-tax">Steuer: –</span></div>
-              </div>
-            </div>
-
-            <div class="calc-note">
-              Vereinfachte Rechnung (Orientierung). Ob Riester für dich sinnvoll ist, hängt u. a. von Kindern,
-              Einkommen, Steuer, Laufzeit, Produktkosten und deiner Planung ab.
-            </div>
-
-            <div class="calc-cta-row">
-              <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-primary">
-                Ergebnis mit mir durchgehen
-              </a>
-              <a href="https://wa.me/4917663796605" target="_blank" class="btn-wa">
-                Ergebnis per WhatsApp
-              </a>
-            </div>
+      <div class="menu-body">
+        <div class="menu-group open">
+          <button type="button" class="menu-toggle">
+            <span>Startseite</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="leistung.html"><strong>Meine Leistungen</strong></a>
+            <a href="index.html">Eltern-Renten-Check</a>
           </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="inhalt">
-      <h2>Worauf es bei Riester wirklich ankommt</h2>
-      <div class="section-subtitle">
-        Riester ist ein Förder-System mit Regeln. Wenn die Regeln passen, wirken Zulagen & Steuer richtig.
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Die wichtigsten fachlichen Punkte</div>
-          <ul>
-            <li><strong>Mindestbeitrag treffen</strong>: sonst verlierst du Zulagen.</li>
-            <li><strong>Zulagenantrag</strong> (Dauerzulage) sauber stellen.</li>
-            <li><strong>Kinderzulage korrekt zuordnen</strong> (wer bekommt sie?).</li>
-            <li><strong>Kosten & Modell</strong>: Kosten dürfen die Förderung nicht auffressen.</li>
-            <li><strong>Wohn-Riester</strong>: eigene Regeln – nur nutzen, wenn man’s wirklich verstanden hat.</li>
-          </ul>
         </div>
 
-        <div class="card">
-          <div class="card-title">Die typischen „Riester-Fallen“</div>
-          <ul>
-            <li><strong>Zu wenig Beitrag</strong> → Zulagen werden gekürzt.</li>
-            <li><strong>Beitragsfrei</strong> → Förderung stoppt, Effekt bricht.</li>
-            <li><strong>Falsche Tarifstruktur</strong> für den Zeithorizont.</li>
-            <li><strong>Vertrag „liegt rum“</strong> ohne regelmäßigen Check.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="typen">
-      <h2>Für wen Riester oft passt – und für wen eher nicht</h2>
-      <div class="section-subtitle">
-        Entscheidend ist die Förderquote: Wie viel kommt vom Staat im Verhältnis zu deiner Einzahlung?
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Riester kann stark sein, wenn …</div>
-          <ul>
-            <li>du <strong>Kinder</strong> hast.</li>
-            <li>du eine <strong>planbare Zusatzrente</strong> willst.</li>
-            <li>du die Regeln sauber einhältst (Beitrag, Zulagen, Zuordnung).</li>
-          </ul>
+        <div class="menu-group">
+          <button type="button" class="menu-toggle">
+            <span>Absicherung &amp; Schutz</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="arbeitskraftabsicherung.html">Berufsunfähigkeit &amp; Arbeitskraft</a>
+            <a href="sachversicherungen.html">Sachversicherungen</a>
+          </div>
         </div>
 
-        <div class="card">
-          <div class="card-title">Riester ist oft kritisch, wenn …</div>
-          <ul>
-            <li>du kaum Zulagen bekommst und die Steuerwirkung gering ist.</li>
-            <li>du ständig beitragsfrei stellst oder sehr kurze Laufzeit hast.</li>
-            <li>Kosten/Produkt passen nicht zu dir.</li>
-          </ul>
+        <div class="menu-group">
+          <button type="button" class="menu-toggle">
+            <span>Vorsorge &amp; Rente</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="riester.html"><strong>Riester</strong></a>
+            <a href="ruerup.html">Rürup / Basisrente</a>
+            <a href="bav.html">Betriebliche Altersvorsorge</a>
+            <a href="risikoleben.html">Risikoleben</a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle">
+            <span>Vermögensaufbau &amp; Sparen</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="fonds-sparplaene.html">Investment- &amp; Fondssparpläne</a>
+            <a href="einmalanlage.html">Einmalanlage</a>
+            <a href="vermoegensstruktur.html">Vermögensstruktur</a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle">
+            <span>Familie &amp; Kinder</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="eltern-retter.html">Eltern-Retter &amp; Kindererziehungszeiten</a>
+            <a href="kinder-absichern.html">Kinder absichern</a>
+            <a href="ausbildung-zukunft.html">Ausbildung &amp; Zukunft</a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle">
+            <span>Unternehmer</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="unternehmer-termin.html">Termin für Unternehmer</a>
+          </div>
         </div>
       </div>
-    </section>
 
-    <section id="check">
-      <h2>5-Minuten-Check: Ist dein Riester richtig eingestellt?</h2>
-      <div class="section-subtitle">
-        Du schickst mir (wenn vorhanden) kurz: <strong>Vorjahresbrutto</strong>, <strong>Kinder</strong>,
-        <strong>aktueller Beitrag</strong> und ob du <strong>Wohn-Riester</strong> nutzt.
-      </div>
-
-      <div class="bottom-cta animate-on-scroll">
-        <p>Riester muss nicht kompliziert sein – wenn Beitrag & Zulagen sauber laufen.</p>
-        <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-gold">
-          Termin zur Riester-Prüfung
+      <div class="menu-foot">
+        <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">
+          Gespräch vereinbaren
+        </a>
+        <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">
+          Kurzfrage per WhatsApp
         </a>
       </div>
-    </section>
+    </aside>
 
-  </main>
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-label"><span class="dot"></span> Riester · Zulagen verstehen · Mindestbeitrag berechnen</div>
+          <h1>Riester in 60 Sekunden: Mindestbeitrag rein, Zulagen raus.</h1>
+          <p class="hero-lead">
+            Trag <strong>Vorjahresbrutto</strong>, <strong>Kinder</strong> (mit Geburtsjahr) und <strong>Ehe/Partner</strong> ein.
+            Du siehst sofort: <strong>Wie viel musst du mindestens einzahlen</strong> – und <strong>wie hoch sind die Zulagen</strong>.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-gold" href="#rechner">Zum Rechner</a>
+            <a class="btn btn-outline" href="#wissen">Wichtiges kurz erklärt</a>
+          </div>
+        </div>
+      </div>
+    </header>
 
-  <footer>
-    Diese Seite ersetzt keine individuelle Rechts-, Steuer- oder Sozialversicherungsberatung.
-    Alle Angaben ohne Gewähr. Maßgeblich sind Vertragsbedingungen und gesetzliche Regelungen.
-  </footer>
-</div>
+    <main>
+      <section id="wissen">
+        <h2>Riester: was wirklich zählt</h2>
+        <p class="section-sub">
+          Hier bewusst „klar &amp; einfach“ – ohne Produkt-Details. Die Formel im Rechner ist eine praxisnahe Orientierung.
+          Im echten Leben können Sonderfälle (Zulage-Berechtigung, mittelbar/unmittelbar, Wechsel etc.) die Details verändern.
+        </p>
 
-<script>
-  // Animation on scroll
-  document.addEventListener("DOMContentLoaded", function () {
-    const elements = document.querySelectorAll(".animate-on-scroll");
-    const observer = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in-view");
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-    elements.forEach((el) => observer.observe(el));
-  });
+        <div class="grid">
+          <article class="card">
+            <div class="card-title">1) Mindestbeitrag</div>
+            <p>Richtwert: <strong>4% vom Vorjahresbrutto</strong> minus Zulagen = das, was du ungefähr selbst leisten musst (gedeckelt).</p>
+            <ul>
+              <li>Mindestens: <strong>60 € / Jahr</strong></li>
+              <li>Maximal förderfähig: <strong>2.100 € / Jahr</strong> (vereinfacht)</li>
+            </ul>
+          </article>
 
-  // Burger Menü JS
-  const burgerBtn = document.getElementById("burgerBtn");
-  const menuPanel = document.getElementById("menuPanel");
-  const menuBackdrop = document.getElementById("menuBackdrop");
-  const menuClose = document.getElementById("menuClose");
+          <article class="card">
+            <div class="card-title">2) Zulagen</div>
+            <p>Typisch: <strong>Grundzulage</strong> + <strong>Kinderzulagen</strong>. Kinderzulage hängt u. a. am Geburtsjahr.</p>
+            <ul>
+              <li>Grundzulage (vereinfacht): <strong>175 € / Jahr</strong></li>
+              <li>Kinder: je nach Geburtsjahr unterschiedlich (im Rechner auswählbar)</li>
+            </ul>
+          </article>
 
-  const openMenu = () => {
-    menuPanel.classList.add("open");
-    menuBackdrop.classList.add("open");
-  };
-  const closeMenu = () => {
-    menuPanel.classList.remove("open");
-    menuBackdrop.classList.remove("open");
-  };
+          <article class="card">
+            <div class="card-title">3) Wenn du weniger einzahlst</div>
+            <p>Dann werden Zulagen oft <strong>anteilig gekürzt</strong>. Genau diesen Effekt zeigen wir dir unten als „Mini-Aha“.</p>
+            <ul>
+              <li>Prinzip: <strong>Zulage × (Beitrag / Mindestbeitrag)</strong></li>
+              <li>Je weiter drunter, desto stärker die Kürzung.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
 
-  burgerBtn?.addEventListener("click", openMenu);
-  menuClose?.addEventListener("click", closeMenu);
-  menuBackdrop?.addEventListener("click", closeMenu);
+      <section id="rechner">
+        <h2>Riester-Rechner: Mindestbeitrag &amp; Zulagen</h2>
+        <p class="section-sub">
+          So simpel wie möglich: Vorjahresbrutto, Kinder (öffnet Felder für Geburtsjahr), Ehe/Partner ja/nein.
+          Optional kannst du auch eintragen, was du wirklich einzahlen willst.
+        </p>
 
-  document.querySelectorAll(".menu-toggle").forEach(btn => {
-    btn.addEventListener("click", () => {
-      btn.closest(".menu-group")?.classList.toggle("open");
+        <div class="calc-wrap">
+          <div class="calc-grid">
+            <!-- INPUTS -->
+            <div>
+              <div class="field">
+                <label for="gross">Vorjahresbrutto (in €)</label>
+                <input id="gross" type="number" min="0" step="100" placeholder="z. B. 42000" />
+                <div class="mini">Das Vorjahresbrutto ist die gängige Basis für die 4%-Richtgröße.</div>
+              </div>
+
+              <div class="two-cols">
+                <div class="field">
+                  <label for="kids">Anzahl Kinder</label>
+                  <input id="kids" type="number" min="0" max="10" step="1" placeholder="z. B. 2" />
+                </div>
+
+                <div class="field">
+                  <label for="married">Ehe/Partner im Haushalt?</label>
+                  <select id="married">
+                    <option value="no">Nein</option>
+                    <option value="yes">Ja</option>
+                  </select>
+                  <div class="mini">Nur als Rechen-Input, weil sich die Logik &amp; Mindestbeitrag im Haushalt relevant anfühlen kann.</div>
+                </div>
+              </div>
+
+              <div id="kidsFields"></div>
+
+              <div class="field">
+                <label for="yourPay">Dein tatsächlicher Jahresbeitrag (optional)</label>
+                <input id="yourPay" type="number" min="0" step="50" placeholder="leer lassen = Mindestbeitrag" />
+                <div class="mini">Wenn du hier etwas einträgst, zeigen wir dir die <strong>voraussichtliche Zulage nach Kürzung</strong>, falls du unter dem Mindestbeitrag liegst.</div>
+              </div>
+
+              <div class="cta-row">
+                <button class="btn btn-gold" type="button" id="btnCalc">Berechnen</button>
+                <button class="btn btn-outline" type="button" id="btnReset">Zurücksetzen</button>
+              </div>
+
+              <div class="mini" style="margin-top:.55rem">
+                Hinweis: Die Berechnung ist eine Orientierung (vereinfachte Annahmen). Für eine verbindliche Zulagen-/Förderprüfung: kurz gemeinsam abgleichen.
+              </div>
+            </div>
+
+            <!-- OUTPUT -->
+            <div class="calc-result">
+              <div style="font-weight:900;color:#111;margin-bottom:.25rem">Ergebnis</div>
+              <div class="mini">
+                Wir zeigen dir: <strong>Zulagen</strong>, <strong>förderfähiger Mindestbeitrag</strong> und was bei <strong>Unterzahlung</strong> passieren kann.
+              </div>
+
+              <div class="values">
+                <div class="vbox">
+                  <div class="vlabel">Zulagen gesamt (ca. / Jahr)</div>
+                  <span class="vnum primary" id="outZul">–</span>
+                </div>
+                <div class="vbox">
+                  <div class="vlabel">4% Richtgröße (ca. / Jahr)</div>
+                  <span class="vnum" id="outFour">–</span>
+                </div>
+                <div class="vbox">
+                  <div class="vlabel">Mindestbeitrag (dein Anteil / Jahr)</div>
+                  <span class="vnum good" id="outMin">–</span>
+                </div>
+                <div class="vbox">
+                  <div class="vlabel">Dein Beitrag (für Kürzungscheck)</div>
+                  <span class="vnum" id="outPay">–</span>
+                </div>
+              </div>
+
+              <div class="kicker-box" id="kickerBox" style="display:none;">
+                <div class="kicker-title">Mini-Aha: Was passiert, wenn du weniger einzahlst?</div>
+                <div class="kicker-text" id="kickerText">–</div>
+              </div>
+
+              <div class="zulagen-chart" id="chartBox" style="display:none;">
+                <div class="ttl">Zulagen-Füllstand (vereinfacht)</div>
+                <div class="bar"><span id="barFill"></span></div>
+                <div class="bar-row">
+                  <span>Zulagen bei deinem Beitrag</span>
+                  <strong id="barValue">–</strong>
+                </div>
+                <div class="note">
+                  Balken zeigt: <strong>100%</strong> = volle Zulage. Unter Mindestbeitrag: anteilig weniger.
+                </div>
+              </div>
+
+              <div style="margin-top:.85rem;display:flex;flex-wrap:wrap;gap:.6rem">
+                <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Ergebnis kurz prüfen lassen</a>
+                <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">Kurz per WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-cta" style="margin-top:1.2rem">
+          <p>
+            Wenn du willst, rechne ich das mit dir einmal „real“ anhand deiner Situation:
+            <strong>Zulage-Berechtigung, Kinderzulage-Zuordnung, mittelbar/unmittelbar, sinnvoller Beitrag.</strong>
+          </p>
+          <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+            <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch vereinbaren</a>
+            <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Diese Seite ersetzt keine individuelle Rechts-, Steuer- oder Sozialversicherungsberatung.
+      Alle Angaben ohne Gewähr. Maßgeblich sind die Vertragsbedingungen und die gesetzlichen Regelungen.
+    </footer>
+  </div>
+
+  <script>
+    // ===== Helpers =====
+    const $ = (id) => document.getElementById(id);
+    const fmt = (n) => new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(n));
+
+    function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+
+    // ===== Burger Menü =====
+    const burgerBtn = $("burgerBtn");
+    const menuPanel = $("menuPanel");
+    const menuBackdrop = $("menuBackdrop");
+    const menuClose = $("menuClose");
+
+    const openMenu = () => { menuPanel.classList.add("open"); menuBackdrop.classList.add("open"); };
+    const closeMenu = () => { menuPanel.classList.remove("open"); menuBackdrop.classList.remove("open"); };
+
+    burgerBtn?.addEventListener("click", openMenu);
+    menuClose?.addEventListener("click", closeMenu);
+    menuBackdrop?.addEventListener("click", closeMenu);
+
+    document.querySelectorAll(".menu-toggle").forEach(btn => {
+      btn.addEventListener("click", () => btn.closest(".menu-group")?.classList.toggle("open"));
     });
-  });
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && menuPanel.classList.contains("open")) closeMenu();
-  });
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape"){ closeMenu(); }
+    });
 
-  // Rechner + Grafik
-  const byId = (id) => document.getElementById(id);
-  const fmt = (val) => new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(val)) + " €";
-  function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+    // ===== Riester Rechner Logik (vereinfachte Orientierung) =====
+    const grossEl = $("gross");
+    const kidsEl = $("kids");
+    const marriedEl = $("married");
+    const kidsFields = $("kidsFields");
+    const yourPayEl = $("yourPay");
 
-  function calc(){
-    const bruttoYear = parseFloat(byId("bruttoYear").value || "0");
-    const kinder = parseInt(byId("kinder").value || "0", 10);
-    const kidsRate = parseFloat(byId("kidsRate").value || "300");
-    const taxRate = (parseFloat(byId("taxRate").value || "0") / 100);
-    const yourPayInput = parseFloat(byId("yourPay").value || "NaN");
+    const outZul = $("outZul");
+    const outFour = $("outFour");
+    const outMin = $("outMin");
+    const outPay = $("outPay");
 
-    const grundzulage = 175;
-    const kinderzulage = kinder * kidsRate;
-    const zulagen = grundzulage + kinderzulage;
+    const kickerBox = $("kickerBox");
+    const kickerText = $("kickerText");
+    const chartBox = $("chartBox");
+    const barFill = $("barFill");
+    const barValue = $("barValue");
 
-    const fourPct = bruttoYear * 0.04;
-    const minBeitrag = Math.max(60, fourPct - zulagen);
-    const yourPay = isNaN(yourPayInput) ? minBeitrag : Math.max(0, yourPayInput);
+    const btnCalc = $("btnCalc");
+    const btnReset = $("btnReset");
 
-    const taxExtra = Math.max(0, ((yourPay + zulagen) * taxRate) - zulagen);
-    const rate = yourPay > 0 ? (zulagen + taxExtra) / yourPay : 0;
+    // Kinder-Zulage-Logik (vereinfacht, nach Geburtsjahr)
+    // häufige Faustformel: ab 2008 höhere Kinderzulage (300), davor (185)
+    function childAllowanceByYear(y){
+      if(!y || isNaN(y)) return 0;
+      return (y >= 2008) ? 300 : 185;
+    }
 
-    byId("res-zul").textContent = fmt(zulagen);
-    byId("res-min").textContent = fmt(minBeitrag);
-    byId("res-tax").textContent = fmt(taxExtra);
-    byId("res-rate").textContent = (rate * 100).toFixed(0) + " %";
+    function renderKidYearFields(count){
+      kidsFields.innerHTML = "";
+      const n = clamp(parseInt(count || "0", 10) || 0, 0, 10);
 
-    const total = (yourPay + zulagen + taxExtra) || 1;
-    const pctSelf = clamp((yourPay/total)*100, 0, 100);
-    const pctZul  = clamp((zulagen/total)*100, 0, 100);
-    const pctTax  = clamp((taxExtra/total)*100, 0, 100);
+      if(n === 0) return;
 
-    byId("seg-self").style.width = pctSelf.toFixed(2) + "%";
-    byId("seg-zul").style.width  = pctZul.toFixed(2) + "%";
-    byId("seg-tax").style.width  = pctTax.toFixed(2) + "%";
+      const wrap = document.createElement("div");
+      wrap.className = "card";
+      wrap.style.marginTop = ".8rem";
 
-    byId("leg-self").textContent = `Du: ${fmt(yourPay)} (${Math.round(pctSelf)}%)`;
-    byId("leg-zul").textContent  = `Zulagen: ${fmt(zulagen)} (${Math.round(pctZul)}%)`;
-    byId("leg-tax").textContent  = `Steuer: ${fmt(taxExtra)} (${Math.round(pctTax)}%)`;
-  }
+      const ttl = document.createElement("div");
+      ttl.className = "card-title";
+      ttl.textContent = "Geburtsjahr(e) der Kinder";
+      wrap.appendChild(ttl);
 
-  byId("calcBtn").addEventListener("click", calc);
-  ["bruttoYear","kinder","kidsRate","taxRate","yourPay"].forEach(id=>{
-    byId(id).addEventListener("input", calc);
-    byId(id).addEventListener("change", calc);
-  });
+      const sub = document.createElement("p");
+      sub.textContent = "Trag pro Kind das Geburtsjahr ein – daraus ergibt sich die Kinderzulage (vereinfacht).";
+      wrap.appendChild(sub);
 
-  document.addEventListener("DOMContentLoaded", () => {
-    if(!byId("bruttoYear").value) byId("bruttoYear").value = 42000;
-    if(!byId("kinder").value) byId("kinder").value = 2;
-    if(!byId("taxRate").value) byId("taxRate").value = 30;
-    calc();
-  });
-</script>
+      for(let i=1;i<=n;i++){
+        const f = document.createElement("div");
+        f.className = "field";
+        f.style.marginBottom = ".6rem";
 
+        const lab = document.createElement("label");
+        lab.setAttribute("for", "kidYear_" + i);
+        lab.textContent = "Kind " + i + " – Geburtsjahr";
+        f.appendChild(lab);
+
+        const inp = document.createElement("input");
+        inp.id = "kidYear_" + i;
+        inp.type = "number";
+        inp.min = "1900";
+        inp.max = String(new Date().getFullYear());
+        inp.step = "1";
+        inp.placeholder = "z. B. 2016";
+        f.appendChild(inp);
+
+        const hint = document.createElement("div");
+        hint.className = "mini";
+        hint.textContent = "Vereinfacht: ab 2008 höhere Kinderzulage.";
+        f.appendChild(hint);
+
+        wrap.appendChild(f);
+      }
+
+      kidsFields.appendChild(wrap);
+    }
+
+    kidsEl.addEventListener("input", () => renderKidYearFields(kidsEl.value));
+
+    function calc(){
+      const gross = parseFloat((grossEl.value || "").replace(",", "."));
+      const kids = clamp(parseInt(kidsEl.value || "0", 10) || 0, 0, 10);
+      const married = (marriedEl.value === "yes");
+      const payRaw = (yourPayEl.value || "").trim();
+      const payGiven = payRaw !== "" ? Math.max(0, parseFloat(payRaw.replace(",", ".")) || 0) : null;
+
+      if(!isFinite(gross) || gross < 0){
+        outZul.textContent = "Bitte Vorjahresbrutto eintragen.";
+        outFour.textContent = "–";
+        outMin.textContent = "–";
+        outPay.textContent = "–";
+        kickerBox.style.display = "none";
+        chartBox.style.display = "none";
+        return;
+      }
+
+      // Zulagen (vereinfacht)
+      const zulBase = 175;
+      let zulKids = 0;
+      for(let i=1;i<=kids;i++){
+        const y = parseInt(($("kidYear_" + i)?.value || "").trim(), 10);
+        zulKids += childAllowanceByYear(y);
+      }
+      const zulTotal = zulBase + zulKids;
+
+      // 4% Richtgröße
+      const four = gross * 0.04;
+
+      // Förderlogik (sehr vereinfacht):
+      // Mindestbeitrag = max(60, min(2100, four) - Zulagen)
+      // (in der Praxis sind Details komplexer; hier nur Orientierung)
+      const maxCap = 2100;
+      const fourCapped = Math.min(maxCap, four);
+      let minYou = fourCapped - zulTotal;
+      minYou = Math.max(60, minYou);
+
+      // "Ehe/Partner" wird als Hinweis angezeigt; in der Realität entscheidet v.a. Zulageberechtigung.
+      // Wir verändern NICHT hart die Formel (sonst wird’s schnell falsch), aber wir zeigen den Hinweis in der Mini-Aha.
+      const pay = (payGiven !== null) ? payGiven : minYou;
+
+      // Pro-rata Zulage bei Unterzahlung (vereinfachte Darstellung)
+      const ratio = (minYou > 0) ? Math.min(1, pay / minYou) : 1;
+      const zulAtPay = zulTotal * ratio;
+      const cut = Math.max(0, zulTotal - zulAtPay);
+
+      // Outputs
+      outZul.textContent = fmt(zulTotal) + " €";
+      outFour.textContent = fmt(fourCapped) + " €";
+      outMin.textContent = fmt(minYou) + " €";
+      outPay.textContent = fmt(pay) + " €";
+
+      // Mini-Aha Text
+      kickerBox.style.display = "block";
+      const spouseHint = married
+        ? " (Partner/Ehe: <strong>Ja</strong> – kann in echten Fällen die Zulage-Logik beeinflussen)"
+        : " (Partner/Ehe: <strong>Nein</strong>)";
+
+      if(pay < minYou){
+        kickerText.innerHTML =
+          `Wenn du statt <strong>${fmt(minYou)} €</strong> nur <strong>${fmt(pay)} €</strong> einzahlst, ` +
+          `werden Zulagen (vereinfacht) anteilig gekürzt: ` +
+          `<strong>${fmt(zulTotal)} €</strong> → <strong>${fmt(zulAtPay)} €</strong> ` +
+          `(Kürzung: <span class="warn">-${fmt(cut)} €</span>).` +
+          `${spouseHint}`;
+      } else {
+        kickerText.innerHTML =
+          `Mit <strong>${fmt(pay)} €</strong> erreichst du (vereinfacht) die volle Zulage: ` +
+          `<strong>${fmt(zulTotal)} €</strong>.` +
+          `${spouseHint}`;
+      }
+
+      // Chart
+      chartBox.style.display = "block";
+      const pct = Math.round(ratio * 100);
+      barFill.style.width = pct + "%";
+      barValue.textContent = fmt(zulAtPay) + " € (" + pct + "%)";
+
+      // Quick-Sanity: falls Kinderfelder fehlen
+      if(kids > 0){
+        let missing = 0;
+        for(let i=1;i<=kids;i++){
+          const v = ($("kidYear_" + i)?.value || "").trim();
+          if(!v) missing++;
+        }
+        if(missing > 0){
+          // kleine Ergänzung im Aha, ohne hart zu blocken
+          kickerText.innerHTML += `<br><span class="mini">Hinweis: ${missing} Geburtsjahr(e) fehlen – Kinderzulage könnte abweichen.</span>`;
+        }
+      }
+    }
+
+    function resetAll(){
+      grossEl.value = "";
+      kidsEl.value = "";
+      marriedEl.value = "no";
+      yourPayEl.value = "";
+      kidsFields.innerHTML = "";
+      outZul.textContent = "–";
+      outFour.textContent = "–";
+      outMin.textContent = "–";
+      outPay.textContent = "–";
+      kickerBox.style.display = "none";
+      chartBox.style.display = "none";
+    }
+
+    btnCalc.addEventListener("click", calc);
+    btnReset.addEventListener("click", resetAll);
+
+    // Auto-recalc (optional, angenehm)
+    [grossEl, marriedEl, yourPayEl].forEach(el => el.addEventListener("input", () => {
+      // nur rechnen, wenn wenigstens Vorjahresbrutto drin ist
+      if((grossEl.value || "").trim() !== "") calc();
+    }));
+  </script>
 </body>
 </html>
