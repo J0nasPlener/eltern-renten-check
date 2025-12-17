@@ -2,379 +2,1208 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leistungsseite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Riester-Rente – Förderung & Zulagen verstehen – Jonas Plener</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
+    :root {
+      --primary: #4a787d;
+      --accent: #f4be69;
+      --text: #111111;
+      --muted: #4b5563;
+      --bg: #f4f8f8;
+      --bg-soft: #f9fbfb;
+      --border: #e5e7eb;
+      --good: #16a34a;
+      --bad: #dc2626;
+      --wa: #25d366;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: "Raleway", sans-serif;
-      background: #f9fafb;
-      color: #111827;
+      font-family: "Arimo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #fef3c7 0, #f4f8f8 35%, #dbeafe 100%);
+      color: var(--text);
+      line-height: 1.6;
     }
 
-    header.hero {
-      background: #eef7fa;
-      padding: 2.5rem 1.2rem;
-      border-bottom: 1px solid #e5e7eb;
-    }
+    a { color: inherit; text-decoration: none; }
 
-    .hero-inner {
+    .page {
       max-width: 1100px;
       margin: 0 auto;
+      min-height: 100vh;
+      background: #ffffff;
+      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12);
       display: flex;
       flex-direction: column;
-      gap: 2rem;
     }
 
-    .hero-label {
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      color: #4a787d;
-      letter-spacing: 0.05em;
+    /* Topbar */
+    .topbar {
+      position: relative;
       display: flex;
       align-items: center;
-      gap: 6px;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      background: #4a787d;
-      border-radius: 50%;
-      display: block;
-    }
-
-    .hero h1 {
-      margin-top: 0.6rem;
-      font-size: 1.9rem;
-      line-height: 1.3;
-      color: #1f2937;
-    }
-
-    .hero-lead {
-      margin-top: 0.75rem;
-      font-size: 1.05rem;
-      line-height: 1.55;
-      color: #374151;
-    }
-
-    .hero-photo img {
-      width: 100%;
-      border-radius: 14px;
-      object-fit: cover;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      padding: 0.9rem 1.4rem;
-      background: #4a787d;
-      color: #ffffff;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      margin-top: 1rem;
-    }
-
-    .btn-secondary {
-      display: inline-block;
-      padding: 0.8rem 1.3rem;
-      background: #d1d5db;
-      color: #1f2937;
-      border-radius: 12px;
-      text-decoration: none;
-      margin-top: 1rem;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 0 1.2rem;
-    }
-
-    h2 {
-      color: #1f2937;
-      margin-top: 2.2rem;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr;
+      justify-content: space-between;
+      padding: 0.8rem 1.8rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to right, #ffffff, #fef3c7);
       gap: 1rem;
     }
 
-    @media (min-width: 768px) {
-      .grid-2 {
-        grid-template-columns: 1fr 1fr;
-      }
+    .topbar-left { display: flex; align-items: center; gap: 0.75rem; }
+
+    .topbar-portrait img {
+      height: 54px;
+      width: 54px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.25);
     }
 
-    .card {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 1.2rem;
-      border: 1px solid #e5e7eb;
-    }
-
-    .card-title {
-      font-weight: 600;
-      margin-bottom: 0.6rem;
-      color: #4a787d;
-    }
-
-    /* BURGER MENU */
-    .menu-toggle {
-      position: fixed;
-      right: 18px;
-      top: 18px;
-      background: white;
-      border: 1px solid #e5e7eb;
-      padding: 0.5rem;
-      border-radius: 10px;
-      cursor: pointer;
-      z-index: 50;
-    }
-
-    .menu-burger {
-      width: 22px;
-      height: 3px;
-      background: #111827;
-      margin: 3px 0;
-      border-radius: 50px;
-    }
-
-    .menu-panel-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-      z-index: 40;
-    }
-
-    .menu-panel-backdrop.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .menu-panel {
-      position: fixed;
-      right: -260px;
-      top: 0;
-      height: 100%;
-      width: 260px;
-      background: #ffffff;
-      border-left: 1px solid #e5e7eb;
-      padding: 1.2rem;
-      z-index: 45;
-      transition: right 0.25s ease;
-    }
-
-    .menu-panel.open {
-      right: 0;
-    }
-
-    .menu-section-title {
+    .topbar-title {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
       text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .topbar-tagline {
       font-size: 0.8rem;
-      color: #9ca3af;
+      color: var(--muted);
+    }
+
+    .topbar-right {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: right;
+      padding-right: 54px;
+    }
+
+    /* HERO */
+    header.hero {
+      padding: 2rem 1.4rem 2.2rem;
+      border-bottom: 1px solid var(--border);
+      background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 40%, #e0f2fe 100%);
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-text { flex: 1 1 260px; min-width: 0; }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.15rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-label span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      margin: 0 0 0.7rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-lead {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      max-width: 40rem;
+      font-size: 0.98rem;
+    }
+
+    .hero-lead strong { font-weight: 800; color: var(--primary); }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.6rem 0 1.1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.32rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: #ffffff;
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08);
+    }
+
+    .badge .arrow { font-size: 0.9rem; color: var(--primary); }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: center;
       margin-top: 1rem;
     }
 
-    .menu-link {
-      display: block;
-      padding: 0.4rem 0;
-      color: #111827;
-      text-decoration: none;
+    .btn-primary,
+    .btn-secondary,
+    .btn-wa,
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.7rem;
+      border-radius: 999px;
+      font-weight: 700;
       font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      text-align: center;
+      white-space: nowrap;
+      transition: transform .15s ease, filter .15s ease;
     }
 
-    footer {
-      text-align: center;
-      padding: 3rem 1rem;
-      color: #6b7280;
+    .btn-primary, .btn-gold {
+      background: var(--accent);
+      color: #1f2933;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--primary);
+      border: 1px solid rgba(148, 163, 184, 0.85);
+    }
+
+    .btn-wa {
+      background: var(--wa);
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-wa:hover,
+    .btn-gold:hover {
+      filter: brightness(1.03);
+      transform: translateY(-1px);
+    }
+
+    .hero-photo {
+      flex: 0 0 280px;
+      text-align: right;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .hero-photo::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #f4be69 0, #ffffff 50%, #93c5fd 100%);
+      opacity: 0.6;
+      top: 10px;
+      z-index: 0;
+    }
+
+    .hero-photo img {
+      max-width: 320px;
+      height: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tagcard {
+      position: absolute;
+      bottom: 0;
+      right: 10px;
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 0.55rem 0.7rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+      z-index: 2;
+      max-width: 250px;
+    }
+
+    .hero-tagcard-title {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 800;
+      font-size: 0.8rem;
+      color: var(--primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-tagcard-line {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .hero-tagcard-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    main {
+      padding: 1.8rem 1.4rem 2.4rem;
+      flex: 1;
+      background: linear-gradient(to bottom, #ffffff 0, #f9fafb 100%);
+    }
+
+    section { margin-bottom: 2rem; }
+
+    h2 {
+      font-family: "Raleway", system-ui, sans-serif;
+      margin: 0 0 0.4rem;
+      font-size: 1.45rem;
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .section-subtitle {
+      margin-bottom: 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      max-width: 62rem;
+    }
+
+    .section-subtitle strong { font-weight: 800; color: var(--primary); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: linear-gradient(to bottom, #ffffff, var(--bg-soft));
+      border-radius: 16px;
+      padding: 1rem 1.05rem;
+      border: 2px solid rgba(74,120,125,0.20);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .card-title {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 800;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .card ul { margin: 0.2rem 0 0; padding-left: 1.1rem; }
+    .card li { margin-bottom: 0.18rem; }
+
+    /* Rechner */
+    .calc-wrapper {
+      border-radius: 18px;
+      padding: 1.2rem 1.1rem 1.4rem;
+      background: linear-gradient(to right, #fef3c7 0, #ffffff 45%, #e0f2fe 100%);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      margin-top: 0.6rem;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: 1.2rem;
+      align-items: start;
+    }
+
+    .calc-inputs label {
+      display: block;
       font-size: 0.85rem;
-      margin-top: 4rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .calc-inputs input, .calc-inputs select {
+      width: 100%;
+      padding: 0.55rem 0.6rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+      background: #fff;
+    }
+
+    .calc-inputs .field { margin-bottom: 0.7rem; }
+    .calc-btn-row { margin-top: 0.3rem; }
+    .calc-btn-row button { width: 100%; }
+
+    .calc-result {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 14px;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--muted);
+      box-shadow: 0 10px 22px rgba(15,23,42,.06);
+    }
+
+    .calc-expl {
+      font-size: 0.9rem;
+      margin-bottom: 0.6rem;
+      color: var(--muted);
+    }
+
+    .calc-expl strong { font-weight: 800; color: #111827; }
+
+    .calc-values {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.6rem;
+      margin-top: 0.4rem;
+    }
+
+    .calc-value-box {
+      padding: 0.55rem 0.7rem;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 2px solid var(--border);
+      box-shadow: 0 8px 18px rgba(15,23,42,.06);
+    }
+
+    .calc-value-box.self {
+      border-color: rgba(220, 38, 38, 0.45);
+      background: #fee2e2;
+    }
+    .calc-value-box.zul {
+      border-color: rgba(22, 163, 74, 0.35);
+      background: #dcfce7;
+    }
+    .calc-value-box.total {
+      border-color: rgba(148, 163, 184, 0.7);
+      background: #eff6ff;
+    }
+    .calc-value-box.note {
+      border-color: rgba(17, 24, 39, 0.25);
+      background: #f3f4f6;
+    }
+
+    .calc-value-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.1rem;
+    }
+
+    .calc-value-number {
+      display: block;
+      font-weight: 800;
+      font-size: 1.05rem;
+      margin-top: 2px;
+      color: #111827;
+    }
+
+    .calc-note {
+      margin-top: 0.6rem;
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
+
+    .calc-cta-row {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    /* Neue Grafik: „Förder-Stack“ */
+    .mix-card {
+      margin-top: 0.9rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 0.9rem 1rem 1rem;
+      box-shadow: 0 10px 25px rgba(15,23,42,.06);
+    }
+    .mix-title {
+      font-family: "Raleway", system-ui, sans-serif;
+      font-weight: 800;
+      color: #111827;
+      margin: 0 0 0.2rem;
+      font-size: 1.02rem;
+    }
+    .mix-sub {
+      margin: 0 0 0.7rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .stack {
+      width: 100%;
+      height: 16px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+      border: 1px solid rgba(148,163,184,.35);
+      display: flex;
+    }
+    .seg { height: 100%; }
+    .seg-a { background: var(--primary); }  /* eigener Beitrag */
+    .seg-b { background: var(--accent); }   /* Zulagen */
+    .seg-c { background: #93c5fd; }        /* Steuerersparnis-Effekt */
+    .seg-d { background: #6b7280; }        /* Rest (wenn 4% nicht erreicht) */
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.65rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .leg {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 1px solid rgba(148,163,184,.5);
+      background: #fff;
+      border-radius: 999px;
+      padding: 0.25rem 0.55rem;
+    }
+    .sw {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+    }
+    .sw-a { background: var(--primary); }
+    .sw-b { background: var(--accent); }
+    .sw-c { background: #93c5fd; }
+    .sw-d { background: #6b7280; }
+
+    /* Bottom CTA */
+    .bottom-cta {
+      margin-top: 1.6rem;
+      padding: 1.1rem 1.1rem 1.3rem;
+      border-radius: 18px;
+      background: linear-gradient(to right, #e0f2fe, #fef3c7);
+      border: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.95rem;
+      box-shadow: 0 10px 25px rgba(15,23,42,.06);
+    }
+
+    .bottom-cta p { margin: 0 0 0.8rem; color: var(--muted); }
+
+    footer {
+      padding: 1rem 1.4rem 1.3rem;
+      font-size: 0.78rem;
+      color: #6b7280;
+      border-top: 1px solid var(--border);
+      background: #f9fafb;
+    }
+
+    /* Animation */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .animate-on-scroll.in-view { opacity: 1; transform: translateY(0); }
+
+    /* Burger Menü (wie deine anderen Seiten) */
+    .burger{
+      position:absolute;
+      top:10px;
+      right:10px;
+      width:46px;height:46px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.9);
+      background:#fff;
+      box-shadow:0 8px 20px rgba(15,23,42,.12);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      z-index:1000;
+    }
+    .burger:active{transform:translateY(1px)}
+    .burger-lines{width:20px;height:14px;position:relative}
+    .burger-lines span{
+      position:absolute;left:0;right:0;
+      height:2px;border-radius:999px;
+      background:var(--primary);
+    }
+    .burger-lines span:nth-child(1){top:0}
+    .burger-lines span:nth-child(2){top:6px}
+    .burger-lines span:nth-child(3){top:12px}
+
+    .menu-backdrop{
+      position:fixed;inset:0;
+      background:rgba(15,23,42,.45);
+      opacity:0;pointer-events:none;
+      transition:opacity .25s ease;
+      z-index:1200;
+    }
+    .menu-panel{
+      position:fixed;top:0;right:0;height:100%;
+      width:min(360px, 92vw);
+      background:#fff;
+      box-shadow:-18px 0 40px rgba(15,23,42,.18);
+      transform:translateX(105%);
+      transition:transform .25s ease;
+      z-index:1300;
+      display:flex;
+      flex-direction:column;
+    }
+    .menu-backdrop.open{opacity:1;pointer-events:auto}
+    .menu-panel.open{transform:translateX(0)}
+
+    .menu-head{
+      padding:1rem 1rem .8rem;
+      border-bottom:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+      background:linear-gradient(to right, #ffffff, #fef3c7);
+    }
+    .menu-head .ttl{
+      font-family:Raleway, system-ui, sans-serif;
+      font-weight:800;
+      color:var(--primary);
+    }
+    .menu-close{
+      width:40px;height:40px;border-radius:999px;
+      border:1px solid rgba(148,163,184,.9);
+      background:#fff;
+      cursor:pointer;
+      display:grid;place-items:center;
+    }
+    .menu-close:active{transform:translateY(1px)}
+    .menu-body{padding:.6rem 1rem 1rem;overflow:auto}
+
+    .menu-group{
+      margin:.9rem 0;
+      border:1px solid rgba(148,163,184,.55);
+      border-radius:14px;
+      overflow:hidden;
+      background:linear-gradient(to bottom,#fff,#fbfdff);
+    }
+    .menu-group button.menu-toggle{
+      width:100%;
+      text-align:left;
+      border:0;background:transparent;
+      padding:.85rem .95rem;
+      cursor:pointer;
+      display:flex;align-items:center;justify-content:space-between;
+      font-family:Raleway, system-ui, sans-serif;
+      font-weight:800;
+      color:#111;
+    }
+    .menu-group button .chev{color:var(--primary);font-weight:900}
+    .menu-sub{
+      border-top:1px solid rgba(148,163,184,.45);
+      display:none;
+      padding:.35rem .5rem .6rem;
+    }
+    .menu-group.open .menu-sub{display:block}
+
+    .menu-sub a{
+      display:block;
+      padding:.55rem .55rem;
+      border-radius:10px;
+      color:var(--muted);
+      font-size:.95rem;
+      text-decoration:none;
+    }
+    .menu-sub a:hover{background:#f3f6f8;color:#111}
+    .menu-sub a strong{color:var(--primary)}
+    .menu-sub a.active{
+      background: rgba(244,190,105,.25);
+      border: 1px solid rgba(244,190,105,.55);
+      color:#111;
+    }
+
+    .menu-foot{
+      margin-top:auto;
+      padding:1rem;
+      border-top:1px solid var(--border);
+      background:#f9fafb;
+      display:grid;
+      gap:.6rem;
+    }
+    .menu-foot .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:.92rem 1.2rem;
+      border-radius:999px;
+      font-weight:800;
+      font-size:.98rem;
+      border:0;
+      cursor:pointer;
+      white-space:nowrap;
+      text-align:center;
+      text-decoration:none;
+    }
+    .menu-foot .btn-gold{background:var(--accent);color:#1f2933}
+    .menu-foot .btn-wa{background:var(--wa);color:#fff}
+
+    @media (max-width: 768px) {
+      .topbar { padding-inline: 1rem; }
+      .topbar-right{display:none;}
+
+      header.hero { padding: 1.6rem 1rem 1.8rem; }
+      main { padding: 1.6rem 1rem 2.2rem; }
+
+      .hero-inner { flex-direction: column-reverse; align-items: flex-start; }
+      .hero h1 { font-size: 1.5rem; }
+      .hero-lead { font-size: 0.9rem; }
+
+      .hero-photo { width: 100%; justify-content: center; align-items: center; }
+      .hero-photo::before { width: 180px; height: 180px; top: 10px; }
+      .hero-photo img { max-width: 280px; }
+
+      .hero-tagcard {
+        position: static;
+        transform: none;
+        margin-top: 0.6rem;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+        max-width: 260px;
+        text-align: left;
+      }
+
+      .calc-grid { grid-template-columns: minmax(0, 1fr); }
+      .btn-primary, .btn-secondary, .btn-wa, .btn-gold { width: 100%; }
     }
   </style>
 </head>
 
 <body>
+<div class="page">
 
-<!-- 🔥 BURGER BUTTON -->
-<button class="menu-toggle" id="menu-toggle">
-  <div class="menu-burger"></div>
-  <div class="menu-burger"></div>
-  <div class="menu-burger"></div>
-</button>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-portrait">
+        <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
+      </div>
+      <div>
+        <div class="topbar-title">Jonas Plener</div>
+        <div class="topbar-tagline">
+          Agentur für Deutsche Vermögensberatung<br />
+          (Region Kinzigtal / Ortenau)
+        </div>
+      </div>
+    </div>
 
-<!-- 🔥 BURGER OVERLAY + PANEL -->
-<div id="menu-backdrop" class="menu-panel-backdrop"></div>
+    <div class="topbar-right">
+      Eltern, Familien & Selbstständige<br />
+      im Kinzigtal & der Ortenau
+    </div>
 
-<nav id="menu-panel" class="menu-panel">
-  <div class="menu-section-title">Absicherung & Schutz</div>
-  <a class="menu-link" href="arbeitskraftabsicherung.html">Arbeitskraft & BU</a>
-  <a class="menu-link" href="haftpflicht-hausrat-gebaeude.html">Haftpflicht / Hausrat / Gebäude</a>
-  <a class="menu-link" href="risikoleben.html">Risikoleben</a>
+    <!-- Burger Button -->
+    <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
+      <div class="burger-lines" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </button>
+  </div>
 
-  <div class="menu-section-title">Vorsorge & Rente</div>
-  <a class="menu-link" href="riester.html">Riester</a>
-  <a class="menu-link" href="basisrente.html">Rürup / Basisrente</a>
-  <a class="menu-link" href="bav.html">Betriebliche Altersvorsorge</a>
+  <!-- Menü Backdrop + Panel -->
+  <div class="menu-backdrop" id="menuBackdrop"></div>
 
-  <div class="menu-section-title">Vermögensaufbau & Sparen</div>
-  <a class="menu-link" href="fondssparen.html">Fondssparen</a>
-  <a class="menu-link" href="einmalanlagen.html">Einmalanlagen</a>
-  <a class="menu-link" href="vermoegensstruktur.html">Vermögensstruktur</a>
+  <aside class="menu-panel" id="menuPanel" aria-label="Navigation">
+    <div class="menu-head">
+      <div class="ttl">Menü</div>
+      <button class="menu-close" id="menuClose" aria-label="Menü schließen">✕</button>
+    </div>
 
-  <div class="menu-section-title">Familie & Kinder</div>
-  <a class="menu-link" href="eltern-retter-kindererziehungszeiten.html">Eltern-Retter</a>
-  <a class="menu-link" href="kinder-absichern.html">Kinder absichern</a>
-  <a class="menu-link" href="ausbildung-und-zukunft.html">Ausbildung & Zukunft</a>
-</nav>
+    <div class="menu-body">
 
-<script>
-  const menuToggle = document.getElementById("menu-toggle");
-  const menuBackdrop = document.getElementById("menu-backdrop");
-  const menuPanel = document.getElementById("menu-panel");
-
-  menuToggle.addEventListener("click", () => {
-    menuPanel.classList.toggle("open");
-    menuBackdrop.classList.toggle("open");
-  });
-
-  menuBackdrop.addEventListener("click", () => {
-    menuPanel.classList.remove("open");
-    menuBackdrop.classList.remove("open");
-  });
-</script>
-
-<!-- ========================================================= -->
-<!-- 🚀 PAGE CONTENT – diesen Teil tauscht du aus! -->
-<!-- ========================================================= -->
-
-<!-- PAGE CONTENT START -->
-
-<header class="hero">
-  <div class="hero-inner">
-    <div class="hero-text animate-on-scroll">
-      <div class="hero-label">
-        <span class="dot"></span>
-        Vorsorge & Rente · Riester mit Zulagen
+      <div class="menu-group open">
+        <button type="button" class="menu-toggle">
+          <span>Startseite</span><span class="chev">▾</span>
+        </button>
+        <div class="menu-sub">
+          <a href="leistung.html"><strong>Meine Leistungen</strong></a>
+          <a href="index.html">Eltern-Renten-Check</a>
+        </div>
       </div>
 
-      <h1>Riester-Rente – sichere Zulagen, starke Wirkung für Familien & Geringverdiener</h1>
-
-      <p class="hero-lead">
-        Die Riester-Rente lohnt sich besonders für Eltern und Personen mit niedrigem bis mittlerem Einkommen.
-        Staatliche Zulagen sorgen dafür, dass du selbst wenig zahlst – aber viel herausbekommst.
-      </p>
-
-      <div class="hero-badges">
-        <div class="badge">Kinderzulagen bis 300 € pro Kind</div>
-        <div class="badge">Grundzulage 175 € jährlich</div>
+      <div class="menu-group">
+        <button type="button" class="menu-toggle">
+          <span>Sachversicherungen</span><span class="chev">▾</span>
+        </button>
+        <div class="menu-sub">
+          <a href="arbeitskraftabsicherung.html">Arbeitskraft &amp; Berufsunfähigkeit</a>
+          <a href="haftpflicht-hausrat-gebaeude.html">Sachversicherungen</a>
+          <a href="risikoleben.html">Risikoleben</a>
+        </div>
       </div>
 
-      <div class="cta-row">
-        <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" class="btn-primary" target="_blank">
-          Riester prüfen lassen
+      <div class="menu-group open">
+        <button type="button" class="menu-toggle">
+          <span>Vorsorge &amp; Rente</span><span class="chev">▾</span>
+        </button>
+        <div class="menu-sub">
+          <a class="active" href="riester.html"><strong>Riester</strong></a>
+          <a href="basisrente.html">Rürup / Basisrente</a>
+          <a href="bav.html">Betriebliche Altersvorsorge</a>
+        </div>
+      </div>
+
+      <div class="menu-group">
+        <button type="button" class="menu-toggle">
+          <span>Vermögensaufbau &amp; Sparen</span><span class="chev">▾</span>
+        </button>
+        <div class="menu-sub">
+          <a href="fonds-sparplaene.html">Investment- &amp; Fondssparpläne</a>
+          <a href="einmalanlage.html">Einmalanlage</a>
+          <a href="vermoegensstruktur.html">Vermögensstruktur</a>
+        </div>
+      </div>
+
+      <div class="menu-group">
+        <button type="button" class="menu-toggle">
+          <span>Familie &amp; Kinder</span><span class="chev">▾</span>
+        </button>
+        <div class="menu-sub">
+          <a href="eltern-retter-kindererziehungszeiten.html">Eltern-Retter &amp; Kindererziehungszeiten</a>
+          <a href="kinder-absichern.html">Kinder absichern</a>
+          <a href="ausbildung-und-zukunft.html">Ausbildung &amp; Zukunft</a>
+        </div>
+      </div>
+
+      <div class="menu-group">
+        <button type="button" class="menu-toggle">
+          <span>Unternehmer</span><span class="chev">▾</span>
+        </button>
+        <div class="menu-sub">
+          <a href="unternehmer-termin.html">Termin für Unternehmer</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="menu-foot">
+      <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">
+        Gespräch vereinbaren
+      </a>
+      <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">
+        Kurzfrage per WhatsApp
+      </a>
+    </div>
+  </aside>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-text animate-on-scroll">
+        <div class="hero-label">
+          <span class="dot"></span>
+          Riester-Rente · Zulagen & Förderung
+        </div>
+
+        <h1>Riester lohnt sich nicht „immer“ – aber manchmal brutal.</h1>
+
+        <p class="hero-lead">
+          Riester ist am stärksten dort, wo <strong>Zulagen</strong> richtig reinknallen:
+          Familien mit Kindern, bestimmte Einkommenssituationen und stabile Beitragsjahre.
+          Entscheidend ist: <strong>4%-Regel</strong>, richtige Zulagen und saubere Beantragung.
+        </p>
+
+        <div class="hero-badges">
+          <a href="#rechner" class="badge"><span>Riester-Beitrag & Zulagen rechnen</span><span class="arrow">↓</span></a>
+          <a href="#inhalt" class="badge"><span>Wichtigste Riester-Inhalte</span><span class="arrow">↓</span></a>
+          <a href="#fallen" class="badge"><span>Häufige Stolperfallen</span><span class="arrow">↓</span></a>
+          <a href="#check" class="badge"><span>Riester-Check in 5 Minuten</span><span class="arrow">↓</span></a>
+        </div>
+
+        <div class="cta-row">
+          <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-primary">
+            Riester kostenlos kurz prüfen lassen
+          </a>
+          <a href="https://wa.me/4917663796605" target="_blank" class="btn-wa">
+            Kurzfrage per WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-photo animate-on-scroll">
+        <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
+        <div class="hero-tagcard">
+          <div class="hero-tagcard-title">Dein Ansprechpartner</div>
+          <div class="hero-tagcard-line"><span class="hero-tagcard-dot"></span><span>Zulagen & Förderlogik erklärt</span></div>
+          <div class="hero-tagcard-line"><span class="hero-tagcard-dot"></span><span>Beratung digital & vor Ort</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- RECHNER -->
+    <section id="rechner">
+      <h2>Riester-Rechner: 4% Beitrag, Zulagen & Förder-Quote</h2>
+      <div class="section-subtitle">
+        Du bekommst eine schnelle Orientierung: <strong>Mindesteigenbeitrag</strong> nach 4%-Regel,
+        erwartete <strong>Zulagen</strong> und wie stark die Förderung deine Einzahlung „verstärkt“.
+      </div>
+
+      <div class="calc-wrapper">
+        <div class="calc-grid">
+          <div class="calc-inputs">
+
+            <div class="field">
+              <label for="bruttoVorjahr">Brutto-Vorjahreseinkommen (in €)</label>
+              <input type="number" id="bruttoVorjahr" min="0" step="500" placeholder="z. B. 42000" />
+            </div>
+
+            <div class="field">
+              <label for="kinder">Kinder (Anzahl)</label>
+              <input type="number" id="kinder" min="0" max="10" step="1" placeholder="z. B. 2" />
+            </div>
+
+            <div class="field">
+              <label for="kinderAltNeu">Kinder-Zulage-Typ (vereinfachte Logik)</label>
+              <select id="kinderAltNeu">
+                <option value="mixed" selected>Gemischt / unbekannt</option>
+                <option value="old">Nur „alt“ (185 € pro Kind)</option>
+                <option value="new">Nur „neu“ (300 € pro Kind)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="eigenBeitragMonat">Dein Riester-Beitrag (monatlich) (in €)</label>
+              <input type="number" id="eigenBeitragMonat" min="0" step="5" placeholder="z. B. 80" />
+            </div>
+
+            <div class="field">
+              <label for="zulagenAntrag">Zulagen-Antrag läuft automatisch?</label>
+              <select id="zulagenAntrag">
+                <option value="yes" selected>Ja (Dauerzulagenantrag)</option>
+                <option value="no">Nein / unsicher</option>
+              </select>
+            </div>
+
+            <div class="calc-btn-row">
+              <button type="button" class="btn-primary" id="calcBtn">
+                Riester-Förderung berechnen
+              </button>
+            </div>
+          </div>
+
+          <div class="calc-result">
+            <p class="calc-expl">
+              Du bekommst vier Werte:
+              <br /><strong>1. Mindesteigenbeitrag</strong> (4% vom Brutto - Zulagen)
+              <br /><strong>2. Deine Zulagen</strong> (Grundzulage + Kinder)
+              <br /><strong>3. Förderquote</strong> (Zulagen im Verhältnis zu deinem Beitrag)
+              <br /><strong>4. Hinweis</strong> (ob du die 4% voraussichtlich erreichst)
+            </p>
+
+            <div class="calc-values">
+              <div class="calc-value-box self">
+                <div class="calc-value-label">Mindesteigenbeitrag (Jahr)</div>
+                <div class="calc-value-number" id="res-minYear">–</div>
+              </div>
+
+              <div class="calc-value-box zul">
+                <div class="calc-value-label">Zulagen (Jahr)</div>
+                <div class="calc-value-number" id="res-zulYear">–</div>
+              </div>
+
+              <div class="calc-value-box total">
+                <div class="calc-value-label">Förderquote</div>
+                <div class="calc-value-number" id="res-quote">–</div>
+              </div>
+
+              <div class="calc-value-box note">
+                <div class="calc-value-label">Hinweis</div>
+                <div class="calc-value-number" id="res-hint">–</div>
+              </div>
+            </div>
+
+            <div class="mix-card">
+              <div class="mix-title">Neue Grafik: Förder-Stack (dein Geld + Staat)</div>
+              <div class="mix-sub">
+                Die Balken zeigen, wie dein Beitrag durch Zulagen (und als grobe Logik: Steuer-Effekt) „aufgepumpt“ wird.
+              </div>
+
+              <div class="stack" aria-label="Balken: Eigener Beitrag, Zulagen, Steuer, Lücke">
+                <div class="seg seg-a" id="seg-a" style="width:40%"></div>
+                <div class="seg seg-b" id="seg-b" style="width:30%"></div>
+                <div class="seg seg-c" id="seg-c" style="width:20%"></div>
+                <div class="seg seg-d" id="seg-d" style="width:10%"></div>
+              </div>
+
+              <div class="legend">
+                <div class="leg"><span class="sw sw-a"></span><span id="leg-a">Dein Beitrag: –</span></div>
+                <div class="leg"><span class="sw sw-b"></span><span id="leg-b">Zulagen: –</span></div>
+                <div class="leg"><span class="sw sw-c"></span><span id="leg-c">Steuer-Effekt (grob): –</span></div>
+                <div class="leg"><span class="sw sw-d"></span><span id="leg-d">Lücke zur 4%-Logik: –</span></div>
+              </div>
+            </div>
+
+            <div class="calc-note">
+              Vereinfachter Rechner: echte Steuerwirkung hängt von Steuerklasse, Kinderfreibeträgen, weiteren Vorsorgeaufwendungen usw. ab.
+              Die Zulagenlogik bei Kindern ist je nach Geburtsjahr unterschiedlich – hier vereinfachen wir bewusst.
+            </div>
+
+            <div class="calc-cta-row">
+              <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-primary">
+                Riester-Check mit mir machen
+              </a>
+              <a href="https://wa.me/4917663796605" target="_blank" class="btn-wa">
+                Screenshot per WhatsApp schicken
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Inhalte -->
+    <section id="inhalt">
+      <h2>Was fachlich bei Riester wirklich zählt</h2>
+      <div class="section-subtitle">
+        Riester ist ein Fördersystem mit Regeln. Wenn die Regeln passen, ist die Förderung stark – wenn nicht,
+        „versickert“ sie durch falsche Beiträge, fehlende Anträge oder falsche Konstellationen.
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Riester-Kernelemente (die sitzen müssen)</div>
+          <ul>
+            <li><strong>4%-Regel</strong>: Mindesteinzahlung ≈ 4% vom Vorjahresbrutto (abzgl. Zulagen) – sonst gekürzte Zulagen.</li>
+            <li><strong>Grundzulage</strong>: jährlich (hier im Rechner als 175 € angenommen).</li>
+            <li><strong>Kinderzulage</strong>: je nach Geburtsjahr des Kindes unterschiedlich.</li>
+            <li><strong>Dauerzulagenantrag</strong>: spart Ärger, damit Zulagen nicht „vergessen“ werden.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Wichtige Praxis-Punkte</div>
+          <ul>
+            <li><strong>Zulagenberechtigung</strong>: nicht jeder kann Riester – wir prüfen das sauber.</li>
+            <li><strong>Produktlogik</strong>: Fonds/klassisch/Hybrid – muss zur Person passen, sonst wird’s unruhig.</li>
+            <li><strong>Kosten & Rentenfaktor</strong>: am Ende zählt, was netto rauskommt – nicht nur „Zulage“.</li>
+            <li><strong>Flexibilität</strong>: Beitragsänderungen, Pausen, Anpassungen – ohne Chaos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stolperfallen -->
+    <section id="fallen">
+      <h2>Die häufigsten Riester-Stolperfallen (und wie man sie vermeidet)</h2>
+      <div class="section-subtitle">
+        Das sind die Klassiker, warum Leute sagen „Riester bringt bei mir nichts“ – obwohl es oft nur falsch aufgesetzt ist.
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Fehler, die Geld kosten</div>
+          <ul>
+            <li><strong>Zu wenig Beitrag</strong> → Zulage wird gekürzt (statt „gratis Geld“ gibt’s nur anteilig).</li>
+            <li><strong>Kein Zulagenantrag</strong> → Zulage kommt nicht automatisch.</li>
+            <li><strong>Kindergeld-Wechsel</strong> (z. B. Elternteil) → Zulagenzuordnung kann falsch laufen.</li>
+            <li><strong>Beitrag läuft, aber Einkommen ändert sich</strong> → 4%-Wert verschiebt sich.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Fehler, die psychologisch nerven</div>
+          <ul>
+            <li><strong>„Ich sehe nix“</strong>: Riester wirkt stark über Jahre, nicht in 6 Monaten.</li>
+            <li><strong>Falsche Erwartung</strong>: Riester ist Förderung + Altersvorsorge, kein Spekulationsprodukt.</li>
+            <li><strong>Schlechtes Bauchgefühl</strong> wegen alten Medienberichten → wir rechnen nüchtern.</li>
+            <li><strong>Zu kompliziert</strong>: wenn es kompliziert bleibt, ist es schlecht erklärt – nicht „zu schwer“.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section id="check">
+      <div class="bottom-cta animate-on-scroll">
+        <p>
+          Wenn du willst, checke ich dir Riester in 5 Minuten: 4%-Wert, Zulagen, Antrag, Produktlogik.
+          Dann weißt du sofort: <strong>passt</strong> oder <strong>optimieren</strong>.
+        </p>
+        <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-gold">
+          Riester-Check starten
         </a>
       </div>
-    </div>
+    </section>
 
-    <div class="hero-photo animate-on-scroll">
-      <img src="riester-symbol.png" alt="Riester-Rente" />
-    </div>
-  </div>
-</header>
+  </main>
 
-<main>
+  <footer>
+    Diese Seite ersetzt keine individuelle Rechts-, Steuer- oder Sozialversicherungsberatung.
+    Alle Angaben ohne Gewähr. Maßgeblich sind Vertragsbedingungen, Zulagenrecht und gesetzliche Regelungen.
+  </footer>
+</div>
 
-  <section class="animate-on-scroll">
-    <h2>Für wen lohnt sich Riester besonders?</h2>
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-title">Familien</div>
-        <ul>
-          <li>300 € Kinderzulage (ab 2008 geboren)</li>
-          <li>185 € Kinderzulage (vor 2008 geboren)</li>
-          <li>Starke Effekte bei Teilzeit & Elternzeit</li>
-        </ul>
-      </div>
+<script>
+  // Animation on scroll
+  document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll(".animate-on-scroll");
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    elements.forEach((el) => observer.observe(el));
+  });
 
-      <div class="card">
-        <div class="card-title">Gering- & Mittelverdiener</div>
-        <ul>
-          <li>Schon kleine Eigenbeiträge reichen für volle Zulagen</li>
-          <li>Staat schießt einen großen Teil bei</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+  // Burger Menü JS
+  const burgerBtn = document.getElementById("burgerBtn");
+  const menuPanel = document.getElementById("menuPanel");
+  const menuBackdrop = document.getElementById("menuBackdrop");
+  const menuClose = document.getElementById("menuClose");
 
-  <section class="animate-on-scroll">
-    <h2>Beispielrechnung: 2 Kinder</h2>
+  const openMenu = () => {
+    menuPanel.classList.add("open");
+    menuBackdrop.classList.add("open");
+  };
+  const closeMenu = () => {
+    menuPanel.classList.remove("open");
+    menuBackdrop.classList.remove("open");
+  };
 
-    <div class="card">
-      <p>
-        Eigene Einzahlung: 40 € / Monat  
-        Zulagen: 175 € + 2 × 300 € = 775 € pro Jahr  
-        → Effektiver Sparvorteil: <strong>über 60 % staatliche Förderung</strong>
-      </p>
-    </div>
-  </section>
+  burgerBtn?.addEventListener("click", openMenu);
+  menuClose?.addEventListener("click", closeMenu);
+  menuBackdrop?.addEventListener("click", closeMenu);
 
-  <section class="animate-on-scroll">
-    <h2>Steuerliche Wirkung</h2>
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-title">Während der Einzahlungsphase</div>
-        <p>
-          Beiträge können als Sonderausgaben abgesetzt werden (bis 2.100 € jährlich).
-          Das reduziert deine Steuerlast.
-        </p>
-      </div>
+  document.querySelectorAll(".menu-toggle").forEach(btn => {
+    btn.addEventListener("click", () => {
+      btn.closest(".menu-group")?.classList.toggle("open");
+    });
+  });
 
-      <div class="card">
-        <div class="card-title">Im Rentenalter</div>
-        <p>
-          Riester-Renten werden nachgelagert besteuert – oft jedoch mit geringerer Steuer,
-          weil das Einkommen im Alter niedriger ist.
-        </p>
-      </div>
-    </div>
-  </section>
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menuPanel.classList.contains("open")) closeMenu();
+  });
 
-  <section class="animate-on-scroll">
-    <h2>Nächster Schritt</h2>
+  // Rechner + Grafik (vereinfachte Riester-Logik)
+  const byId = (id) => document.getElementById(id);
+  const fmt = (val) => new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(val)) + " €";
+  const pct = (val) => new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(val)) + " %";
+  function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
-    <div class="centered-cta">
-      <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" class="btn-primary" target="_blank">
-        Riester prüfen lassen
-      </a>
-    </div>
+  function calcRiester(){
+    const brutto = parseFloat(byId("bruttoVorjahr").value || "0");
+    const kinder = parseInt(byId("kinder").value || "0", 10);
+    const type = byId("kinderAltNeu").value;
+    const beitragMonat = parseFloat(byId("eigenBeitragMonat").value || "0");
+    const dauerAntrag = byId("zulagenAntrag").value;
 
-    <div class="centered-cta" style="margin-top:1rem;">
-      <a href="leistung.html#vorsorge" class="btn-secondary">
-        Zurück zur Übersicht
-      </a>
-    </div>
+    // Vereinfachte Zulagen
+    const grundZulage = 175; // grobe Standard-Logik
+    let kinderZulagePro = 250; // "mixed" als Mittelwert
+    if(type === "old") kinderZulagePro = 185;
+    if(type === "new") kinderZulagePro = 300;
 
-  </section>
+    const zulagen = grundZulage + (kinder * kinderZulagePro);
 
-</main>
+    // 4%-Regel (vereinfacht): 4% vom Brutto (max/Details ignoriert) - Zulagen
+    const vierProzent = brutto * 0.04;
+    const mindestEigen = Math.max(0, vierProzent - zulagen);
 
-<!-- PAGE CONTENT END -->
+    const eigenerJahr = beitragMonat * 12;
 
+    // Förderquote: Zulagen / eigener Beitrag
+    const quote = eigenerJahr > 0 ? (zulagen / eigenerJahr) * 100 : 0;
 
-<!-- ========================================================= -->
+    // Hinweis: 4% erreicht?
+    const diff = eigenerJahr - mindestEigen;
+    let hint = "";
+    if(brutto <= 0) hint = "Brutto eintragen";
+    else if(eigenerJahr <= 0) hint = "Beitrag eintragen";
+    else if(diff >= 0) hint = "4%-Logik voraussichtlich erfüllt";
+    else hint = "zu wenig Beitrag → Zulage ggf. gekürzt";
 
-<footer>
-  © 2025 Jonas Plener – Beratung digital & vor Ort
-</footer>
+    if(dauerAntrag === "no") {
+      hint += " · Zulagenantrag prüfen";
+    }
+
+    byId("res-minYear").textContent = fmt(mindestEigen);
+    byId("res-zulYear").textContent = fmt(zulagen);
+    byId("res-quote").textContent = pct(quote);
+    byId("res-hint").textContent = hint;
+
+    // Steuer-Effekt (nur grob als Visual – nicht als Steuerberatung!)
+    // Wir nehmen konservativ: 0% bis 10% vom eigenen Jahresbeitrag als „möglicher Effekt“.
+    const steuerEff = Math.min(eigenerJahr * 0.10, 600); // Deckel, damit Grafik nicht overhyped
+
+    // Lücke zur 4%-Logik (wenn Beitrag zu gering)
+    const luecke = Math.max(0, mindestEigen - eigenerJahr);
+
+    const parts = [
+      { key: "a", name: "Dein Beitrag", val: eigenerJahr },
+      { key: "b", name: "Zulagen", val: zulagen },
+      { key: "c", name: "Steuer-Effekt (grob)", val: steuerEff },
+      { key: "d", name: "Lücke zur 4%-Logik", val: luecke },
+    ];
+
+    const total = parts.reduce((s,p)=>s+p.val,0) || 1;
+
+    parts.forEach(p => {
+      const w = clamp((p.val/total)*100, 0, 100);
+      byId("seg-" + p.key).style.width = w.toFixed(2) + "%";
+      byId("leg-" + p.key).textContent = `${p.name}: ${fmt(p.val)} (${Math.round(w)}%)`;
+    });
+  }
+
+  byId("calcBtn").addEventListener("click", calcRiester);
+  ["bruttoVorjahr","kinder","kinderAltNeu","eigenBeitragMonat","zulagenAntrag"].forEach(id=>{
+    byId(id).addEventListener("input", calcRiester);
+    byId(id).addEventListener("change", calcRiester);
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    if(!byId("bruttoVorjahr").value) byId("bruttoVorjahr").value = 42000;
+    if(!byId("kinder").value) byId("kinder").value = 2;
+    if(!byId("eigenBeitragMonat").value) byId("eigenBeitragMonat").value = 80;
+    calcRiester();
+  });
+</script>
 
 </body>
 </html>
