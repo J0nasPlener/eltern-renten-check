@@ -2,388 +2,993 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leistungsseite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Risikoleben – Familie & Immobilien absichern – Jonas Plener</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    body {
-      margin: 0;
-      font-family: "Raleway", sans-serif;
-      background: #f9fafb;
-      color: #111827;
+    :root{
+      --primary:#4a787d;
+      --accent:#f4be69;
+      --text:#111827;
+      --muted:#4b5563;
+      --bg:#f4f8f8;
+      --bg-soft:#f9fbfb;
+      --border:#e5e7eb;
+      --good:#15803d;
+      --bad:#b91c1c;
+      --wa:#25d366;
+
+      --shadow:0 10px 25px rgba(15,23,42,.06);
+      --shadowStrong:0 18px 45px rgba(15,23,42,.12);
     }
 
-    header.hero {
-      background: #eef7fa;
-      padding: 2.5rem 1.2rem;
-      border-bottom: 1px solid #e5e7eb;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Arimo", system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #fef3c7 0, #f4f8f8 35%, #dbeafe 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+
+    .page{
+      max-width:1100px;
+      margin:0 auto;
+      min-height:100vh;
+      background:#fff;
+      box-shadow:0 12px 35px rgba(15,23,42,.12);
+      display:flex;
+      flex-direction:column;
     }
 
-    .hero-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
+    /* TOPBAR */
+    .topbar{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      padding:.9rem 1.6rem;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(to right,#ffffff,#fef3c7);
+    }
+    .topbar-left{display:flex;align-items:center;gap:.75rem;min-width:0}
+    .topbar-portrait img{
+      width:54px;height:54px;border-radius:50%;
+      object-fit:cover;
+      box-shadow:0 4px 10px rgba(15,23,42,.25);
+    }
+    .topbar-title{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;
+      letter-spacing:.03em;
+      font-size:.95rem;
+      text-transform:uppercase;
+      color:var(--primary);
+    }
+    .topbar-tagline{font-size:.8rem;color:var(--muted)}
+    .topbar-right{
+      font-size:.8rem;color:var(--muted);
+      text-align:right;
+      padding-right:54px; /* Platz für Burger */
+      white-space:nowrap;
     }
 
-    .hero-label {
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      color: #4a787d;
-      letter-spacing: 0.05em;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    /* HERO */
+    header.hero{
+      padding:2.6rem 1.6rem 2.4rem;
+      border-bottom:1px solid var(--border);
+      background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 45%, #e0f2fe 100%);
+    }
+    .hero-inner{display:flex;flex-wrap:wrap;gap:2rem;align-items:center}
+    .hero-text{flex:1 1 300px;min-width:0}
+    .hero-label{
+      display:inline-flex;align-items:center;gap:.4rem;
+      padding:.15rem .65rem;border-radius:999px;
+      border:1px solid rgba(148,163,184,.8);
+      font-size:.8rem;color:var(--muted);
+      margin-bottom:.6rem;background:rgba(255,255,255,.9);
+    }
+    .hero-label .dot{width:6px;height:6px;border-radius:999px;background:var(--accent)}
+    .hero h1{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;
+      font-size:2rem;
+      margin:0 0 .7rem;
+      letter-spacing:.02em;
+    }
+    .hero-lead{
+      margin:0 0 1rem;
+      color:var(--muted);
+      max-width:42rem;
+      font-size:.98rem;
+    }
+    .hero-lead strong{color:var(--primary);font-weight:900}
+
+    .hero-badges{
+      display:flex;flex-wrap:wrap;gap:.5rem;
+      margin:.8rem 0 1.1rem;
+    }
+    .badge{
+      display:inline-flex;align-items:center;gap:.35rem;
+      padding:.32rem .72rem;border-radius:999px;
+      border:1px solid rgba(148,163,184,.9);
+      font-size:.82rem;color:var(--muted);
+      background:#fff;
+      box-shadow:0 3px 8px rgba(15,23,42,.08);
+    }
+    .badge .i{font-weight:900;color:var(--primary)}
+
+    .cta-row{
+      display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;
+      margin-top:.4rem;
+    }
+    .btn-primary,.btn-secondary,.btn-wa,.btn-gold{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:.9rem 1.7rem;border-radius:999px;
+      font-weight:900;font-size:.95rem;
+      cursor:pointer;border:none;text-align:center;white-space:nowrap;
+      transition:transform .15s ease, filter .15s ease;
+    }
+    .btn-primary,.btn-gold{
+      background:var(--accent);color:#1f2933;
+      box-shadow:0 6px 18px rgba(0,0,0,.12);
+    }
+    .btn-secondary{
+      background:#fff;color:var(--primary);
+      border:1px solid rgba(148,163,184,.85);
+    }
+    .btn-wa{
+      background:var(--wa);color:#fff;
+      box-shadow:0 6px 18px rgba(0,0,0,.12);
+    }
+    .btn-primary:hover,.btn-secondary:hover,.btn-wa:hover,.btn-gold:hover{
+      filter:brightness(1.03);transform:translateY(-1px);
     }
 
-    .dot {
-      width: 8px;
-      height: 8px;
-      background: #4a787d;
-      border-radius: 50%;
-      display: block;
+    .hero-photo{
+      flex:0 0 280px;
+      position:relative;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      gap:.7rem;
+    }
+    .hero-photo::before{
+      content:"";
+      position:absolute;
+      width:220px;height:220px;border-radius:50%;
+      background: radial-gradient(circle, #f4be69 0, #ffffff 50%, #93c5fd 100%);
+      opacity:.6;
+      top:10px;z-index:0;
+    }
+    .hero-photo img{
+      max-width:320px;height:auto;
+      position:relative;z-index:1;
+    }
+    .hero-tagcard{
+      position:absolute;bottom:0;right:10px;
+      background:#fff;border-radius:14px;
+      border:1px solid rgba(148,163,184,.6);
+      padding:.55rem .9rem;
+      font-size:.78rem;color:var(--muted);
+      box-shadow:0 8px 20px rgba(15,23,42,.2);
+      z-index:2;max-width:240px;
+    }
+    .hero-tagcard-title{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;font-size:.8rem;color:var(--primary);
+      margin-bottom:.2rem;
+    }
+    .hero-tagcard-line{display:flex;align-items:center;gap:.35rem;margin-bottom:.1rem}
+    .hero-tagcard-dot{width:6px;height:6px;border-radius:999px;background:var(--accent)}
+
+    main{
+      padding:1.8rem 1.6rem 2.4rem;
+      flex:1;
+      background:linear-gradient(to bottom,#fff 0,#f9fafb 100%);
+    }
+    section{margin-bottom:2rem}
+    h2{
+      font-family:"Raleway",system-ui,sans-serif;
+      margin:0 0 .4rem;
+      font-size:1.45rem;
+      color:var(--primary);
+      font-weight:800;
+    }
+    .section-subtitle{
+      margin-bottom:1rem;
+      color:var(--muted);
+      font-size:.92rem;
+      max-width:62rem;
+    }
+    .section-subtitle strong{color:var(--primary);font-weight:900}
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1rem;
     }
 
-    .hero h1 {
-      margin-top: 0.6rem;
-      font-size: 1.9rem;
-      line-height: 1.3;
-      color: #1f2937;
+    /* Cards (wie Leistungs-Boxen) */
+    .card{
+      background:linear-gradient(to bottom right,#f1fafb,#ffffff);
+      border-radius:26px;
+      border:1px solid #a5d5d9;
+      box-shadow:0 18px 32px rgba(15,23,42,.06);
+      padding:1.2rem 1.3rem;
+      font-size:.92rem;
+      color:var(--muted);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;inset:0;
+      border-radius:26px;
+      border-top:4px solid var(--primary);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .card-title{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;
+      margin-bottom:.35rem;
+      color:var(--text);
+      font-size:1rem;
+    }
+    .card ul{margin:.2rem 0 0;padding-left:1.2rem}
+    .card li{margin-bottom:.18rem}
+
+    .highlight-box{
+      background:#fff7ed;
+      border-radius:18px;
+      border:1px solid #fed7aa;
+      padding:.9rem 1rem;
+      font-size:.92rem;
+      color:#7c2d12;
+      margin-top:.8rem;
     }
 
-    .hero-lead {
-      margin-top: 0.75rem;
-      font-size: 1.05rem;
-      line-height: 1.55;
-      color: #374151;
+    /* Rechner */
+    .calc-wrapper{
+      border-radius:18px;
+      padding:1.2rem 1.1rem 1.4rem;
+      background:linear-gradient(to right,#fef3c7 0,#ffffff 45%,#e0f2fe 100%);
+      border:1px solid var(--border);
+      box-shadow:0 10px 25px rgba(15,23,42,.08);
+      margin-top:.6rem;
+    }
+    .calc-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
+      gap:1.2rem;
+      align-items:start;
+    }
+    .calc-inputs label{
+      display:block;
+      font-size:.85rem;
+      font-weight:900;
+      margin-bottom:.25rem;
+      color:#111827;
+    }
+    .calc-inputs input, .calc-inputs select{
+      width:100%;
+      padding:.58rem .62rem;
+      border-radius:10px;
+      border:1px solid var(--border);
+      font-size:.92rem;
+      background:#fff;
+    }
+    .calc-inputs .field{margin-bottom:.7rem}
+    .calc-btn-row{margin-top:.3rem}
+    .calc-btn-row button{width:100%}
+
+    .calc-result{
+      background:rgba(255,255,255,.92);
+      border-radius:14px;
+      padding:.95rem 1rem;
+      border:1px solid var(--border);
+      font-size:.92rem;
+      color:var(--muted);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+    }
+    .calc-expl{margin:0 0 .7rem}
+    .calc-expl strong{color:#111827}
+
+    .calc-values{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+      gap:.6rem;
+      margin-top:.2rem;
+    }
+    .calc-box{
+      padding:.6rem .75rem;
+      border-radius:14px;
+      background:#fff;
+      border:2px solid var(--border);
+      box-shadow:0 8px 18px rgba(15,23,42,.06);
+    }
+    .calc-box.good{border-color:rgba(22,163,74,.35);background:#dcfce7}
+    .calc-box.warn{border-color:rgba(185,28,28,.28);background:#fee2e2}
+    .calc-label{font-size:.8rem;color:var(--muted);margin-bottom:.1rem}
+    .calc-number{font-weight:900;font-size:1.08rem;color:#111827}
+    .calc-note{margin-top:.65rem;font-size:.8rem;color:#6b7280}
+
+    /* Grafik: Aufteilung */
+    .viz{
+      margin-top:.8rem;
+      border-radius:18px;
+      border:1px solid var(--border);
+      background:#fff;
+      padding:.9rem 1rem 1rem;
+    }
+    .viz-head{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;
+      margin-bottom:.6rem;
+    }
+    .viz-title{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;color:#111827;
+      margin:0;font-size:1rem;
+    }
+    .viz-sub{margin:0;color:var(--muted);font-size:.88rem}
+    .stack{
+      height:18px;border-radius:999px;overflow:hidden;
+      background:#e5e7eb;
+      display:flex;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.6);
+      border:1px solid rgba(148,163,184,.35);
+    }
+    .seg{height:100%}
+    .segA{background:var(--primary)}
+    .segB{background:var(--accent)}
+    .segC{background:#93c5fd}
+    .segD{background:#6b7280}
+    .legend{
+      display:flex;flex-wrap:wrap;gap:.55rem;
+      margin-top:.65rem;
+      font-size:.85rem;
+      color:var(--muted);
+    }
+    .leg{
+      display:flex;align-items:center;gap:.4rem;
+      border:1px solid rgba(148,163,184,.5);
+      border-radius:999px;
+      padding:.25rem .55rem;
+      background:#fff;
+    }
+    .sw{width:10px;height:10px;border-radius:3px}
+    .swA{background:var(--primary)}
+    .swB{background:var(--accent)}
+    .swC{background:#93c5fd}
+    .swD{background:#6b7280}
+
+    /* Bottom CTA */
+    .bottom-cta{
+      margin-top:1.6rem;
+      padding:1.1rem 1.1rem 1.3rem;
+      border-radius:18px;
+      background:linear-gradient(to right,#e0f2fe,#fef3c7);
+      border:1px solid var(--border);
+      text-align:center;
+      font-size:.95rem;
+      box-shadow:var(--shadow);
+    }
+    .bottom-cta p{margin:0 0 .8rem;color:var(--muted)}
+
+    footer{
+      padding:1rem 1.6rem 1.4rem;
+      font-size:.78rem;
+      color:#6b7280;
+      border-top:1px solid var(--border);
+      background:#f9fafb;
     }
 
-    .hero-photo img {
-      width: 100%;
-      border-radius: 14px;
-      object-fit: cover;
+    /* =============== Neues Burger Menü =============== */
+    .burger{
+      position:absolute;top:10px;right:10px;
+      width:46px;height:46px;border-radius:999px;
+      border:1px solid rgba(148,163,184,.9);
+      background:#fff;
+      box-shadow:0 8px 20px rgba(15,23,42,.12);
+      display:grid;place-items:center;
+      cursor:pointer;z-index:1000;
+    }
+    .burger:active{transform:translateY(1px)}
+    .burger-lines{width:20px;height:14px;position:relative}
+    .burger-lines span{
+      position:absolute;left:0;right:0;
+      height:2px;border-radius:999px;background:var(--primary);
+    }
+    .burger-lines span:nth-child(1){top:0}
+    .burger-lines span:nth-child(2){top:6px}
+    .burger-lines span:nth-child(3){top:12px}
+
+    .menu-backdrop{
+      position:fixed;inset:0;background:rgba(15,23,42,.45);
+      opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1200;
+    }
+    .menu-panel{
+      position:fixed;top:0;right:0;height:100%;
+      width:min(360px,92vw);
+      background:#fff;
+      box-shadow:-18px 0 40px rgba(15,23,42,.18);
+      transform:translateX(105%);
+      transition:transform .25s ease;
+      z-index:1300;
+      display:flex;flex-direction:column;
+    }
+    .menu-backdrop.open{opacity:1;pointer-events:auto}
+    .menu-panel.open{transform:translateX(0)}
+    .menu-head{
+      padding:1rem 1rem .8rem;
+      border-bottom:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+      background:linear-gradient(to right,#ffffff,#fef3c7);
+    }
+    .menu-head .ttl{font-family:Raleway,system-ui,sans-serif;font-weight:800;color:var(--primary)}
+    .menu-close{
+      width:40px;height:40px;border-radius:999px;
+      border:1px solid rgba(148,163,184,.9);
+      background:#fff;cursor:pointer;display:grid;place-items:center;
+    }
+    .menu-close:active{transform:translateY(1px)}
+    .menu-body{padding:.6rem 1rem 1rem;overflow:auto}
+    .menu-group{
+      margin:.9rem 0;border:1px solid rgba(148,163,184,.55);
+      border-radius:14px;overflow:hidden;background:linear-gradient(to bottom,#fff,#fbfdff);
+    }
+    .menu-group button.menu-toggle{
+      width:100%;text-align:left;border:0;background:transparent;
+      padding:.85rem .95rem;cursor:pointer;
+      display:flex;align-items:center;justify-content:space-between;
+      font-family:Raleway,system-ui,sans-serif;font-weight:800;color:#111;
+    }
+    .menu-group button .chev{color:var(--primary);font-weight:900}
+    .menu-sub{border-top:1px solid rgba(148,163,184,.45);display:none;padding:.35rem .5rem .6rem}
+    .menu-group.open .menu-sub{display:block}
+    .menu-sub a{
+      display:block;padding:.55rem .55rem;border-radius:10px;
+      color:var(--muted);font-size:.95rem;
+    }
+    .menu-sub a:hover{background:#f3f6f8;color:#111}
+    .menu-sub a strong{color:var(--primary)}
+    .menu-sub a.active{
+      background:rgba(244,190,105,.25);
+      color:#111;
+      border:1px solid rgba(244,190,105,.55);
     }
 
-    .btn-primary {
-      display: inline-block;
-      padding: 0.9rem 1.4rem;
-      background: #4a787d;
-      color: #ffffff;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      margin-top: 1rem;
+    .menu-foot{
+      margin-top:auto;padding:1rem;border-top:1px solid var(--border);
+      background:#f9fafb;display:grid;gap:.6rem;
     }
-
-    .btn-secondary {
-      display: inline-block;
-      padding: 0.8rem 1.3rem;
-      background: #d1d5db;
-      color: #1f2937;
-      border-radius: 12px;
-      text-decoration: none;
-      margin-top: 1rem;
+    .menu-foot .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:.92rem 1.2rem;border-radius:999px;
+      font-weight:900;font-size:.98rem;border:0;cursor:pointer;
+      white-space:nowrap;text-align:center;text-decoration:none;
+      box-shadow:0 10px 22px rgba(15,23,42,.12);
     }
+    .menu-foot .btn-gold{background:var(--accent);color:#1f2933}
+    .menu-foot .btn-wa{background:var(--wa);color:#fff}
 
-    main {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 0 1.2rem;
-    }
-
-    h2 {
-      color: #1f2937;
-      margin-top: 2.2rem;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    @media (min-width: 768px) {
-      .grid-2 {
-        grid-template-columns: 1fr 1fr;
+    @media (max-width:768px){
+      .topbar{padding-inline:1rem}
+      .topbar-right{display:none}
+      header.hero{padding:2.1rem 1rem 2.1rem}
+      main{padding:1.6rem 1rem 2.2rem}
+      .hero-inner{flex-direction:column-reverse;align-items:flex-start}
+      .hero h1{font-size:1.6rem}
+      .hero-lead{font-size:.92rem}
+      .hero-photo::before{width:180px;height:180px}
+      .hero-photo img{max-width:280px}
+      .hero-tagcard{
+        position:static;
+        margin-top:.6rem;
+        box-shadow:0 4px 14px rgba(15,23,42,.15);
+        max-width:260px;
+        text-align:left;
       }
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 1.2rem;
-      border: 1px solid #e5e7eb;
-    }
-
-    .card-title {
-      font-weight: 600;
-      margin-bottom: 0.6rem;
-      color: #4a787d;
-    }
-
-    /* BURGER MENU */
-    .menu-toggle {
-      position: fixed;
-      right: 18px;
-      top: 18px;
-      background: white;
-      border: 1px solid #e5e7eb;
-      padding: 0.5rem;
-      border-radius: 10px;
-      cursor: pointer;
-      z-index: 50;
-    }
-
-    .menu-burger {
-      width: 22px;
-      height: 3px;
-      background: #111827;
-      margin: 3px 0;
-      border-radius: 50px;
-    }
-
-    .menu-panel-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-      z-index: 40;
-    }
-
-    .menu-panel-backdrop.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .menu-panel {
-      position: fixed;
-      right: -260px;
-      top: 0;
-      height: 100%;
-      width: 260px;
-      background: #ffffff;
-      border-left: 1px solid #e5e7eb;
-      padding: 1.2rem;
-      z-index: 45;
-      transition: right 0.25s ease;
-    }
-
-    .menu-panel.open {
-      right: 0;
-    }
-
-    .menu-section-title {
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      color: #9ca3af;
-      margin-top: 1rem;
-    }
-
-    .menu-link {
-      display: block;
-      padding: 0.4rem 0;
-      color: #111827;
-      text-decoration: none;
-      font-size: 0.95rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 3rem 1rem;
-      color: #6b7280;
-      font-size: 0.85rem;
-      margin-top: 4rem;
+      .calc-grid{grid-template-columns:minmax(0,1fr)}
+      .btn-primary,.btn-secondary,.btn-wa,.btn-gold{width:100%}
     }
   </style>
 </head>
 
 <body>
+  <div class="page">
 
-<!-- 🔥 BURGER BUTTON -->
-<button class="menu-toggle" id="menu-toggle">
-  <div class="menu-burger"></div>
-  <div class="menu-burger"></div>
-  <div class="menu-burger"></div>
-</button>
-
-<!-- 🔥 BURGER OVERLAY + PANEL -->
-<div id="menu-backdrop" class="menu-panel-backdrop"></div>
-
-<nav id="menu-panel" class="menu-panel">
-  <div class="menu-section-title">Absicherung & Schutz</div>
-  <a class="menu-link" href="arbeitskraftabsicherung.html">Arbeitskraft & BU</a>
-  <a class="menu-link" href="haftpflicht-hausrat-gebaeude.html">Haftpflicht / Hausrat / Gebäude</a>
-  <a class="menu-link" href="risikoleben.html">Risikoleben</a>
-
-  <div class="menu-section-title">Vorsorge & Rente</div>
-  <a class="menu-link" href="riester.html">Riester</a>
-  <a class="menu-link" href="basisrente.html">Rürup / Basisrente</a>
-  <a class="menu-link" href="bav.html">Betriebliche Altersvorsorge</a>
-
-  <div class="menu-section-title">Vermögensaufbau & Sparen</div>
-  <a class="menu-link" href="fondssparen.html">Fondssparen</a>
-  <a class="menu-link" href="einmalanlagen.html">Einmalanlagen</a>
-  <a class="menu-link" href="vermoegensstruktur.html">Vermögensstruktur</a>
-
-  <div class="menu-section-title">Familie & Kinder</div>
-  <a class="menu-link" href="eltern-retter-kindererziehungszeiten.html">Eltern-Retter</a>
-  <a class="menu-link" href="kinder-absichern.html">Kinder absichern</a>
-  <a class="menu-link" href="ausbildung-und-zukunft.html">Ausbildung & Zukunft</a>
-</nav>
-
-<script>
-  const menuToggle = document.getElementById("menu-toggle");
-  const menuBackdrop = document.getElementById("menu-backdrop");
-  const menuPanel = document.getElementById("menu-panel");
-
-  menuToggle.addEventListener("click", () => {
-    menuPanel.classList.toggle("open");
-    menuBackdrop.classList.toggle("open");
-  });
-
-  menuBackdrop.addEventListener("click", () => {
-    menuPanel.classList.remove("open");
-    menuBackdrop.classList.remove("open");
-  });
-</script>
-
-<!-- ========================================================= -->
-<!-- 🚀 PAGE CONTENT – diesen Teil tauscht du aus! -->
-<!-- ========================================================= -->
-
-<!-- PAGE CONTENT START -->
-
-<header class="hero">
-  <div class="hero-inner">
-    <div class="hero-text animate-on-scroll">
-      <div class="hero-label">
-        <span class="dot"></span>
-        Absicherung & Schutz · Risikoleben
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-portrait">
+          <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
+        </div>
+        <div style="min-width:0">
+          <div class="topbar-title">Jonas Plener</div>
+          <div class="topbar-tagline">
+            Agentur für Deutsche Vermögensberatung<br />
+            (Region Kinzigtal / Ortenau)
+          </div>
+        </div>
       </div>
 
-      <h1>Risikolebensversicherung – Schutz für deine Familie & Immobilien</h1>
-
-      <p class="hero-lead">
-        Wenn dir etwas passiert, soll deine Familie nicht mit Schulden, Kreditraten oder finanzieller
-        Unsicherheit zurückbleiben. Eine Risikolebensversicherung ist die klarste und günstigste Lösung,
-        um genau dieses Szenario abzusichern.
-      </p>
-
-      <div class="hero-badges">
-        <div class="badge">Schützt Partner & Kinder</div>
-        <div class="badge">Wichtig bei Immobilienfinanzierungen</div>
+      <div class="topbar-right">
+        Eltern, Familien &amp; Selbstständige<br />
+        im Kinzigtal &amp; der Ortenau
       </div>
 
-      <div class="cta-row">
-        <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" class="btn-primary" target="_blank">
-          Risikoanalyse starten
+      <!-- Burger Button -->
+      <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
+        <div class="burger-lines" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </button>
+    </div>
+
+    <!-- Menü Backdrop + Panel -->
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+    <aside class="menu-panel" id="menuPanel" aria-label="Navigation">
+      <div class="menu-head">
+        <div class="ttl">Menü</div>
+        <button class="menu-close" id="menuClose" aria-label="Menü schließen">✕</button>
+      </div>
+
+      <div class="menu-body">
+        <div class="menu-group open">
+          <button type="button" class="menu-toggle">
+            <span>Startseite</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="leistung.html"><strong>Meine Leistungen</strong></a>
+            <a href="index.html">Eltern-Renten-Check</a>
+          </div>
+        </div>
+
+        <div class="menu-group open">
+          <button type="button" class="menu-toggle">
+            <span>Sachversicherungen</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="haftpflicht-hausrat-gebaeude.html">Haftpflicht · Hausrat · Gebäude</a>
+            <a href="arbeitskraftabsicherung.html">Arbeitskraft &amp; Berufsunfähigkeit</a>
+            <a href="risikoleben.html" class="active"><strong>Risikoleben</strong></a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle">
+            <span>Vorsorge &amp; Rente</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="riester.html">Riester</a>
+            <a href="ruerup.html">Rürup / Basisrente</a>
+            <a href="bav.html">Betriebliche Altersvorsorge</a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle">
+            <span>Vermögensaufbau &amp; Sparen</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="fonds-sparplaene.html">Investment- &amp; Fondssparpläne</a>
+            <a href="einmalanlage.html">Einmalanlage</a>
+            <a href="vermoegensstruktur.html">Vermögensstruktur</a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle">
+            <span>Familie &amp; Kinder</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="eltern-retter.html">Eltern-Retter &amp; Kindererziehungszeiten</a>
+            <a href="kinder-absichern.html">Kinder absichern</a>
+            <a href="ausbildung-zukunft.html">Ausbildung &amp; Zukunft</a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle">
+            <span>Unternehmer</span><span class="chev">▾</span>
+          </button>
+          <div class="menu-sub">
+            <a href="unternehmer-termin.html">Termin für Unternehmer</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-foot">
+        <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">
+          Gespräch vereinbaren
+        </a>
+        <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">
+          Kurzfrage per WhatsApp
         </a>
       </div>
-    </div>
+    </aside>
 
-    <div class="hero-photo animate-on-scroll">
-      <img src="risikoleben-symbol.png" alt="Risikolebensversicherung" />
-    </div>
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-label"><span class="dot"></span> Familie &amp; Immobilien · Risikoleben</div>
+          <h1>Wenn du wegfällst: Soll dein Leben weiter bezahlbar bleiben.</h1>
+          <p class="hero-lead">
+            Risikoleben ist keine „Luxus-Versicherung“. Sie ist die <strong>Finanz-Notbremse</strong> für Familie,
+            Kredit und Zukunftspläne – damit Hinterbliebene <strong>nicht verkaufen müssen</strong>, nur um Zeit zu kaufen.
+          </p>
+
+          <div class="hero-badges">
+            <div class="badge"><span class="i">✓</span> Kredit / Immobilie absichern</div>
+            <div class="badge"><span class="i">✓</span> Familie &amp; Kinder stabil halten</div>
+            <div class="badge"><span class="i">✓</span> Planbar statt „Spendenkonto“</div>
+          </div>
+
+          <div class="cta-row">
+            <a href="#rechner" class="btn-secondary">Bedarf schnell berechnen</a>
+            <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-primary">Kurz prüfen lassen</a>
+            <a href="https://wa.me/4917663796605" target="_blank" class="btn-wa">WhatsApp</a>
+          </div>
+
+          <div class="highlight-box">
+            Typischer Fehler: <strong>„100.000 € wird schon reichen“</strong> – und dann merkt man:
+            Kredit, laufende Kosten, Kinder, Puffer… das ist schneller weg als ein guter Vorsatz am Montagmorgen.
+          </div>
+        </div>
+
+        <div class="hero-photo">
+          <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
+          <div class="hero-tagcard">
+            <div class="hero-tagcard-title">Dein Ansprechpartner</div>
+            <div class="hero-tagcard-line"><span class="hero-tagcard-dot"></span><span>Familie, Immobilie, Schutz</span></div>
+            <div class="hero-tagcard-line"><span class="hero-tagcard-dot"></span><span>Beratung digital &amp; vor Ort</span></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- Was gehört fachlich rein -->
+      <section>
+        <h2>Was eine Risikolebensversicherung wirklich leisten soll</h2>
+        <p class="section-subtitle">
+          Nicht „irgendeine Summe“, sondern ein Plan: <strong>Schulden abfedern</strong>, <strong>laufende Kosten stabil halten</strong> und
+          <strong>Kindern Zeit kaufen</strong> – damit Entscheidungen nicht im Stress passieren.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Die 4 Kernbausteine (praktisch)</div>
+            <ul>
+              <li><strong>Kredit/Restschuld:</strong> Immobilien- oder Konsumentenkredit – damit niemand verkaufen muss.</li>
+              <li><strong>Übergangszeit:</strong> laufende Kosten (Miete/Rate, Alltag) für X Monate/Jahre.</li>
+              <li><strong>Kinder-Zukunft:</strong> Betreuung, Ausbildung, Puffer – realistisch kalkuliert.</li>
+              <li><strong>Sofort-Puffer:</strong> Beerdigung, Umzug, Notreserve, „Luft zum Atmen“.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Worauf es im Vertrag ankommt</div>
+            <ul>
+              <li><strong>Laufzeit passend:</strong> bis Kinder selbstständig sind / Kredit deutlich gesunken ist.</li>
+              <li><strong>Beitrag stabil:</strong> saubere Gesundheitsangaben – später zählt das.</li>
+              <li><strong>Bezugsrecht klar:</strong> wer bekommt die Summe? (Partner, Kinder, Erbenregelung)</li>
+              <li><strong>Optionen sinnvoll:</strong> Dynamik / Nachversicherung bei Hochzeit, Kind, Immobilie.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Rechner -->
+      <section id="rechner">
+        <h2>Risikoleben-Rechner: Welche Summe passt wirklich?</h2>
+        <p class="section-subtitle">
+          Das ist eine <strong>Orientierung</strong>, aber sie zeigt dir sofort die Größenordnung – und verhindert „Gefühlssummen“.
+          Du kannst die Werte jederzeit anpassen.
+        </p>
+
+        <div class="calc-wrapper">
+          <div class="calc-grid">
+            <div class="calc-inputs">
+              <div class="field">
+                <label for="restschuld">Restschuld/Kredit heute (in €)</label>
+                <input type="number" id="restschuld" min="0" step="1000" placeholder="z. B. 220000" />
+              </div>
+
+              <div class="field">
+                <label for="netto">Monatliche Haushaltslücke (Netto) (in €)</label>
+                <input type="number" id="netto" min="0" step="50" placeholder="z. B. 1800" />
+              </div>
+
+              <div class="field">
+                <label for="bridgeYears">Wie lange soll diese Lücke abgesichert werden? (Jahre)</label>
+                <input type="number" id="bridgeYears" min="0" step="1" placeholder="z. B. 5" />
+              </div>
+
+              <div class="field">
+                <label for="kids">Kinder (Anzahl)</label>
+                <input type="number" id="kids" min="0" max="10" step="1" placeholder="z. B. 2" />
+              </div>
+
+              <div class="field">
+                <label for="kidBuffer">Zusatz-Budget pro Kind (einmalig) (in €)</label>
+                <input type="number" id="kidBuffer" min="0" step="500" placeholder="z. B. 15000" />
+              </div>
+
+              <div class="field">
+                <label for="safety">Sofort-Puffer (Beerdigung/Umzug/Reserve) (in €)</label>
+                <input type="number" id="safety" min="0" step="500" placeholder="z. B. 15000" />
+              </div>
+
+              <div class="field">
+                <label for="termYears">Empfohlene Laufzeit (Jahre) – grob</label>
+                <select id="termYears">
+                  <option value="10">10 Jahre</option>
+                  <option value="15">15 Jahre</option>
+                  <option value="20" selected>20 Jahre</option>
+                  <option value="25">25 Jahre</option>
+                  <option value="30">30 Jahre</option>
+                </select>
+              </div>
+
+              <div class="calc-btn-row">
+                <button class="btn-primary" type="button" id="calcBtn">Bedarf berechnen</button>
+              </div>
+            </div>
+
+            <div class="calc-result">
+              <p class="calc-expl">
+                Ergebnis zeigt dir:
+                <br><strong>1) Bedarfssumme</strong> (grob sinnvoll)
+                <br><strong>2) Mindestabsicherung</strong> (nur Kredit + Puffer)
+                <br><strong>3) Laufzeit-Hinweis</strong> (passt das zur Familie/Kredit?)
+              </p>
+
+              <div class="calc-values">
+                <div class="calc-box warn">
+                  <div class="calc-label">Mindestabsicherung (Kredit + Puffer)</div>
+                  <div class="calc-number" id="resMin">–</div>
+                </div>
+
+                <div class="calc-box good">
+                  <div class="calc-label">Sinnvolle Bedarfssumme (orientierend)</div>
+                  <div class="calc-number" id="resNeed">–</div>
+                </div>
+
+                <div class="calc-box">
+                  <div class="calc-label">Vorgeschlagene Laufzeit</div>
+                  <div class="calc-number" id="resTerm">–</div>
+                </div>
+
+                <div class="calc-box">
+                  <div class="calc-label">Monatlicher „Brückenbedarf“</div>
+                  <div class="calc-number" id="resBridge">–</div>
+                </div>
+              </div>
+
+              <div class="viz" aria-label="Grafik: Aufteilung der Absicherung">
+                <div class="viz-head">
+                  <div>
+                    <p class="viz-title">Grafik: Wofür die Summe „arbeitet“</p>
+                    <p class="viz-sub">Aufteilung basiert auf deinen Eingaben (live).</p>
+                  </div>
+                </div>
+
+                <div class="stack" role="img" aria-label="Gestapelter Balken: Kredit, Übergang, Kinder, Puffer">
+                  <div class="seg segA" id="segA" style="width:25%"></div>
+                  <div class="seg segB" id="segB" style="width:25%"></div>
+                  <div class="seg segC" id="segC" style="width:25%"></div>
+                  <div class="seg segD" id="segD" style="width:25%"></div>
+                </div>
+
+                <div class="legend">
+                  <div class="leg"><span class="sw swA"></span><span id="legA">Kredit: –</span></div>
+                  <div class="leg"><span class="sw swB"></span><span id="legB">Übergang: –</span></div>
+                  <div class="leg"><span class="sw swC"></span><span id="legC">Kinder: –</span></div>
+                  <div class="leg"><span class="sw swD"></span><span id="legD">Puffer: –</span></div>
+                </div>
+              </div>
+
+              <div class="calc-note">
+                Hinweis: Das ist keine Steuer-/Rechtsberatung. Konkrete Gestaltung (z. B. Bezugsrecht, Laufzeit, Dynamik)
+                hängt von Familie, Kreditvertrag und Gesamtsituation ab.
+              </div>
+
+              <div class="cta-row" style="margin-top:.8rem">
+                <a class="btn-primary" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">
+                  Ergebnis mit mir durchgehen
+                </a>
+                <a class="btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">
+                  Kurzfrage per WhatsApp
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Praxis / typische Fälle -->
+      <section>
+        <h2>Typische Situationen, wo Risikoleben wirklich „Gamechanger“ ist</h2>
+        <p class="section-subtitle">
+          Es geht nicht um Angst – sondern um <strong>Entscheidungsfreiheit</strong> im Ernstfall.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Immobilie / Kredit</div>
+            <ul>
+              <li>Restschuld abdecken → Partner muss nicht verkaufen.</li>
+              <li>Plus Puffer → Zeit, den Alltag zu sortieren.</li>
+              <li>Optional: <strong>fallende Summe</strong> (Kredit-Logik) oder <strong>konstante Summe</strong> (Familien-Logik).</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Kinder / Familie</div>
+            <ul>
+              <li>Übergangsjahre: Betreuung, Arbeitszeit-Reduktion, neue Organisation.</li>
+              <li>Ausbildung/Start ins Leben: einmaliger Topf pro Kind kann sinnvoll sein.</li>
+              <li>Wichtig: Bezugsrecht klar, ggf. Absicherung beider Elternteile prüfen.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stolperfallen -->
+      <section>
+        <h2>Die 6 häufigsten Stolperfallen (die man vermeiden will)</h2>
+        <p class="section-subtitle">
+          Wenn du willst, prüfen wir genau diese Punkte einmal sauber – dauert meist keine 10 Minuten.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Inhaltlich</div>
+            <ul>
+              <li>Summe zu niedrig (nur „gefühlte“ 100k/200k)</li>
+              <li>Laufzeit zu kurz (Kinder klein, Kredit hoch)</li>
+              <li>Keine Nachversicherung/Dynamik → später passt es nicht mehr</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Formal</div>
+            <ul>
+              <li>Bezugsrecht unklar (Trennung, Ehe, Kinder, Erben)</li>
+              <li>Gesundheitsangaben schlampig (später unnötig Stress)</li>
+              <li>Falsche Variante (fallend vs. konstant) für das Ziel</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom CTA -->
+      <section>
+        <div class="bottom-cta">
+          <p>
+            Wenn du magst, machen wir das pragmatisch:
+            <strong>Bedarfssumme + Laufzeit + Bezugsrecht</strong> – einmal sauber, dann ist Ruhe im Kopf.
+          </p>
+          <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener" class="btn-gold">
+            Termin zur Risikoleben-Absicherung
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      Diese Seite ersetzt keine individuelle Rechts-, Steuer- oder Sozialversicherungsberatung.
+      Alle Angaben ohne Gewähr. Maßgeblich sind die Vertragsbedingungen und gesetzlichen Regelungen.
+    </footer>
+
   </div>
-</header>
 
-<main>
+  <script>
+    // Burger Menü
+    const burgerBtn = document.getElementById("burgerBtn");
+    const menuPanel = document.getElementById("menuPanel");
+    const menuBackdrop = document.getElementById("menuBackdrop");
+    const menuClose = document.getElementById("menuClose");
 
-  <section class="animate-on-scroll">
-    <h2>Wann ist eine Risikolebensversicherung sinnvoll?</h2>
-    <div class="grid-2">
+    const openMenu = () => { menuPanel.classList.add("open"); menuBackdrop.classList.add("open"); };
+    const closeMenu = () => { menuPanel.classList.remove("open"); menuBackdrop.classList.remove("open"); };
 
-      <div class="card">
-        <div class="card-title">Für Familien</div>
-        <ul>
-          <li>Absicherung des Partners</li>
-          <li>Schutz der Kinder im Ernstfall</li>
-          <li>Vermeidung familiärer finanzielle Notlagen</li>
-        </ul>
-      </div>
+    burgerBtn?.addEventListener("click", openMenu);
+    menuClose?.addEventListener("click", closeMenu);
+    menuBackdrop?.addEventListener("click", closeMenu);
 
-      <div class="card">
-        <div class="card-title">Bei Immobilien</div>
-        <ul>
-          <li>Tilgung oder Weiterzahlung der Kreditraten gesichert</li>
-          <li>Partner kann im Haus bleiben</li>
-          <li>Schutz vor Zwangsversteigerung</li>
-        </ul>
-      </div>
+    document.querySelectorAll(".menu-toggle").forEach(btn => {
+      btn.addEventListener("click", () => btn.closest(".menu-group")?.classList.toggle("open"));
+    });
 
-    </div>
-  </section>
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape"){
+        closeMenu();
+      }
+    });
 
-  <section class="animate-on-scroll">
-    <h2>Wie hoch sollte die Versicherungssumme sein?</h2>
-    <p>
-      Eine gute Faustregel: <strong>3–5 Jahresnettogehälter + offene Darlehenssumme</strong> absichern.
-    </p>
+    // Rechner + Grafik
+    const byId = (id) => document.getElementById(id);
 
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-title">Beispiel</div>
-        <p>
-          Haushaltseinkommen: 3.500 € netto  
-          Kredit: 280.000 €  
-          → Empfehlung: ca. 350.000 – 450.000 € Absicherung
-        </p>
-      </div>
-      <div class="card">
-        <div class="card-title">Warum so viel?</div>
-        <p>
-          Damit der Partner genug Zeit hat, Leben, Arbeit & Finanzen neu zu ordnen –
-          ohne sofort verkaufen zu müssen.
-        </p>
-      </div>
-    </div>
-  </section>
+    const fmtEUR = (n) => new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(n)) + " €";
 
-  <section class="animate-on-scroll">
-    <h2>Steuerliche Aspekte</h2>
-    <div class="card">
-      <p>
-        Beiträge können in bestimmten Konstellationen als Vorsorgeaufwendungen gelten,
-        je nach Steuerkonstellation (z. B. getrennte Verträge bei Ehepaaren).
-      </p>
-      <p>
-        Leistungen selbst sind <strong>steuerfrei</strong> – ein großer Vorteil gegenüber anderen Produkten.
-      </p>
-    </div>
-  </section>
+    function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
-  <section class="animate-on-scroll">
-    <h2>Nächster Schritt</h2>
+    function calculate(){
+      const restschuld = parseFloat(byId("restschuld").value || "0");
+      const netto = parseFloat(byId("netto").value || "0");
+      const bridgeYears = parseFloat(byId("bridgeYears").value || "0");
+      const kids = parseInt(byId("kids").value || "0", 10);
+      const kidBuffer = parseFloat(byId("kidBuffer").value || "0");
+      const safety = parseFloat(byId("safety").value || "0");
+      const termYears = parseInt(byId("termYears").value || "20", 10);
 
-    <div class="centered-cta">
-      <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" class="btn-primary" target="_blank">
-        Jetzt Risikoschutz prüfen
-      </a>
-    </div>
+      // Brücke (laufende Lücke) – bewusst simpel, transparent
+      const bridge = netto * 12 * bridgeYears;
 
-    <div class="centered-cta" style="margin-top:1rem;">
-      <a href="leistung.html#absicherung" class="btn-secondary">
-        Zurück zur Übersicht
-      </a>
-    </div>
+      // Kinder-Topf
+      const kidsTotal = kids * kidBuffer;
 
-  </section>
+      // Mindest: Kredit + Puffer
+      const minSum = restschuld + safety;
 
-</main>
+      // Bedarf: Kredit + Brücke + Kinder + Puffer
+      const needSum = restschuld + bridge + kidsTotal + safety;
 
-<!-- PAGE CONTENT END -->
+      byId("resMin").textContent = fmtEUR(minSum);
+      byId("resNeed").textContent = fmtEUR(needSum);
+      byId("resTerm").textContent = termYears + " Jahre";
+      byId("resBridge").textContent = fmtEUR(bridge);
 
+      // Grafik-Anteile
+      const parts = [
+        { key:"A", name:"Kredit", val:restschuld },
+        { key:"B", name:"Übergang", val:bridge },
+        { key:"C", name:"Kinder", val:kidsTotal },
+        { key:"D", name:"Puffer", val:safety }
+      ];
 
-<!-- ========================================================= -->
+      const total = parts.reduce((s,p)=>s+p.val,0) || 1;
 
-<footer>
-  © 2025 Jonas Plener – Beratung digital & vor Ort
-</footer>
+      parts.forEach(p => {
+        const pct = clamp((p.val / total) * 100, 0, 100);
+        byId("seg"+p.key).style.width = pct.toFixed(2) + "%";
+        const label = `${p.name}: ${fmtEUR(p.val)} (${Math.round(pct)}%)`;
+        byId("leg"+p.key).textContent = label;
+      });
+    }
 
+    byId("calcBtn").addEventListener("click", calculate);
+
+    // Optional: live aktualisieren, ohne nervig zu sein
+    ["restschuld","netto","bridgeYears","kids","kidBuffer","safety","termYears"].forEach(id=>{
+      byId(id).addEventListener("input", () => { /* sanft */ calculate(); });
+      byId(id).addEventListener("change", () => { calculate(); });
+    });
+
+    // sinnvolle Defaults (damit nicht alles "–" bleibt)
+    window.addEventListener("DOMContentLoaded", () => {
+      if(!byId("restschuld").value) byId("restschuld").value = 220000;
+      if(!byId("netto").value) byId("netto").value = 1800;
+      if(!byId("bridgeYears").value) byId("bridgeYears").value = 5;
+      if(!byId("kids").value) byId("kids").value = 2;
+      if(!byId("kidBuffer").value) byId("kidBuffer").value = 15000;
+      if(!byId("safety").value) byId("safety").value = 15000;
+      calculate();
+    });
+  </script>
 </body>
 </html>
