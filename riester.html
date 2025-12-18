@@ -145,7 +145,7 @@
 
     /* Hero */
     header.hero{
-      padding:1.9rem 1.4rem 1.55rem;
+      padding:1.9rem 1.4rem .9rem; /* ↓ weniger unten, damit die Box "andocken" kann */
       border-bottom:1px solid var(--border);
       background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 40%, #e0f2fe 100%);
       position:relative;
@@ -180,20 +180,20 @@
       display:flex;
       justify-content:center;
       align-items:flex-end;
-      min-height: 360px; /* genug Raum für Bild + Box */
+      min-height: 360px;
     }
     .hero-portrait{
       width: min(320px, 86%);
       height: auto;
       display:block;
       filter: drop-shadow(0 18px 28px rgba(15,23,42,.18));
-      margin-bottom: 34px; /* hebt das Bild leicht an -> Box liegt am Körper */
+      margin-bottom: 56px; /* etwas mehr Abstand -> Box liegt am Körper, nicht im Gesicht */
     }
     .partner-card{
       position:absolute;
       left: 50%;
-      bottom: 18px;                 /* im Hero, nicht abgeschnitten */
-      transform: translateX(-50%);  /* nur horizontal zentrieren */
+      bottom: 0;                  /* ✅ Unterkante dockt an (kein Luftspalt) */
+      transform: translateX(-50%);/* nur horizontal zentrieren */
       width: min(520px, 92%);
       background:#fff;
       border: 1px solid rgba(148,163,184,.65);
@@ -386,7 +386,7 @@
     }
     .info strong{color:#111}
 
-    /* FAQ/Details (minimal, ohne Layout-Wechsel) */
+    /* FAQ/Details */
     details.faq{
       border:1px solid rgba(148,163,184,.55);
       border-radius:14px;
@@ -415,7 +415,7 @@
     @media (max-width:768px){
       .topbar{padding-inline:1rem}
       .topbar-right{display:none}
-      header.hero{padding:1.55rem 1rem 1.25rem}
+      header.hero{padding:1.55rem 1rem .75rem}
       main{padding:1.4rem 1rem 2.1rem}
       .hero h1{font-size:1.45rem}
       .calc-grid{grid-template-columns:1fr}
@@ -423,9 +423,9 @@
       .btn{width:100%}
 
       .hero-inner{grid-template-columns: 1fr; align-items:start}
-      .hero-right{min-height: 420px;}
-      .partner-card{bottom: 14px;}
-      .hero-portrait{margin-bottom: 40px;}
+      .hero-right{min-height: 460px;}
+      .partner-card{bottom: 0;}
+      .hero-portrait{margin-bottom: 62px;}
     }
   </style>
 </head>
@@ -489,7 +489,7 @@
             <a href="riester.html"><strong>Riester-Rente</strong></a>
             <a href="ruerup.html">Rürup / Basisrente</a>
             <a href="bav.html">Betriebliche Altersvorsorge</a>
-            <a href="risikoleben.html">Betriebliche Altersvorsorge</a>
+            <a href="risikoleben.html">Risikoleben</a>
           </div>
         </div>
 
@@ -667,55 +667,11 @@
           </div>
 
           <div class="card">
-            <div class="card-title">3) Kosten & Produkt entscheiden die Netto-Wirkung</div>
+            <div class="card-title">3) Kosten &amp; Produkt entscheiden die Netto-Wirkung</div>
             <p>
               Förderung ist gut – aber ob es sich unterm Strich lohnt, hängt stark am Vertrag.
               Das prüfen wir mit echten Angeboten.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2>Für wen lohnt sich Riester oft?</h2>
-        <p class="section-sub">Typische Muster aus der Praxis (Einzelfall prüfen).</p>
-
-        <div class="grid">
-          <div class="card">
-            <div class="card-title">Familien mit Kindern</div>
-            <p>Kinderzulagen können stark wirken – Voraussetzung ist meist, dass der Beitrag nicht weit unter dem Minimum liegt.</p>
-          </div>
-          <div class="card">
-            <div class="card-title">Förder-Fokus</div>
-            <p>Wenn Zulagen und ggf. Steuervorteil greifen, kann Riester sinnvoll sein – aber nur mit passendem (kostenarmen) Produkt.</p>
-          </div>
-          <div class="card">
-            <div class="card-title">Menschen, die Struktur mögen</div>
-            <p>Riester ist regelbasiert. Wer planbar sparen will, bekommt hier oft eine klare Linie.</p>
-          </div>
-        </div>
-
-        <div class="info">
-          <strong>Merksatz:</strong> Riester ist selten „für alle“. Oft gut bei starker Förderung (z. B. Kinder) + gutem Vertrag.
-        </div>
-      </section>
-
-      <section>
-        <h2>Typische Fallen</h2>
-        <p class="section-sub">Damit du keine Zulage verschenkst.</p>
-
-        <div class="grid">
-          <div class="card">
-            <div class="card-title">Unter Mindestbeitrag bleiben</div>
-            <p>Häufigster Grund für weniger Zulage als gedacht. Darum: Minimum kennen und Beitrag ggf. anpassen.</p>
-          </div>
-          <div class="card">
-            <div class="card-title">Änderungen nicht nachziehen</div>
-            <p>Kind dazu / Einkommen ändert sich → Mindestbeitrag kann sich ändern. Ein kurzer Jahres-Check verhindert Förderlücken.</p>
-          </div>
-          <div class="card">
-            <div class="card-title">Kosten unterschätzen</div>
-            <p>Förderung hilft – aber hohe Kosten können Rendite drücken. Deshalb gehört ein Vertrags-Check dazu.</p>
           </div>
         </div>
       </section>
@@ -735,10 +691,6 @@
         <details class="faq">
           <summary>Was bedeutet „Zulage wird gekürzt“?</summary>
           <p>Vereinfacht: Unter Minimum → Zulage anteilig geringer. Der Rechner zeigt dir das als Orientierung.</p>
-        </details>
-        <details class="faq">
-          <summary>Kann Riester trotz Förderung unattraktiv sein?</summary>
-          <p>Ja, wenn Förderung kaum greift oder das Produkt ungünstig ist. Deshalb immer Kosten/Leistung checken.</p>
         </details>
       </section>
 
