@@ -2,400 +2,776 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leistungsseite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rürup / Basisrente – Steuer- & Vorsorge-Check · Jonas Plener</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@600;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    body {
+    :root{
+      --primary:#4a787d;
+      --accent:#f4be69;
+      --text:#111111;
+      --muted:#4b5563;
+      --border:#e5e7eb;
+      --wa:#25d366;
+
+      --good:#16a34a;
+      --warn:#f59e0b;
+      --bad:#dc2626;
+
+      --shadow: 0 10px 25px rgba(15,23,42,.06);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Arimo", system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #fef3c7 0, #f4f8f8 35%, #dbeafe 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    .page{
+      max-width:1100px;margin:0 auto;min-height:100vh;background:#fff;
+      box-shadow:0 12px 35px rgba(15,23,42,.12);
+      display:flex;flex-direction:column;
+    }
+
+    /* Topbar */
+    .topbar{
+      position:relative;
+      display:flex;align-items:center;justify-content:space-between;gap:1rem;
+      padding:.85rem 1.8rem;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(to right,#ffffff,#fef3c7);
+    }
+    .topbar-left{display:flex;align-items:center;gap:.75rem;min-width:0}
+    .topbar-portrait img{
+      width:54px;height:54px;border-radius:50%;object-fit:cover;display:block;
+      box-shadow:0 4px 10px rgba(15,23,42,.25);
+    }
+    .topbar-title{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;letter-spacing:.03em;font-size:.95rem;text-transform:uppercase;
+      color:var(--primary);
+    }
+    .topbar-tagline{font-size:.8rem;color:var(--muted)}
+    .topbar-right{
+      font-size:.8rem;color:var(--muted);text-align:right;padding-right:54px;white-space:nowrap;
+    }
+
+    /* Burger */
+    .burger{
+      position:absolute;top:10px;right:10px;
+      width:46px;height:46px;border-radius:999px;
+      border:1px solid rgba(148,163,184,.9);
+      background:#fff;
+      box-shadow:0 8px 20px rgba(15,23,42,.12);
+      display:grid;place-items:center;cursor:pointer;z-index:1000;
+    }
+    .burger:active{transform:translateY(1px)}
+    .burger-lines{width:20px;height:14px;position:relative}
+    .burger-lines span{
+      position:absolute;left:0;right:0;height:2px;border-radius:999px;background:var(--primary);
+    }
+    .burger-lines span:nth-child(1){top:0}
+    .burger-lines span:nth-child(2){top:6px}
+    .burger-lines span:nth-child(3){top:12px}
+
+    .menu-backdrop{
+      position:fixed;inset:0;background:rgba(15,23,42,.45);
+      opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1200;
+    }
+    .menu-panel{
+      position:fixed;top:0;right:0;height:100%;
+      width:min(360px,92vw);
+      background:#fff;
+      box-shadow:-18px 0 40px rgba(15,23,42,.18);
+      transform:translateX(105%);
+      transition:transform .25s ease;
+      z-index:1300;
+      display:flex;flex-direction:column;
+    }
+    .menu-backdrop.open{opacity:1;pointer-events:auto}
+    .menu-panel.open{transform:translateX(0)}
+    .menu-head{
+      padding:1rem 1rem .8rem;
+      border-bottom:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+      background:linear-gradient(to right,#ffffff,#fef3c7);
+    }
+    .menu-head .ttl{font-family:Raleway,system-ui,sans-serif;font-weight:800;color:var(--primary)}
+    .menu-close{
+      width:40px;height:40px;border-radius:999px;
+      border:1px solid rgba(148,163,184,.9);
+      background:#fff;cursor:pointer;display:grid;place-items:center;
+    }
+    .menu-body{padding:.6rem 1rem 1rem;overflow:auto}
+    .menu-group{
+      margin:.9rem 0;border:1px solid rgba(148,163,184,.55);
+      border-radius:14px;overflow:hidden;background:linear-gradient(to bottom,#fff,#fbfdff);
+    }
+    .menu-group button.menu-toggle{
+      width:100%;text-align:left;border:0;background:transparent;
+      padding:.85rem .95rem;cursor:pointer;
+      display:flex;align-items:center;justify-content:space-between;
+      font-family:Raleway,system-ui,sans-serif;font-weight:800;color:#111;
+    }
+    .menu-group button .chev{color:var(--primary);font-weight:900}
+    .menu-sub{
+      border-top:1px solid rgba(148,163,184,.45);
+      display:none;padding:.35rem .5rem .6rem;
+    }
+    .menu-group.open .menu-sub{display:block}
+    .menu-sub a{
+      display:block;padding:.55rem .55rem;border-radius:10px;
+      color:var(--muted);font-size:.95rem;
+    }
+    .menu-sub a:hover{background:#f3f6f8;color:#111}
+    .menu-sub a strong{color:var(--primary)}
+    .menu-foot{
+      margin-top:auto;padding:1rem;border-top:1px solid var(--border);
+      background:#f9fafb;display:grid;gap:.6rem;
+    }
+    .menu-foot .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:.92rem 1.2rem;border-radius:999px;
+      font-weight:900;font-size:.98rem;border:0;cursor:pointer;
+      white-space:nowrap;text-align:center;text-decoration:none;
+      box-shadow:0 10px 22px rgba(15,23,42,.12);
+    }
+    .menu-foot .btn-gold{background:var(--accent);color:#1f2933}
+    .menu-foot .btn-wa{background:var(--wa);color:#fff}
+
+    /* Hero */
+    header.hero{
+      padding:1.9rem 1.4rem .9rem;
+      border-bottom:1px solid var(--border);
+      background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 40%, #e0f2fe 100%);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-label{
+      display:inline-flex;align-items:center;gap:.45rem;
+      padding:.15rem .7rem;border-radius:999px;
+      border:1px solid rgba(148,163,184,.8);
+      font-size:.82rem;color:var(--muted);
+      background:rgba(255,255,255,.9);
+      margin-bottom:.6rem;
+    }
+    .hero-label .dot{width:6px;height:6px;border-radius:999px;background:var(--accent)}
+    .hero h1{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;font-size:1.85rem;margin:0 0 .55rem;
+    }
+    .hero-lead{margin:0;color:var(--muted);max-width:62rem;font-size:.98rem}
+    .hero-lead strong{color:var(--primary);font-weight:800}
+
+    /* HERO: Bild + Ansprechpartner-Box */
+    .hero-inner{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 1.2rem;
+      align-items: end;
+    }
+    .hero-left{min-width:0}
+    .hero-right{
+      position: relative;
+      display:flex;
+      justify-content:center;
+      align-items:flex-end;
+      min-height: 360px;
+    }
+    .hero-portrait{
+      width: min(320px, 86%);
+      height: auto;
+      display:block;
+      filter: drop-shadow(0 18px 28px rgba(15,23,42,.18));
+      margin-bottom: 56px;
+    }
+    .partner-card{
+      position:absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: min(520px, 92%);
+      background:#fff;
+      border: 1px solid rgba(148,163,184,.65);
+      border-radius: 22px;
+      box-shadow: 0 14px 30px rgba(15,23,42,.14);
+      padding: 1.05rem 1.15rem;
+    }
+    .partner-title{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight: 800;
+      color: var(--primary);
+      text-align:center;
+      margin: 0 0 .55rem;
+    }
+    .partner-list{
+      list-style: none;
+      padding: 0;
       margin: 0;
-      font-family: "Raleway", sans-serif;
-      background: #f9fafb;
-      color: #111827;
+      display:grid;
+      gap: .35rem;
+      color: var(--muted);
+      font-size: .95rem;
     }
-
-    header.hero {
-      background: #eef7fa;
-      padding: 2.5rem 1.2rem;
-      border-bottom: 1px solid #e5e7eb;
+    .partner-list li{
+      display:flex;
+      align-items:flex-start;
+      gap:.6rem;
     }
-
-    .hero-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .hero-label {
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      color: #4a787d;
-      letter-spacing: 0.05em;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .dot {
+    .partner-dot{
       width: 8px;
       height: 8px;
-      background: #4a787d;
-      border-radius: 50%;
-      display: block;
+      border-radius: 999px;
+      background: var(--accent);
+      margin-top: .45rem;
+      flex: 0 0 auto;
     }
 
-    .hero h1 {
-      margin-top: 0.6rem;
-      font-size: 1.9rem;
-      line-height: 1.3;
-      color: #1f2937;
+    main{
+      padding:1.6rem 1.4rem 2.4rem;
+      background:linear-gradient(to bottom,#fff 0,#f9fafb 100%);
+      flex:1;
+    }
+    section{margin-bottom:1.6rem}
+    h2{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;font-size:1.45rem;color:var(--primary);
+      margin:0 0 .4rem;
+    }
+    .section-sub{margin:0 0 1rem;color:var(--muted);font-size:.92rem;max-width:62rem}
+
+    /* Cards / Layout */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+    .card{
+      background:linear-gradient(to bottom,#fff,#fbfdff);
+      border-radius:18px;
+      border:2px solid rgba(74,120,125,.18);
+      box-shadow:var(--shadow);
+      padding:1rem 1.05rem 1.05rem;
+    }
+    .card-title{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:800;font-size:1.05rem;margin:0 0 .4rem;color:#111;
+    }
+    .card p{margin:.35rem 0 0;color:var(--muted);font-size:.92rem}
+
+    .info{
+      margin-top:.75rem;
+      padding:.75rem .85rem;
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,.7);
+      background:#fff;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    .info strong{color:#111}
+
+    /* Steuer-Quickcheck */
+    .calc-wrap{
+      margin-top:.6rem;
+      border-radius:18px;
+      padding:1.1rem 1.05rem 1.15rem;
+      background:linear-gradient(to right, rgba(254,243,199,.8) 0, #ffffff 45%, rgba(224,242,254,.8) 100%);
+      border:1px solid var(--border);
+      box-shadow:0 10px 25px rgba(15,23,42,.08);
+    }
+    .calc-grid{
+      display:grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap:1rem;
+      align-items:start;
+    }
+    .field{margin-bottom:.7rem}
+    label{
+      display:block;font-size:.85rem;font-weight:900;margin-bottom:.25rem;color:#111;
+    }
+    input{
+      width:100%;
+      padding:.6rem .65rem;
+      border-radius:12px;
+      border:1px solid var(--border);
+      font-size:.92rem;
+      background:#fff;
     }
 
-    .hero-lead {
-      margin-top: 0.75rem;
-      font-size: 1.05rem;
-      line-height: 1.55;
-      color: #374151;
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:.9rem 1.15rem;border-radius:999px;
+      font-weight:900;font-size:.95rem;border:0;cursor:pointer;
+      text-align:center;white-space:nowrap;
+      box-shadow:0 10px 22px rgba(15,23,42,.12);
+    }
+    .btn:hover{filter:brightness(1.02);transform:translateY(-1px)}
+    .btn-gold{background:var(--accent);color:#1f2933}
+    .btn-outline{background:#fff;border:1px solid rgba(148,163,184,.85);box-shadow:none;color:var(--primary)}
+    .row-2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+
+    .calc-result{
+      background:rgba(255,255,255,.92);
+      border-radius:16px;
+      padding:1rem;
+      border:1px solid var(--border);
+      color:var(--muted);
+      font-size:.92rem;
+    }
+    .calc-expl{margin:0 0 .65rem}
+    .values{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap:.65rem;
+      margin-top:.2rem;
+    }
+    .val{
+      padding:.65rem .75rem;border-radius:14px;border:2px solid var(--border);
+      background:#fff;box-shadow:0 8px 18px rgba(15,23,42,.06);
+    }
+    .val .k{font-size:.8rem;color:var(--muted);margin-bottom:.1rem}
+    .val .v{font-weight:900;font-size:1.05rem;color:#111}
+    .val.good{border-color:rgba(22,163,74,.55);background:#dcfce7}
+    .val.warn{border-color:rgba(245,158,11,.55);background:#fef3c7}
+
+    details.faq{
+      border:1px solid rgba(148,163,184,.55);
+      border-radius:14px;
+      padding:.75rem .85rem;
+      background:linear-gradient(to bottom,#fff,#fbfdff);
+      box-shadow:0 8px 18px rgba(15,23,42,.06);
+      margin:.7rem 0 0;
+    }
+    details.faq summary{
+      cursor:pointer;
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight:900;
+      color:#111;
+      list-style:none;
+    }
+    details.faq summary::-webkit-details-marker{display:none}
+    details.faq p{margin:.55rem 0 0;color:var(--muted);font-size:.92rem}
+
+    footer{
+      padding:1rem 1.4rem 1.3rem;
+      font-size:.78rem;color:#6b7280;
+      border-top:1px solid var(--border);
+      background:#f9fafb;
     }
 
-    .hero-photo img {
-      width: 100%;
-      border-radius: 14px;
-      object-fit: cover;
-    }
+    @media (max-width:768px){
+      .topbar{padding-inline:1rem}
+      .topbar-right{display:none}
+      header.hero{padding:1.55rem 1rem .75rem}
+      main{padding:1.4rem 1rem 2.1rem}
+      .hero h1{font-size:1.45rem}
 
-    .btn-primary {
-      display: inline-block;
-      padding: 0.9rem 1.4rem;
-      background: #4a787d;
-      color: #ffffff;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      margin-top: 1rem;
-    }
+      .hero-inner{grid-template-columns: 1fr; align-items:start}
+      .hero-right{min-height: 460px;}
+      .partner-card{bottom: 0;}
+      .hero-portrait{margin-bottom: 62px;}
 
-    .btn-secondary {
-      display: inline-block;
-      padding: 0.8rem 1.3rem;
-      background: #d1d5db;
-      color: #1f2937;
-      border-radius: 12px;
-      text-decoration: none;
-      margin-top: 1rem;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 0 1.2rem;
-    }
-
-    h2 {
-      color: #1f2937;
-      margin-top: 2.2rem;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    @media (min-width: 768px) {
-      .grid-2 {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 1.2rem;
-      border: 1px solid #e5e7eb;
-    }
-
-    .card-title {
-      font-weight: 600;
-      margin-bottom: 0.6rem;
-      color: #4a787d;
-    }
-
-    /* BURGER MENU */
-    .menu-toggle {
-      position: fixed;
-      right: 18px;
-      top: 18px;
-      background: white;
-      border: 1px solid #e5e7eb;
-      padding: 0.5rem;
-      border-radius: 10px;
-      cursor: pointer;
-      z-index: 50;
-    }
-
-    .menu-burger {
-      width: 22px;
-      height: 3px;
-      background: #111827;
-      margin: 3px 0;
-      border-radius: 50px;
-    }
-
-    .menu-panel-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-      z-index: 40;
-    }
-
-    .menu-panel-backdrop.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .menu-panel {
-      position: fixed;
-      right: -260px;
-      top: 0;
-      height: 100%;
-      width: 260px;
-      background: #ffffff;
-      border-left: 1px solid #e5e7eb;
-      padding: 1.2rem;
-      z-index: 45;
-      transition: right 0.25s ease;
-    }
-
-    .menu-panel.open {
-      right: 0;
-    }
-
-    .menu-section-title {
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      color: #9ca3af;
-      margin-top: 1rem;
-    }
-
-    .menu-link {
-      display: block;
-      padding: 0.4rem 0;
-      color: #111827;
-      text-decoration: none;
-      font-size: 0.95rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 3rem 1rem;
-      color: #6b7280;
-      font-size: 0.85rem;
-      margin-top: 4rem;
+      .calc-grid{grid-template-columns:1fr}
+      .row-2{grid-template-columns:1fr}
+      .btn{width:100%}
     }
   </style>
 </head>
 
 <body>
+  <div class="page">
 
-<!-- 🔥 BURGER BUTTON -->
-<button class="menu-toggle" id="menu-toggle">
-  <div class="menu-burger"></div>
-  <div class="menu-burger"></div>
-  <div class="menu-burger"></div>
-</button>
-
-<!-- 🔥 BURGER OVERLAY + PANEL -->
-<div id="menu-backdrop" class="menu-panel-backdrop"></div>
-
-<nav id="menu-panel" class="menu-panel">
-  <div class="menu-section-title">Absicherung & Schutz</div>
-  <a class="menu-link" href="arbeitskraftabsicherung.html">Arbeitskraft & BU</a>
-  <a class="menu-link" href="haftpflicht-hausrat-gebaeude.html">Haftpflicht / Hausrat / Gebäude</a>
-  <a class="menu-link" href="risikoleben.html">Risikoleben</a>
-
-  <div class="menu-section-title">Vorsorge & Rente</div>
-  <a class="menu-link" href="riester.html">Riester</a>
-  <a class="menu-link" href="basisrente.html">Rürup / Basisrente</a>
-  <a class="menu-link" href="bav.html">Betriebliche Altersvorsorge</a>
-
-  <div class="menu-section-title">Vermögensaufbau & Sparen</div>
-  <a class="menu-link" href="fondssparen.html">Fondssparen</a>
-  <a class="menu-link" href="einmalanlagen.html">Einmalanlagen</a>
-  <a class="menu-link" href="vermoegensstruktur.html">Vermögensstruktur</a>
-
-  <div class="menu-section-title">Familie & Kinder</div>
-  <a class="menu-link" href="eltern-retter-kindererziehungszeiten.html">Eltern-Retter</a>
-  <a class="menu-link" href="kinder-absichern.html">Kinder absichern</a>
-  <a class="menu-link" href="ausbildung-und-zukunft.html">Ausbildung & Zukunft</a>
-</nav>
-
-<script>
-  const menuToggle = document.getElementById("menu-toggle");
-  const menuBackdrop = document.getElementById("menu-backdrop");
-  const menuPanel = document.getElementById("menu-panel");
-
-  menuToggle.addEventListener("click", () => {
-    menuPanel.classList.toggle("open");
-    menuBackdrop.classList.toggle("open");
-  });
-
-  menuBackdrop.addEventListener("click", () => {
-    menuPanel.classList.remove("open");
-    menuBackdrop.classList.remove("open");
-  });
-</script>
-
-<!-- ========================================================= -->
-<!-- 🚀 PAGE CONTENT – diesen Teil tauscht du aus! -->
-<!-- ========================================================= -->
-
-<!-- PAGE CONTENT START -->
-
-<header class="hero">
-  <div class="hero-inner">
-    <div class="hero-text animate-on-scroll">
-      <div class="hero-label">
-        <span class="dot"></span>
-        Vorsorge & Rente · Rürup / Basisrente
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-portrait">
+          <img src="jonas-halbkoerper.png" alt="Jonas Plener" />
+        </div>
+        <div style="min-width:0">
+          <div class="topbar-title">Jonas Plener</div>
+          <div class="topbar-tagline">
+            Agentur für Deutsche Vermögensberatung<br />
+            (Region Kinzigtal / Ortenau)
+          </div>
+        </div>
       </div>
 
-      <h1>Basisrente (Rürup) – Steuern sparen heute, Rente fürs Leben morgen</h1>
-
-      <p class="hero-lead">
-        Für Selbstständige, Gutverdiener und alle, die ihre Steuerlast heute spürbar
-        senken wollen, ist die Basisrente ein starkes Werkzeug. Du tauschst Steuerersparnis
-        heute gegen eine lebenslange Rente im Alter.
-      </p>
-
-      <div class="hero-badges">
-        <div class="badge">Besonders spannend für Selbstständige</div>
-        <div class="badge">Hohe Beiträge steuerlich begünstigt</div>
+      <div class="topbar-right">
+        Eltern, Selbstständige und Angestellte<br />
+        im Kinzigtal &amp; der Ortenau
       </div>
 
-      <div class="cta-row">
-        <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" class="btn-primary" target="_blank">
-          Basisrenten-Check starten
-        </a>
-      </div>
+      <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
+        <div class="burger-lines" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </button>
     </div>
 
-    <div class="hero-photo animate-on-scroll">
-      <img src="basisrente-symbol.png" alt="Basisrente / Rürup" />
-    </div>
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+    <aside class="menu-panel" id="menuPanel" aria-label="Navigation">
+      <div class="menu-head">
+        <div class="ttl">Menü</div>
+        <button class="menu-close" id="menuClose" aria-label="Menü schließen">✕</button>
+      </div>
+
+      <div class="menu-body">
+        <div class="menu-group open">
+          <button type="button" class="menu-toggle"><span>Startseite</span><span class="chev">▾</span></button>
+          <div class="menu-sub">
+            <a href="leistung.html"><strong>Meine Leistungen</strong></a>
+            <a href="index.html">Eltern-Renten-Check</a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle"><span>Absicherung &amp; Schutz</span><span class="chev">▾</span></button>
+          <div class="menu-sub">
+            <a href="arbeitskraftabsicherung.html">Berufsunfähigkeit &amp; Arbeitskraft</a>
+            <a href="sachversicherungen.html">Sachversicherungen</a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle"><span>Vorsorge &amp; Rente</span><span class="chev">▾</span></button>
+          <div class="menu-sub">
+            <a href="riester.html">Riester-Rente</a>
+            <a href="ruerup.html"><strong>Rürup / Basisrente</strong></a>
+            <a href="bav.html">Betriebliche Altersvorsorge</a>
+            <a href="risikoleben.html">Risikoleben</a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle"><span>Vermögensaufbau &amp; Sparen</span><span class="chev">▾</span></button>
+          <div class="menu-sub">
+            <a href="fonds-sparplaene.html">Investment- &amp; Fondssparpläne</a>
+            <a href="einmalanlage.html">Einmalanlage</a>
+            <a href="vermoegensstruktur.html">Vermögensstruktur</a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle"><span>Familie &amp; Kinder</span><span class="chev">▾</span></button>
+          <div class="menu-sub">
+            <a href="eltern-retter.html">Eltern-Retter &amp; Kindererziehungszeiten</a>
+            <a href="kinder-absichern.html">Kinder absichern</a>
+            <a href="ausbildung-zukunft.html">Ausbildung &amp; Zukunft</a>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <button type="button" class="menu-toggle"><span>Unternehmer</span><span class="chev">▾</span></button>
+          <div class="menu-sub">
+            <a href="unternehmer-termin.html">Termin für Unternehmer</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-foot">
+        <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch vereinbaren</a>
+        <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">Kurzfrage per WhatsApp</a>
+      </div>
+    </aside>
+
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="hero-label"><span class="dot"></span> Rürup / Basisrente · Steuer- & Vorsorge-Check</div>
+          <h1>Basisrente (Rürup): Steuern sparen – aber nur, wenn’s sauber geplant ist.</h1>
+          <p class="hero-lead">
+            Rürup ist weniger „Rechner-Spielerei“ und mehr <strong>Steuerstrategie + Altersvorsorge</strong>.
+            Hier bekommst du eine klare Einordnung: <strong>für wen es passt</strong>, welche <strong>Hebel</strong> es gibt
+            und wie du eine realistische <strong>Steuerersparnis</strong> einschätzen kannst (ohne Fachchinesisch).
+          </p>
+        </div>
+
+        <div class="hero-right">
+          <img class="hero-portrait" src="jonas-halbkoerper.png" alt="Jonas Plener" />
+          <div class="partner-card">
+            <div class="partner-title">Dein Ansprechpartner</div>
+            <ul class="partner-list">
+              <li><span class="partner-dot"></span><span>Eltern, Familien &amp; Selbstständige</span></li>
+              <li><span class="partner-dot"></span><span>Beratung digital und vor Ort</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2>Rürup in 30 Sekunden</h2>
+        <p class="section-sub">
+          Die Basisrente ist eine private Altersvorsorge, deren Beiträge (innerhalb gesetzlicher Grenzen) steuerlich als Vorsorgeaufwand
+          absetzbar sein können. Der Vorteil entsteht meist dann, wenn dein persönlicher Steuersatz hoch ist – häufig bei
+          <strong>Selbstständigen</strong> und <strong>Gutverdienern</strong>.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <div class="card-title">Hebel: Steuerersparnis heute</div>
+            <p>
+              Beiträge können die Steuerlast senken. Der Effekt hängt stark von Einkommen, Steuersatz und weiterer Vorsorge ab.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title">Ziel: Zusatzeinkommen im Alter</div>
+            <p>
+              Du baust eine lebenslange Rente auf. Das ist planbar – aber die Vertragsdetails entscheiden.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title">Wichtig: Produkt & Kosten</div>
+            <p>
+              Bei Rürup können Kosten und Anlagekonzept den Unterschied zwischen „klug“ und „na ja…“ machen.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Steuer-Quickcheck (Orientierung)</h2>
+        <p class="section-sub">
+          Kein offizieller Steuerrechner – aber eine verständliche Orientierung: Wie groß könnte die Steuerentlastung grob sein,
+          wenn du einen Jahresbeitrag in die Basisrente steckst?
+        </p>
+
+        <div class="calc-wrap">
+          <div class="calc-grid">
+            <div>
+              <div class="field">
+                <label for="contribution">Geplanter Beitrag pro Jahr in €</label>
+                <input id="contribution" type="number" min="0" step="100" placeholder="z. B. 3.000" />
+              </div>
+
+              <div class="field">
+                <label for="taxRate">Dein Grenzsteuersatz in % (wenn du ihn ungefähr kennst)</label>
+                <input id="taxRate" type="number" min="0" max="60" step="1" placeholder="z. B. 35" />
+              </div>
+
+              <div class="info" style="margin-top:.6rem">
+                <strong>Wenn du den Steuersatz nicht kennst:</strong> Lass ihn leer – dann zeigen wir dir eine Spanne (z. B. 25–42: typisch je nach Einkommen).
+              </div>
+
+              <div class="row-2" style="margin-top:.75rem">
+                <button class="btn btn-gold" type="button" id="taxBtn">Grob berechnen</button>
+                <button class="btn btn-outline" type="button" id="taxReset">Zurücksetzen</button>
+              </div>
+            </div>
+
+            <div class="calc-result">
+              <p class="calc-expl">
+                <strong>Ergebnis (Orientierung):</strong> geschätzte Steuerentlastung.
+                In der Praxis hängt das auch an weiteren Vorsorgeaufwendungen & der tatsächlichen Absetzbarkeit.
+              </p>
+
+              <div class="values">
+                <div class="val">
+                  <div class="k">Beitrag / Jahr</div>
+                  <div class="v" id="vPay">–</div>
+                </div>
+                <div class="val warn">
+                  <div class="k">Steuerersparnis (grob)</div>
+                  <div class="v" id="vSave">–</div>
+                </div>
+                <div class="val good">
+                  <div class="k">„Effektive Nettobelastung“ (grob)</div>
+                  <div class="v" id="vNet">–</div>
+                </div>
+              </div>
+
+              <div class="info">
+                <strong>Merksatz:</strong> Wenn du z. B. 3.000 € zahlst und ~35% Grenzsteuersatz hast,
+                kann die Steuerentlastung grob ~1.050 € sein – der tatsächliche Wert kann abweichen.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Für wen ist Rürup oft sinnvoll?</h2>
+        <p class="section-sub">Typische Fälle – Einzelfall prüfen.</p>
+
+        <div class="grid">
+          <div class="card">
+            <div class="card-title">Selbstständige ohne „klassische“ Pflicht-Rente</div>
+            <p>
+              Rürup wird häufig genutzt, um planbar fürs Alter vorzusorgen und gleichzeitig den Steuereffekt mitzunehmen.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title">Gutverdiener mit hohem Steuersatz</div>
+            <p>
+              Je höher der Grenzsteuersatz, desto stärker kann der Steuerhebel wirken (wenn die Absetzbarkeit greift).
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title">Menschen, die „Rentenlogik“ mögen</div>
+            <p>
+              Lebenslange Rente statt „ich muss später alles selbst entnehmen“ – kann psychologisch sehr angenehm sein.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Typische Stolpersteine</h2>
+        <p class="section-sub">Damit Rürup nicht zum „Steuertrick ohne Plan“ wird.</p>
+
+        <div class="grid">
+          <div class="card">
+            <div class="card-title">Nur wegen Steuer abgeschlossen</div>
+            <p>
+              Steuern sparen ist nett – aber entscheidend ist, ob die Rente später wirklich zu deinem Plan passt.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title">Kosten & Konzept nicht geprüft</div>
+            <p>
+              Hohe Kosten können langfristig richtig Rendite fressen. Konzept & Transparenz sind Pflicht.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title">Zu unflexibel geplant</div>
+            <p>
+              Rürup ist auf Altersrente ausgelegt. Deshalb muss die Beitragshöhe zu deinem Cashflow passen.
+            </p>
+          </div>
+        </div>
+
+        <div class="info">
+          <strong>Hinweis:</strong> Die Basisrente hat besondere Regeln (z. B. Auszahlungslogik im Alter).
+          Genau deshalb lohnt sich ein sauberer Check statt „schnell unterschreiben“.
+        </div>
+      </section>
+
+      <section>
+        <h2>FAQ</h2>
+        <p class="section-sub">Kurz &amp; verständlich.</p>
+
+        <details class="faq">
+          <summary>Ist Rürup nur für Selbstständige?</summary>
+          <p>Nein. Oft aber besonders interessant bei hohem Steuersatz oder wenn andere Vorsorgewege ausgeschöpft sind.</p>
+        </details>
+
+        <details class="faq">
+          <summary>Wie realistisch ist die Steuerersparnis?</summary>
+          <p>Sie kann gut sein – aber hängt vom persönlichen Steuersatz, weiteren Vorsorgeaufwendungen und den gesetzlichen Grenzen ab.</p>
+        </details>
+
+        <details class="faq">
+          <summary>Worauf kommt es beim Vertrag am meisten an?</summary>
+          <p>Kosten, Anlagekonzept, Rentenfaktoren/Leistungen und ob das Ganze zu deinem Gesamtplan passt.</p>
+        </details>
+      </section>
+
+      <section>
+        <h2>Nächster Schritt</h2>
+        <p class="section-sub">
+          Wenn du willst, machen wir daraus einen sauberen Plan: Steuerwirkung realistisch einschätzen, passende Produktvarianten vergleichen,
+          und dann entscheiden – ohne Bauchgefühl-Lotterie.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <div class="card-title">Gespräch vereinbaren</div>
+            <p>Kurzer Check → klare Empfehlung, ob Rürup bei dir Sinn macht.</p>
+            <div style="margin-top:.75rem">
+              <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch vereinbaren</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Kurzfrage per WhatsApp</div>
+            <p>„Ich bin selbstständig / angestellt, lohnt sich Rürup?“ — reicht als Start.</p>
+            <div style="margin-top:.75rem">
+              <a class="btn" style="background:var(--wa);color:#fff" href="https://wa.me/4917663796605" target="_blank" rel="noopener">Kurzfrage per WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Diese Seite ersetzt keine individuelle Rechts-, Steuer- oder Sozialversicherungsberatung.
+      Alle Angaben ohne Gewähr. Maßgeblich sind Vertragsbedingungen und gesetzliche Regelungen.
+    </footer>
   </div>
-</header>
 
-<main>
+  <script>
+    // ===== Burger Menü =====
+    const burgerBtn = document.getElementById("burgerBtn");
+    const menuPanel = document.getElementById("menuPanel");
+    const menuBackdrop = document.getElementById("menuBackdrop");
+    const menuClose = document.getElementById("menuClose");
 
-  <section class="animate-on-scroll">
-    <h2>Was ist die Basisrente?</h2>
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-title">Die Idee dahinter</div>
-        <ul>
-          <li>Lebenslange Rente als Ergänzung zur gesetzlichen Rente.</li>
-          <li>Kapital ist grundsätzlich nicht frei verfügbar (keine vorzeitige Kündigung).</li>
-          <li>Sehr hohe Beiträge möglich – interessant für alle mit hohem zu versteuernden Einkommen.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="card-title">Für wen geeignet?</div>
-        <ul>
-          <li>Selbstständige ohne oder mit wenig gesetzlicher Rente.</li>
-          <li>Gutverdienende Angestellte, die Steuern optimieren wollen.</li>
-          <li>Menschen, die Wert auf eine lebenslange Zahlung legen.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+    const openMenu = () => { menuPanel.classList.add("open"); menuBackdrop.classList.add("open"); };
+    const closeMenu = () => { menuPanel.classList.remove("open"); menuBackdrop.classList.remove("open"); };
 
-  <section class="animate-on-scroll">
-    <h2>Steuern – heute sparen, später versteuern</h2>
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-title">Während der Ansparphase</div>
-        <p>
-          Beiträge zur Basisrente können als <strong>Sonderausgaben</strong> angesetzt werden
-          (bis zu den jeweils gültigen Höchstbeträgen). Je höher dein Steuersatz, desto stärker
-          ist die Entlastung.
-        </p>
-        <p style="font-size:0.85rem;margin-top:0.4rem;">
-          Beispiel: 3.000 € Jahresbeitrag, persönlicher Steuersatz 40 % → bis zu ca. 1.200 €
-          Steuerersparnis möglich (vereinfacht dargestellt).
-        </p>
-      </div>
-      <div class="card">
-        <div class="card-title">Im Rentenalter</div>
-        <p>
-          Die Basisrente wird <strong>nachgelagert voll versteuert</strong> – der steuerpflichtige Anteil
-          steigt schrittweise je Jahrgang an. Vorteil: Häufig ist der Steuersatz im Alter
-          niedriger als während der Erwerbsphase.
-        </p>
-        <p style="font-size:0.85rem;margin-top:0.4rem;">
-          Wir rechnen gemeinsam: Steuerersparnis heute vs. Steuerbelastung der Rente im Alter.
-        </p>
-      </div>
-    </div>
-  </section>
+    burgerBtn?.addEventListener("click", openMenu);
+    menuClose?.addEventListener("click", closeMenu);
+    menuBackdrop?.addEventListener("click", closeMenu);
 
-  <section class="animate-on-scroll">
-    <h2>Vergleich mit Depot-Sparen</h2>
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-title">Depot</div>
-        <ul>
-          <li>Hohe Flexibilität, Zugriff jederzeit möglich.</li>
-          <li>Abgeltungsteuer von 25 % auf Gewinne (zzgl. Soli/KiSt) nach Freistellungsauftrag.</li>
-          <li>Kein verpflichtender Rentenbezug – du musst selbst planen, wie lange das Geld reicht.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="card-title">Basisrente</div>
-        <ul>
-          <li>Wenig flexibel, dafür lebenslange Rente.</li>
-          <li>Steuervorteile während der Einzahlungsphase können sehr hoch sein.</li>
-          <li>Nachversteuerung der Rente im Alter, dafür planbare lebenslange Zahlung.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+    document.querySelectorAll(".menu-toggle").forEach(btn => {
+      btn.addEventListener("click", () => btn.closest(".menu-group")?.classList.toggle("open"));
+    });
 
-  <section class="animate-on-scroll">
-    <h2>Nächster Schritt</h2>
-    <p class="section-subtitle">
-      Wir prüfen, wie hoch dein steuerlicher Vorteil wäre, welche Rentenhöhe realistisch ist
-      und ob die Basisrente wirklich zu deinen Zielen passt – oder ob ein anderer Baustein besser ist.
-    </p>
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape") closeMenu();
+    });
 
-    <div class="centered-cta">
-      <a href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" class="btn-primary">
-        Basisrenten-Check mit mir durchgehen
-      </a>
-    </div>
-    <div class="centered-cta" style="margin-top:1rem;">
-      <a href="leistung.html#vorsorge" class="btn-secondary">
-        Zurück zu Vorsorge &amp; Rente
-      </a>
-    </div>
-  </section>
+    // ===== Steuer-Quickcheck =====
+    const taxBtn = document.getElementById("taxBtn");
+    const taxReset = document.getElementById("taxReset");
+    const vPay = document.getElementById("vPay");
+    const vSave = document.getElementById("vSave");
+    const vNet = document.getElementById("vNet");
 
-</main>
+    function fmtEUR(n){
+      return new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(n)) + " €";
+    }
 
-<!-- PAGE CONTENT END -->
+    function calcTax(){
+      const pay = parseFloat((document.getElementById("contribution").value || "").replace(",", "."));
+      const trRaw = (document.getElementById("taxRate").value || "").trim();
+      const tr = trRaw === "" ? null : parseFloat(trRaw.replace(",", "."));
 
+      if(!Number.isFinite(pay) || pay <= 0){
+        vPay.textContent = "Bitte Beitrag eingeben.";
+        vSave.textContent = "–";
+        vNet.textContent = "–";
+        return;
+      }
 
-<!-- ========================================================= -->
+      vPay.textContent = fmtEUR(pay);
 
-<footer>
-  © 2025 Jonas Plener – Beratung digital & vor Ort
-</footer>
+      if(tr === null || !Number.isFinite(tr) || tr <= 0){
+        // Spanne als Orientierung (typisch: 25% bis 42%)
+        const low = pay * 0.25;
+        const high = pay * 0.42;
+        vSave.textContent = fmtEUR(low) + " – " + fmtEUR(high);
+        vNet.textContent = fmtEUR(pay - high) + " – " + fmtEUR(pay - low);
+        return;
+      }
 
+      const rate = Math.max(0, Math.min(60, tr)) / 100;
+      const save = pay * rate;
+      const net = pay - save;
+
+      vSave.textContent = fmtEUR(save);
+      vNet.textContent = fmtEUR(net);
+    }
+
+    taxBtn?.addEventListener("click", calcTax);
+
+    taxReset?.addEventListener("click", () => {
+      document.getElementById("contribution").value = "";
+      document.getElementById("taxRate").value = "";
+      vPay.textContent = "–";
+      vSave.textContent = "–";
+      vNet.textContent = "–";
+    });
+  </script>
 </body>
 </html>
