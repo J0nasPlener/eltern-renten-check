@@ -148,6 +148,8 @@
       padding:1.9rem 1.4rem 1.55rem;
       border-bottom:1px solid var(--border);
       background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 40%, #e0f2fe 100%);
+      position: relative;
+      overflow: hidden;
     }
     .hero-label{
       display:inline-flex;align-items:center;gap:.45rem;
@@ -164,6 +166,70 @@
     }
     .hero-lead{margin:0;color:var(--muted);max-width:62rem;font-size:.98rem}
     .hero-lead strong{color:var(--primary);font-weight:800}
+
+    /* HERO: Bild + Ansprechpartner-Box (wie "Meine Leistungen") */
+    .hero-inner{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 1.2rem;
+      align-items: end;
+    }
+    .hero-left{min-width:0}
+    .hero-right{
+      position: relative;
+      display:flex;
+      justify-content:center;
+      align-items:flex-end;
+      min-height: 260px;
+    }
+    .hero-portrait{
+      width: min(320px, 86%);
+      height: auto;
+      display:block;
+      filter: drop-shadow(0 18px 28px rgba(15,23,42,.18));
+    }
+    .partner-card{
+      position:absolute;
+      right: 0;
+      left: 0;
+      bottom: 18px;
+      margin: 0 auto;
+      width: min(420px, 92%);
+      background:#fff;
+      border: 1px solid rgba(148,163,184,.65);
+      border-radius: 18px;
+      box-shadow: 0 14px 30px rgba(15,23,42,.14);
+      padding: .9rem 1rem;
+    }
+    .partner-title{
+      font-family:"Raleway",system-ui,sans-serif;
+      font-weight: 800;
+      color: var(--primary);
+      text-align:center;
+      margin: 0 0 .55rem;
+    }
+    .partner-list{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display:grid;
+      gap: .35rem;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .partner-list li{
+      display:flex;
+      align-items:flex-start;
+      gap:.6rem;
+    }
+    .partner-dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin-top: .45rem;
+      flex: 0 0 auto;
+    }
 
     main{
       padding:1.6rem 1.4rem 2.4rem;
@@ -320,7 +386,7 @@
     }
     .info strong{color:#111}
 
-    /* --- MINIMALE Ergänzung für FAQ/Details (kein Layout-Wechsel) --- */
+    /* FAQ/Details (minimal, ohne Layout-Wechsel) */
     details.faq{
       border:1px solid rgba(148,163,184,.55);
       border-radius:14px;
@@ -339,14 +405,6 @@
     details.faq summary::-webkit-details-marker{display:none}
     details.faq p{margin:.55rem 0 0;color:var(--muted);font-size:.92rem}
 
-    .mini-list{
-      margin:.35rem 0 0;
-      padding-left:1.05rem;
-      color:var(--muted);
-      font-size:.92rem;
-    }
-    .mini-list li{margin:.25rem 0}
-
     footer{
       padding:1rem 1.4rem 1.3rem;
       font-size:.78rem;color:#6b7280;
@@ -363,6 +421,11 @@
       .calc-grid{grid-template-columns:1fr}
       .row-2{grid-template-columns:1fr}
       .btn{width:100%}
+
+      /* Mobile: Bild unter Text */
+      .hero-inner{grid-template-columns: 1fr; align-items:start}
+      .hero-right{min-height: 240px; margin-top: .8rem}
+      .partner-card{bottom: 10px}
     }
   </style>
 </head>
@@ -463,17 +526,29 @@
     </aside>
 
     <header class="hero">
-      <div class="hero-label"><span class="dot"></span> Riester-Förder-Check · Rechner + Einordnung</div>
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="hero-label"><span class="dot"></span> Riester-Förder-Check · Rechner + Einordnung</div>
+          <h1>Riester-Förder-Check: Rechner, Kürzungs-Check &amp; die wichtigsten Praxis-Infos.</h1>
+          <p class="hero-lead">
+            Du gibst <strong>Vorjahresbrutto</strong> und <strong>Kinder</strong> ein (mit Geburtsjahren).
+            Optional: <strong>Was zahlst du aktuell?</strong> Dann siehst du sofort, ob die Zulage (vereinfacht) gekürzt wird.
+            <br />
+            Danach bekommst du <strong>kurz &amp; übersichtlich</strong> die wichtigsten Infos: Für wen lohnt es sich, typische Fallen, Ablauf &amp; nächste Schritte.
+          </p>
+        </div>
 
-      <!-- ÜBERSCHRIFT ANGEPASST (nicht nur Rechner) -->
-      <h1>Riester-Förder-Check: Rechner, Kürzungs-Check &amp; die wichtigsten Praxis-Infos.</h1>
-
-      <p class="hero-lead">
-        Du gibst <strong>Vorjahresbrutto</strong> und <strong>Kinder</strong> ein (mit Geburtsjahren).
-        Optional: <strong>Was zahlst du aktuell?</strong> Dann siehst du sofort, ob die Zulage (vereinfacht) gekürzt wird.
-        <br />
-        Danach bekommst du <strong>kurz &amp; übersichtlich</strong> die wichtigsten Infos: Für wen lohnt es sich, typische Fallen, Ablauf &amp; nächste Schritte.
-      </p>
+        <div class="hero-right">
+          <img class="hero-portrait" src="jonas-halbkoerper.png" alt="Jonas Plener" />
+          <div class="partner-card">
+            <div class="partner-title">Dein Ansprechpartner</div>
+            <ul class="partner-list">
+              <li><span class="partner-dot"></span><span>Eltern, Familien &amp; Selbstständige</span></li>
+              <li><span class="partner-dot"></span><span>Beratung digital und vor Ort</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </header>
 
     <main>
@@ -499,7 +574,6 @@
 
               <div id="kidsFields"></div>
 
-              <!-- Optionaler Reiter: aktueller Beitrag -->
               <div class="optional" id="optBox">
                 <button type="button" id="optToggle" aria-expanded="false">
                   <span>Optional: Wie viel zahlst du aktuell in Riester ein?</span>
@@ -574,9 +648,7 @@
 
       <section>
         <h2>Riester kurz erklärt</h2>
-        <p class="section-sub">
-          Drei Dinge, die in der Praxis am meisten entscheiden.
-        </p>
+        <p class="section-sub">Drei Dinge, die in der Praxis am meisten entscheiden.</p>
 
         <div class="grid">
           <div class="card">
@@ -604,210 +676,88 @@
         </div>
       </section>
 
-      <!-- =========================
-           NEU: Mehr nützliche Infos (gleiches Layout)
-           ========================= -->
-
       <section>
         <h2>Für wen lohnt sich Riester oft?</h2>
-        <p class="section-sub">
-          Keine Theorie – typische Muster aus der Praxis. (Trotzdem gilt: Einzelfall prüfen.)
-        </p>
+        <p class="section-sub">Typische Muster aus der Praxis (Einzelfall prüfen).</p>
 
         <div class="grid">
           <div class="card">
             <div class="card-title">Familien mit Kindern</div>
-            <p>
-              Kinderzulagen können den Unterschied machen. Wer nah am Mindestbeitrag ist,
-              bekommt die Förderung in der Regel deutlich besser „ausgeschöpft“.
-            </p>
+            <p>Kinderzulagen können stark wirken – Voraussetzung ist meist, dass der Beitrag nicht weit unter dem Minimum liegt.</p>
           </div>
-
           <div class="card">
-            <div class="card-title">Mittlere Einkommen mit Förder-Fokus</div>
-            <p>
-              Wenn Zulagen und ggf. Steuervorteil spürbar greifen, kann Riester im Gesamtpaket Sinn ergeben –
-              <strong>aber</strong> nur, wenn das Produkt nicht unnötig teuer ist.
-            </p>
+            <div class="card-title">Förder-Fokus</div>
+            <p>Wenn Zulagen und ggf. Steuervorteil greifen, kann Riester sinnvoll sein – aber nur mit passendem (kostenarmen) Produkt.</p>
           </div>
-
           <div class="card">
-            <div class="card-title">Menschen, die klare Struktur mögen</div>
-            <p>
-              Riester ist eher „regelbasiert“. Wer planbar sparen will und Förderung sauber nutzen möchte,
-              findet hier oft eine klare Linie.
-            </p>
+            <div class="card-title">Menschen, die Struktur mögen</div>
+            <p>Riester ist regelbasiert. Wer planbar sparen will, bekommt hier oft eine klare Linie.</p>
           </div>
         </div>
 
         <div class="info">
-          <strong>Kurz gesagt:</strong> Riester ist selten „für alle“. Es ist häufig gut, wenn Förderung stark ist
-          (z. B. Kinder) und der Vertrag kosten-/leistungsseitig passt.
+          <strong>Merksatz:</strong> Riester ist selten „für alle“. Oft gut bei starker Förderung (z. B. Kinder) + gutem Vertrag.
         </div>
       </section>
 
       <section>
-        <h2>Typische Fallen (damit du keine Zulage verschenkst)</h2>
-        <p class="section-sub">
-          Genau die Punkte, die später Ärger machen – hier einmal kompakt.
-        </p>
+        <h2>Typische Fallen</h2>
+        <p class="section-sub">Damit du keine Zulage verschenkst.</p>
 
         <div class="grid">
           <div class="card">
             <div class="card-title">Unter Mindestbeitrag bleiben</div>
-            <p>
-              Das ist der häufigste Grund für „Zulage weniger als gedacht“. Darum zeigt dir der Rechner das Minimum
-              und (wenn du deinen Beitrag einträgst) die Kürzung vereinfacht an.
-            </p>
+            <p>Häufigster Grund für weniger Zulage als gedacht. Darum: Minimum kennen und Beitrag ggf. anpassen.</p>
           </div>
-
           <div class="card">
-            <div class="card-title">Kinder/Job ändern sich – Beitrag bleibt gleich</div>
-            <p>
-              Kind dazu / Einkommen steigt oder fällt → Mindestbeitrag ändert sich. Ein kurzer Check pro Jahr
-              verhindert Förder-Verluste.
-            </p>
+            <div class="card-title">Änderungen nicht nachziehen</div>
+            <p>Kind dazu / Einkommen ändert sich → Mindestbeitrag kann sich ändern. Ein kurzer Jahres-Check verhindert Förderlücken.</p>
           </div>
-
           <div class="card">
-            <div class="card-title">Produktkosten unterschätzen</div>
-            <p>
-              Förderung ist super – aber hohe laufende Kosten können Rendite drücken.
-              Deshalb gehört immer ein Kosten-/Leistungs-Check dazu.
-            </p>
+            <div class="card-title">Kosten unterschätzen</div>
+            <p>Förderung hilft – aber hohe Kosten können Rendite drücken. Deshalb gehört ein Vertrags-Check dazu.</p>
           </div>
         </div>
       </section>
 
       <section>
-        <h2>So läuft Riester in der Praxis ab</h2>
-        <p class="section-sub">
-          In 60 Sekunden erklärt: Was passiert eigentlich „nach dem Abschluss“?
-        </p>
-
-        <div class="grid">
-          <div class="card">
-            <div class="card-title">1) Einzahlen</div>
-            <p>
-              Du zahlst regelmäßig ein. Wichtig: Mindestbeitrag als Orientierung, damit Förderung nicht verpufft.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="card-title">2) Zulage beantragen (meist automatisiert)</div>
-            <p>
-              Viele Verträge arbeiten mit Dauerzulagenantrag. Sauber ist: Daten aktuell halten (Kinder/Änderungen).
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="card-title">3) Kontrolle & Anpassung</div>
-            <p>
-              Einmal pro Jahr kurz prüfen: Einkommen/Kinder/Beitrag. Das verhindert die typischen „Förderlücken“.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2>FAQ (kurz &amp; verständlich)</h2>
-        <p class="section-sub">
-          Ohne Prozent-Gewitter – nur das, was die meisten wirklich wissen wollen.
-        </p>
+        <h2>FAQ</h2>
+        <p class="section-sub">Kurz &amp; verständlich.</p>
 
         <details class="faq">
-          <summary>Warum fragt der Rechner nicht nach Ehepartner/Zuordnung?</summary>
-          <p>
-            Absichtlich vereinfacht, damit es verständlich bleibt. Ehe-/Partner-Konstellationen können das Ergebnis verändern.
-            Für Sonderfälle rechnet man danach gezielt – ohne dass Nutzer im Formular hängen bleiben.
-          </p>
+          <summary>Warum keine Ehepartner-Abfrage?</summary>
+          <p>Bewusst vereinfacht. Partner-Konstellationen können beeinflussen – das prüfen wir im persönlichen Check sauber.</p>
         </details>
-
         <details class="faq">
-          <summary>Muss ich jedes Jahr exakt den Mindestbeitrag treffen?</summary>
-          <p>
-            Praktisch reicht oft „nah dran“. Wenn sich Einkommen oder Kinder ändern, lohnt sich ein kurzer Re-Check,
-            damit keine Förderung verschenkt wird.
-          </p>
+          <summary>Muss ich exakt den Mindestbeitrag treffen?</summary>
+          <p>„Nah dran“ reicht oft. Wichtig: bei Änderungen (Einkommen/Kinder) neu prüfen.</p>
         </details>
-
         <details class="faq">
           <summary>Was bedeutet „Zulage wird gekürzt“?</summary>
-          <p>
-            Vereinfacht: Wenn du unter dem Mindestbeitrag bleibst, kann die Zulage anteilig geringer ausfallen.
-            Der Rechner zeigt dir das als grobe Orientierung.
-          </p>
+          <p>Vereinfacht: Unter Minimum → Zulage anteilig geringer. Der Rechner zeigt dir das als Orientierung.</p>
         </details>
-
         <details class="faq">
           <summary>Kann Riester trotz Förderung unattraktiv sein?</summary>
-          <p>
-            Ja – wenn das Produkt teuer/ungünstig ist oder die Förderung kaum greift. Darum gehört zur Entscheidung
-            immer ein Kosten-/Leistungs-Check.
-          </p>
+          <p>Ja, wenn Förderung kaum greift oder das Produkt ungünstig ist. Deshalb immer Kosten/Leistung checken.</p>
         </details>
       </section>
 
       <section>
-        <h2>Mini-Checkliste</h2>
-        <p class="section-sub">Wenn du diese 5 Punkte abhaken kannst, bist du schon weiter als 90%.</p>
+        <h2>Nächster Schritt</h2>
+        <p class="section-sub">Wenn du Klarheit willst: kurz checken, ob Riester passt oder ob es bessere Alternativen gibt.</p>
 
         <div class="grid">
           <div class="card">
-            <div class="card-title">1) Vorjahresbrutto parat</div>
-            <p>Abrechnung reicht – genaue Perfektion ist nicht nötig für die erste Orientierung.</p>
-          </div>
-
-          <div class="card">
-            <div class="card-title">2) Kinder-Geburtsjahre parat</div>
-            <p>Für die Größenordnung der Kinderzulage wichtig (so wie hier abgefragt).</p>
-          </div>
-
-          <div class="card">
-            <div class="card-title">3) Aktueller Beitrag bekannt (optional)</div>
-            <p>Eintragen → sofort sehen, ob du unter Minimum liegst.</p>
-          </div>
-
-          <div class="card">
-            <div class="card-title">4) Einmal pro Jahr prüfen</div>
-            <p>Kinder/Job/Einkommen ändern sich → Beitrag ggf. nachziehen.</p>
-          </div>
-
-          <div class="card">
-            <div class="card-title">5) Vertrag/Kosten checken</div>
-            <p>Förderung ist nur die halbe Wahrheit – Produktqualität entscheidet.</p>
-          </div>
-        </div>
-
-        <div class="info">
-          <strong>Pro-Tipp:</strong> Wenn du willst, kann man das Ergebnis als „passt / passt nicht“ einordnen –
-          mit Blick auf Kosten, Strategie und Alternativen (z. B. bAV, Rürup, Fonds-Sparen – je nach Situation).
-        </div>
-      </section>
-
-      <section>
-        <h2>Nächster Schritt (wenn du Klarheit willst)</h2>
-        <p class="section-sub">
-          10 Minuten: Wir prüfen, ob Riester in deiner Situation wirklich Sinn ergibt – oder ob du gerade nur „Zulage jagst“,
-          aber Netto am Ende weniger rauskommt.
-        </p>
-
-        <div class="grid">
-          <div class="card">
-            <div class="card-title">Option A: Gespräch vereinbaren</div>
-            <p>
-              Wir schauen uns Ergebnis + Vertrag/Angebot an und machen eine saubere Empfehlung.
-            </p>
+            <div class="card-title">Gespräch vereinbaren</div>
+            <p>Ergebnis + Vertrag/Angebot prüfen → klare Empfehlung.</p>
             <div style="margin-top:.75rem">
               <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch vereinbaren</a>
             </div>
           </div>
 
           <div class="card">
-            <div class="card-title">Option B: Kurzfrage per WhatsApp</div>
-            <p>
-              Eine Frage reicht oft, um direkt zu sehen, ob sich ein genauer Check lohnt.
-            </p>
+            <div class="card-title">Kurzfrage per WhatsApp</div>
+            <p>Eine Frage reicht oft, um direkt zu sehen, ob sich ein genauer Check lohnt.</p>
             <div style="margin-top:.75rem">
               <a class="btn" style="background:var(--wa);color:#fff" href="https://wa.me/4917663796605" target="_blank" rel="noopener">Kurzfrage per WhatsApp</a>
             </div>
