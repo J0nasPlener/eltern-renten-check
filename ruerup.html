@@ -258,7 +258,6 @@
       font-weight:800;font-size:1.05rem;margin:0 0 .4rem;color:#111;
     }
     .card p{margin:.35rem 0 0;color:var(--muted);font-size:.92rem}
-
     .info{
       margin-top:.75rem;
       padding:.75rem .85rem;
@@ -270,7 +269,7 @@
     }
     .info strong{color:#111}
 
-    /* Steuer-Box */
+    /* Rechner */
     .calc-wrap{
       margin-top:.6rem;
       border-radius:18px;
@@ -309,29 +308,6 @@
     .btn-outline{background:#fff;border:1px solid rgba(148,163,184,.85);box-shadow:none;color:var(--primary)}
     .row-2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
 
-    /* Segmented */
-    .seg{
-      display:flex;gap:.5rem;flex-wrap:wrap;
-      padding:.65rem;border-radius:14px;
-      border:1px solid rgba(148,163,184,.7);
-      background:#fff;
-    }
-    .seg button{
-      border:1px solid rgba(148,163,184,.7);
-      background:#fff;
-      color:#111;
-      padding:.55rem .75rem;
-      border-radius:999px;
-      font-weight:900;
-      cursor:pointer;
-      font-size:.86rem;
-    }
-    .seg button.active{
-      background:rgba(244,190,105,.55);
-      border-color:rgba(244,190,105,.95);
-    }
-    .seg small{display:block;color:#6b7280;font-weight:700;margin-top:.1rem}
-
     .calc-result{
       background:rgba(255,255,255,.92);
       border-radius:16px;
@@ -353,51 +329,66 @@
     }
     .val .k{font-size:.8rem;color:var(--muted);margin-bottom:.1rem}
     .val .v{font-weight:900;font-size:1.05rem;color:#111}
-    .val.good{border-color:rgba(22,163,74,.55);background:#dcfce7}
     .val.warn{border-color:rgba(245,158,11,.55);background:#fef3c7}
+    .val.good{border-color:rgba(22,163,74,.55);background:#dcfce7}
 
-    /* Mini-Grafik (Balken) */
-    .barbox{
+    /* Donut */
+    .donut-wrap{
+      display:grid;
+      grid-template-columns: 160px 1fr;
+      gap:1rem;
+      align-items:center;
       margin-top:.85rem;
+      padding:.85rem .9rem;
       border-radius:16px;
       border:1px solid rgba(148,163,184,.65);
       background:linear-gradient(to right, rgba(254,243,199,.55), rgba(224,242,254,.55));
-      padding:.85rem .9rem;
     }
-    .bar-top{
-      display:flex;justify-content:space-between;gap:.8rem;flex-wrap:wrap;
-      align-items:baseline;margin-bottom:.55rem;
+    .donut{
+      width:160px;height:160px;border-radius:50%;
+      background:conic-gradient(var(--accent) 0deg, var(--accent) var(--taxAngle), rgba(74,120,125,.75) var(--taxAngle), rgba(74,120,125,.35) 360deg);
+      position:relative;
+      box-shadow:0 10px 20px rgba(15,23,42,.10);
+      border:1px solid rgba(148,163,184,.55);
     }
-    .bar-top .ttl{font-family:Raleway,system-ui,sans-serif;font-weight:900;color:#111}
-    .bar-top .sub{color:var(--muted);font-size:.88rem}
-    .track{
-      width:100%;
-      height:18px;
-      border-radius:999px;
-      background:#e5e7eb;
-      overflow:hidden;
-      border:1px solid rgba(148,163,184,.65);
-      display:flex;
+    .donut::after{
+      content:"";
+      position:absolute;inset:18px;
+      background:#fff;border-radius:50%;
+      box-shadow: inset 0 0 0 1px rgba(148,163,184,.35);
     }
-    .segA{
-      width:0%;
-      background:linear-gradient(to right, var(--warn), var(--accent)); /* Steuer zurück */
-      transition:width .55s ease;
+    .donut-center{
+      position:absolute;inset:0;
+      display:grid;place-items:center;
+      z-index:2;
+      text-align:center;
+      padding:0 10px;
+      color:#111;
+      font-weight:900;
+      font-family:Raleway,system-ui,sans-serif;
     }
-    .segB{
-      width:100%;
-      background:linear-gradient(to right, rgba(74,120,125,.75), rgba(74,120,125,.35)); /* Nettoaufwand */
-      transition:width .55s ease;
+    .donut-center small{
+      display:block;
+      font-family:Arimo,system-ui,sans-serif;
+      font-weight:700;
+      color:#6b7280;
+      margin-top:.15rem;
     }
     .legend{
-      display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.55rem;
-      font-size:.82rem;color:#6b7280;
-      align-items:center;
+      display:grid;
+      gap:.45rem;
+      color:#6b7280;
+      font-size:.88rem;
     }
-    .chip{display:inline-flex;align-items:center;gap:.4rem}
+    .chip{display:inline-flex;align-items:center;gap:.5rem}
     .dot{width:10px;height:10px;border-radius:999px;display:inline-block}
     .dot.tax{background:var(--accent)}
     .dot.net{background:var(--primary)}
+    .hintline{
+      margin-top:.5rem;
+      color:#6b7280;
+      font-size:.82rem;
+    }
 
     /* Mythen/Fakten */
     .mf{
@@ -414,9 +405,7 @@
       border-top:1px solid rgba(148,163,184,.35);
     }
     .mf-row:first-child{border-top:0}
-    .mf-cell{
-      padding:.9rem .95rem;
-    }
+    .mf-cell{padding:.9rem .95rem}
     .mf-tag{
       display:inline-flex;align-items:center;gap:.45rem;
       font-weight:900;font-size:.78rem;border-radius:999px;
@@ -451,6 +440,7 @@
       .row-2{grid-template-columns:1fr}
       .btn{width:100%}
 
+      .donut-wrap{grid-template-columns:1fr;justify-items:center;text-align:left}
       .mf-row{grid-template-columns:1fr}
     }
   </style>
@@ -557,9 +547,9 @@
           <div class="hero-label"><span class="dot"></span> Rürup / Basisrente · Steuerhebel + klare Einordnung</div>
           <h1>Basisrente (Rürup): Wenn Steuern &amp; Altersvorsorge zusammenarbeiten.</h1>
           <p class="hero-lead">
-            Hier geht’s nicht um „irgendeinen Rentenvertrag“, sondern um einen Plan:
-            <strong>Beitrag → steuerlicher Effekt → stabile Altersrente.</strong>
-            Und: Welche Punkte man vorher klären muss, damit’s sich wirklich lohnt.
+            Du gibst nur <strong>Vorjahresbrutto</strong> und deinen geplanten <strong>Jahresbeitrag</strong> ein.
+            Dann zeigen wir dir eine <strong>automatische, grobe Steuerwirkung</strong> + ein klares Kreisdiagramm:
+            <strong>eingezahlt</strong> vs. <strong>steuerlich zurück</strong> vs. <strong>Nettobelastung</strong>.
           </p>
         </div>
 
@@ -578,92 +568,49 @@
 
     <main>
       <section>
-        <h2>Der Mehrwert in einem Satz</h2>
+        <h2>Steuer-Check (automatisch)</h2>
         <p class="section-sub">
-          Du zahlst Beiträge in eine Basisrente – und ein Teil davon kann (innerhalb gesetzlicher Regeln) deine Steuerlast senken.
-          Dadurch fühlt sich der Beitrag oft „leichter“ an, während du gleichzeitig eine lebenslange Altersrente aufbaust.
-        </p>
-
-        <div class="grid">
-          <div class="card">
-            <div class="card-title">Heute: Steuerwirkung</div>
-            <p>
-              Die Basisrente ist oft dann stark, wenn du eine spürbare Steuerlast hast (häufig bei Selbstständigen oder höheren Einkommen).
-            </p>
-          </div>
-          <div class="card">
-            <div class="card-title">Morgen: lebenslange Rente</div>
-            <p>
-              Ziel ist ein zusätzliches, planbares Einkommen im Alter – nicht „schnell rausziehen“, sondern solide aufbauen.
-            </p>
-          </div>
-          <div class="card">
-            <div class="card-title">Entscheidend: Umsetzung</div>
-            <p>
-              Kosten, Anlagekonzept und Rentenlogik entscheiden, ob das am Ende smart ist – oder nur „klingt gut“.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2>Steuer-Visualisierung</h2>
-        <p class="section-sub">
-          Ohne Steuersatz-Frage. Du gibst nur deinen geplanten Jahresbeitrag ein – und wählst eine einfache
-          <strong>Faustformel</strong> für die Steuerwirkung. Das ist keine Steuerberatung, aber sehr brauchbar als erste Orientierung.
+          Keine Auswahlbuttons. Wir schätzen anhand des <strong>Vorjahresbrutto</strong> eine typische Steuerwirkung (Näherung).
+          Für die echte Zahl brauchen wir später deine reale Steuersituation – aber fürs Gefühl ist das perfekt.
         </p>
 
         <div class="calc-wrap">
           <div class="calc-grid">
             <div>
               <div class="field">
-                <label for="pay">Geplanter Beitrag pro Jahr in €</label>
-                <input id="pay" type="number" min="0" step="100" placeholder="z. B. 3.000" />
+                <label for="income">Vorjahresbrutto (Jahresbrutto) in €</label>
+                <input id="income" type="number" min="0" step="100" placeholder="z. B. 70.000" />
               </div>
 
               <div class="field">
-                <label>Faustformel „Steuerwirkung“ auswählen</label>
-                <div class="seg" role="group" aria-label="Steuerwirkung auswählen">
-                  <button type="button" class="segBtn active" data-rate="0.25">
-                    Konservativ
-                    <small>ca. 25% zurück</small>
-                  </button>
-                  <button type="button" class="segBtn" data-rate="0.32">
-                    Realistisch
-                    <small>ca. 32% zurück</small>
-                  </button>
-                  <button type="button" class="segBtn" data-rate="0.40">
-                    Stark
-                    <small>ca. 40% zurück</small>
-                  </button>
-                </div>
+                <label for="pay">Geplanter Beitrag Basisrente / Jahr in €</label>
+                <input id="pay" type="number" min="0" step="100" placeholder="z. B. 3.000" />
               </div>
 
               <div class="row-2" style="margin-top:.75rem">
-                <button class="btn btn-gold" type="button" id="calcBtn">Anzeigen</button>
+                <button class="btn btn-gold" type="button" id="calcBtn">Berechnen</button>
                 <button class="btn btn-outline" type="button" id="resetBtn">Zurücksetzen</button>
               </div>
 
               <div class="info">
-                <strong>Wichtig:</strong> Die echte Steuerwirkung hängt u. a. vom Gesamtbild ab (weitere Vorsorge, Einkünfte, gesetzliche Grenzen).
-                Das ist bewusst eine einfache Visualisierung, damit man schnell ein Gefühl bekommt.
+                <strong>Transparenz:</strong> Das ist eine <strong>vereinfachte Näherung</strong>, weil Brutto ≠ zu versteuerndes Einkommen
+                (Abzüge, Vorsorge, Kinder, Werbungskosten usw.). Für deinen finalen Mehrwert rechnen wir das im Check sauber.
               </div>
             </div>
 
             <div class="calc-result">
               <p class="calc-expl">
-                <strong>So liest du das:</strong> Links „eingezahlt“, dann „steuerlich zurück“ (Faustformel),
-                und was sich daraus als grobe „Nettobelastung“ ergibt.
+                <strong>Ergebnis:</strong> automatische Schätzung + Visualisierung. Ziel ist: sofort sehen, ob der Hebel grob Sinn macht.
               </p>
 
               <div class="values">
                 <div class="val">
-                  <div class="k">Beitrag / Jahr</div>
-                  <div class="v" id="vPay">–</div>
+                  <div class="k">Geschätzte Steuerwirkung (Näherung)</div>
+                  <div class="v" id="vRate">–</div>
                 </div>
 
                 <div class="val warn">
-                  <div class="k">Steuer zurück (Faustformel)</div>
+                  <div class="k">Steuer zurück (grob)</div>
                   <div class="v" id="vTax">–</div>
                 </div>
 
@@ -673,24 +620,26 @@
                 </div>
               </div>
 
-              <div class="barbox">
-                <div class="bar-top">
-                  <div class="ttl">Grafik</div>
-                  <div class="sub"><span id="barInfo">–</span></div>
+              <div class="donut-wrap">
+                <div class="donut" id="donut" style="--taxAngle:0deg">
+                  <div class="donut-center">
+                    <span id="donutPct">–</span>
+                    <small>steuerlich zurück</small>
+                  </div>
                 </div>
-                <div class="track" aria-label="Aufteilung Beitrag">
-                  <div class="segA" id="segTax" title="Steuer zurück"></div>
-                  <div class="segB" id="segNet" title="Nettobelastung"></div>
-                </div>
-                <div class="legend">
-                  <span class="chip"><span class="dot tax"></span> Steuer zurück</span>
-                  <span class="chip"><span class="dot net"></span> Nettobelastung</span>
+
+                <div>
+                  <div class="legend">
+                    <span class="chip"><span class="dot tax"></span> Steuer zurück</span>
+                    <span class="chip"><span class="dot net"></span> Nettobelastung</span>
+                  </div>
+                  <div class="hintline" id="explainLine">–</div>
                 </div>
               </div>
 
               <div class="info">
-                <strong>Mini-Logik:</strong> Wenn du 3.000 € zahlst und „Realistisch“ wählst, visualisieren wir grob ~32% Rückfluss.
-                Das ersetzt keinen Steuerbescheid – ist aber perfekt für die erste Einschätzung.
+                <strong>Merksatz:</strong> Rürup ist stark, wenn „Steuer heute“ + „Netto-Rente später“ zusammen passen.
+                Deshalb schauen wir im nächsten Schritt immer auch auf <strong>Kosten</strong>, <strong>Anlagekonzept</strong> und <strong>Auszahlungssteuer</strong>.
               </div>
             </div>
           </div>
@@ -698,106 +647,83 @@
       </section>
 
       <section>
-        <h2>Worauf du wirklich achten musst</h2>
-        <p class="section-sub">
-          Rürup wird stark, wenn die Details passen. Diese Punkte sind die „Make-or-Break“-Fragen.
-        </p>
+        <h2>Was ist der eigentliche Mehrwert?</h2>
+        <p class="section-sub">Nicht „ein Vertrag“, sondern ein steuerlich unterstützter Rentenbaustein – wenn sauber geplant.</p>
 
         <div class="grid">
           <div class="card">
-            <div class="card-title">1) Beitragshöhe vs. Cashflow</div>
+            <div class="card-title">1) Steuerhebel in der Ansparphase</div>
             <p>
-              Steuerwirkung ist nett – aber nur dann sinnvoll, wenn der Beitrag stressfrei in deinen Alltag passt.
-              (Sonst wird’s ein Vertrag, den man später „retten“ muss.)
+              Beiträge können (innerhalb gesetzlicher Grenzen) als Vorsorgeaufwand wirken und so die Steuerlast senken.
+              Der Effekt ist bei höherer Steuerlast oft am deutlichsten.
             </p>
           </div>
           <div class="card">
-            <div class="card-title">2) Kosten &amp; Anlagekonzept</div>
+            <div class="card-title">2) Fokus auf lebenslange Rente</div>
             <p>
-              Hier entscheidet sich, ob dein Geld arbeitet. Transparenz + Konzept + Kostenstruktur gehören immer nebeneinander gelegt.
+              Rürup ist darauf ausgelegt, im Alter ein stabiles Zusatzeinkommen zu liefern – planbar und langfristig.
             </p>
           </div>
           <div class="card">
-            <div class="card-title">3) Rentenlogik im Alter</div>
+            <div class="card-title">3) Produktqualität entscheidet</div>
             <p>
-              Rürup ist auf lebenslange Rente ausgelegt. Genau darum: Rentenfaktoren/Leistungslogik prüfen, nicht nur „Steuern“.
+              Kosten, Rentenfaktoren und das Anlagekonzept sind der Unterschied zwischen „smart“ und „bringt nix“.
             </p>
           </div>
-        </div>
-
-        <div class="info">
-          <strong>Praxis-Tipp:</strong> Viele unterschätzen, wie stark „Produktqualität“ den Mehrwert beeinflusst.
-          Eine gute Steuerwirkung + schlechtes Produkt = fühlt sich am Ende trotzdem mittel an.
         </div>
       </section>
 
       <section>
         <h2>Steuern bei der Auszahlung</h2>
         <p class="section-sub">
-          Der Steuerteil endet nicht nach dem Abschluss. Wichtig ist auch, wie die Auszahlung später typischerweise behandelt wird – und was das für deine Planung bedeutet.
+          Wichtig: Der Steuerteil endet nicht beim Abschluss. Entscheidend ist, wie sich die Rente später netto anfühlt.
         </p>
 
         <div class="grid">
           <div class="card">
-            <div class="card-title">Im Alter: Besteuerung beachten</div>
+            <div class="card-title">Auszahlungsphase ist steuerlich relevant</div>
             <p>
-              Die spätere Rente wird in der Regel in der Auszahlungsphase steuerlich berücksichtigt.
-              Deshalb ist die Frage: <strong>Wie sieht dein Steuerszenario im Alter aus?</strong>
+              Die spätere Rente wird typischerweise steuerlich berücksichtigt. Darum planen wir immer: <strong>Netto heute</strong> vs. <strong>Netto im Alter</strong>.
             </p>
           </div>
           <div class="card">
             <div class="card-title">Plan statt Bauchgefühl</div>
             <p>
-              Rürup passt oft am besten, wenn es Teil einer Gesamtstruktur ist (z. B. mit weiteren Bausteinen wie bAV, Fonds, Immobilien etc.).
+              Rürup ist selten „alleine“ perfekt – oft ist es ein Baustein in einer Gesamtstruktur (weitere Vorsorge/Anlage).
             </p>
           </div>
           <div class="card">
-            <div class="card-title">Ziel: Netto-Rente</div>
+            <div class="card-title">Checkliste vor Abschluss</div>
             <p>
-              Am Ende zählt, was nach Kosten und Steuern übrig bleibt. Genau dafür machen wir den Check: verständlich, sauber, vergleichbar.
+              Beitragshöhe, Flexibilität, Kosten, Konzept, Rentenlogik – erst dann ist „Steuerersparnis“ wirklich ein Mehrwert.
             </p>
           </div>
-        </div>
-
-        <div class="info">
-          <strong>Wichtig:</strong> Das hier ist eine Orientierung. Für deine konkrete Situation schauen wir auf die Gesamtplanung,
-          damit „Steuern sparen heute“ und „Netto im Alter“ zusammenpassen.
         </div>
       </section>
 
       <section>
         <h2>Mythen vs. Fakten</h2>
-        <p class="section-sub">Kurzer Reality-Check, weil Rürup oft mit Halbwissen diskutiert wird.</p>
+        <p class="section-sub">Kurz, damit keine Stammtisch-Rürup-Legenden gewinnen.</p>
 
         <div class="mf" aria-label="Mythen und Fakten">
           <div class="mf-row">
             <div class="mf-cell">
               <div class="mf-tag">Mythos</div>
-              <p><strong>„Rürup macht man nur wegen Steuer.“</strong></p>
+              <p><strong>„Das ist einfach ein Steuerspartrick.“</strong></p>
             </div>
             <div class="mf-cell">
               <div class="mf-tag">Fakt</div>
-              <p>Steuer ist ein Hebel – aber der echte Mehrwert entsteht erst mit passender Rentenlogik, Kosten und Plan.</p>
+              <p>Steuer ist nur der Hebel. Der echte Nutzen entsteht erst, wenn Produkt & Rentenlogik passen.</p>
             </div>
           </div>
           <div class="mf-row">
             <div class="mf-cell">
               <div class="mf-tag">Mythos</div>
-              <p><strong>„Wenn’s absetzbar ist, ist es automatisch gut.“</strong></p>
+              <p><strong>„Wenn ich was zurückbekomme, lohnt es sich automatisch.“</strong></p>
             </div>
             <div class="mf-cell">
               <div class="mf-tag">Fakt</div>
-              <p>Absetzbar heißt nicht automatisch effizient. Produktqualität & Gesamtstruktur entscheiden.</p>
-            </div>
-          </div>
-          <div class="mf-row">
-            <div class="mf-cell">
-              <div class="mf-tag">Mythos</div>
-              <p><strong>„Ein Vertrag reicht – fertig.“</strong></p>
-            </div>
-            <div class="mf-cell">
-              <div class="mf-tag">Fakt</div>
-              <p>Meist ist ein Mix stärker. Rürup kann ein Baustein sein – aber selten der ganze Bauplan.</p>
+              <p>Nur wenn die spätere Netto-Rente (nach Kosten/Steuern) im Verhältnis gut ist.</p>
             </div>
           </div>
         </div>
@@ -806,7 +732,7 @@
       <section>
         <h2>Nächster Schritt</h2>
         <p class="section-sub">
-          Wenn du willst, machen wir das richtig rund: Beitragshöhe, Steuerwirkung, Produktvergleich, späteres Netto – alles auf einer Seite verständlich.
+          Wenn du willst, machen wir den „echten“ Check: Steuerwirkung mit deinen Daten, Produktvergleich, Netto-Prognose im Alter – in verständlich.
         </p>
 
         <div class="grid">
@@ -820,7 +746,7 @@
 
           <div class="card">
             <div class="card-title">Kurzfrage per WhatsApp</div>
-            <p>„Ich bin selbstständig / angestellt, lohnt sich Rürup?“ — reicht als Start.</p>
+            <p>„Ich hab X € Brutto und will Y € sparen – passt Rürup?“ reicht völlig.</p>
             <div style="margin-top:.75rem">
               <a class="btn" style="background:var(--wa);color:#fff" href="https://wa.me/4917663796605" target="_blank" rel="noopener">Kurzfrage per WhatsApp</a>
             </div>
@@ -857,85 +783,96 @@
       if(e.key === "Escape") closeMenu();
     });
 
-    // ===== Steuer-Visualisierung =====
+    // ===== Steuer-Check (automatisch / Näherung) =====
+    const incomeEl = document.getElementById("income");
     const payEl = document.getElementById("pay");
     const calcBtn = document.getElementById("calcBtn");
     const resetBtn = document.getElementById("resetBtn");
 
-    const vPay = document.getElementById("vPay");
-    const vTax = document.getElementById("vTax");
-    const vNet = document.getElementById("vNet");
+    const vRate = document.getElementById("vRate");
+    const vTax  = document.getElementById("vTax");
+    const vNet  = document.getElementById("vNet");
 
-    const segTax = document.getElementById("segTax");
-    const segNet = document.getElementById("segNet");
-    const barInfo = document.getElementById("barInfo");
-
-    let selectedRate = 0.25;
+    const donut = document.getElementById("donut");
+    const donutPct = document.getElementById("donutPct");
+    const explainLine = document.getElementById("explainLine");
 
     function fmtEUR(n){
       return new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(n)) + " €";
     }
     function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
 
-    // Segment buttons
-    document.querySelectorAll(".segBtn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".segBtn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        selectedRate = parseFloat(btn.dataset.rate || "0.25");
-        // live update wenn schon Werte drin
-        if ((payEl.value || "").trim() !== "") calc();
-      });
-    });
+    // Sehr einfache Brutto->typische Grenzsteuer-Näherung (damit es automatisch ist).
+    // Exakt wäre nur mit Steuerdaten möglich (zvE, Abzüge, Splitting, etc.).
+    function estimateRateFromGross(gross){
+      if(!Number.isFinite(gross) || gross <= 0) return null;
+
+      // grobe typische Stufen (Näherung, nicht Gesetz!)
+      if(gross <= 20000) return 0.20;
+      if(gross <= 40000) return 0.28;
+      if(gross <= 60000) return 0.33;
+      if(gross <= 80000) return 0.38;
+      if(gross <= 120000) return 0.42;
+      return 0.45;
+    }
 
     function calc(){
+      const gross = parseFloat((incomeEl.value || "").replace(",", "."));
       const pay = parseFloat((payEl.value || "").replace(",", "."));
-      if(!Number.isFinite(pay) || pay <= 0){
-        vPay.textContent = "Bitte Beitrag eingeben.";
+
+      if(!Number.isFinite(gross) || gross <= 0 || !Number.isFinite(pay) || pay <= 0){
+        vRate.textContent = "Bitte Brutto & Beitrag eingeben.";
         vTax.textContent = "–";
         vNet.textContent = "–";
-        segTax.style.width = "0%";
-        segNet.style.width = "100%";
-        barInfo.textContent = "–";
+        donut.style.setProperty("--taxAngle", "0deg");
+        donutPct.textContent = "–";
+        explainLine.textContent = "–";
         return;
       }
 
-      const taxBack = pay * selectedRate;
+      const rate = estimateRateFromGross(gross);
+      if(rate === null){
+        vRate.textContent = "–";
+        return;
+      }
+
+      // Steuer-„Rückfluss“ (Näherung)
+      const taxBack = pay * rate;
       const net = Math.max(0, pay - taxBack);
 
-      vPay.textContent = fmtEUR(pay);
+      vRate.textContent = Math.round(rate * 100) + " % (Näherung aus Brutto)";
       vTax.textContent = fmtEUR(taxBack);
       vNet.textContent = fmtEUR(net);
 
-      const taxPct = clamp((taxBack / pay) * 100, 0, 95);
-      const netPct = clamp(100 - taxPct, 5, 100);
+      const pct = clamp((taxBack / pay) * 100, 0, 95);
+      const angle = (pct / 100) * 360;
 
-      segTax.style.width = taxPct.toFixed(1) + "%";
-      segNet.style.width = netPct.toFixed(1) + "%";
+      donut.style.setProperty("--taxAngle", angle.toFixed(2) + "deg");
+      donutPct.textContent = Math.round(pct) + "%";
 
-      barInfo.textContent = Math.round(taxPct) + "% zurück · " + Math.round(netPct) + "% Nettobelastung";
+      explainLine.textContent =
+        "Bei " + fmtEUR(pay) + " Beitrag und ~" + Math.round(rate*100) + "% Wirkung: ca. " +
+        fmtEUR(taxBack) + " steuerlich zurück · Nettobelastung grob " + fmtEUR(net) + ".";
     }
 
     calcBtn?.addEventListener("click", calc);
-    payEl?.addEventListener("input", () => {
-      // live, aber nur wenn Feld nicht leer
-      if ((payEl.value || "").trim() !== "") calc();
+
+    // optional: live-update (fühlt sich gut an)
+    [incomeEl, payEl].forEach(el => {
+      el?.addEventListener("input", () => {
+        if((incomeEl.value||"").trim() !== "" && (payEl.value||"").trim() !== "") calc();
+      });
     });
 
     resetBtn?.addEventListener("click", () => {
+      incomeEl.value = "";
       payEl.value = "";
-      vPay.textContent = "–";
+      vRate.textContent = "–";
       vTax.textContent = "–";
       vNet.textContent = "–";
-      segTax.style.width = "0%";
-      segNet.style.width = "100%";
-      barInfo.textContent = "–";
-
-      // zurück auf konservativ
-      selectedRate = 0.25;
-      document.querySelectorAll(".segBtn").forEach((b, i) => {
-        b.classList.toggle("active", i === 0);
-      });
+      donut.style.setProperty("--taxAngle", "0deg");
+      donutPct.textContent = "–";
+      explainLine.textContent = "–";
     });
   </script>
 </body>
