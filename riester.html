@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Riester-Förder-Check – Rechner & Infos · Jonas Plener</title>
+  <title>Riester-Rente – Rechner · Jonas Plener</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@600;700;800&display=swap" rel="stylesheet" />
 
@@ -145,11 +145,9 @@
 
     /* Hero */
     header.hero{
-      padding:1.9rem 1.4rem .9rem; /* ↓ weniger unten, damit die Box "andocken" kann */
+      padding:1.9rem 1.4rem 1.55rem;
       border-bottom:1px solid var(--border);
       background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 40%, #e0f2fe 100%);
-      position:relative;
-      overflow:hidden;
     }
     .hero-label{
       display:inline-flex;align-items:center;gap:.45rem;
@@ -166,70 +164,6 @@
     }
     .hero-lead{margin:0;color:var(--muted);max-width:62rem;font-size:.98rem}
     .hero-lead strong{color:var(--primary);font-weight:800}
-
-    /* HERO: Bild + Ansprechpartner-Box */
-    .hero-inner{
-      display:grid;
-      grid-template-columns: 1.35fr .65fr;
-      gap: 1.2rem;
-      align-items: end;
-    }
-    .hero-left{min-width:0}
-    .hero-right{
-      position: relative;
-      display:flex;
-      justify-content:center;
-      align-items:flex-end;
-      min-height: 360px;
-    }
-    .hero-portrait{
-      width: min(320px, 86%);
-      height: auto;
-      display:block;
-      filter: drop-shadow(0 18px 28px rgba(15,23,42,.18));
-      margin-bottom: 56px; /* etwas mehr Abstand -> Box liegt am Körper, nicht im Gesicht */
-    }
-    .partner-card{
-      position:absolute;
-      left: 50%;
-      bottom: 0;                  /* ✅ Unterkante dockt an (kein Luftspalt) */
-      transform: translateX(-50%);/* nur horizontal zentrieren */
-      width: min(520px, 92%);
-      background:#fff;
-      border: 1px solid rgba(148,163,184,.65);
-      border-radius: 22px;
-      box-shadow: 0 14px 30px rgba(15,23,42,.14);
-      padding: 1.05rem 1.15rem;
-    }
-    .partner-title{
-      font-family:"Raleway",system-ui,sans-serif;
-      font-weight: 800;
-      color: var(--primary);
-      text-align:center;
-      margin: 0 0 .55rem;
-    }
-    .partner-list{
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display:grid;
-      gap: .35rem;
-      color: var(--muted);
-      font-size: .95rem;
-    }
-    .partner-list li{
-      display:flex;
-      align-items:flex-start;
-      gap:.6rem;
-    }
-    .partner-dot{
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--accent);
-      margin-top: .45rem;
-      flex: 0 0 auto;
-    }
 
     main{
       padding:1.6rem 1.4rem 2.4rem;
@@ -386,25 +320,6 @@
     }
     .info strong{color:#111}
 
-    /* FAQ/Details */
-    details.faq{
-      border:1px solid rgba(148,163,184,.55);
-      border-radius:14px;
-      padding:.75rem .85rem;
-      background:linear-gradient(to bottom,#fff,#fbfdff);
-      box-shadow:0 8px 18px rgba(15,23,42,.06);
-      margin:.7rem 0 0;
-    }
-    details.faq summary{
-      cursor:pointer;
-      font-family:"Raleway",system-ui,sans-serif;
-      font-weight:900;
-      color:#111;
-      list-style:none;
-    }
-    details.faq summary::-webkit-details-marker{display:none}
-    details.faq p{margin:.55rem 0 0;color:var(--muted);font-size:.92rem}
-
     footer{
       padding:1rem 1.4rem 1.3rem;
       font-size:.78rem;color:#6b7280;
@@ -415,17 +330,12 @@
     @media (max-width:768px){
       .topbar{padding-inline:1rem}
       .topbar-right{display:none}
-      header.hero{padding:1.55rem 1rem .75rem}
+      header.hero{padding:1.55rem 1rem 1.25rem}
       main{padding:1.4rem 1rem 2.1rem}
       .hero h1{font-size:1.45rem}
       .calc-grid{grid-template-columns:1fr}
       .row-2{grid-template-columns:1fr}
       .btn{width:100%}
-
-      .hero-inner{grid-template-columns: 1fr; align-items:start}
-      .hero-right{min-height: 460px;}
-      .partner-card{bottom: 0;}
-      .hero-portrait{margin-bottom: 62px;}
     }
   </style>
 </head>
@@ -526,36 +436,19 @@
     </aside>
 
     <header class="hero">
-      <div class="hero-inner">
-        <div class="hero-left">
-          <div class="hero-label"><span class="dot"></span> Riester-Förder-Check · Rechner + Einordnung</div>
-          <h1>Riester-Förder-Check: Rechner, Kürzungs-Check &amp; die wichtigsten Praxis-Infos.</h1>
-          <p class="hero-lead">
-            Du gibst <strong>Vorjahresbrutto</strong> und <strong>Kinder</strong> ein (mit Geburtsjahren).
-            Optional: <strong>Was zahlst du aktuell?</strong> Dann siehst du sofort, ob die Zulage (vereinfacht) gekürzt wird.
-            <br />
-            Danach bekommst du <strong>kurz &amp; übersichtlich</strong> die wichtigsten Infos: Für wen lohnt es sich, typische Fallen, Ablauf &amp; nächste Schritte.
-          </p>
-        </div>
-
-        <div class="hero-right">
-          <img class="hero-portrait" src="jonas-halbkoerper.png" alt="Jonas Plener" />
-          <div class="partner-card">
-            <div class="partner-title">Dein Ansprechpartner</div>
-            <ul class="partner-list">
-              <li><span class="partner-dot"></span><span>Eltern, Familien &amp; Selbstständige</span></li>
-              <li><span class="partner-dot"></span><span>Beratung digital und vor Ort</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <div class="hero-label"><span class="dot"></span> Riester · Mindestbeitrag &amp; Zulage (simpel)</div>
+      <h1>Riester-Rechner: Minimum rein, Zulage voll – drunter wird’s gekürzt.</h1>
+      <p class="hero-lead">
+        Du gibst <strong>Jahresbrutto</strong> und <strong>Kinder</strong> ein (mit Geburtsjahren).
+        Optional: <strong>Was zahlst du aktuell?</strong> Dann zeigt dir der Rechner sofort, wie viel unter Minimum du bist.
+      </p>
     </header>
 
     <main>
       <section>
         <h2>Rechner</h2>
         <p class="section-sub">
-          Ziel: <strong>Minimum</strong> + <strong>Zulagen</strong> auf einen Blick. Und wenn du weniger einzahlst:
+          Ziel: <strong>Mindesteigenbeitrag</strong> + <strong>Zulagen</strong> auf einen Blick. Und wenn du weniger einzahlst:
           <strong>ungefähre Zulage nach Kürzung</strong> – verständlich statt kompliziert.
         </p>
 
@@ -563,7 +456,7 @@
           <div class="calc-grid">
             <div>
               <div class="field">
-                <label for="income">Vorjahresbrutto (Jahresbrutto) in €</label>
+                <label for="income">Jahresbrutto in €</label>
                 <input id="income" type="number" min="0" step="100" placeholder="z. B. 45.000" />
               </div>
 
@@ -574,6 +467,7 @@
 
               <div id="kidsFields"></div>
 
+              <!-- Optionaler Reiter: aktueller Beitrag -->
               <div class="optional" id="optBox">
                 <button type="button" id="optToggle" aria-expanded="false">
                   <span>Optional: Wie viel zahlst du aktuell in Riester ein?</span>
@@ -605,13 +499,13 @@
 
             <div class="calc-result">
               <p class="calc-expl">
-                <strong>Ergebnis:</strong> Minimum + volle Zulage. Wenn du einen aktuellen Beitrag eingibst:
-                Zulage wird (vereinfacht) <strong>proportional</strong> gekürzt.
+                <strong>Ergebnis:</strong> Mindesteigenbeitrag (nach Zulagen) + volle Zulage.
+                Wenn du einen aktuellen Beitrag eingibst: Zulage wird (vereinfacht) <strong>proportional</strong> gekürzt.
               </p>
 
               <div class="values">
                 <div class="val">
-                  <div class="k">Mindestbeitrag / Jahr (Orientierung)</div>
+                  <div class="k">Mindest-Eigenbeitrag / Jahr (nach Zulagen)</div>
                   <div class="v" id="vMin">–</div>
                 </div>
 
@@ -638,8 +532,14 @@
                 </div>
                 <div class="track"><div class="fill" id="cutFill"></div></div>
                 <div class="cut-foot">
-                  Je mehr du unter dem Minimum liegst, desto mehr wird die Zulage gekürzt (vereinfacht dargestellt).
+                  Je mehr du unter dem Mindesteigenbeitrag liegst, desto mehr wird die Zulage gekürzt (vereinfacht dargestellt).
                 </div>
+              </div>
+
+              <div class="info">
+                <strong>So wird das Minimum hier berechnet:</strong><br />
+                4% von Jahresbrutto − Zulagen = Mindesteigenbeitrag (mind. 60 €).<br />
+                Obergrenze: Eigenbeitrag maximal 2.100 € − Zulagen (vereinfachte Orientierung).
               </div>
             </div>
           </div>
@@ -648,13 +548,15 @@
 
       <section>
         <h2>Riester kurz erklärt</h2>
-        <p class="section-sub">Drei Dinge, die in der Praxis am meisten entscheiden.</p>
+        <p class="section-sub">
+          Drei Dinge, die in der Praxis am meisten entscheiden.
+        </p>
 
         <div class="grid">
           <div class="card">
             <div class="card-title">1) Minimum als „volle-Zulage-Trigger“</div>
             <p>
-              Wenn du deutlich unter dem Mindestbeitrag bleibst, ist das meist der Klassiker:
+              Wenn du deutlich unter dem Mindesteigenbeitrag bleibst, ist das meist der Klassiker:
               <strong>Zulage wird gekürzt</strong> – und viele merken’s erst später.
             </p>
           </div>
@@ -667,52 +569,11 @@
           </div>
 
           <div class="card">
-            <div class="card-title">3) Kosten &amp; Produkt entscheiden die Netto-Wirkung</div>
+            <div class="card-title">3) Kosten & Produkt entscheiden die Netto-Wirkung</div>
             <p>
               Förderung ist gut – aber ob es sich unterm Strich lohnt, hängt stark am Vertrag.
               Das prüfen wir mit echten Angeboten.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2>FAQ</h2>
-        <p class="section-sub">Kurz &amp; verständlich.</p>
-
-        <details class="faq">
-          <summary>Warum keine Ehepartner-Abfrage?</summary>
-          <p>Bewusst vereinfacht. Partner-Konstellationen können beeinflussen – das prüfen wir im persönlichen Check sauber.</p>
-        </details>
-        <details class="faq">
-          <summary>Muss ich exakt den Mindestbeitrag treffen?</summary>
-          <p>„Nah dran“ reicht oft. Wichtig: bei Änderungen (Einkommen/Kinder) neu prüfen.</p>
-        </details>
-        <details class="faq">
-          <summary>Was bedeutet „Zulage wird gekürzt“?</summary>
-          <p>Vereinfacht: Unter Minimum → Zulage anteilig geringer. Der Rechner zeigt dir das als Orientierung.</p>
-        </details>
-      </section>
-
-      <section>
-        <h2>Nächster Schritt</h2>
-        <p class="section-sub">Wenn du Klarheit willst: kurz checken, ob Riester passt oder ob es bessere Alternativen gibt.</p>
-
-        <div class="grid">
-          <div class="card">
-            <div class="card-title">Gespräch vereinbaren</div>
-            <p>Ergebnis + Vertrag/Angebot prüfen → klare Empfehlung.</p>
-            <div style="margin-top:.75rem">
-              <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch vereinbaren</a>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-title">Kurzfrage per WhatsApp</div>
-            <p>Eine Frage reicht oft, um direkt zu sehen, ob sich ein genauer Check lohnt.</p>
-            <div style="margin-top:.75rem">
-              <a class="btn" style="background:var(--wa);color:#fff" href="https://wa.me/4917663796605" target="_blank" rel="noopener">Kurzfrage per WhatsApp</a>
-            </div>
           </div>
         </div>
       </section>
@@ -814,11 +675,12 @@
       const income = parseFloat((document.getElementById("income").value || "").replace(",", "."));
       const kids = clamp(parseInt(kidsInput.value || "0", 10) || 0, 0, 10);
 
+      // Optional: aktueller Beitrag/Jahr
       const curRaw = (document.getElementById("currentPay").value || "").trim();
       const curPay = curRaw === "" ? null : parseFloat(curRaw.replace(",", "."));
 
       if(!Number.isFinite(income) || income < 0){
-        vMin.textContent = "Bitte Vorjahresbrutto eingeben.";
+        vMin.textContent = "Bitte Jahresbrutto eingeben.";
         vZulFull.textContent = "–";
         vCurPay.textContent = "–";
         vZulCut.textContent = "–";
@@ -827,6 +689,7 @@
         return;
       }
 
+      // ===== Zulagen (Orientierung) =====
       const baseAllowance = 175;
       let kidAllowanceSum = 0;
       for(let i=1;i<=kids;i++){
@@ -835,12 +698,24 @@
       }
       const fullAllowances = baseAllowance + kidAllowanceSum;
 
-      // Mindestbeitrag (vereinfachte Orientierung): 4% Vorjahresbrutto, min 60, max 2100
-      const minContribution = clamp(income * 0.04, 60, 2100);
+      // ===== Mindest-EIGENbeitrag (nach Zulagen) =====
+      // Mindesteigenbeitrag = 4% Einkommen - Zulagen
+      // min 60 €
+      // max (vereinfachte Orientierung): 2100 € - Zulagen
+      const fourPct = income * 0.04;
 
-      vMin.textContent = fmtEUR(minContribution);
+      // Obergrenze für Eigenbeitrag: 2100 - Zulagen (nicht unter 60 fallen lassen)
+      const maxEigen = Math.max(60, 2100 - fullAllowances);
+
+      let minEigen = fourPct - fullAllowances;
+      if(!Number.isFinite(minEigen)) minEigen = 60;
+
+      minEigen = clamp(minEigen, 60, maxEigen);
+
+      vMin.textContent = fmtEUR(minEigen);
       vZulFull.textContent = fmtEUR(fullAllowances);
 
+      // Wenn kein aktueller Beitrag angegeben:
       if (curPay === null) {
         vCurPay.textContent = "— (nicht angegeben)";
         vZulCut.textContent = "—";
@@ -852,19 +727,21 @@
       const pay = Math.max(0, curPay);
       vCurPay.textContent = fmtEUR(pay);
 
-      const ratio = (minContribution <= 0) ? 0 : clamp(pay / minContribution, 0, 1);
+      // Verhältnis: aktueller Beitrag / Mindesteigenbeitrag
+      const ratio = (minEigen <= 0) ? 0 : clamp(pay / minEigen, 0, 1);
 
+      // Kürzung: proportional (vereinfachtes Modell)
       const allowanceAfterCut = fullAllowances * ratio;
       vZulCut.textContent = fmtEUR(allowanceAfterCut);
 
       const cutPct = Math.round((1 - ratio) * 100);
       cutFill.style.width = clamp(cutPct, 0, 100) + "%";
 
-      if (pay >= minContribution) {
-        cutInfo.textContent = "Passt: Beitrag liegt bei/über dem Minimum → keine Kürzung.";
+      if (pay >= minEigen) {
+        cutInfo.textContent = "Passt: Beitrag liegt bei/über dem Mindesteigenbeitrag → keine Kürzung.";
       } else {
-        const diff = minContribution - pay;
-        cutInfo.textContent = "Du liegst ca. " + fmtEUR(diff) + " unter Minimum → Kürzung grob ~ " + cutPct + "%";
+        const diff = minEigen - pay;
+        cutInfo.textContent = "Du liegst ca. " + fmtEUR(diff) + " unter Mindesteigenbeitrag → Kürzung grob ~ " + cutPct + "%";
       }
     }
 
@@ -883,6 +760,7 @@
       cutFill.style.width = "0%";
       cutInfo.textContent = "–";
 
+      // Optional-Box schließen
       optBox.classList.remove("open");
       optToggle.setAttribute("aria-expanded", "false");
       const chev = optToggle.querySelector("span:last-child");
