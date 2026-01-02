@@ -370,70 +370,116 @@
     </div>
 
     <div class="menu-backdrop" id="menuBackdrop"></div>
-    <aside class="menu-panel" id="menuPanel" aria-label="Navigation">
-      <div class="menu-head">
-        <div class="ttl">Menü</div>
-        <button class="menu-close" id="menuClose" aria-label="Menü schließen">✕</button>
-      </div>
 
-      <div class="menu-body">
-        <div class="menu-group open">
-          <button type="button" class="menu-toggle"><span>Startseite</span><span class="chev">▾</span></button>
-          <div class="menu-sub">
-            <a href="leistung.html"><strong>Meine Leistungen</strong></a>
-            <a href="index.html">Eltern-Renten-Check</a>
-          </div>
-        </div>
+<aside class="menu-panel" id="menuPanel" aria-label="Navigation">
+  <div class="menu-head">
+    <div class="menu-title">Meine Leistungen</div>
+    <button class="menu-close" id="menuClose" aria-label="Menü schließen">×</button>
+  </div>
 
-        <div class="menu-group">
-          <button type="button" class="menu-toggle"><span>Absicherung &amp; Schutz</span><span class="chev">▾</span></button>
-          <div class="menu-sub">
-            <a href="arbeitskraftabsicherung.html">Berufsunfähigkeit &amp; Arbeitskraft</a>
-            <a href="sachversicherungen.html">Sachversicherungen</a>
-          </div>
-        </div>
+  <div class="menu-body">
 
-        <div class="menu-group">
-          <button type="button" class="menu-toggle"><span>Vorsorge &amp; Rente</span><span class="chev">▾</span></button>
-          <div class="menu-sub">
-            <a href="riester.html"><strong>Riester-Rente</strong></a>
-            <a href="ruerup.html">Rürup / Basisrente</a>
-            <a href="bav.html">Betriebliche Altersvorsorge</a>
-            <a href="risikoleben.html">Risikoleben</a>
-          </div>
-        </div>
+    <div class="menu-section">
+      <div class="menu-section-title">PRIVATKUNDEN</div>
 
-        <div class="menu-group">
-          <button type="button" class="menu-toggle"><span>Vermögensaufbau &amp; Sparen</span><span class="chev">▾</span></button>
-          <div class="menu-sub">
-            <a href="fonds-sparplaene.html">Investment- &amp; Fondssparpläne</a>
-            <a href="einmalanlage.html">Einmalanlage</a>
-            <a href="vermoegensstruktur.html">Vermögensstruktur</a>
-          </div>
-        </div>
+      <div class="menu-block">
+        <a class="menu-main" href="sachversicherungen.html">
+          <div class="menu-main-title">Absicherung &amp; Schutz</div>
+          <div class="menu-main-sub">Haftpflicht, Hausrat, Wohngebäude, Risikoleben</div>
+        </a>
 
-        <div class="menu-group">
-          <button type="button" class="menu-toggle"><span>Familie &amp; Kinder</span><span class="chev">▾</span></button>
-          <div class="menu-sub">
-            <a href="eltern-retter.html">Eltern-Retter &amp; Kindererziehungszeiten</a>
-            <a href="kinder-absichern.html">Kinder absichern</a>
-            <a href="ausbildung-zukunft.html">Ausbildung &amp; Zukunft</a>
-          </div>
-        </div>
-
-        <div class="menu-group">
-          <button type="button" class="menu-toggle"><span>Unternehmer</span><span class="chev">▾</span></button>
-          <div class="menu-sub">
-            <a href="unternehmer-termin.html">Termin für Unternehmer</a>
-          </div>
+        <div class="menu-sublist">
+          <a class="menu-subitem" href="sachversicherungen.html">Haftpflicht, Hausrat, Wohngebäude</a>
+          <a class="menu-subitem" href="risikoleben.html">Risikolebensversicherung</a>
         </div>
       </div>
 
-      <div class="menu-foot">
-        <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch vereinbaren</a>
-        <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">Kurzfrage per WhatsApp</a>
+      <div class="menu-block">
+        <a class="menu-main" href="ruerup.html">
+          <div class="menu-main-title">Vorsorge &amp; Rente</div>
+          <div class="menu-main-sub">Riester, Rürup, betriebliche Altersvorsorge</div>
+        </a>
+
+        <div class="menu-sublist">
+          <!-- HIER ist die Änderung: BU/Arbeitskraft ist jetzt in Vorsorge & Rente -->
+          <a class="menu-subitem" href="arbeitskraftabsicherung.html">Berufsunfähigkeit &amp; Arbeitskraft</a>
+
+          <a class="menu-subitem" href="riester.html">Riester-Rente</a>
+          <a class="menu-subitem" href="ruerup.html">Rürup / Basisrente</a>
+          <a class="menu-subitem" href="bav.html">Betriebliche Altersvorsorge (bAV)</a>
+        </div>
       </div>
-    </aside>
+
+      <div class="menu-block">
+        <a class="menu-main" href="fonds-sparplaene.html">
+          <div class="menu-main-title">Vermögensaufbau &amp; Sparen</div>
+          <div class="menu-main-sub">Fondssparen, Einmalanlagen, Struktur</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-title">FAMILIE &amp; KINDER</div>
+
+      <div class="menu-block">
+        <a class="menu-main" href="eltern-retter.html">
+          <div class="menu-main-title">Eltern-Retter &amp; Kindererziehungszeiten</div>
+          <div class="menu-main-sub">Rentenansprüche für Eltern prüfen</div>
+        </a>
+      </div>
+
+      <div class="menu-block">
+        <a class="menu-main" href="kinder-absichern.html">
+          <div class="menu-main-title">Kinder absichern</div>
+          <div class="menu-main-sub">Gesundheit, Unfall, Arbeitskraft</div>
+        </a>
+      </div>
+
+      <div class="menu-block">
+        <a class="menu-main" href="ausbildung-zukunft.html">
+          <div class="menu-main-title">Ausbildung &amp; Zukunft</div>
+          <div class="menu-main-sub">Sparen für Ausbildung, Studium &amp; Start ins Leben</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-title">UNTERNEHMEN</div>
+
+      <div class="menu-block">
+        <a class="menu-main" href="unternehmer-termin.html">
+          <div class="menu-main-title">Unternehmen &amp; Selbstständige</div>
+          <div class="menu-main-sub">bAV, BKV, Unternehmer-Absicherung, Factoring</div>
+        </a>
+      </div>
+
+      <div class="menu-block">
+        <a class="menu-main" href="karriere.html">
+          <div class="menu-main-title">Karriere &amp; Jobchance</div>
+          <div class="menu-main-sub">DVAG als berufliche Alternative</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-title">WEITERE SEITEN</div>
+
+      <div class="menu-block">
+        <a class="menu-main" href="index.html">
+          <div class="menu-main-title">Eltern-Renten-Check</div>
+          <div class="menu-main-sub">Renten-Booster für Eltern</div>
+        </a>
+      </div>
+
+      <div class="menu-contact">
+        <div class="menu-contact-label">Direkt Kontakt aufnehmen:</div>
+        <a class="menu-contact-link" href="https://wa.me/4917663796605" target="_blank" rel="noopener">WhatsApp schreiben</a>
+      </div>
+    </div>
+
+  </div>
+</aside>
+
 
     <header class="hero">
       <div class="hero-label"><span class="dot"></span> Riester · Mindestbeitrag &amp; Zulage (simpel)</div>
