@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Riester – Mindest-Eigenbeitrag & Zulagen-Check · Jonas Plener</title>
+  <title>Riester-Rente – Rechner & Check · Jonas Plener</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@600;700;800&display=swap" rel="stylesheet" />
 
@@ -31,10 +31,15 @@
       line-height:1.6;
     }
     a{color:inherit;text-decoration:none}
+
     .page{
-      max-width:1100px;margin:0 auto;min-height:100vh;background:#fff;
+      max-width:1100px;
+      margin:0 auto;
+      min-height:100vh;
+      background:#fff;
       box-shadow:0 12px 35px rgba(15,23,42,.12);
-      display:flex;flex-direction:column;
+      display:flex;
+      flex-direction:column;
     }
 
     /* Topbar */
@@ -57,10 +62,11 @@
     }
     .topbar-tagline{font-size:.8rem;color:var(--muted)}
     .topbar-right{
-      font-size:.8rem;color:var(--muted);text-align:right;padding-right:54px;white-space:nowrap;
+      font-size:.8rem;color:var(--muted);
+      text-align:right;padding-right:54px;white-space:nowrap;
     }
 
-    /* Burger */
+    /* Burger Button */
     .burger{
       position:absolute;top:10px;right:10px;
       width:46px;height:46px;border-radius:999px;
@@ -78,13 +84,17 @@
     .burger-lines span:nth-child(2){top:6px}
     .burger-lines span:nth-child(3){top:12px}
 
+    /* ===== Neues Menü (wie "Meine Leistungen") ===== */
     .menu-backdrop{
-      position:fixed;inset:0;background:rgba(15,23,42,.45);
-      opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1200;
+      position:fixed;inset:0;
+      background:rgba(15,23,42,.45);
+      opacity:0;pointer-events:none;
+      transition:opacity .25s ease;
+      z-index:1200;
     }
     .menu-panel{
       position:fixed;top:0;right:0;height:100%;
-      width:min(380px,92vw);
+      width:min(380px, 92vw);
       background:#fff;
       box-shadow:-18px 0 40px rgba(15,23,42,.18);
       transform:translateX(105%);
@@ -94,66 +104,85 @@
     }
     .menu-backdrop.open{opacity:1;pointer-events:auto}
     .menu-panel.open{transform:translateX(0)}
+
     .menu-head{
       padding:1rem 1rem .85rem;
       border-bottom:1px solid var(--border);
       display:flex;align-items:center;justify-content:space-between;gap:.75rem;
       background:linear-gradient(to right,#ffffff,#fef3c7);
     }
-    .menu-head .ttl{font-family:Raleway,system-ui,sans-serif;font-weight:800;color:var(--primary);font-size:1.15rem}
+    .menu-head .ttl{
+      font-family:Raleway,system-ui,sans-serif;
+      font-weight:800;
+      color:var(--primary);
+      font-size:1.05rem;
+    }
     .menu-close{
       width:40px;height:40px;border-radius:999px;
       border:1px solid rgba(148,163,184,.9);
       background:#fff;cursor:pointer;display:grid;place-items:center;
     }
 
-    .menu-body{padding:1rem;overflow:auto}
-    .menu-hint{color:#6b7280;font-size:.92rem;margin:.25rem 0 1rem}
-
-    .menu-section{margin:1rem 0}
-    .menu-section-title{
+    .menu-body{
+      padding:1rem 1rem 1rem;
+      overflow:auto;
+    }
+    .menu-section{
+      padding:.9rem .0 .3rem;
+    }
+    .menu-kicker{
       font-size:.78rem;
       letter-spacing:.12em;
       text-transform:uppercase;
-      color:#9aa3af;
-      margin:1rem 0 .55rem;
+      color:#9ca3af;
+      margin:0 0 .65rem;
     }
-    .menu-item{
-      padding:.55rem 0;
-      border-bottom:1px solid rgba(229,231,235,.7);
+
+    .menu-block{
+      border:1px solid rgba(148,163,184,.55);
+      border-radius:16px;
+      overflow:hidden;
+      background:linear-gradient(to bottom,#fff,#fbfdff);
+      box-shadow:0 8px 18px rgba(15,23,42,.06);
+      margin-bottom:.85rem;
     }
-    .menu-item:last-child{border-bottom:0}
-    .menu-item .name{
-      font-weight:800;
+    .menu-block a.big{
+      display:block;
+      padding:.85rem .95rem .1rem;
       font-family:Raleway,system-ui,sans-serif;
+      font-weight:800;
       color:#111;
-      line-height:1.15;
+      font-size:1.0rem;
     }
-    .menu-item .sub{
-      color:#6b7280;
+    .menu-block a.big:hover{background:#f3f6f8}
+    .menu-block .subline{
+      padding:0 .95rem .75rem;
+      color:var(--muted);
       font-size:.9rem;
-      margin-top:.15rem;
-      line-height:1.25;
     }
-    .menu-links{
-      margin-top:.35rem;
-      padding-left:.9rem;
-      border-left:2px solid rgba(74,120,125,.22);
+    .menu-sublist{
+      border-top:1px solid rgba(148,163,184,.35);
+      padding:.55rem .55rem .7rem;
       display:grid;
-      gap:.15rem;
+      gap:.2rem;
     }
-    .menu-links a{
-      padding:.35rem .25rem;
-      border-radius:10px;
-      color:#4b5563;
+    .menu-sublist a{
+      display:block;
+      padding:.55rem .55rem;
+      border-radius:12px;
+      color:var(--muted);
       font-size:.95rem;
     }
-    .menu-links a:hover{background:#f3f6f8;color:#111}
-    .menu-links a strong{color:var(--primary)}
+    .menu-sublist a:hover{background:#f3f6f8;color:#111}
+    .menu-sublist a strong{color:var(--primary)}
 
     .menu-foot{
-      margin-top:auto;padding:1rem;border-top:1px solid var(--border);
-      background:#f9fafb;display:grid;gap:.6rem;
+      margin-top:auto;
+      padding:1rem;
+      border-top:1px solid var(--border);
+      background:#f9fafb;
+      display:grid;
+      gap:.6rem;
     }
     .menu-foot .btn{
       display:inline-flex;align-items:center;justify-content:center;
@@ -239,10 +268,18 @@
       color: var(--muted);
       font-size: .95rem;
     }
-    .partner-list li{display:flex;align-items:flex-start;gap:.6rem}
+    .partner-list li{
+      display:flex;
+      align-items:flex-start;
+      gap:.6rem;
+    }
     .partner-dot{
-      width: 8px;height: 8px;border-radius: 999px;background: var(--accent);
-      margin-top: .45rem;flex: 0 0 auto;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin-top: .45rem;
+      flex: 0 0 auto;
     }
 
     main{
@@ -258,7 +295,7 @@
     }
     .section-sub{margin:0 0 1rem;color:var(--muted);font-size:.92rem;max-width:62rem}
 
-    /* Cards / Layout */
+    /* Cards */
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
     .card{
       background:linear-gradient(to bottom,#fff,#fbfdff);
@@ -272,6 +309,18 @@
       font-weight:800;font-size:1.05rem;margin:0 0 .4rem;color:#111;
     }
     .card p{margin:.35rem 0 0;color:var(--muted);font-size:.92rem}
+
+    .info{
+      margin-top:.75rem;
+      padding:.75rem .85rem;
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,.7);
+      background:#fff;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    .info strong{color:#111}
+    .nowrap{white-space:nowrap}
 
     /* Rechner */
     .calc-wrap{
@@ -291,10 +340,6 @@
     .field{margin-bottom:.7rem}
     label{
       display:block;font-size:.85rem;font-weight:900;margin-bottom:.25rem;color:#111;
-      /* Fix: verhindert „€“ alleine in der nächsten Zeile */
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
     }
     input{
       width:100%;
@@ -352,15 +397,17 @@
       font-size:.92rem;
     }
     .calc-expl{margin:0 0 .65rem}
+
     .values{
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap:.65rem;
       margin-top:.2rem;
     }
     .val{
       padding:.65rem .75rem;border-radius:14px;border:2px solid var(--border);
       background:#fff;box-shadow:0 8px 18px rgba(15,23,42,.06);
+      min-width:0;
     }
     .val .k{font-size:.8rem;color:var(--muted);margin-bottom:.1rem}
     .val .v{font-weight:900;font-size:1.05rem;color:#111}
@@ -368,21 +415,14 @@
     .val.warn{border-color:rgba(245,158,11,.55);background:#fef3c7}
     .val.bad{border-color:rgba(220,38,38,.55);background:#fee2e2}
 
-    .info{
-      margin-top:.75rem;
-      padding:.75rem .85rem;
-      border-radius:16px;
-      border:1px solid rgba(148,163,184,.7);
-      background:#fff;
-      color:var(--muted);
-      font-size:.9rem;
-    }
-    .info strong{color:#111}
+    /* Bereich: nur anzeigen wenn aktueller Beitrag eingetragen */
+    .needs-currentpay{display:none}
+    .needs-currentpay.show{display:block}
 
-    /* Donut (Eigen vs Zulagen) */
+    /* Donut */
     .donut-wrap{
       display:grid;
-      grid-template-columns: 160px 1fr;
+      grid-template-columns: 180px 1fr;
       gap:1rem;
       align-items:center;
       margin-top:.85rem;
@@ -392,7 +432,7 @@
       background:linear-gradient(to right, rgba(254,243,199,.55), rgba(224,242,254,.55));
     }
     .donut{
-      width:160px;height:160px;border-radius:50%;
+      width:180px;height:180px;border-radius:50%;
       background:conic-gradient(
         rgba(74,120,125,.75) 0deg,
         rgba(74,120,125,.75) var(--eigenAngle),
@@ -405,32 +445,26 @@
     }
     .donut::after{
       content:"";
-      position:absolute;
-      inset:18px;
-      background:#fff;
-      border-radius:50%;
+      position:absolute;inset:22px;
+      background:#fff;border-radius:50%;
       box-shadow: inset 0 0 0 1px rgba(148,163,184,.35);
-      z-index:1;
     }
     .donut-center{
-      position:absolute;
-      inset:18px;
+      position:absolute;inset:0;
+      display:grid;place-items:center;
       z-index:2;
-      display:flex;
-      align-items:center;
-      justify-content:center;
       text-align:center;
-      padding:10px;
-    }
-    /* Fix: Nur Prozent mittig, kein Text, kein Überlappen */
-    .donut-center span{
-      font-family:Raleway,system-ui,sans-serif;
-      font-weight:900;
-      font-size:30px;
-      line-height:1;
+      padding:0 12px;
       color:#111;
-      white-space:nowrap;
+      font-weight:900;
+      font-family:Raleway,system-ui,sans-serif;
+      line-height:1.1;
     }
+    .donut-center .pct{
+      font-size:1.55rem;
+      letter-spacing:.01em;
+    }
+
     .legend{
       display:grid;
       gap:.45rem;
@@ -441,9 +475,13 @@
     .dot{width:10px;height:10px;border-radius:999px;display:inline-block}
     .dot.eigen{background:rgba(74,120,125,.75)}
     .dot.zul{background:var(--accent)}
-    .hintline{margin-top:.55rem;color:#6b7280;font-size:.86rem}
+    .hintline{
+      margin-top:.5rem;
+      color:#6b7280;
+      font-size:.82rem;
+    }
 
-    /* Mini-Balken: Unter Minimum */
+    /* Unter-Minimum */
     .cut-box{
       margin-top:.85rem;
       border-radius:16px;
@@ -482,16 +520,18 @@
       main{padding:1.4rem 1rem 2.1rem}
       .hero h1{font-size:1.45rem}
 
-      .hero-inner{grid-template-columns: 1fr; align-items:start}
-      .hero-right{min-height: 460px;}
-      .partner-card{bottom: 0;}
-      .hero-portrait{margin-bottom: 62px;}
+      .hero-inner{grid-template-columns:1fr; align-items:start}
+      .hero-right{min-height:460px;}
+      .partner-card{bottom:0;}
+      .hero-portrait{margin-bottom:62px;}
 
       .calc-grid{grid-template-columns:1fr}
       .row-2{grid-template-columns:1fr}
       .btn{width:100%}
 
       .donut-wrap{grid-template-columns:1fr;justify-items:center;text-align:left}
+      .donut{width:170px;height:170px}
+      .values{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -525,8 +565,9 @@
       </button>
     </div>
 
-    <!-- ===== Neues Burger-Menü (wie Screenshot) ===== -->
+    <!-- Neues Burger Menü -->
     <div class="menu-backdrop" id="menuBackdrop"></div>
+
     <aside class="menu-panel" id="menuPanel" aria-label="Navigation">
       <div class="menu-head">
         <div class="ttl">Meine Leistungen</div>
@@ -534,109 +575,129 @@
       </div>
 
       <div class="menu-body">
-        <div class="menu-section">
-          <div class="menu-section-title">Privatkunden</div>
 
-          <div class="menu-item">
-            <div class="name">Absicherung &amp; Schutz</div>
-            <div class="sub">Sachschutz, Haftpflicht, Hausrat, Risikoleben</div>
-            <div class="menu-links">
+        <div class="menu-section">
+          <div class="menu-kicker">Privatkunden</div>
+
+          <div class="menu-block">
+            <a class="big" href="arbeitskraftabsicherung.html">Absicherung &amp; Schutz</a>
+            <div class="subline">Sachschutz, Haftpflicht, Hausrat, Risikoleben</div>
+            <div class="menu-sublist">
               <a href="sachversicherungen.html">Haftpflicht, Hausrat, Wohngebäude</a>
               <a href="risikoleben.html">Risikolebensversicherung</a>
             </div>
           </div>
 
-          <div class="menu-item">
-            <div class="name">Vorsorge &amp; Rente</div>
-            <div class="sub">Riester, Rürup, betriebliche Altersvorsorge</div>
-            <div class="menu-links">
-              <!-- WICHTIG: BU & Arbeitskraftabsicherung hierher verschoben -->
-              <a href="arbeitskraftabsicherung.html"><strong>Berufsunfähigkeit &amp; Arbeitskraft</strong></a>
+          <div class="menu-block">
+            <a class="big" href="riester.html"><strong>Vorsorge &amp; Rente</strong></a>
+            <div class="subline">Riester, Rürup, bAV, Arbeitskraft</div>
+            <div class="menu-sublist">
+              <!-- WICHTIG: BU & Arbeitskraft hier -->
+              <a href="arbeitskraftabsicherung.html">Berufsunfähigkeit &amp; Arbeitskraftabsicherung</a>
               <a href="riester.html"><strong>Riester-Rente</strong></a>
               <a href="ruerup.html">Rürup / Basisrente</a>
               <a href="bav.html">Betriebliche Altersvorsorge (bAV)</a>
             </div>
           </div>
 
-          <div class="menu-item">
-            <div class="name">Vermögensaufbau &amp; Sparen</div>
-            <div class="sub">Fondssparen, Einmalanlagen, Struktur</div>
-            <div class="menu-links">
+          <div class="menu-block">
+            <a class="big" href="fonds-sparplaene.html">Vermögensaufbau &amp; Sparen</a>
+            <div class="subline">Fondssparen, Einmalanlagen, Struktur</div>
+            <div class="menu-sublist">
               <a href="fonds-sparplaene.html">Investment- &amp; Fondssparpläne</a>
-              <a href="einmalanlage.html">Einmalanlage</a>
-              <a href="vermoegensstruktur.html">Vermögensstruktur</a>
+              <a href="einmalanlage.html">Strategien für Einmalanlagen</a>
+              <a href="vermoegensstruktur.html">Vermögensstruktur &amp; Strategie</a>
             </div>
           </div>
         </div>
 
         <div class="menu-section">
-          <div class="menu-section-title">Familie &amp; Kinder</div>
+          <div class="menu-kicker">Familie &amp; Kinder</div>
 
-          <div class="menu-item">
-            <div class="name">Eltern-Retter &amp; Kindererziehungszeiten</div>
-            <div class="sub">Rentenansprüche für Eltern prüfen</div>
-            <div class="menu-links">
-              <a href="eltern-retter.html">Eltern-Retter</a>
-              <a href="index.html">Eltern-Renten-Check</a>
+          <div class="menu-block">
+            <a class="big" href="eltern-retter.html">Eltern-Retter &amp; Kindererziehungszeiten</a>
+            <div class="subline">Rentenansprüche für Eltern prüfen</div>
+            <div class="menu-sublist">
+              <a href="eltern-retter.html">Eltern-Retter Überblick</a>
+              <a href="kindererziehungszeiten.html">Kindererziehungszeiten prüfen</a>
+              <a href="eltern-rente-optimieren.html">Eltern-Rente optimieren</a>
             </div>
           </div>
 
-          <div class="menu-item">
-            <div class="name">Kinder absichern</div>
-            <div class="sub">Gesundheit, Unfall, Arbeitskraft</div>
-            <div class="menu-links">
-              <a href="kinder-absichern.html">Kinder absichern</a>
+          <div class="menu-block">
+            <a class="big" href="kinder-absichern.html">Kinder absichern</a>
+            <div class="subline">Gesundheit, Unfall, Arbeitskraft</div>
+            <div class="menu-sublist">
+              <a href="kinder-absichern.html">Gesundheits- &amp; Zusatzschutz</a>
+              <a href="kinder-unfall.html">Kinder-Unfallabsicherung</a>
+              <a href="schueler-bu.html">Frühe Arbeitskraftabsicherung (Schüler-BU)</a>
             </div>
           </div>
 
-          <div class="menu-item">
-            <div class="name">Ausbildung &amp; Zukunft</div>
-            <div class="sub">Sparen für Ausbildung, Studium &amp; Start ins Leben</div>
-            <div class="menu-links">
-              <a href="ausbildung-zukunft.html">Ausbildung &amp; Zukunft</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="menu-section">
-          <div class="menu-section-title">Unternehmen</div>
-
-          <div class="menu-item">
-            <div class="name">Unternehmen &amp; Selbstständige</div>
-            <div class="sub">bAV, BKV, Unternehmer-Absicherung, Factoring</div>
-            <div class="menu-links">
-              <a href="unternehmer-termin.html">Termin für Unternehmer</a>
+          <div class="menu-block">
+            <a class="big" href="ausbildung-zukunft.html">Ausbildung &amp; Zukunft</a>
+            <div class="subline">Sparen für Ausbildung, Studium &amp; Start ins Leben</div>
+            <div class="menu-sublist">
+              <a href="ausbildung-zukunft.html">Sparen für Ausbildung &amp; Studium</a>
+              <a href="sparplaene-kind.html">Langfristige Sparpläne fürs Kind</a>
+              <a href="zukunftsplan.html">Zukunftsplan &amp; Rollenverteilung</a>
             </div>
           </div>
         </div>
 
         <div class="menu-section">
-          <div class="menu-section-title">Weitere Seiten</div>
-          <div class="menu-item">
-            <div class="name">Eltern-Renten-Check</div>
-            <div class="sub">Renten-Booster für Eltern</div>
-            <div class="menu-links">
-              <a href="index.html">Zum Check</a>
-            </div>
+          <div class="menu-kicker">Unternehmen</div>
+
+          <div class="menu-block">
+            <a class="big" href="unternehmer-termin.html">Unternehmen &amp; Selbstständige</a>
+            <div class="subline">bAV, BKV, Unternehmer-Absicherung, Factoring</div>
+          </div>
+
+          <div class="menu-block">
+            <a class="big" href="karriere.html">Karriere &amp; Jobchance</a>
+            <div class="subline">DVAG als berufliche Alternative</div>
           </div>
         </div>
+
+        <div class="menu-section">
+          <div class="menu-kicker">Weitere Seiten</div>
+
+          <div class="menu-block">
+            <a class="big" href="index.html">Eltern-Renten-Check</a>
+            <div class="subline">Renten-Booster für Eltern</div>
+          </div>
+
+          <div class="menu-block">
+            <a class="big" href="leistung.html">Meine Leistungen</a>
+            <div class="subline">Übersicht aller Themen</div>
+          </div>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-kicker">Direkt Kontakt aufnehmen</div>
+          <div class="menu-block">
+            <a class="big" href="https://wa.me/4917663796605" target="_blank" rel="noopener">WhatsApp schreiben</a>
+            <div class="subline">Kurzfrage reicht völlig</div>
+          </div>
+        </div>
+
       </div>
 
       <div class="menu-foot">
         <a class="btn btn-gold" href="https://forms.cloud.microsoft/e/DYguRWAj0N" target="_blank" rel="noopener">Gespräch vereinbaren</a>
-        <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">WhatsApp schreiben</a>
+        <a class="btn btn-wa" href="https://wa.me/4917663796605" target="_blank" rel="noopener">Kurzfrage per WhatsApp</a>
       </div>
     </aside>
 
     <header class="hero">
       <div class="hero-inner">
         <div class="hero-left">
-          <div class="hero-label"><span class="dot"></span> Riester · Mindesteigenbeitrag (nach Zulagen) + Förderung im Blick</div>
-          <h1>Riester-Check: So viel musst du wirklich zahlen – Zulagen schon eingerechnet.</h1>
+          <div class="hero-label"><span class="dot"></span> Riester · Mindesteigenbeitrag &amp; Zulagen (verständlich)</div>
+          <h1>Riester-Check: Was musst du wirklich zahlen – und wie groß ist die Zulage?</h1>
           <p class="hero-lead">
-            Du gibst <strong>Jahresbrutto</strong> und <strong>Kinder</strong> (Geburtsjahre) ein.
-            Optional: <strong>dein Alter</strong> &amp; <strong>aktueller Beitrag</strong>.
-            Ergebnis: <strong>Mindesteigenbeitrag (nach Zulagen)</strong>, volle Zulage und eine klare <strong>Eigen vs. Zulagen</strong>-Grafik.
+            Du gibst <strong>Jahresbrutto</strong> und <strong>Kinder</strong> ein (Geburtsjahre).
+            Optional: <strong>aktueller Beitrag</strong> + <strong>Alter</strong> → dann bekommst du zusätzlich eine grobe „im Alter“-Orientierung
+            und die Prozent-Grafik <strong>Eigen</strong> vs. <strong>Zulagen</strong>.
           </p>
         </div>
 
@@ -663,9 +724,11 @@
 
         <div class="calc-wrap">
           <div class="calc-grid">
+
+            <!-- LEFT -->
             <div>
               <div class="field">
-                <label for="income">Jahresbrutto (€)</label>
+                <label for="income">Jahresbrutto in €</label>
                 <input id="income" type="number" min="0" step="100" placeholder="z. B. 45.000" />
               </div>
 
@@ -681,6 +744,7 @@
                 <input id="age" type="number" min="16" max="80" step="1" placeholder="z. B. 33" />
               </div>
 
+              <!-- Optionaler Reiter: aktueller Beitrag -->
               <div class="optional" id="optBox">
                 <button type="button" id="optToggle" aria-expanded="false">
                   <span>Optional: Wie viel zahlst du aktuell in Riester ein?</span>
@@ -688,12 +752,12 @@
                 </button>
                 <div class="body">
                   <p class="hint">
-                    Wenn du deinen aktuellen Beitrag einträgst, siehst du die <strong>Kürzung der Zulage</strong> (vereinfacht).
-                    Lässt du es leer, zeigen wir dir trotzdem den <strong>Mindesteigenbeitrag</strong> für volle Zulage.
+                    Trägst du deinen aktuellen Beitrag ein, zeigen wir dir zusätzlich:
+                    <strong>Zulage nach Kürzung</strong> + <strong>Unter-Minimum-Anzeige</strong>.
                   </p>
                   <div class="field" style="margin:0">
-                    <label for="currentPay">Aktueller Riester-Beitrag pro Jahr (€)</label>
-                    <input id="currentPay" type="number" min="0" step="50" placeholder="z. B. 600 (oder leer lassen)" />
+                    <label for="currentPay">Aktueller Riester-Beitrag pro Jahr in € (optional)</label>
+                    <input id="currentPay" type="number" min="0" step="50" placeholder="z. B. 1.200" />
                   </div>
                 </div>
               </div>
@@ -703,9 +767,9 @@
                 <button class="btn btn-outline" type="button" id="resetBtn">Zurücksetzen</button>
               </div>
 
-              <div class="info">
-                <strong>So rechnen wir hier (einfach &amp; praxisnah):</strong><br />
-                Mindesteigenbeitrag ≈ <strong>4% vom Jahresbrutto</strong> − <strong>Zulagen</strong> (mind. <strong>60 €</strong>).
+              <div class="info" style="margin-top:.85rem">
+                <strong>So rechnen wir hier (einfach &amp; praxisnah):</strong><br>
+                Mindesteigenbeitrag ≈ <strong>4% vom Jahresbrutto − Zulagen</strong> (mind. <strong class="nowrap">60&nbsp;€</strong>).<br>
                 Wenn du weniger zahlst: Zulage wird (vereinfacht) <strong>proportional</strong> gekürzt.
               </div>
 
@@ -716,16 +780,17 @@
               </div>
             </div>
 
+            <!-- RIGHT -->
             <div class="calc-result">
               <p class="calc-expl">
                 <strong>Ergebnis:</strong> Mindesteigenbeitrag (nach Zulagen) + volle Zulage.
-                Wenn du einen aktuellen Beitrag eingibst: Zulage wird (vereinfacht) <strong>proportional</strong> gekürzt.
+                Nur wenn du einen aktuellen Beitrag eingibst, zeigen wir dir zusätzlich die Kürzung.
               </p>
 
               <div class="values">
                 <div class="val">
                   <div class="k">Mindesteigenbeitrag / Jahr (nach Zulagen)</div>
-                  <div class="v" id="vMinOwn">–</div>
+                  <div class="v" id="vMinEigen">–</div>
                 </div>
 
                 <div class="val warn">
@@ -733,21 +798,23 @@
                   <div class="v" id="vZulFull">–</div>
                 </div>
 
-                <div class="val good">
+                <!-- diese beiden erscheinen erst, wenn currentPay angegeben -->
+                <div class="val good needs-currentpay" id="boxCurPay">
                   <div class="k">Aktueller Beitrag / Jahr (optional)</div>
                   <div class="v" id="vCurPay">–</div>
                 </div>
 
-                <div class="val bad">
+                <div class="val bad needs-currentpay" id="boxZulCut">
                   <div class="k">Zulage nach Kürzung (wenn unter Minimum)</div>
                   <div class="v" id="vZulCut">–</div>
                 </div>
               </div>
 
-              <div class="donut-wrap">
+              <!-- Donut: Eigen vs Zulagen (bei Mindestbeitrag) -->
+              <div class="donut-wrap" style="margin-top:.9rem">
                 <div class="donut" id="donut" style="--eigenAngle:0deg">
                   <div class="donut-center">
-                    <span id="donutPct">–</span>
+                    <div class="pct" id="donutPct">–</div>
                   </div>
                 </div>
 
@@ -757,24 +824,22 @@
                     <span class="chip"><span class="dot zul"></span> Zulagen</span>
                   </div>
                   <div class="hintline" id="donutLine">–</div>
+                  <div class="hintline" id="ageLine" style="margin-top:.4rem">–</div>
                 </div>
               </div>
 
-              <div class="cut-box">
+              <!-- Unter Minimum: nur bei currentPay -->
+              <div class="cut-box needs-currentpay" id="cutBox">
                 <div class="cut-top">
                   <div class="ttl">„Unter Minimum“ – Anzeige</div>
                   <div class="sub"><span id="cutInfo">–</span></div>
                 </div>
                 <div class="track"><div class="fill" id="cutFill"></div></div>
                 <div class="cut-foot">
-                  Je mehr du unter dem Mindesteigenbeitrag liegst, desto stärker wird die Zulage gekürzt (vereinfacht).
+                  Je mehr du unter dem Mindesteigenbeitrag liegst, desto mehr wird die Zulage gekürzt (vereinfacht).
                 </div>
               </div>
 
-              <div class="info">
-                <strong>Grobe „im Alter“-Orientierung (optional):</strong><br />
-                <span id="ageLine">Alter eingeben → wir zeigen eine sehr grobe Projektion.</span>
-              </div>
             </div>
           </div>
         </div>
@@ -782,27 +847,31 @@
 
       <section>
         <h2>Riester kurz erklärt</h2>
-        <p class="section-sub">Drei Dinge, die in der Praxis am meisten entscheiden.</p>
+        <p class="section-sub">
+          Drei Dinge, die in der Praxis am meisten entscheiden.
+        </p>
 
         <div class="grid">
           <div class="card">
-            <div class="card-title">1) Volle Zulage = Beitrag muss passen</div>
+            <div class="card-title">1) Mindesteigenbeitrag ist der „volle-Zulage-Trigger“</div>
             <p>
-              Der Klassiker: Es wird zu wenig eingezahlt → <strong>Zulage wird gekürzt</strong>. Genau das zeigt dir der Rechner.
+              Wenn du deutlich unter dem Mindesteigenbeitrag bleibst, ist das meist der Klassiker:
+              <strong>Zulage wird gekürzt</strong> – und viele merken’s erst später.
             </p>
           </div>
 
           <div class="card">
             <div class="card-title">2) Kinderzulage hängt am Geburtsjahr</div>
             <p>
-              Deshalb fragen wir nur nach <strong>Geburtsjahren</strong> – damit die Größenordnung passt.
+              Deshalb fragen wir nach <strong>Geburtsjahren</strong> – damit die Größenordnung passt.
             </p>
           </div>
 
           <div class="card">
-            <div class="card-title">3) Produkt & Kosten entscheiden Netto</div>
+            <div class="card-title">3) Kosten &amp; Produkt entscheiden die Netto-Wirkung</div>
             <p>
-              Förderung ist gut – aber ob es sich lohnt, hängt stark am Vertrag (Kosten/Anlage/Rentenlogik).
+              Förderung ist gut – ob es sich unterm Strich lohnt, hängt stark am Vertrag.
+              Das prüfen wir im Check mit echten Daten.
             </p>
           </div>
         </div>
@@ -816,7 +885,7 @@
   </div>
 
   <script>
-    // ===== Burger Menü =====
+    // ===== Menü öffnen/schließen =====
     const burgerBtn = document.getElementById("burgerBtn");
     const menuPanel = document.getElementById("menuPanel");
     const menuBackdrop = document.getElementById("menuBackdrop");
@@ -846,19 +915,22 @@
     const calcBtn = document.getElementById("calcBtn");
     const resetBtn = document.getElementById("resetBtn");
 
-    const vMinOwn = document.getElementById("vMinOwn");
+    const vMinEigen = document.getElementById("vMinEigen");
     const vZulFull = document.getElementById("vZulFull");
     const vCurPay = document.getElementById("vCurPay");
     const vZulCut = document.getElementById("vZulCut");
 
-    const cutFill = document.getElementById("cutFill");
-    const cutInfo = document.getElementById("cutInfo");
-
     const donut = document.getElementById("donut");
     const donutPct = document.getElementById("donutPct");
     const donutLine = document.getElementById("donutLine");
-
     const ageLine = document.getElementById("ageLine");
+
+    const cutBox = document.getElementById("cutBox");
+    const cutFill = document.getElementById("cutFill");
+    const cutInfo = document.getElementById("cutInfo");
+
+    const boxCurPay = document.getElementById("boxCurPay");
+    const boxZulCut = document.getElementById("boxZulCut");
 
     function fmtEUR(n){
       return new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(n)) + " €";
@@ -900,35 +972,34 @@
     kidsInput?.addEventListener("input", buildKidFields);
     buildKidFields();
 
-    // sehr grobe Projektion (nur Orientierung)
-    function futureValueAnnual(annual, years, r){
-      // FV = A * [((1+r)^n - 1)/r]
-      if(years <= 0) return 0;
-      if(r <= 0) return annual * years;
-      return annual * ((Math.pow(1 + r, years) - 1) / r);
+    function toggleNeedsCurrentPay(show){
+      const els = document.querySelectorAll(".needs-currentpay");
+      els.forEach(el => el.classList.toggle("show", !!show));
     }
 
     function calc(){
       const income = parseFloat((document.getElementById("income").value || "").replace(",", "."));
       const kids = clamp(parseInt(kidsInput.value || "0", 10) || 0, 0, 10);
-      const ageRaw = (document.getElementById("age").value || "").trim();
-      const age = ageRaw === "" ? null : parseInt(ageRaw, 10);
+      const age = parseInt((document.getElementById("age").value || "").trim(), 10);
 
       // Optional: aktueller Beitrag/Jahr
       const curRaw = (document.getElementById("currentPay").value || "").trim();
       const curPay = curRaw === "" ? null : parseFloat(curRaw.replace(",", "."));
 
+      // Reset view parts
+      toggleNeedsCurrentPay(false);
+      cutFill.style.width = "0%";
+      cutInfo.textContent = "–";
+
       if(!Number.isFinite(income) || income < 0){
-        vMinOwn.textContent = "Bitte Jahresbrutto eingeben.";
+        vMinEigen.textContent = "Bitte Jahresbrutto eingeben.";
         vZulFull.textContent = "–";
         vCurPay.textContent = "–";
         vZulCut.textContent = "–";
-        cutFill.style.width = "0%";
-        cutInfo.textContent = "–";
         donut.style.setProperty("--eigenAngle", "0deg");
         donutPct.textContent = "–";
         donutLine.textContent = "–";
-        ageLine.textContent = "Alter eingeben → wir zeigen eine sehr grobe Projektion.";
+        ageLine.textContent = "–";
         return;
       }
 
@@ -939,72 +1010,76 @@
         const y = parseInt((document.getElementById("kidYear"+i)?.value || "").trim(), 10);
         kidAllowanceSum += childAllowanceByYear(Number.isFinite(y) ? y : NaN);
       }
-      const allowancesFull = baseAllowance + kidAllowanceSum;
+      const fullAllowances = baseAllowance + kidAllowanceSum;
 
-      // 4% vom Einkommen, gedeckelt (Orientierung) – das ist "Beitrag inkl. Zulagen" Zielgröße,
-      // aber der tatsächlich zu zahlende Mindesteigenbeitrag ist: 4% - Zulagen, mind. 60
-      const grossTarget = clamp(income * 0.04, 60, 2100);
-      const minOwn = Math.max(60, Math.max(0, grossTarget - allowancesFull));
+      // Beitrags-Basis (vereinfachte Orientierung): 4% Jahresbrutto, min 60, max 2100
+      const base4pct = income * 0.04;
+      const cappedBase = clamp(base4pct, 60, 2100);
 
-      vMinOwn.textContent = fmtEUR(minOwn);
-      vZulFull.textContent = fmtEUR(allowancesFull);
+      // Mindesteigenbeitrag nach Zulagen: 4% (gecappt) - Zulagen, mind. 60
+      // (Praxisnah: Eigenbeitrag kann nicht negativ sein)
+      const minEigenRaw = cappedBase - fullAllowances;
+      const minEigen = clamp(minEigenRaw, 60, 2100); // 60€ Mindest-Eigenbeitrag als Orientierung
+      // Hinweis: Ob 60€ immer greift, hängt von Konstellationen ab; hier bewusst simpel.
 
-      // Donut: Eigen vs Zulagen (bei Mindestbeitrag)
-      const totalAtMin = minOwn + allowancesFull;
-      const eigenPct = (totalAtMin <= 0) ? 0 : clamp((minOwn / totalAtMin) * 100, 0, 100);
+      vMinEigen.textContent = fmtEUR(minEigen);
+      vZulFull.textContent = fmtEUR(fullAllowances);
+
+      // Donut (bei Mindestbeitrag): Eigen vs Zulagen in %
+      const totalAtMin = minEigen + fullAllowances;
+      const eigenPct = totalAtMin <= 0 ? 0 : clamp((minEigen / totalAtMin) * 100, 0, 100);
       const eigenAngle = (eigenPct / 100) * 360;
+
       donut.style.setProperty("--eigenAngle", eigenAngle.toFixed(2) + "deg");
       donutPct.textContent = Math.round(eigenPct) + "%";
       donutLine.textContent =
-        "Bei Mindestbeitrag: Gesamt " + fmtEUR(totalAtMin) + " = Eigen " + fmtEUR(minOwn) +
-        " (" + Math.round(eigenPct) + "%) + Zulagen " + fmtEUR(allowancesFull) + ".";
+        "Bei Mindestbeitrag: Gesamt " + fmtEUR(totalAtMin) + " = Eigen " + fmtEUR(minEigen) +
+        " (" + Math.round(eigenPct) + "%) + Zulagen " + fmtEUR(fullAllowances) + ".";
 
-      // Kürzung nur, wenn aktueller Beitrag angegeben
-      if (curPay === null) {
-        vCurPay.textContent = "— (nicht angegeben)";
-        vZulCut.textContent = "—";
-        cutFill.style.width = "0%";
-        cutInfo.textContent = "Optional: aktuellen Beitrag eintragen, um Kürzung zu sehen.";
-      } else {
-        const pay = Math.max(0, curPay);
-        vCurPay.textContent = fmtEUR(pay);
-
-        const ratio = (minOwn <= 0) ? 0 : clamp(pay / minOwn, 0, 1);
-        const allowanceAfterCut = allowancesFull * ratio;
-        vZulCut.textContent = fmtEUR(allowanceAfterCut);
-
-        const cutPct = Math.round((1 - ratio) * 100);
-        cutFill.style.width = clamp(cutPct, 0, 100) + "%";
-
-        if (pay >= minOwn) {
-          cutInfo.textContent = "Passt: Beitrag liegt bei/über dem Mindesteigenbeitrag → keine Kürzung.";
+      // Alters-Orientierung (sehr grob, ohne Rendite / ohne Produktannahmen)
+      if(Number.isFinite(age) && age >= 16 && age <= 80){
+        const yearsTo67 = Math.max(0, 67 - age);
+        if(yearsTo67 === 0){
+          ageLine.textContent = "Alter-Orientierung: Du bist bereits bei ~67 – hier zählt die konkrete Auszahlungs-/Rentenplanung.";
         } else {
-          const diff = minOwn - pay;
-          cutInfo.textContent = "Du liegst ca. " + fmtEUR(diff) + " unter Minimum → Kürzung grob ~ " + cutPct + "%";
+          const totalPaidUntil67 = totalAtMin * yearsTo67;
+          ageLine.textContent =
+            "Grobe „im Alter“-Orientierung: " + fmtEUR(totalAtMin) + "/Jahr über ca. " + yearsTo67 +
+            " Jahre → insgesamt ca. " + fmtEUR(totalPaidUntil67) + " (ohne Rendite/ohne Kosten).";
         }
+      } else {
+        ageLine.textContent = "–";
       }
 
-      // Grobe „im Alter“-Orientierung (wenn Alter vorhanden)
-      if(age === null || !Number.isFinite(age) || age < 16 || age > 80){
-        ageLine.textContent = "Alter eingeben → wir zeigen eine sehr grobe Projektion.";
+      // Wenn kein aktueller Beitrag angegeben:
+      if (curPay === null){
+        vCurPay.textContent = "–";
+        vZulCut.textContent = "–";
+        return;
+      }
+
+      // Ab hier: Zusatzanzeigen nur wenn currentPay vorhanden
+      toggleNeedsCurrentPay(true);
+
+      const pay = Math.max(0, curPay);
+      vCurPay.textContent = fmtEUR(pay);
+
+      // Verhältnis: aktuelle Zahlung vs. Mindesteigenbeitrag (nach Zulagen)
+      const ratio = (minEigen <= 0) ? 0 : clamp(pay / minEigen, 0, 1);
+
+      // Zulage nach Kürzung (vereinfachtes Modell): proportional nach Eigen-Anteil
+      const allowanceAfterCut = fullAllowances * ratio;
+      vZulCut.textContent = fmtEUR(allowanceAfterCut);
+
+      // Unter Minimum Anzeige: wie viel unter minEigen
+      const cutPct = Math.round((1 - ratio) * 100);
+      cutFill.style.width = clamp(cutPct, 0, 100) + "%";
+
+      if (pay >= minEigen){
+        cutInfo.textContent = "Passt: Beitrag liegt bei/über Mindesteigenbeitrag → keine Kürzung.";
       } else {
-        const retireAge = 67;
-        const years = Math.max(0, retireAge - age);
-
-        // wir nehmen das Mindest-Szenario (Eigen + Zulagen)
-        const annualTotal = totalAtMin;
-
-        // grobe Annahmen:
-        const r = 0.03; // 3% p.a. (nur Orientierung)
-        const fv = futureValueAnnual(annualTotal, years, r);
-
-        // grobe Monatsrente: Kapital / (20 Jahre * 12) (sehr grob)
-        const monthly = (years <= 0) ? 0 : (fv / (20 * 12));
-
-        ageLine.textContent =
-          "Sehr grob bei " + years + " Jahren bis 67: Einzahlung+Zulagen ~ " + fmtEUR(annualTotal) +
-          "/Jahr → mögliches Guthaben ~ " + fmtEUR(fv) + " (bei ~3% p.a.). " +
-          "Ganz grob entspräche das ~ " + fmtEUR(monthly) + "/Monat über 20 Jahre. (Nur Orientierung!)";
+        const diff = minEigen - pay;
+        cutInfo.textContent = "Du liegst ca. " + fmtEUR(diff) + " unter Minimum → Kürzung grob ~ " + cutPct + "%";
       }
     }
 
@@ -1017,32 +1092,25 @@
       document.getElementById("currentPay").value = "";
       buildKidFields();
 
-      vMinOwn.textContent = "–";
+      vMinEigen.textContent = "–";
       vZulFull.textContent = "–";
       vCurPay.textContent = "–";
       vZulCut.textContent = "–";
-      cutFill.style.width = "0%";
-      cutInfo.textContent = "–";
 
       donut.style.setProperty("--eigenAngle", "0deg");
       donutPct.textContent = "–";
       donutLine.textContent = "–";
+      ageLine.textContent = "–";
 
-      ageLine.textContent = "Alter eingeben → wir zeigen eine sehr grobe Projektion.";
+      toggleNeedsCurrentPay(false);
+      cutFill.style.width = "0%";
+      cutInfo.textContent = "–";
 
+      // Optional-Box schließen
       optBox.classList.remove("open");
       optToggle.setAttribute("aria-expanded", "false");
       const chev = optToggle.querySelector("span:last-child");
       if (chev) chev.textContent = "▾";
-    });
-
-    // (optional) live update, wenn Felder gefüllt sind
-    ["income","kids","age","currentPay"].forEach(id=>{
-      const el = document.getElementById(id);
-      el?.addEventListener("input", () => {
-        const i = (document.getElementById("income").value||"").trim();
-        if(i !== "") calc();
-      });
     });
   </script>
 </body>
