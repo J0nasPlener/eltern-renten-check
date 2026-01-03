@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Riester-Rente – Rechner & Info-Check · Jonas Plener</title>
+  <title>Riester – Zulagen & Mindesteigenbeitrag · Jonas Plener</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500&family=Raleway:wght@600;700;800&display=swap" rel="stylesheet" />
 
@@ -22,21 +22,16 @@
 
       --shadow: 0 10px 25px rgba(15,23,42,.06);
     }
-
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
       font-family:"Arimo", system-ui, -apple-system, "Segoe UI", sans-serif;
       background: radial-gradient(circle at top, #fef3c7 0, #f4f8f8 35%, #dbeafe 100%);
       color:var(--text);
       line-height:1.6;
-      overflow-x:hidden; /* wichtig gegen „nach rechts gedrückt“ */
     }
     a{color:inherit;text-decoration:none}
-
     .page{
-      width:100%;
       max-width:1100px;
       margin:0 auto;
       min-height:100vh;
@@ -69,7 +64,7 @@
       font-size:.8rem;color:var(--muted);text-align:right;padding-right:54px;white-space:nowrap;
     }
 
-    /* Burger */
+    /* Burger Button */
     .burger{
       position:absolute;top:10px;right:10px;
       width:46px;height:46px;border-radius:999px;
@@ -87,13 +82,14 @@
     .burger-lines span:nth-child(2){top:6px}
     .burger-lines span:nth-child(3){top:12px}
 
+    /* Menu overlay (Leistung-Look) */
     .menu-backdrop{
       position:fixed;inset:0;background:rgba(15,23,42,.45);
       opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1200;
     }
     .menu-panel{
       position:fixed;top:0;right:0;height:100%;
-      width:min(360px,92vw);
+      width:min(420px, 94vw);
       background:#fff;
       box-shadow:-18px 0 40px rgba(15,23,42,.18);
       transform:translateX(105%);
@@ -109,35 +105,61 @@
       display:flex;align-items:center;justify-content:space-between;gap:.75rem;
       background:linear-gradient(to right,#ffffff,#fef3c7);
     }
-    .menu-head .ttl{font-family:Raleway,system-ui,sans-serif;font-weight:800;color:var(--primary)}
+    .menu-head .ttl{font-family:Raleway,system-ui,sans-serif;font-weight:800;color:var(--primary);font-size:1.15rem}
     .menu-close{
       width:40px;height:40px;border-radius:999px;
       border:1px solid rgba(148,163,184,.9);
       background:#fff;cursor:pointer;display:grid;place-items:center;
+      font-size:1.05rem;
     }
-    .menu-body{padding:.6rem 1rem 1rem;overflow:auto}
-    .menu-group{
-      margin:.9rem 0;border:1px solid rgba(148,163,184,.55);
-      border-radius:14px;overflow:hidden;background:linear-gradient(to bottom,#fff,#fbfdff);
+    .menu-body{padding:1rem 1rem 1rem;overflow:auto}
+
+    .menu-section{
+      margin:.2rem 0 1.1rem;
     }
-    .menu-group button.menu-toggle{
-      width:100%;text-align:left;border:0;background:transparent;
-      padding:.85rem .95rem;cursor:pointer;
-      display:flex;align-items:center;justify-content:space-between;
-      font-family:Raleway,system-ui,sans-serif;font-weight:800;color:#111;
+    .menu-section .cap{
+      font-size:.78rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:#9ca3af;
+      margin:.2rem 0 .5rem;
     }
-    .menu-group button .chev{color:var(--primary);font-weight:900}
-    .menu-sub{
-      border-top:1px solid rgba(148,163,184,.45);
-      display:none;padding:.35rem .5rem .6rem;
+
+    .menu-item{
+      padding:.65rem .7rem;
+      border-radius:14px;
     }
-    .menu-group.open .menu-sub{display:block}
-    .menu-sub a{
-      display:block;padding:.55rem .55rem;border-radius:10px;
-      color:var(--muted);font-size:.95rem;
+    .menu-item:hover{background:#f3f6f8}
+    .menu-item .t{
+      font-family:Raleway,system-ui,sans-serif;
+      font-weight:800;
+      color:#111;
+      line-height:1.1;
     }
-    .menu-sub a:hover{background:#f3f6f8;color:#111}
-    .menu-sub a strong{color:var(--primary)}
+    .menu-item .s{
+      color:#6b7280;
+      font-size:.9rem;
+      margin-top:.15rem;
+      line-height:1.25;
+    }
+
+    .menu-sublist{
+      margin:.45rem 0 0;
+      padding:0 0 0 .75rem;
+      border-left:2px solid rgba(148,163,184,.35);
+      display:grid;
+      gap:.35rem;
+    }
+    .menu-sublink{
+      display:block;
+      padding:.45rem .55rem;
+      border-radius:12px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+    .menu-sublink:hover{background:#f3f6f8;color:#111}
+    .menu-sublink strong{color:var(--primary)}
+
     .menu-foot{
       margin-top:auto;padding:1rem;border-top:1px solid var(--border);
       background:#f9fafb;display:grid;gap:.6rem;
@@ -154,9 +176,11 @@
 
     /* Hero */
     header.hero{
-      padding:1.9rem 1.4rem 1.55rem;
+      padding:1.9rem 1.4rem 1.15rem;
       border-bottom:1px solid var(--border);
       background: radial-gradient(circle at top left, #fdf4e6 0, #ffffff 40%, #e0f2fe 100%);
+      position:relative;
+      overflow:hidden;
     }
     .hero-label{
       display:inline-flex;align-items:center;gap:.45rem;
@@ -216,13 +240,12 @@
       grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
       gap:1rem;
       align-items:start;
-      width:100%;
     }
     .field{margin-bottom:.7rem}
     label{
       display:block;font-size:.85rem;font-weight:900;margin-bottom:.25rem;color:#111;
     }
-    input{
+    input, select{
       width:100%;
       padding:.6rem .65rem;
       border-radius:12px;
@@ -276,7 +299,7 @@
       border:1px solid var(--border);
       color:var(--muted);
       font-size:.92rem;
-      min-width:0;
+      min-width:0; /* important against overflow */
     }
     .calc-expl{margin:0 0 .65rem}
     .values{
@@ -291,12 +314,12 @@
       min-width:0;
     }
     .val .k{font-size:.8rem;color:var(--muted);margin-bottom:.1rem}
-    .val .v{font-weight:900;font-size:1.05rem;color:#111;word-break:break-word}
+    .val .v{font-weight:900;font-size:1.05rem;color:#111}
     .val.good{border-color:rgba(22,163,74,.55);background:#dcfce7}
     .val.warn{border-color:rgba(245,158,11,.55);background:#fef3c7}
     .val.bad{border-color:rgba(220,38,38,.55);background:#fee2e2}
 
-    /* Mini-Grafik */
+    /* Unter Minimum Bar */
     .cut-box{
       margin-top:.85rem;
       border-radius:16px;
@@ -332,6 +355,66 @@
     }
     .info strong{color:#111}
 
+    /* Donut Eigen vs Zulagen */
+    .donut-wrap{
+      margin-top:.9rem;
+      display:grid;
+      grid-template-columns: 170px 1fr;
+      gap:1rem;
+      align-items:center;
+      padding:.85rem .9rem;
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,.65);
+      background:linear-gradient(to right, rgba(254,243,199,.55), rgba(224,242,254,.55));
+    }
+    .donut{
+      width:170px;height:170px;border-radius:50%;
+      background:conic-gradient(rgba(74,120,125,.78) 0deg, rgba(74,120,125,.78) var(--ownAngle), var(--accent) var(--ownAngle), var(--accent) 360deg);
+      position:relative;
+      box-shadow:0 10px 20px rgba(15,23,42,.10);
+      border:1px solid rgba(148,163,184,.55);
+      margin:0 auto;
+    }
+    .donut::after{
+      content:"";
+      position:absolute;inset:20px;
+      background:#fff;border-radius:50%;
+      box-shadow: inset 0 0 0 1px rgba(148,163,184,.35);
+    }
+    .donut-center{
+      position:absolute;inset:0;
+      display:grid;place-items:center;
+      z-index:2;
+      text-align:center;
+      padding:0 12px;
+      color:#111;
+      font-weight:900;
+      font-family:Raleway,system-ui,sans-serif;
+    }
+    .donut-center small{
+      display:block;
+      font-family:Arimo,system-ui,sans-serif;
+      font-weight:700;
+      color:#6b7280;
+      margin-top:.15rem;
+      line-height:1.1;
+    }
+    .legend{
+      display:grid;
+      gap:.45rem;
+      color:#6b7280;
+      font-size:.9rem;
+    }
+    .chip{display:inline-flex;align-items:center;gap:.5rem}
+    .ldot{width:10px;height:10px;border-radius:999px;display:inline-block}
+    .ldot.own{background:rgba(74,120,125,.78)}
+    .ldot.zul{background:var(--accent)}
+    .hintline{
+      margin-top:.5rem;
+      color:#6b7280;
+      font-size:.82rem;
+    }
+
     footer{
       padding:1rem 1.4rem 1.3rem;
       font-size:.78rem;color:#6b7280;
@@ -339,19 +422,20 @@
       background:#f9fafb;
     }
 
+    /* ✅ Responsive Fix: verhindert Overlap wie in deinem Screenshot */
     @media (max-width:900px){
       .calc-grid{grid-template-columns:1fr}
+      .row-2{grid-template-columns:1fr}
+      .btn{width:100%}
     }
     @media (max-width:768px){
       .topbar{padding-inline:1rem}
       .topbar-right{display:none}
-      header.hero{padding:1.55rem 1rem 1.25rem}
+      header.hero{padding:1.55rem 1rem 1.05rem}
       main{padding:1.4rem 1rem 2.1rem}
       .hero h1{font-size:1.45rem}
-      .calc-grid{grid-template-columns:1fr}
-      .row-2{grid-template-columns:1fr}
-      .btn{width:100%}
-      .values{grid-template-columns:1fr}
+
+      .donut-wrap{grid-template-columns:1fr;justify-items:center;text-align:left}
     }
   </style>
 </head>
@@ -385,65 +469,117 @@
       </button>
     </div>
 
+    <!-- ===== NEUES Burger-Menü (Leistung-Look) ===== -->
     <div class="menu-backdrop" id="menuBackdrop"></div>
     <aside class="menu-panel" id="menuPanel" aria-label="Navigation">
       <div class="menu-head">
-        <div class="ttl">Menü</div>
+        <div class="ttl">Meine Leistungen</div>
         <button class="menu-close" id="menuClose" aria-label="Menü schließen">✕</button>
       </div>
 
       <div class="menu-body">
-        <div class="menu-group open">
-          <button type="button" class="menu-toggle"><span>Startseite</span><span class="chev">▾</span></button>
-          <div class="menu-sub">
-            <a href="leistung.html"><strong>Meine Leistungen</strong></a>
-            <a href="index.html">Eltern-Renten-Check</a>
+
+        <div class="menu-section">
+          <div class="cap">Privatkunden</div>
+
+          <div class="menu-item">
+            <div class="t">Absicherung &amp; Schutz</div>
+            <div class="s">Berufsunfähigkeit, Sachschutz, Risikoleben</div>
+            <div class="menu-sublist">
+              <a class="menu-sublink" href="arbeitskraftabsicherung.html">Berufsunfähigkeit &amp; Arbeitskraft</a>
+              <a class="menu-sublink" href="sachversicherungen.html">Haftpflicht, Hausrat, Wohngebäude</a>
+              <a class="menu-sublink" href="risikoleben.html">Risikolebensversicherung</a>
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="t">Vorsorge &amp; Rente</div>
+            <div class="s">Riester, Rürup, betriebliche Altersvorsorge</div>
+            <div class="menu-sublist">
+              <a class="menu-sublink" href="riester.html"><strong>Riester-Rente</strong></a>
+              <a class="menu-sublink" href="ruerup.html">Rürup / Basisrente</a>
+              <a class="menu-sublink" href="bav.html">Betriebliche Altersvorsorge (bAV)</a>
+
+              <!-- ✅ Wunsch-Änderung: BU & Arbeitskraftabsicherung hier ebenfalls aufführen -->
+              <a class="menu-sublink" href="arbeitskraftabsicherung.html">Berufsunfähigkeit &amp; Arbeitskraft (auch als Vorsorge-Thema)</a>
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="t">Vermögensaufbau &amp; Sparen</div>
+            <div class="s">Fondssparen, Einmalanlagen, Struktur</div>
+            <div class="menu-sublist">
+              <a class="menu-sublink" href="fonds-sparplaene.html">Investment- &amp; Fondssparpläne</a>
+              <a class="menu-sublink" href="einmalanlage.html">Strategien für Einmalanlagen</a>
+              <a class="menu-sublink" href="vermoegensstruktur.html">Vermögensstruktur &amp; Strategie</a>
+            </div>
           </div>
         </div>
 
-        <!-- Absicherung & Schutz (BU ist hier raus!) -->
-        <div class="menu-group">
-          <button type="button" class="menu-toggle"><span>Absicherung &amp; Schutz</span><span class="chev">▾</span></button>
-          <div class="menu-sub">
-            <a href="sachversicherungen.html">Sachversicherungen</a>
-            <a href="risikoleben.html">Risikoleben</a>
+        <div class="menu-section">
+          <div class="cap">Familie &amp; Kinder</div>
+
+          <div class="menu-item">
+            <div class="t">Eltern-Retter &amp; Kindererziehungszeiten</div>
+            <div class="s">Rentenansprüche für Eltern prüfen</div>
+            <div class="menu-sublist">
+              <a class="menu-sublink" href="eltern-retter.html">Eltern-Retter Überblick</a>
+              <a class="menu-sublink" href="eltern-retter.html#zeiten">Kindererziehungszeiten prüfen</a>
+              <a class="menu-sublink" href="eltern-retter.html#optimieren">Eltern-Rente optimieren</a>
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="t">Kinder absichern</div>
+            <div class="s">Gesundheit, Unfall, Arbeitskraft</div>
+            <div class="menu-sublist">
+              <a class="menu-sublink" href="kinder-absichern.html">Gesundheits- &amp; Zusatzschutz</a>
+              <a class="menu-sublink" href="kinder-absichern.html#unfall">Kinder-Unfallabsicherung</a>
+              <a class="menu-sublink" href="kinder-absichern.html#bu">Frühe Arbeitskraftabsicherung (Schüler-BU)</a>
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="t">Ausbildung &amp; Zukunft</div>
+            <div class="s">Sparen für Ausbildung, Studium &amp; Start ins Leben</div>
+            <div class="menu-sublist">
+              <a class="menu-sublink" href="ausbildung-zukunft.html">Sparen für Ausbildung &amp; Studium</a>
+              <a class="menu-sublink" href="ausbildung-zukunft.html#sparplaene">Langfristige Sparpläne fürs Kind</a>
+              <a class="menu-sublink" href="ausbildung-zukunft.html#plan">Zukunftsplan &amp; Rollenverteilung</a>
+            </div>
           </div>
         </div>
 
-        <!-- Vorsorge & Rente (BU/Arbeitskraft ist hier drin) -->
-        <div class="menu-group">
-          <button type="button" class="menu-toggle"><span>Vorsorge &amp; Rente</span><span class="chev">▾</span></button>
-          <div class="menu-sub">
-            <a href="arbeitskraftabsicherung.html">Berufsunfähigkeit &amp; Arbeitskraft</a>
-            <a href="riester.html"><strong>Riester-Rente</strong></a>
-            <a href="ruerup.html">Rürup / Basisrente</a>
-            <a href="bav.html">Betriebliche Altersvorsorge (bAV)</a>
-          </div>
+        <div class="menu-section">
+          <div class="cap">Unternehmen</div>
+          <a class="menu-item" href="unternehmer-termin.html" style="display:block">
+            <div class="t">Unternehmen &amp; Selbstständige</div>
+            <div class="s">bAV, BKV, Unternehmer-Absicherung, Factoring</div>
+          </a>
+          <a class="menu-item" href="karriere.html" style="display:block">
+            <div class="t">Karriere &amp; Jobchance</div>
+            <div class="s">DVAG als berufliche Alternative</div>
+          </a>
         </div>
 
-        <div class="menu-group">
-          <button type="button" class="menu-toggle"><span>Vermögensaufbau &amp; Sparen</span><span class="chev">▾</span></button>
-          <div class="menu-sub">
-            <a href="fonds-sparplaene.html">Investment- &amp; Fondssparpläne</a>
-            <a href="einmalanlage.html">Einmalanlage</a>
-            <a href="vermoegensstruktur.html">Vermögensstruktur</a>
-          </div>
+        <div class="menu-section">
+          <div class="cap">Weitere Seiten</div>
+          <a class="menu-item" href="index.html" style="display:block">
+            <div class="t">Eltern-Renten-Check</div>
+            <div class="s">Renten-Booster für Eltern</div>
+          </a>
+          <a class="menu-item" href="leistung.html" style="display:block">
+            <div class="t">Meine Leistungen</div>
+            <div class="s">Überblick Privat · Familie · Unternehmen</div>
+          </a>
         </div>
 
-        <div class="menu-group">
-          <button type="button" class="menu-toggle"><span>Familie &amp; Kinder</span><span class="chev">▾</span></button>
-          <div class="menu-sub">
-            <a href="eltern-retter.html">Eltern-Retter &amp; Kindererziehungszeiten</a>
-            <a href="kinder-absichern.html">Kinder absichern</a>
-            <a href="ausbildung-zukunft.html">Ausbildung &amp; Zukunft</a>
-          </div>
-        </div>
-
-        <div class="menu-group">
-          <button type="button" class="menu-toggle"><span>Unternehmer</span><span class="chev">▾</span></button>
-          <div class="menu-sub">
-            <a href="unternehmer-termin.html">Termin für Unternehmer</a>
-          </div>
+        <div class="menu-section">
+          <div class="cap">Direkt Kontakt aufnehmen</div>
+          <a class="menu-item" href="https://wa.me/4917663796605" target="_blank" rel="noopener" style="display:block">
+            <div class="t">WhatsApp schreiben</div>
+            <div class="s">Kurzfrage reicht völlig</div>
+          </a>
         </div>
       </div>
 
@@ -454,11 +590,12 @@
     </aside>
 
     <header class="hero">
-      <div class="hero-label"><span class="dot"></span> Riester · Mindesteigenbeitrag &amp; Zulagen (simpel)</div>
-      <h1>Riester: Mindesteigenbeitrag berechnen – und sehen, wann Zulagen gekürzt werden.</h1>
+      <div class="hero-label"><span class="dot"></span> Riester · Zulagen + Mindesteigenbeitrag</div>
+      <h1>Riester: Mindesteigenbeitrag (nach Zulagen) + Zulagen auf einen Blick.</h1>
       <p class="hero-lead">
         Du gibst <strong>Jahresbrutto</strong> und <strong>Kinder</strong> ein (mit Geburtsjahren).
-        Optional: <strong>Was zahlst du aktuell?</strong> Dann siehst du sofort, wie weit du unter dem <strong>Mindesteigenbeitrag</strong> bist.
+        Optional: <strong>aktueller Beitrag</strong>. Zusätzlich: <strong>Alter</strong> – damit du eine grobe Idee bekommst,
+        was langfristig daraus werden könnte.
       </p>
     </header>
 
@@ -466,8 +603,8 @@
       <section>
         <h2>Rechner</h2>
         <p class="section-sub">
-          Ziel: <strong>Mindesteigenbeitrag</strong> + <strong>Zulagen</strong> auf einen Blick.
-          Und wenn du weniger einzahlst: <strong>ungefähre Zulage nach Kürzung</strong> – verständlich statt kompliziert.
+          Ziel: <strong>Mindesteigenbeitrag (nach Zulagen)</strong> + <strong>Zulagen</strong> auf einen Blick.
+          Wenn du weniger einzahlst: <strong>ungefähre Zulage nach Kürzung</strong> (vereinfacht).
         </p>
 
         <div class="calc-wrap">
@@ -485,6 +622,12 @@
 
               <div id="kidsFields"></div>
 
+              <div class="field" style="margin-top:.2rem">
+                <label for="age">Dein Alter (optional, für grobe „im Alter“-Orientierung)</label>
+                <input id="age" type="number" min="16" max="80" step="1" placeholder="z. B. 33" />
+              </div>
+
+              <!-- Optionaler Reiter: aktueller Beitrag -->
               <div class="optional" id="optBox">
                 <button type="button" id="optToggle" aria-expanded="false">
                   <span>Optional: Wie viel zahlst du aktuell in Riester ein?</span>
@@ -492,12 +635,12 @@
                 </button>
                 <div class="body">
                   <p class="hint">
-                    Wenn du <strong>leer</strong> lässt, zeigt der Rechner Mindesteigenbeitrag + volle Zulage.
-                    Trägst du deinen aktuellen Beitrag ein, siehst du die <strong>Kürzung</strong>.
+                    Wenn du <strong>leer</strong> lässt, rechnen wir mit dem <strong>Mindesteigenbeitrag</strong>.
+                    Trägst du deinen aktuellen Beitrag ein, siehst du die <strong>Kürzung</strong> (vereinfacht).
                   </p>
                   <div class="field" style="margin:0">
                     <label for="currentPay">Aktueller Riester-Beitrag pro Jahr in € (optional)</label>
-                    <input id="currentPay" type="number" min="0" step="50" placeholder="z. B. 600" />
+                    <input id="currentPay" type="number" min="0" step="50" placeholder="z. B. 1.200" />
                   </div>
                 </div>
               </div>
@@ -508,22 +651,30 @@
               </div>
 
               <div class="info">
+                <strong>So rechnen wir hier (einfach & praxisnah):</strong><br>
+                <span style="color:#6b7280">
+                  Mindesteigenbeitrag ≈ <strong>4% vom Jahresbrutto</strong> − <strong>Zulagen</strong> (mind. <strong>60 €</strong>).<br>
+                  Wenn du weniger zahlst: Zulage wird (vereinfacht) <strong>proportional</strong> gekürzt.
+                </span>
+              </div>
+
+              <div class="info">
                 <strong>Hinweis (Ehe/Partner):</strong>
                 In Ehe-/Partnerschafts-Konstellationen kann die Zulagen- und Beitragslogik je nach Situation anders wirken.
-                Der Rechner bildet das bewusst <strong>nicht</strong> kompliziert ab – im Check rechnen wir das sauber.
+                Hier bleibt’s bewusst einfach – im Check rechnen wir das sauber.
               </div>
             </div>
 
             <div class="calc-result">
               <p class="calc-expl">
                 <strong>Ergebnis:</strong> Mindesteigenbeitrag (nach Zulagen) + volle Zulage.
-                Wenn du einen aktuellen Beitrag eingibst: Zulage wird (vereinfacht) <strong>proportional</strong> gekürzt.
+                Wenn du einen aktuellen Beitrag angibst: Zulage wird (vereinfacht) proportional gekürzt.
               </p>
 
               <div class="values">
                 <div class="val">
-                  <div class="k">Mindest-Eigenbeitrag / Jahr (nach Zulagen)</div>
-                  <div class="v" id="vMin">–</div>
+                  <div class="k">Mindesteigenbeitrag / Jahr (nach Zulagen)</div>
+                  <div class="v" id="vOwnMin">–</div>
                 </div>
 
                 <div class="val warn">
@@ -542,6 +693,23 @@
                 </div>
               </div>
 
+              <div class="donut-wrap">
+                <div class="donut" id="donut" style="--ownAngle:0deg">
+                  <div class="donut-center">
+                    <span id="donutOwnPct">–</span>
+                    <small>Eigen<br>vom Gesamtbetrag</small>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="legend">
+                    <span class="chip"><span class="ldot own"></span> Eigenbeitrag</span>
+                    <span class="chip"><span class="ldot zul"></span> Zulagen</span>
+                  </div>
+                  <div class="hintline" id="donutLine">–</div>
+                </div>
+              </div>
+
               <div class="cut-box">
                 <div class="cut-top">
                   <div class="ttl">„Unter Minimum“ – Anzeige</div>
@@ -549,14 +717,13 @@
                 </div>
                 <div class="track"><div class="fill" id="cutFill"></div></div>
                 <div class="cut-foot">
-                  Je mehr du unter dem Mindesteigenbeitrag liegst, desto mehr wird die Zulage gekürzt (vereinfacht dargestellt).
+                  Je mehr du unter dem Mindesteigenbeitrag liegst, desto mehr wird die Zulage gekürzt (vereinfacht).
                 </div>
               </div>
 
-              <div class="info" style="margin-top:.85rem">
-                <strong>So wird das Minimum hier berechnet:</strong><br/>
-                4% von Jahresbrutto − Zulagen = Mindesteigenbeitrag (mind. 60 €).<br/>
-                Obergrenze (vereinfacht): Eigenbeitrag max. 2.100 € − Zulagen.
+              <div class="info">
+                <strong>Grobe „im Alter“-Orientierung:</strong><br>
+                <span style="color:#6b7280" id="ageLine">Alter angeben → dann zeigen wir eine grobe Projektion.</span>
               </div>
             </div>
           </div>
@@ -565,28 +732,30 @@
 
       <section>
         <h2>Riester kurz erklärt</h2>
-        <p class="section-sub">Drei Dinge, die in der Praxis am meisten entscheiden.</p>
+        <p class="section-sub">
+          Drei Dinge, die in der Praxis am meisten entscheiden.
+        </p>
 
         <div class="grid">
           <div class="card">
-            <div class="card-title">1) Mindesteigenbeitrag als „volle-Zulage-Trigger“</div>
+            <div class="card-title">1) Mindesteigenbeitrag sichert volle Zulage</div>
             <p>
-              Wenn du unter dem Mindesteigenbeitrag bleibst, passiert der Klassiker:
-              <strong>Zulage wird gekürzt</strong> – oft unbemerkt.
+              Der Klassiker: Unter Mindest-Eigenbeitrag → <strong>Zulage wird gekürzt</strong>.
+              Viele merken es erst, wenn die Förderung schon weniger läuft.
             </p>
           </div>
 
           <div class="card">
             <div class="card-title">2) Kinderzulage hängt am Geburtsjahr</div>
             <p>
-              Deshalb fragen wir die <strong>Geburtsjahre</strong> ab – damit die Kinderzulage grob passt.
+              Darum fragen wir <strong>Geburtsjahre</strong> ab: Kinderzulage ist je nach Jahr unterschiedlich (vereinfachte Orientierung im Rechner).
             </p>
           </div>
 
           <div class="card">
-            <div class="card-title">3) Kosten & Produkt entscheiden die Netto-Wirkung</div>
+            <div class="card-title">3) Vertrag & Kosten entscheiden den echten Nutzen</div>
             <p>
-              Förderung ist gut – aber ob’s sich lohnt, hängt stark vom Vertrag ab. Das prüfen wir mit echten Angeboten.
+              Förderung ist gut – aber ob es sich lohnt, hängt am Vertrag. Im Check schauen wir auf Kosten, Konzept und erwartbare Netto-Rente.
             </p>
           </div>
         </div>
@@ -613,10 +782,6 @@
     menuClose?.addEventListener("click", closeMenu);
     menuBackdrop?.addEventListener("click", closeMenu);
 
-    document.querySelectorAll(".menu-toggle").forEach(btn => {
-      btn.addEventListener("click", () => btn.closest(".menu-group")?.classList.toggle("open"));
-    });
-
     document.addEventListener("keydown", (e) => {
       if(e.key === "Escape") closeMenu();
     });
@@ -637,13 +802,19 @@
     const calcBtn = document.getElementById("calcBtn");
     const resetBtn = document.getElementById("resetBtn");
 
-    const vMin = document.getElementById("vMin");
+    const vOwnMin = document.getElementById("vOwnMin");
     const vZulFull = document.getElementById("vZulFull");
     const vCurPay = document.getElementById("vCurPay");
     const vZulCut = document.getElementById("vZulCut");
 
     const cutFill = document.getElementById("cutFill");
     const cutInfo = document.getElementById("cutInfo");
+
+    const donut = document.getElementById("donut");
+    const donutOwnPct = document.getElementById("donutOwnPct");
+    const donutLine = document.getElementById("donutLine");
+
+    const ageLine = document.getElementById("ageLine");
 
     function fmtEUR(n){
       return new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(Math.round(n)) + " €";
@@ -685,24 +856,50 @@
     kidsInput?.addEventListener("input", buildKidFields);
     buildKidFields();
 
+    function estimateAgeProjection(age, annualDeposit){
+      // Sehr grobe Orientierung:
+      // - Rentenbeginn 67
+      // - Rendite 4% p.a. (nur als Daumenwert, kein Versprechen)
+      // - Umrechnung in "mögliche Rente" über 4% Entnahme p.a. (sehr grob)
+      const retireAge = 67;
+      const r = 0.04;
+
+      if(!Number.isFinite(age) || age <= 0 || age >= retireAge) return null;
+      if(!Number.isFinite(annualDeposit) || annualDeposit <= 0) return null;
+
+      const years = Math.max(0, retireAge - age);
+      const fv = annualDeposit * ((Math.pow(1+r, years) - 1) / r); // Einzahlung jährlich nachschüssig (Näherung)
+      const annualPayout = fv * 0.04;
+      const monthly = annualPayout / 12;
+
+      return { years, fv, monthly };
+    }
+
     function calc(){
       const income = parseFloat((document.getElementById("income").value || "").replace(",", "."));
       const kids = clamp(parseInt(kidsInput.value || "0", 10) || 0, 0, 10);
 
+      const age = parseFloat((document.getElementById("age").value || "").replace(",", "."));
+
+      // Optional: aktueller Beitrag/Jahr
       const curRaw = (document.getElementById("currentPay").value || "").trim();
       const curPay = curRaw === "" ? null : parseFloat(curRaw.replace(",", "."));
 
       if(!Number.isFinite(income) || income < 0){
-        vMin.textContent = "Bitte Jahresbrutto eingeben.";
+        vOwnMin.textContent = "Bitte Jahresbrutto eingeben.";
         vZulFull.textContent = "–";
         vCurPay.textContent = "–";
         vZulCut.textContent = "–";
         cutFill.style.width = "0%";
         cutInfo.textContent = "–";
+        donut.style.setProperty("--ownAngle","0deg");
+        donutOwnPct.textContent = "–";
+        donutLine.textContent = "–";
+        ageLine.textContent = "Alter angeben → dann zeigen wir eine grobe Projektion.";
         return;
       }
 
-      // ===== Zulagen (Orientierung) =====
+      // Zulagen (Orientierung)
       const baseAllowance = 175;
       let kidAllowanceSum = 0;
       for(let i=1;i<=kids;i++){
@@ -711,61 +908,96 @@
       }
       const fullAllowances = baseAllowance + kidAllowanceSum;
 
-      // ===== Mindesteigenbeitrag (nach Zulagen) =====
-      // Eigenbeitrag = 4% Einkommen - Zulagen
-      // min 60 €
-      // max (vereinfachte Orientierung): 2100 € - Zulagen
-      const fourPct = income * 0.04;
-      const maxEigen = Math.max(60, 2100 - fullAllowances);
+      // 4% Brutto (min 60, max 2100) = "förderrelevanter Gesamtbeitrag"
+      const totalNeed = clamp(income * 0.04, 60, 2100);
 
-      let minEigen = fourPct - fullAllowances;
-      if(!Number.isFinite(minEigen)) minEigen = 60;
-      minEigen = clamp(minEigen, 60, maxEigen);
+      // ✅ Mindesteigenbeitrag (nach Zulagen): 4% - Zulagen, mindestens 60 €
+      // Obergrenze logisch: eigener Beitrag max (2100 - Zulagen)
+      const ownCap = Math.max(0, 2100 - fullAllowances);
+      let ownNeed = totalNeed - fullAllowances;
+      ownNeed = Math.max(60, ownNeed);
+      if (ownCap > 0) ownNeed = Math.min(ownNeed, ownCap);
 
-      vMin.textContent = fmtEUR(minEigen);
+      vOwnMin.textContent = fmtEUR(ownNeed);
       vZulFull.textContent = fmtEUR(fullAllowances);
 
-      // Kein aktueller Beitrag angegeben
-      if (curPay === null) {
-        vCurPay.textContent = "— (nicht angegeben)";
-        vZulCut.textContent = "—";
-        cutFill.style.width = "0%";
-        cutInfo.textContent = "Optional: aktuellen Beitrag eintragen, um Kürzung zu sehen.";
-        return;
-      }
+      // Wenn kein aktueller Beitrag angegeben: wir nutzen ownNeed als "Plan"
+      const pay = (curPay === null) ? ownNeed : Math.max(0, curPay);
+      vCurPay.textContent = (curPay === null) ? "— (nicht angegeben)" : fmtEUR(pay);
 
-      const pay = Math.max(0, curPay);
-      vCurPay.textContent = fmtEUR(pay);
-
-      const ratio = (minEigen <= 0) ? 0 : clamp(pay / minEigen, 0, 1);
+      // Kürzung proportional, wenn unter eigenem Minimum
+      const ratio = (ownNeed <= 0) ? 0 : clamp(pay / ownNeed, 0, 1);
       const allowanceAfterCut = fullAllowances * ratio;
-      vZulCut.textContent = fmtEUR(allowanceAfterCut);
+
+      vZulCut.textContent = (curPay === null) ? "—" : fmtEUR(allowanceAfterCut);
 
       const cutPct = Math.round((1 - ratio) * 100);
       cutFill.style.width = clamp(cutPct, 0, 100) + "%";
 
-      if (pay >= minEigen) {
+      if (curPay === null){
+        cutInfo.textContent = "Optional: aktuellen Beitrag eintragen, um Kürzung zu sehen.";
+      } else if (pay >= ownNeed) {
         cutInfo.textContent = "Passt: Beitrag liegt bei/über dem Mindesteigenbeitrag → keine Kürzung.";
       } else {
-        const diff = minEigen - pay;
-        cutInfo.textContent = "Du liegst ca. " + fmtEUR(diff) + " unter Mindesteigenbeitrag → Kürzung grob ~ " + cutPct + "%";
+        const diff = ownNeed - pay;
+        cutInfo.textContent = "Du liegst ca. " + fmtEUR(diff) + " unter Minimum → Kürzung grob ~ " + cutPct + "%";
+      }
+
+      // Donut: Eigen vs Zulagen (auf Basis der "vollen" Zulagen, aber Eigen = ownNeed)
+      // Sinn: Visualisiert, wie stark Zulagen den Gesamtbetrag stützen.
+      const total = ownNeed + fullAllowances;
+      const ownPct = total > 0 ? clamp((ownNeed / total) * 100, 0, 100) : 0;
+      const ownAngle = (ownPct / 100) * 360;
+
+      donut.style.setProperty("--ownAngle", ownAngle.toFixed(2) + "deg");
+      donutOwnPct.textContent = Math.round(ownPct) + "%";
+      donutLine.textContent =
+        "Bei Mindestbeitrag: Gesamt " + fmtEUR(total) + " = Eigen " + fmtEUR(ownNeed) + " (" + Math.round(ownPct) + "%) + Zulagen " + fmtEUR(fullAllowances) + ".";
+
+      // Alters-Projektion (sehr grob) – wir nutzen Einzahlung = (Eigenbeitrag + Zulagen nach Kürzung wenn pay < ownNeed)
+      const usedAllowances = (curPay === null) ? fullAllowances : allowanceAfterCut;
+      const annualDeposit = pay + usedAllowances;
+
+      const proj = estimateAgeProjection(age, annualDeposit);
+      if (!proj){
+        ageLine.textContent = "Grobe Projektion: Alter eingeben (z. B. 33). Hinweis: sehr vereinfacht, keine Zusage.";
+      } else {
+        ageLine.textContent =
+          "Sehr grobe Orientierung: bei " + fmtEUR(annualDeposit) + "/Jahr über ca. " + proj.years +
+          " Jahre (vereinfachte Annahme 4% p.a.) ergibt das etwa " + fmtEUR(proj.fv) +
+          " Kapital-Äquivalent. Daraus entspräche grob ~ " + fmtEUR(proj.monthly) + " / Monat (nur Daumenwert).";
       }
     }
 
     calcBtn?.addEventListener("click", calc);
 
+    // Live-Update wenn gefüllt
+    ["income","kids","currentPay","age"].forEach(id=>{
+      document.getElementById(id)?.addEventListener("input", ()=>{
+        const inc = (document.getElementById("income").value||"").trim();
+        if(inc !== "") calc();
+      });
+    });
+
     resetBtn?.addEventListener("click", () => {
       document.getElementById("income").value = "";
       kidsInput.value = "";
       document.getElementById("currentPay").value = "";
+      document.getElementById("age").value = "";
       buildKidFields();
 
-      vMin.textContent = "–";
+      vOwnMin.textContent = "–";
       vZulFull.textContent = "–";
       vCurPay.textContent = "–";
       vZulCut.textContent = "–";
       cutFill.style.width = "0%";
       cutInfo.textContent = "–";
+
+      donut.style.setProperty("--ownAngle","0deg");
+      donutOwnPct.textContent = "–";
+      donutLine.textContent = "–";
+
+      ageLine.textContent = "Alter angeben → dann zeigen wir eine grobe Projektion.";
 
       optBox.classList.remove("open");
       optToggle.setAttribute("aria-expanded", "false");
