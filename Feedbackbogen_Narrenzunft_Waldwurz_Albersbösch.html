@@ -66,11 +66,11 @@
     ========================== */
 
     .brand-header {
-      padding: 24px 28px;
+      padding: 28px 34px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 22px;
+      gap: 34px;
       border-bottom: 1px solid var(--border);
 
       background:
@@ -82,26 +82,29 @@
     }
 
     .logo-box {
-      width: 130px;
-      height: 75px;
+      width: 210px;
+      height: 125px;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 10px;
+
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
     }
 
     .logo-box img {
-      max-width: 100%;
-      max-height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
     }
 
     .brand-x {
-      font-size: 30px;
+      font-size: 42px;
       font-weight: 900;
       color: var(--gold);
+      line-height: 1;
     }
 
     /* =========================
@@ -199,6 +202,10 @@
       margin-bottom: 7px;
     }
 
+    .required-star {
+      color: var(--gold);
+    }
+
     .section-hint {
       color: var(--muted);
       font-size: 14px;
@@ -248,10 +255,9 @@
       transform: translateY(-2px);
     }
 
-    /* Eingabefelder */
+    /* Inputs */
 
     input[type="text"],
-    input[type="email"],
     input[type="tel"],
     textarea {
       width: 100%;
@@ -456,17 +462,17 @@
       }
 
       .brand-header {
-        padding: 16px 15px;
-        gap: 12px;
+        padding: 20px 12px;
+        gap: 16px;
       }
 
       .logo-box {
-        width: 105px;
-        height: 62px;
+        width: 145px;
+        height: 90px;
       }
 
       .brand-x {
-        font-size: 23px;
+        font-size: 32px;
       }
 
       .content {
@@ -508,6 +514,22 @@
 
       .rating-emoji {
         font-size: 17px;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .brand-header {
+        gap: 10px;
+      }
+
+      .logo-box {
+        width: 125px;
+        height: 78px;
+      }
+
+      .brand-x {
+        font-size: 27px;
       }
     }
   </style>
@@ -560,7 +582,7 @@
         </h1>
 
         <p class="lead">
-          Narrenzunft Waldwurz Albersbösch 1980 e. V.:
+          Gemeinsam für die Narrenzunft Waldwurz Albersbösch 1980 e. V.:
           Gib uns kurz dein Feedback und hilf dabei,
           die Zusammenarbeit und das Vereinsleben weiterzuentwickeln.
         </p>
@@ -597,6 +619,7 @@
 
             <div class="section-title">
               Wie zufrieden bist du?
+              <span class="required-star">*</span>
             </div>
 
             <div class="section-hint">
@@ -606,7 +629,12 @@
             <div class="rating">
 
               <label>
-                <input type="radio" name="Bewertung" value="1" required>
+                <input
+                  type="radio"
+                  name="Bewertung"
+                  value="1"
+                  required
+                >
                 <div class="rating-box">
                   <span class="rating-number">1</span>
                   <span class="rating-emoji">😕</span>
@@ -676,13 +704,14 @@
 
             <div class="section-title">
               Wobei können wir dich unterstützen?
+              <span class="required-star">*</span>
             </div>
 
             <div class="section-hint">
-              Optional · Mehrfachauswahl möglich
+              Mindestens ein Thema auswählen · Mehrfachauswahl möglich
             </div>
 
-            <div class="checkbox-group">
+            <div class="checkbox-group" id="themenGruppe">
 
               <label class="checkbox">
                 <input
@@ -745,7 +774,7 @@
                 <input
                   type="checkbox"
                   name="Themen[]"
-                  value="Häs, Vereinsausstattung & persönliches Eigentum"
+                  value="Häs & Vereinsausstattung"
                 >
 
                 <span>
@@ -783,6 +812,25 @@
                 <input
                   type="checkbox"
                   name="Themen[]"
+                  value="Eltern & Kinder"
+                >
+
+                <span>
+                  <span class="checkbox-title">
+                    👨‍👩‍👧 Eltern & Kinder
+                  </span>
+
+                  <span class="checkbox-desc">
+                    Absicherung, Vorsorge und Vermögensaufbau für Familien
+                  </span>
+                </span>
+              </label>
+
+
+              <label class="checkbox">
+                <input
+                  type="checkbox"
+                  name="Themen[]"
                   value="Empfehlungsgeber"
                 >
 
@@ -810,43 +858,40 @@
               Wie dürfen wir dich erreichen?
             </div>
 
-            <div class="section-hint">
-              Nur erforderlich, wenn du zu einem ausgewählten Thema kontaktiert werden möchtest.
-            </div>
-
             <div class="two-cols">
 
               <input
                 type="text"
                 name="Vorname"
-                placeholder="Vorname"
+                placeholder="Vorname *"
+                required
               >
 
               <input
                 type="text"
                 name="Nachname"
-                placeholder="Nachname"
+                placeholder="Nachname *"
+                required
+              >
+
+            </div>
+
+            <div style="margin-top:12px;">
+
+              <input
+                type="tel"
+                name="Telefonnummer"
+                placeholder="Telefonnummer *"
+                required
               >
 
             </div>
 
             <div
-              class="two-cols"
-              style="margin-top:12px;"
+              class="section-hint"
+              style="margin-top:10px; margin-bottom:0;"
             >
-
-              <input
-                type="email"
-                name="E-Mail"
-                placeholder="E-Mail-Adresse"
-              >
-
-              <input
-                type="tel"
-                name="Telefonnummer"
-                placeholder="Telefonnummer"
-              >
-
+              * Pflichtfelder
             </div>
 
           </div>
@@ -869,6 +914,7 @@
                 Datenschutzhinweise
               </a>
               gelesen.
+              <span class="required-star">*</span>
             </span>
 
           </label>
@@ -956,7 +1002,37 @@
     document.getElementById("submitButton");
 
 
-  /* ONLINE / OFFLINE STATUS */
+  /* ==========================================
+     THEMEN: MINDESTENS EINS MUSS GEWÄHLT SEIN
+  ========================================== */
+
+  const themenCheckboxen =
+    document.querySelectorAll('input[name="Themen[]"]');
+
+  function validateThemen() {
+
+    const mindestensEins =
+      Array.from(themenCheckboxen).some(
+        checkbox => checkbox.checked
+      );
+
+    themenCheckboxen[0].setCustomValidity(
+      mindestensEins
+        ? ""
+        : "Bitte wähle mindestens ein Thema aus."
+    );
+  }
+
+  themenCheckboxen.forEach(checkbox => {
+    checkbox.addEventListener("change", validateThemen);
+  });
+
+  validateThemen();
+
+
+  /* ==========================================
+     ONLINE / OFFLINE STATUS
+  ========================================== */
 
   function updateNetworkStatus() {
 
@@ -1001,7 +1077,9 @@
   updateNetworkStatus();
 
 
-  /* FORMULARDATEN IN OBJEKT UMWANDELN */
+  /* ==========================================
+     FORMULARDATEN IN OBJEKT UMWANDELN
+  ========================================== */
 
   function formDataToObject(formData) {
 
@@ -1030,7 +1108,9 @@
   }
 
 
-  /* OFFLINE SPEICHERN */
+  /* ==========================================
+     OFFLINE SPEICHERN
+  ========================================== */
 
   function saveOffline(data) {
 
@@ -1049,7 +1129,9 @@
   }
 
 
-  /* GESPEICHERTE FEEDBACKS ÜBERTRAGEN */
+  /* ==========================================
+     GESPEICHERTE FEEDBACKS ÜBERTRAGEN
+  ========================================== */
 
   async function sendStoredFeedback() {
 
@@ -1120,11 +1202,19 @@
   }
 
 
-  /* FORMULAR ABSENDEN */
+  /* ==========================================
+     FORMULAR ABSENDEN
+  ========================================== */
 
   form.addEventListener(
     "submit",
     async function(event) {
+
+      validateThemen();
+
+      if (!form.checkValidity()) {
+        return;
+      }
 
       event.preventDefault();
 
@@ -1238,7 +1328,9 @@
   );
 
 
-  /* GESPEICHERTE DATEN BEIM START ÜBERTRAGEN */
+  /* ==========================================
+     GESPEICHERTE DATEN BEIM START ÜBERTRAGEN
+  ========================================== */
 
   sendStoredFeedback();
 
