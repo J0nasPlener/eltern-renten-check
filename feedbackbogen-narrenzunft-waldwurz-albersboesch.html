@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#171717" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171717">
 
-  <title>Feedback | PH Finanzen × Narrenzunft Waldwurz Albersbösch 1980 e. V.</title>
+  <title>Feedback | PH Finanzen & Narrenzunft Waldwurz Albersbösch 1980 e. V.</title>
 
   <style>
+
     :root {
       --bg: #141414;
       --bg2: #201a1a;
@@ -35,16 +36,34 @@
       color: var(--text);
 
       background:
-        radial-gradient(circle at top left, rgba(116,43,56,.42), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(233,189,103,.12), transparent 30%),
-        linear-gradient(135deg, var(--bg), var(--bg2));
+        radial-gradient(
+          circle at top left,
+          rgba(116,43,56,.42),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at bottom right,
+          rgba(233,189,103,.12),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          var(--bg),
+          var(--bg2)
+        );
 
       min-height: 100vh;
     }
 
+
+    /* =====================================================
+       SEITE
+    ===================================================== */
+
     .page {
       min-height: 100vh;
       padding: 28px 16px;
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -53,25 +72,36 @@
     .shell {
       width: 100%;
       max-width: 1100px;
+
       background: rgba(18,18,18,.88);
+
       border: 1px solid var(--border);
       border-radius: 30px;
+
       overflow: hidden;
-      box-shadow: 0 30px 80px rgba(0,0,0,.45);
+
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.45);
+
       backdrop-filter: blur(15px);
     }
 
-    /* =========================
+
+    /* =====================================================
        HEADER / CO-BRANDING
-    ========================== */
+    ===================================================== */
 
     .brand-header {
       padding: 28px 34px;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 34px;
-      border-bottom: 1px solid var(--border);
+
+      gap: 28px;
+
+      border-bottom:
+        1px solid var(--border);
 
       background:
         linear-gradient(
@@ -81,97 +111,251 @@
         );
     }
 
-    .logo-box {
-      width: 210px;
-      height: 125px;
+
+    /* =====================================================
+       PH FINANZEN LOGO
+    ===================================================== */
+
+    .ph-logo-box {
+
+      width: 235px;
+      height: 135px;
+
+      flex-shrink: 0;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      background: transparent;
-      border-radius: 0;
-      padding: 0;
+
+      background: #ffffff;
+
+      border-radius: 20px;
+
       overflow: hidden;
     }
 
-    .logo-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .ph-logo-box {
-      width: 235px;
-      height: 135px;
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 5px;
-    }
-
     .ph-logo-box img {
+
       width: 100%;
       height: 100%;
+
       object-fit: contain;
-      transform: scale(1.18);
+
+      /*
+        Nur das Logo wird größer.
+        Der weiße Kasten verändert sich NICHT.
+      */
+
+      transform: scale(1.42);
+      transform-origin: center;
     }
 
-    .brand-x {
-      font-size: 42px;
-      font-weight: 900;
-      color: var(--gold);
-      line-height: 1;
+
+    /* =====================================================
+       NOSTALGISCHES "UND"
+    ===================================================== */
+
+    .brand-und {
+
       flex-shrink: 0;
+
+      color: var(--gold);
+
+      font-family:
+        "Palatino Linotype",
+        "Book Antiqua",
+        Palatino,
+        Georgia,
+        serif;
+
+      font-size: 30px;
+
+      font-weight: 700;
+
+      font-style: italic;
+
+      letter-spacing: -1px;
+
+      line-height: 1;
+
+      transform: rotate(-6deg);
+
+      text-shadow:
+        0 1px 0 rgba(255,255,255,.15),
+        0 3px 8px rgba(0,0,0,.35);
     }
 
-    /* =========================
+
+    /* =====================================================
+       WALDWURZ BEREICH
+    ===================================================== */
+
+    .waldwurz-area {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 22px;
+    }
+
+
+    /* WALDWURZ LOGO */
+
+    .waldwurz-logo-box {
+
+      width: 210px;
+      height: 135px;
+
+      flex-shrink: 0;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+    }
+
+    .waldwurz-logo-box img {
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+    }
+
+
+    /* =====================================================
+       WALDWURZ SPRUCH
+    ===================================================== */
+
+    .waldwurz-spruch {
+
+      max-width: 245px;
+
+      font-family:
+        "Palatino Linotype",
+        "Book Antiqua",
+        Palatino,
+        Georgia,
+        serif;
+
+      font-size: 15px;
+
+      font-weight: 700;
+
+      font-style: italic;
+
+      line-height: 1.55;
+
+      color: #f1e8dc;
+
+      text-align: left;
+
+      padding-left: 20px;
+
+      border-left:
+        2px solid rgba(233,189,103,.55);
+    }
+
+    .waldwurz-spruch span {
+
+      display: block;
+
+      white-space: nowrap;
+    }
+
+
+    /* =====================================================
        CONTENT
-    ========================== */
+    ===================================================== */
 
     .content {
+
       padding: 34px;
+
       display: grid;
-      grid-template-columns: .9fr 1.1fr;
+
+      grid-template-columns:
+        .9fr 1.1fr;
+
       gap: 42px;
     }
 
+
+    /* =====================================================
+       INTRO
+    ===================================================== */
+
     .intro {
+
       padding-top: 8px;
     }
 
     .badge {
+
       display: inline-flex;
+
       align-items: center;
+
       gap: 7px;
+
       padding: 8px 14px;
+
       border-radius: 999px;
-      background: rgba(233,189,103,.14);
-      border: 1px solid rgba(233,189,103,.30);
+
+      background:
+        rgba(233,189,103,.14);
+
+      border:
+        1px solid rgba(233,189,103,.30);
+
       color: var(--gold-light);
+
       font-size: 14px;
+
       font-weight: 700;
+
       margin-bottom: 20px;
     }
 
     h1 {
+
       margin: 0 0 16px;
+
       font-size: 44px;
+
       line-height: 1.05;
+
       letter-spacing: -1px;
     }
 
     h1 span {
+
       color: var(--gold);
     }
 
     .lead {
+
       margin: 0 0 25px;
+
       color: var(--muted);
+
       font-size: 18px;
+
       line-height: 1.6;
     }
 
+
+    /* =====================================================
+       PARTNER BOX
+    ===================================================== */
+
     .partner-box {
+
       margin-top: 26px;
+
       padding: 20px;
+
       border-radius: 20px;
 
       background:
@@ -181,214 +365,329 @@
           rgba(233,189,103,.08)
         );
 
-      border: 1px solid rgba(233,189,103,.18);
+      border:
+        1px solid rgba(233,189,103,.18);
     }
 
     .partner-box strong {
+
       color: var(--gold-light);
     }
 
     .partner-box p {
+
       margin: 8px 0 0;
+
       color: var(--muted);
+
       line-height: 1.5;
+
       font-size: 15px;
     }
 
-    /* =========================
+
+    /* =====================================================
        FORMULAR
-    ========================== */
+    ===================================================== */
 
     form {
+
       display: grid;
+
       gap: 17px;
     }
 
     .form-card {
+
       padding: 22px;
+
       border-radius: 22px;
+
       background: var(--card);
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
     }
 
     .section-title {
+
       font-size: 20px;
+
       font-weight: 800;
+
       margin-bottom: 7px;
     }
 
     .required-star {
+
       color: var(--gold);
     }
 
     .section-hint {
+
       color: var(--muted);
+
       font-size: 14px;
+
       margin-bottom: 15px;
     }
 
-    /* =========================
+
+    /* =====================================================
        BEWERTUNG
-    ========================== */
+    ===================================================== */
 
     .rating {
+
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+
+      grid-template-columns:
+        repeat(5, 1fr);
+
       gap: 9px;
     }
 
     .rating label {
+
       cursor: pointer;
     }
 
     .rating input {
+
       display: none;
     }
 
     .rating-box {
+
       padding: 12px 5px;
+
       border-radius: 14px;
+
       text-align: center;
-      background: rgba(255,255,255,.07);
-      border: 1px solid transparent;
+
+      background:
+        rgba(255,255,255,.07);
+
+      border:
+        1px solid transparent;
+
       transition: .18s ease;
     }
 
     .rating-number {
+
       display: block;
+
       font-size: 19px;
+
       font-weight: 800;
     }
 
     .rating-emoji {
+
       display: block;
+
       margin-top: 4px;
+
       font-size: 19px;
     }
 
     .rating input:checked + .rating-box {
-      background: rgba(233,189,103,.20);
+
+      background:
+        rgba(233,189,103,.20);
+
       border-color: var(--gold);
-      transform: translateY(-2px);
+
+      transform:
+        translateY(-2px);
     }
 
-    /* =========================
+
+    /* =====================================================
        INPUTS
-    ========================== */
+    ===================================================== */
 
     input[type="text"],
     input[type="tel"],
     textarea {
+
       width: 100%;
-      border: 1px solid rgba(255,255,255,.12);
+
+      border:
+        1px solid rgba(255,255,255,.12);
+
       outline: none;
+
       border-radius: 14px;
-      background: rgba(255,255,255,.95);
+
+      background:
+        rgba(255,255,255,.95);
+
       color: #171717;
+
       padding: 14px 15px;
+
       font-size: 16px;
+
       font-family: inherit;
     }
 
     textarea {
+
       resize: vertical;
+
       min-height: 95px;
     }
 
     input:focus,
     textarea:focus {
-      box-shadow: 0 0 0 3px rgba(233,189,103,.22);
+
+      box-shadow:
+        0 0 0 3px rgba(233,189,103,.22);
     }
 
     .two-cols {
+
       display: grid;
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        1fr 1fr;
+
       gap: 12px;
     }
 
-    /* =========================
+
+    /* =====================================================
        THEMEN
-    ========================== */
+    ===================================================== */
 
     .checkbox-group {
+
       display: grid;
+
       gap: 9px;
     }
 
     .checkbox {
+
       display: flex;
+
       align-items: flex-start;
+
       gap: 11px;
+
       padding: 13px;
+
       border-radius: 14px;
+
       cursor: pointer;
-      background: rgba(255,255,255,.06);
-      border: 1px solid transparent;
+
+      background:
+        rgba(255,255,255,.06);
+
+      border:
+        1px solid transparent;
+
       transition: .15s ease;
     }
 
     .checkbox:hover {
-      background: rgba(255,255,255,.09);
+
+      background:
+        rgba(255,255,255,.09);
     }
 
     .checkbox:has(input:checked) {
-      background: rgba(233,189,103,.13);
-      border-color: rgba(233,189,103,.55);
+
+      background:
+        rgba(233,189,103,.13);
+
+      border-color:
+        rgba(233,189,103,.55);
     }
 
     .checkbox input {
+
       width: 18px;
+
       height: 18px;
+
       margin-top: 2px;
+
       accent-color: var(--gold);
+
       flex-shrink: 0;
     }
 
     .checkbox-title {
+
       font-weight: 700;
     }
 
     .checkbox-desc {
+
       display: block;
+
       margin-top: 3px;
+
       color: #bebebe;
+
       font-size: 12px;
+
       line-height: 1.4;
     }
 
-    /* =========================
+
+    /* =====================================================
        DATENSCHUTZ
-    ========================== */
+    ===================================================== */
 
     .legal {
+
       display: flex;
+
       gap: 10px;
+
       font-size: 13px;
+
       color: var(--muted);
+
       line-height: 1.5;
     }
 
     .legal input {
+
       margin-top: 3px;
+
       width: 17px;
+
       height: 17px;
+
       accent-color: var(--gold);
+
       flex-shrink: 0;
     }
 
     a {
+
       color: var(--gold-light);
     }
 
-    /* =========================
+
+    /* =====================================================
        BUTTONS
-    ========================== */
+    ===================================================== */
 
     .submit-button,
     .discover-button {
+
       width: 100%;
+
       border: none;
+
       border-radius: 17px;
+
       padding: 17px 20px;
 
       background:
@@ -399,81 +698,123 @@
         );
 
       color: #171717;
+
       font-size: 18px;
+
       font-weight: 900;
+
       cursor: pointer;
+
       transition: .2s ease;
+
       text-decoration: none;
+
       display: inline-block;
+
       text-align: center;
     }
 
     .submit-button:hover,
     .discover-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(233,189,103,.17);
+
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 12px 30px rgba(233,189,103,.17);
     }
 
     .submit-button:disabled {
+
       opacity: .6;
+
       cursor: default;
+
       transform: none;
     }
 
-    /* =========================
+
+    /* =====================================================
        ONLINE / OFFLINE
-    ========================== */
+    ===================================================== */
 
     .network-status {
+
       margin-top: 8px;
+
       padding: 10px 12px;
+
       border-radius: 12px;
+
       text-align: center;
+
       font-size: 12px;
+
       line-height: 1.4;
-      background: rgba(255,255,255,.05);
+
+      background:
+        rgba(255,255,255,.05);
+
       color: #c7c7c7;
     }
 
     .network-status.online {
+
       color: var(--success);
     }
 
     .network-status.offline {
+
       color: var(--gold-light);
     }
 
-    /* =========================
+
+    /* =====================================================
        ERFOLGSSEITE
-    ========================== */
+    ===================================================== */
 
     .success {
+
       display: none;
+
       text-align: center;
+
       padding: 70px 30px;
     }
 
     .success-icon {
+
       font-size: 65px;
     }
 
     .success h2 {
+
       margin: 15px 0 10px;
+
       font-size: 36px;
     }
 
     .success p {
+
       max-width: 560px;
+
       margin: 0 auto;
+
       color: var(--muted);
+
       font-size: 17px;
+
       line-height: 1.6;
     }
 
     .success-next {
+
       margin: 28px auto 0;
+
       max-width: 560px;
+
       padding: 24px;
+
       border-radius: 20px;
 
       background:
@@ -483,228 +824,483 @@
           rgba(116,43,56,.12)
         );
 
-      border: 1px solid rgba(233,189,103,.24);
+      border:
+        1px solid rgba(233,189,103,.24);
     }
 
     .success-next h3 {
+
       margin: 0 0 10px;
+
       font-size: 22px;
+
       color: var(--gold-light);
     }
 
     .success-next p {
+
       margin-bottom: 20px;
+
       font-size: 16px;
     }
 
     .discover-button {
+
       width: auto;
+
       min-width: 240px;
+
       padding: 15px 22px;
+
       font-size: 16px;
     }
 
     .success-brand {
+
       margin-top: 28px;
+
       color: var(--gold);
+
       font-weight: 800;
     }
 
-    /* =========================
-       MOBILE
-    ========================== */
 
-    @media (max-width: 800px) {
+    /* =====================================================
+       TABLET
+    ===================================================== */
+
+    @media (max-width: 900px) {
+
+      .brand-header {
+
+        padding: 20px 12px;
+
+        gap: 14px;
+
+        flex-wrap: wrap;
+      }
+
+      .ph-logo-box {
+
+        width: 180px;
+
+        height: 105px;
+
+        border-radius: 17px;
+      }
+
+      .ph-logo-box img {
+
+        transform:
+          scale(1.42);
+      }
+
+      .brand-und {
+
+        font-size: 25px;
+      }
+
+      .waldwurz-area {
+
+        gap: 13px;
+      }
+
+      .waldwurz-logo-box {
+
+        width: 145px;
+
+        height: 100px;
+      }
+
+      .waldwurz-spruch {
+
+        max-width: 205px;
+
+        font-size: 12px;
+
+        padding-left: 12px;
+
+        line-height: 1.5;
+      }
+
+      .waldwurz-spruch span {
+
+        white-space: normal;
+      }
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 700px) {
 
       .page {
+
         padding: 12px;
+
         align-items: flex-start;
       }
 
       .shell {
+
         border-radius: 22px;
       }
 
-      .brand-header {
-        padding: 20px 12px;
-        gap: 16px;
-      }
 
-      .logo-box {
-        width: 145px;
-        height: 90px;
+      /* HEADER */
+
+      .brand-header {
+
+        flex-direction: column;
+
+        gap: 13px;
+
+        padding:
+          20px 12px 24px;
       }
 
       .ph-logo-box {
-        width: 155px;
-        height: 95px;
-        border-radius: 16px;
-        padding: 4px;
+
+        width: 190px;
+
+        height: 108px;
+
+        border-radius: 17px;
       }
 
       .ph-logo-box img {
-        transform: scale(1.18);
+
+        transform:
+          scale(1.42);
       }
 
-      .brand-x {
-        font-size: 32px;
+      .brand-und {
+
+        font-size: 25px;
+
+        margin:
+          -1px 0;
       }
+
+      .waldwurz-area {
+
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 16px;
+      }
+
+      .waldwurz-logo-box {
+
+        width: 135px;
+
+        height: 100px;
+      }
+
+      .waldwurz-spruch {
+
+        max-width: 190px;
+
+        font-size: 12px;
+
+        line-height: 1.5;
+
+        padding-left: 13px;
+      }
+
+      .waldwurz-spruch span {
+
+        white-space: normal;
+      }
+
+
+      /* CONTENT */
 
       .content {
+
         display: block;
+
         padding: 24px 18px;
       }
 
       .intro {
+
         margin-bottom: 30px;
       }
 
       h1 {
+
         font-size: 32px;
       }
 
       .lead {
+
         font-size: 16px;
       }
 
       .form-card {
+
         padding: 17px;
       }
 
       .two-cols {
+
         grid-template-columns: 1fr;
       }
 
       .rating {
+
         gap: 6px;
       }
 
       .rating-box {
-        padding: 10px 2px;
+
+        padding:
+          10px 2px;
       }
 
       .rating-number {
+
         font-size: 17px;
       }
 
       .rating-emoji {
+
         font-size: 17px;
       }
 
+
+      /* ERFOLGSSEITE */
+
       .success {
-        padding: 45px 18px;
+
+        padding:
+          45px 18px;
       }
 
       .success h2 {
+
         font-size: 30px;
       }
 
       .success-next {
-        padding: 20px 16px;
+
+        padding:
+          20px 16px;
       }
 
       .discover-button {
+
         width: 100%;
       }
     }
 
-    @media (max-width: 480px) {
 
-      .brand-header {
-        gap: 8px;
-        padding: 16px 8px;
-      }
+    /* =====================================================
+       KLEINE HANDYS
+    ===================================================== */
 
-      .logo-box {
-        width: 120px;
-        height: 78px;
-      }
+    @media (max-width: 430px) {
 
       .ph-logo-box {
-        width: 130px;
-        height: 82px;
-        border-radius: 14px;
-        padding: 3px;
+
+        width: 180px;
+
+        height: 103px;
       }
 
-      .brand-x {
-        font-size: 26px;
+      .waldwurz-area {
+
+        gap: 10px;
+      }
+
+      .waldwurz-logo-box {
+
+        width: 120px;
+
+        height: 90px;
+      }
+
+      .waldwurz-spruch {
+
+        max-width: 175px;
+
+        font-size: 11px;
+
+        padding-left: 10px;
       }
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
 <div class="page">
+
 
   <main class="shell">
 
-    <!-- CO-BRANDING -->
+
+    <!-- =====================================================
+         CO-BRANDING
+    ====================================================== -->
+
 
     <header class="brand-header">
 
-      <div class="logo-box ph-logo-box">
+
+      <!-- PH FINANZEN -->
+
+
+      <div class="ph-logo-box">
+
         <img
           src="ph-logo.png"
           alt="PH Finanzen Logo"
         >
+
       </div>
 
-      <div class="brand-x">×</div>
 
-      <div class="logo-box">
-        <img
-          src="narrenzunft-albersboesch-logo.png"
-          alt="Narrenzunft Waldwurz Albersbösch 1980 e. V. Logo"
-        >
+      <!-- NOSTALGISCHES UND -->
+
+
+      <div class="brand-und">
+
+        und
+
       </div>
+
+
+      <!-- WALDWURZ + SPRUCH -->
+
+
+      <div class="waldwurz-area">
+
+
+        <div class="waldwurz-logo-box">
+
+          <img
+            src="narrenzunft-albersboesch-logo.png"
+            alt="Narrenzunft Waldwurz Albersbösch 1980 e. V."
+          >
+
+        </div>
+
+
+        <div class="waldwurz-spruch">
+
+          <span>
+            Donner Blitz un Krache
+          </span>
+
+          <span>
+            Im Unterholz erwache
+          </span>
+
+          <span>
+            G’sichter knorrig aschtig froh
+          </span>
+
+          <span>
+            alles brielt, die Waldwurz sind do
+          </span>
+
+        </div>
+
+
+      </div>
+
 
     </header>
 
 
-    <!-- FORMULAR -->
+    <!-- =====================================================
+         FORMULAR
+    ====================================================== -->
 
-    <div id="formArea" class="content">
 
-      <!-- LINKE SEITE -->
+    <div
+      id="formArea"
+      class="content"
+    >
+
+
+      <!-- ===================================================
+           LINKE SEITE
+      ==================================================== -->
+
 
       <section class="intro">
 
+
         <div class="badge">
+
           🎭 Vereins-Feedback
+
         </div>
 
+
         <h1>
+
           Deine Meinung<br>
-          <span>zählt.</span>
+
+          <span>
+            zählt.
+          </span>
+
         </h1>
 
+
         <p class="lead">
+
           Gemeinsam für die Narrenzunft Waldwurz Albersbösch 1980 e. V.:
+
           Gib uns kurz dein Feedback und hilf dabei,
-          die Zusammenarbeit und das Vereinsleben weiterzuentwickeln.
+          die Zusammenarbeit und das Vereinsleben
+          weiterzuentwickeln.
+
         </p>
+
 
         <div class="partner-box">
 
+
           <strong>
-            PH Finanzen × Narrenzunft Waldwurz Albersbösch 1980 e. V.
+
+            PH Finanzen & Narrenzunft Waldwurz Albersbösch 1980 e. V.
+
           </strong>
 
+
           <p>
+
             Als Vereinspartner möchten wir nicht nur unterstützen,
             sondern auch wissen, was euch wichtig ist.
+
           </p>
 
+
         </div>
+
 
       </section>
 
 
-      <!-- RECHTE SEITE -->
+      <!-- ===================================================
+           RECHTE SEITE
+      ==================================================== -->
+
 
       <section>
+
 
         <form
           id="feedbackForm"
@@ -712,247 +1308,496 @@
           method="POST"
         >
 
-          <!-- BEWERTUNG -->
+
+          <!-- ===============================================
+               BEWERTUNG
+          ================================================ -->
+
 
           <div class="form-card">
 
+
             <div class="section-title">
+
               Wie zufrieden bist du?
-              <span class="required-star">*</span>
+
+              <span class="required-star">
+                *
+              </span>
+
             </div>
 
+
             <div class="section-hint">
+
               Einfach kurz auswählen.
+
             </div>
+
 
             <div class="rating">
 
-              <label>
-                <input type="radio" name="Bewertung" value="1" required>
-                <div class="rating-box">
-                  <span class="rating-number">1</span>
-                  <span class="rating-emoji">😕</span>
-                </div>
-              </label>
 
               <label>
-                <input type="radio" name="Bewertung" value="2">
+
+                <input
+                  type="radio"
+                  name="Bewertung"
+                  value="1"
+                  required
+                >
+
                 <div class="rating-box">
-                  <span class="rating-number">2</span>
-                  <span class="rating-emoji">🙁</span>
+
+                  <span class="rating-number">
+                    1
+                  </span>
+
+                  <span class="rating-emoji">
+                    😕
+                  </span>
+
                 </div>
+
               </label>
 
-              <label>
-                <input type="radio" name="Bewertung" value="3">
-                <div class="rating-box">
-                  <span class="rating-number">3</span>
-                  <span class="rating-emoji">🙂</span>
-                </div>
-              </label>
 
               <label>
-                <input type="radio" name="Bewertung" value="4">
+
+                <input
+                  type="radio"
+                  name="Bewertung"
+                  value="2"
+                >
+
                 <div class="rating-box">
-                  <span class="rating-number">4</span>
-                  <span class="rating-emoji">😊</span>
+
+                  <span class="rating-number">
+                    2
+                  </span>
+
+                  <span class="rating-emoji">
+                    🙁
+                  </span>
+
                 </div>
+
               </label>
 
+
               <label>
-                <input type="radio" name="Bewertung" value="5">
+
+                <input
+                  type="radio"
+                  name="Bewertung"
+                  value="3"
+                >
+
                 <div class="rating-box">
-                  <span class="rating-number">5</span>
-                  <span class="rating-emoji">🤩</span>
+
+                  <span class="rating-number">
+                    3
+                  </span>
+
+                  <span class="rating-emoji">
+                    🙂
+                  </span>
+
                 </div>
+
               </label>
+
+
+              <label>
+
+                <input
+                  type="radio"
+                  name="Bewertung"
+                  value="4"
+                >
+
+                <div class="rating-box">
+
+                  <span class="rating-number">
+                    4
+                  </span>
+
+                  <span class="rating-emoji">
+                    😊
+                  </span>
+
+                </div>
+
+              </label>
+
+
+              <label>
+
+                <input
+                  type="radio"
+                  name="Bewertung"
+                  value="5"
+                >
+
+                <div class="rating-box">
+
+                  <span class="rating-number">
+                    5
+                  </span>
+
+                  <span class="rating-emoji">
+                    🤩
+                  </span>
+
+                </div>
+
+              </label>
+
 
             </div>
+
 
           </div>
 
 
-          <!-- FREIES FEEDBACK -->
+          <!-- ===============================================
+               FREIES FEEDBACK
+          ================================================ -->
+
 
           <div class="form-card">
 
+
             <div class="section-title">
+
               Dein Feedback
+
             </div>
 
+
             <div class="section-hint">
+
               Optional – ein paar Worte reichen völlig.
+
             </div>
+
 
             <textarea
               name="Feedback"
               placeholder="Was gefällt dir? Was können wir noch besser machen?"
             ></textarea>
 
+
           </div>
 
 
-          <!-- THEMENAUSWAHL -->
+          <!-- ===============================================
+               THEMEN
+          ================================================ -->
+
 
           <div class="form-card">
 
+
             <div class="section-title">
+
               Wobei können wir dich unterstützen?
-              <span class="required-star">*</span>
+
+              <span class="required-star">
+                *
+              </span>
+
             </div>
+
 
             <div class="section-hint">
+
               Mindestens ein Thema auswählen · Mehrfachauswahl möglich
+
             </div>
 
-            <div class="checkbox-group" id="themenGruppe">
+
+            <div
+              class="checkbox-group"
+              id="themenGruppe"
+            >
+
+
+              <!-- GELDANLAGE -->
+
 
               <label class="checkbox">
+
+
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Geldanlage & Vermögensaufbau"
                 >
 
+
                 <span>
+
+
                   <span class="checkbox-title">
+
                     💰 Geldanlage & Vermögensaufbau
+
                   </span>
 
+
                   <span class="checkbox-desc">
+
                     Sparen, Investment und langfristiger Vermögensaufbau
+
                   </span>
+
+
                 </span>
+
+
               </label>
 
 
+              <!-- IMMOBILIEN -->
+
+
               <label class="checkbox">
+
+
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Immobilien & Finanzierung"
                 >
 
+
                 <span>
+
+
                   <span class="checkbox-title">
+
                     🏡 Immobilien & Finanzierung
+
                   </span>
 
+
                   <span class="checkbox-desc">
+
                     Immobilie kaufen, finanzieren oder modernisieren
+
                   </span>
+
+
                 </span>
+
+
               </label>
 
 
+              <!-- ABSICHERUNG -->
+
+
               <label class="checkbox">
+
+
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Absicherung & Vorsorge"
                 >
 
+
                 <span>
+
+
                   <span class="checkbox-title">
+
                     🛡️ Absicherung & Vorsorge
+
                   </span>
 
+
                   <span class="checkbox-desc">
+
                     Persönliche Absicherung, Vorsorge und Versicherungen
+
                   </span>
+
+
                 </span>
+
+
               </label>
 
 
+              <!-- HÄS -->
+
+
               <label class="checkbox">
+
+
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Häs & Vereinsausstattung"
                 >
 
+
                 <span>
+
+
                   <span class="checkbox-title">
+
                     🎭 Häs & Vereinsausstattung
+
                   </span>
 
+
                   <span class="checkbox-desc">
+
                     Fragen rund um Häs, Ausstattung und persönliches Eigentum
+
                   </span>
+
+
                 </span>
+
+
               </label>
 
 
+              <!-- KRANKENVERSICHERUNG -->
+
+
               <label class="checkbox">
+
+
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Krankenversicherung"
                 >
 
+
                 <span>
+
+
                   <span class="checkbox-title">
+
                     ❤️ Krankenversicherung
+
                   </span>
 
+
                   <span class="checkbox-desc">
+
                     Gesetzlich, privat und Zusatzabsicherungen
+
                   </span>
+
+
                 </span>
+
+
               </label>
 
 
+              <!-- ELTERN & KINDER -->
+
+
               <label class="checkbox">
+
+
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Eltern & Kinder"
                 >
 
+
                 <span>
+
+
                   <span class="checkbox-title">
+
                     👨‍👩‍👧 Eltern & Kinder
+
                   </span>
 
+
                   <span class="checkbox-desc">
+
                     Absicherung, Vorsorge und Vermögensaufbau für Familien
+
                   </span>
+
+
                 </span>
+
+
               </label>
 
 
+              <!-- EMPFEHLUNGSGEBER -->
+
+
               <label class="checkbox">
+
+
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Empfehlungsgeber"
                 >
 
+
                 <span>
+
+
                   <span class="checkbox-title">
+
                     🤝 Empfehlungsgeber werden
+
                   </span>
+
 
                   <span class="checkbox-desc">
+
                     Du kennst jemanden, dem wir weiterhelfen können?
+
                   </span>
+
+
                 </span>
+
+
               </label>
 
+
             </div>
+
 
           </div>
 
 
-          <!-- KONTAKTDATEN -->
+          <!-- ===============================================
+               KONTAKTDATEN
+          ================================================ -->
+
 
           <div class="form-card">
 
+
             <div class="section-title">
+
               Wie dürfen wir dich erreichen?
+
             </div>
 
+
             <div class="two-cols">
+
 
               <input
                 type="text"
@@ -962,6 +1807,7 @@
                 required
               >
 
+
               <input
                 type="text"
                 name="Nachname"
@@ -970,9 +1816,12 @@
                 required
               >
 
+
             </div>
 
+
             <div style="margin-top:12px;">
+
 
               <input
                 type="tel"
@@ -982,21 +1831,33 @@
                 required
               >
 
+
             </div>
+
 
             <div
               class="section-hint"
-              style="margin-top:10px; margin-bottom:0;"
+              style="
+                margin-top:10px;
+                margin-bottom:0;
+              "
             >
+
               * Pflichtfelder
+
             </div>
+
 
           </div>
 
 
-          <!-- DATENSCHUTZ -->
+          <!-- ===============================================
+               DATENSCHUTZ
+          ================================================ -->
+
 
           <label class="legal">
+
 
             <input
               type="checkbox"
@@ -1005,19 +1866,33 @@
               required
             >
 
+
             <span>
+
               Ich habe die
+
               <a
                 href="/datenschutz.html"
                 target="_blank"
               >
                 Datenschutzhinweise
               </a>
+
               gelesen.
-              <span class="required-star">*</span>
+
+              <span class="required-star">
+                *
+              </span>
+
             </span>
 
+
           </label>
+
+
+          <!-- ===============================================
+               FORMSPREE
+          ================================================ -->
 
 
           <input
@@ -1027,12 +1902,19 @@
           >
 
 
+          <!-- ===============================================
+               ABSENDEN
+          ================================================ -->
+
+
           <button
             id="submitButton"
             class="submit-button"
             type="submit"
           >
+
             🎭 Feedback absenden
+
           </button>
 
 
@@ -1040,50 +1922,82 @@
             id="networkStatus"
             class="network-status"
           >
+
             Verbindung wird geprüft …
+
           </div>
+
 
         </form>
 
+
       </section>
+
 
     </div>
 
 
-    <!-- ERFOLGSSEITE -->
+    <!-- =====================================================
+         ERFOLGSSEITE
+    ====================================================== -->
+
 
     <div
       id="successArea"
       class="success"
     >
 
+
       <div class="success-icon">
+
         🎭
+
       </div>
 
+
       <h2>
+
         Vielen Dank für dein Feedback!
+
       </h2>
 
+
       <p id="successText">
+
         Deine Angaben wurden erfolgreich übermittelt.
+
       </p>
 
+
       <p style="margin-top:18px;">
-        Wenn du ein Thema ausgewählt hast, kommen wir gerne persönlich auf dich zu.
+
+        Wenn du ein Thema ausgewählt hast,
+        kommen wir gerne persönlich auf dich zu.
+
       </p>
+
+
+      <!-- NÄCHSTER SCHRITT -->
+
 
       <div class="success-next">
 
+
         <h3>
+
           Du möchtest nicht so lange warten?
+
         </h3>
 
+
         <p>
+
           Dann verschaff dir schon jetzt einen ersten Überblick
-          und entdecke, welche Themen zu dir und deiner aktuellen
-          Situation passen.
+          und entdecke, welche Themen zu dir und deiner
+          aktuellen Situation passen.
+
         </p>
+
 
         <a
           href="https://www.ph-finanzen.de/was-passt-zu-dir.html"
@@ -1091,214 +2005,326 @@
           target="_blank"
           rel="noopener noreferrer"
         >
+
           Was passt zu dir? →
+
         </a>
 
+
       </div>
 
+
       <div class="success-brand">
-        PH Finanzen × Narrenzunft Waldwurz Albersbösch 1980 e. V.
+
+        PH Finanzen & Narrenzunft Waldwurz Albersbösch 1980 e. V.
+
       </div>
+
 
     </div>
 
+
   </main>
+
 
 </div>
 
 
 <script>
 
+
+  /* =====================================================
+     ELEMENTE
+  ===================================================== */
+
+
   const form =
     document.getElementById("feedbackForm");
+
 
   const formArea =
     document.getElementById("formArea");
 
+
   const successArea =
     document.getElementById("successArea");
+
 
   const successText =
     document.getElementById("successText");
 
+
   const networkStatus =
     document.getElementById("networkStatus");
+
 
   const submitButton =
     document.getElementById("submitButton");
 
 
-  /* ==========================================
+  /* =====================================================
      THEMEN:
-     MINDESTENS EINE AUSWAHL IST PFLICHT
-  ========================================== */
+     MINDESTENS EINE AUSWAHL
+  ===================================================== */
+
 
   const themenCheckboxen =
-    document.querySelectorAll('input[name="Themen[]"]');
+    document.querySelectorAll(
+      'input[name="Themen[]"]'
+    );
 
 
   function validateThemen() {
 
+
     const mindestensEins =
-      Array.from(themenCheckboxen).some(
-        checkbox => checkbox.checked
-      );
+      Array
+        .from(themenCheckboxen)
+        .some(
+          checkbox =>
+            checkbox.checked
+        );
+
 
     if (themenCheckboxen.length > 0) {
 
-      themenCheckboxen[0].setCustomValidity(
-        mindestensEins
-          ? ""
-          : "Bitte wähle mindestens ein Thema aus."
-      );
+
+      themenCheckboxen[0]
+        .setCustomValidity(
+
+          mindestensEins
+
+            ? ""
+
+            : "Bitte wähle mindestens ein Thema aus."
+
+        );
+
 
     }
+
 
   }
 
 
-  themenCheckboxen.forEach(checkbox => {
+  themenCheckboxen.forEach(
 
-    checkbox.addEventListener(
-      "change",
-      validateThemen
-    );
+    checkbox => {
 
-  });
+
+      checkbox.addEventListener(
+
+        "change",
+
+        validateThemen
+
+      );
+
+
+    }
+
+  );
 
 
   validateThemen();
 
 
-  /* ==========================================
+  /* =====================================================
      ONLINE / OFFLINE STATUS
-  ========================================== */
+  ===================================================== */
+
 
   function updateNetworkStatus() {
 
+
     if (navigator.onLine) {
 
+
       networkStatus.textContent =
+
         "● Online – Feedback kann direkt übertragen werden.";
 
+
       networkStatus.className =
+
         "network-status online";
 
+
     }
+
 
     else {
 
+
       networkStatus.textContent =
+
         "● Offline – Feedback wird auf diesem Gerät gespeichert und später übertragen.";
 
+
       networkStatus.className =
+
         "network-status offline";
 
+
     }
+
 
   }
 
 
   window.addEventListener(
+
     "online",
+
     () => {
+
 
       updateNetworkStatus();
 
+
       sendStoredFeedback();
 
+
     }
+
   );
 
 
   window.addEventListener(
+
     "offline",
+
     updateNetworkStatus
+
   );
 
 
   updateNetworkStatus();
 
 
-  /* ==========================================
-     FORMULARDATEN → OBJEKT
-  ========================================== */
+  /* =====================================================
+     FORMDATA → OBJEKT
+  ===================================================== */
+
 
   function formDataToObject(formData) {
 
+
     const data = {};
 
-    for (const [key, value] of formData.entries()) {
+
+    for (
+      const [key, value]
+      of formData.entries()
+    ) {
+
 
       if (data[key]) {
 
+
         if (!Array.isArray(data[key])) {
 
-          data[key] = [data[key]];
+
+          data[key] = [
+            data[key]
+          ];
+
 
         }
 
+
         data[key].push(value);
 
+
       }
+
 
       else {
 
+
         data[key] = value;
+
 
       }
 
+
     }
+
 
     return data;
 
+
   }
 
 
-  /* ==========================================
+  /* =====================================================
      OFFLINE SPEICHERN
-  ========================================== */
+  ===================================================== */
+
 
   function saveOffline(data) {
 
+
     const stored =
+
       JSON.parse(
+
         localStorage.getItem(
+
           "waldwurz_feedback_queue"
+
         ) || "[]"
+
       );
+
 
     stored.push(data);
 
+
     localStorage.setItem(
+
       "waldwurz_feedback_queue",
+
       JSON.stringify(stored)
+
     );
+
 
   }
 
 
-  /* ==========================================
-     GESPEICHERTE FEEDBACKS SENDEN
-  ========================================== */
+  /* =====================================================
+     GESPEICHERTE DATEN SENDEN
+  ===================================================== */
+
 
   async function sendStoredFeedback() {
 
+
     if (!navigator.onLine) {
+
       return;
+
     }
 
 
     const stored =
+
       JSON.parse(
+
         localStorage.getItem(
+
           "waldwurz_feedback_queue"
+
         ) || "[]"
+
       );
 
 
     if (!stored.length) {
+
       return;
+
     }
 
 
@@ -1307,89 +2333,148 @@
 
     for (const item of stored) {
 
+
       try {
+
 
         const data =
           new FormData();
 
 
-        Object.entries(item).forEach(
-          ([key, value]) => {
+        Object
+          .entries(item)
+          .forEach(
 
-            if (Array.isArray(value)) {
+            ([key, value]) => {
 
-              value.forEach(
-                v => data.append(key, v)
-              );
+
+              if (Array.isArray(value)) {
+
+
+                value.forEach(
+
+                  v =>
+                    data.append(
+                      key,
+                      v
+                    )
+
+                );
+
+
+              }
+
+
+              else {
+
+
+                data.append(
+                  key,
+                  value
+                );
+
+
+              }
+
 
             }
 
-            else {
-
-              data.append(key, value);
-
-            }
-
-          }
-        );
+          );
 
 
         const response =
+
           await fetch(
+
             form.action,
+
             {
+
               method: "POST",
+
               body: data,
+
               headers: {
-                "Accept": "application/json"
+
+                "Accept":
+                  "application/json"
+
               }
+
             }
+
           );
 
 
         if (!response.ok) {
 
+
           remaining.push(item);
+
 
         }
 
+
       }
+
 
       catch {
 
+
         remaining.push(item);
 
+
       }
+
 
     }
 
 
     localStorage.setItem(
+
       "waldwurz_feedback_queue",
-      JSON.stringify(remaining)
+
+      JSON.stringify(
+        remaining
+      )
+
     );
+
 
   }
 
 
-  /* ==========================================
+  /* =====================================================
      FORMULAR ABSENDEN
-  ========================================== */
+  ===================================================== */
+
 
   form.addEventListener(
+
     "submit",
+
     async function(event) {
+
 
       validateThemen();
 
 
+      /* -----------------------------------------
+         PFLICHTFELDER PRÜFEN
+      ----------------------------------------- */
+
+
       if (!form.checkValidity()) {
+
 
         event.preventDefault();
 
+
         form.reportValidity();
 
+
         return;
+
 
       }
 
@@ -1397,7 +2482,9 @@
       event.preventDefault();
 
 
-      submitButton.disabled = true;
+      submitButton.disabled =
+        true;
+
 
       submitButton.textContent =
         "Wird gespeichert …";
@@ -1407,12 +2494,18 @@
         new FormData(form);
 
 
-      /* OFFLINE */
+      /* =================================================
+         OFFLINE
+      ================================================= */
+
 
       if (!navigator.onLine) {
 
+
         const data =
-          formDataToObject(formData);
+          formDataToObject(
+            formData
+          );
 
 
         saveOffline(data);
@@ -1427,6 +2520,7 @@
 
 
         successText.textContent =
+
           "Dein Feedback wurde auf diesem Gerät gespeichert. Sobald wieder eine Internetverbindung besteht, versuchen wir es automatisch zu übertragen.";
 
 
@@ -1434,34 +2528,56 @@
 
 
         window.scrollTo({
+
           top: 0,
+
           behavior: "smooth"
+
         });
 
 
         return;
 
+
       }
 
 
-      /* ONLINE */
+      /* =================================================
+         ONLINE → FORMSPREE
+      ================================================= */
+
 
       try {
 
+
         const response =
+
           await fetch(
+
             form.action,
+
             {
-              method: form.method,
-              body: formData,
+
+              method:
+                form.method,
+
+              body:
+                formData,
+
               headers: {
-                "Accept": "application/json"
+
+                "Accept":
+                  "application/json"
+
               }
+
             }
+
           );
 
 
         if (response.ok) {
+
 
           formArea.style.display =
             "none";
@@ -1472,6 +2588,7 @@
 
 
           successText.textContent =
+
             "Deine Angaben wurden erfolgreich übermittelt.";
 
 
@@ -1479,26 +2596,45 @@
 
 
           window.scrollTo({
+
             top: 0,
+
             behavior: "smooth"
+
           });
 
+
         }
+
 
         else {
 
+
           throw new Error(
+
             "Serverantwort war nicht erfolgreich."
+
           );
+
 
         }
 
+
       }
+
 
       catch (error) {
 
+
+        /* -----------------------------------------
+           FALLBACK → LOKAL SPEICHERN
+        ----------------------------------------- */
+
+
         const data =
-          formDataToObject(formData);
+          formDataToObject(
+            formData
+          );
 
 
         saveOffline(data);
@@ -1513,6 +2649,7 @@
 
 
         successText.textContent =
+
           "Die Übertragung war gerade nicht möglich. Dein Feedback wurde deshalb auf diesem Gerät gespeichert und wird beim nächsten Online-Aufruf erneut übertragen.";
 
 
@@ -1520,24 +2657,32 @@
 
 
         window.scrollTo({
+
           top: 0,
+
           behavior: "smooth"
+
         });
+
 
       }
 
+
     }
+
   );
 
 
-  /* ==========================================
-     BEIM LADEN:
-     OFFLINE GESPEICHERTE DATEN ÜBERTRAGEN
-  ========================================== */
+  /* =====================================================
+     OFFLINE DATEN BEIM LADEN SENDEN
+  ===================================================== */
+
 
   sendStoredFeedback();
 
+
 </script>
+
 
 </body>
 </html>
