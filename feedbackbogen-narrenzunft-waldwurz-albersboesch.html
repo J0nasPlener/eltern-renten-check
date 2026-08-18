@@ -3,34 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#17130f">
+  <meta name="theme-color" content="#f3eadf">
 
   <title>Feedback | PH Finanzen & Narrenzunft Waldwurz Albersbösch 1980 e. V.</title>
 
   <style>
 
     :root {
-      --bg: #17130f;
-      --bg2: #221a14;
+      --bg: #f3eadf;
+      --bg2: #ead9c7;
 
-      --card: rgba(255,255,255,.07);
+      --card: rgba(255,255,255,.76);
 
-      --green: #7f9a3a;
-      --green-light: #a8bf5d;
+      --green: #71843a;
+      --green-light: #9caf63;
 
-      --red: #b73a2f;
-      --red-light: #d85a49;
+      --red: #b84936;
+      --red-light: #d16a55;
 
-      --orange: #e58a2f;
-      --orange-light: #f3b35f;
+      --orange: #d9842f;
+      --orange-light: #efb469;
 
-      --brown: #5a3a24;
+      --brown: #6a4a35;
 
-      --text: #ffffff;
-      --muted: #d7d1cb;
-      --border: rgba(255,255,255,.14);
+      --text: #2f261f;
+      --muted: #6f6258;
+      --border: rgba(84,65,50,.16);
 
-      --success: #8ebc67;
+      --success: #789b56;
     }
 
     * {
@@ -49,12 +49,12 @@
       background:
         radial-gradient(
           circle at top left,
-          rgba(183,58,47,.34),
+          rgba(209,106,85,.22),
           transparent 34%
         ),
         radial-gradient(
           circle at bottom right,
-          rgba(127,154,58,.22),
+          rgba(156,175,99,.22),
           transparent 32%
         ),
         linear-gradient(
@@ -83,7 +83,7 @@
       width: 100%;
       max-width: 1100px;
 
-      background: rgba(18,16,13,.90);
+      background: rgba(255,250,244,.94);
 
       border: 1px solid var(--border);
       border-radius: 30px;
@@ -91,7 +91,7 @@
       overflow: hidden;
 
       box-shadow:
-        0 30px 80px rgba(0,0,0,.48);
+        0 24px 60px rgba(90,60,35,.16);
 
       backdrop-filter: blur(15px);
     }
@@ -111,14 +111,14 @@
       gap: 28px;
 
       border-bottom:
-        1px solid rgba(229,138,47,.22);
+        1px solid rgba(217,132,47,.22);
 
       background:
         linear-gradient(
           105deg,
-          rgba(90,58,36,.28),
-          rgba(183,58,47,.12) 48%,
-          rgba(127,154,58,.12)
+          rgba(255,244,232,.98),
+          rgba(209,106,85,.10) 48%,
+          rgba(156,175,99,.14)
         );
     }
 
@@ -144,7 +144,7 @@
       overflow: hidden;
 
       box-shadow:
-        0 10px 30px rgba(0,0,0,.20);
+        0 10px 26px rgba(90,60,35,.12);
     }
 
     .ph-logo-box img {
@@ -152,11 +152,6 @@
       height: 100%;
 
       object-fit: contain;
-
-      /*
-        Der weiße Rahmen bleibt gleich groß.
-        Nur das PH-Logo darin wird vergrößert.
-      */
 
       transform: scale(1.42);
       transform-origin: center;
@@ -190,8 +185,8 @@
       transform: rotate(-6deg);
 
       text-shadow:
-        0 1px 0 rgba(255,255,255,.12),
-        0 3px 8px rgba(0,0,0,.40);
+        0 1px 0 rgba(255,255,255,.5),
+        0 2px 5px rgba(90,60,35,.12);
     }
 
 
@@ -243,7 +238,7 @@
 
       line-height: 1.55;
 
-      color: #f3ede7;
+      color: var(--brown);
 
       text-align: left;
 
@@ -294,12 +289,12 @@
       border-radius: 999px;
 
       background:
-        rgba(127,154,58,.16);
+        rgba(127,154,58,.14);
 
       border:
-        1px solid rgba(127,154,58,.38);
+        1px solid rgba(127,154,58,.26);
 
-      color: var(--green-light);
+      color: #53652b;
 
       font-size: 14px;
       font-weight: 700;
@@ -315,6 +310,8 @@
       line-height: 1.05;
 
       letter-spacing: -1px;
+
+      color: #2f261f;
     }
 
     h1 span {
@@ -346,16 +343,19 @@
       background:
         linear-gradient(
           135deg,
-          rgba(183,58,47,.18),
-          rgba(127,154,58,.10)
+          rgba(209,106,85,.10),
+          rgba(156,175,99,.11)
         );
 
       border:
-        1px solid rgba(229,138,47,.22);
+        1px solid rgba(217,132,47,.18);
+
+      box-shadow:
+        0 8px 20px rgba(90,60,35,.05);
     }
 
     .partner-box strong {
-      color: var(--orange-light);
+      color: #b46325;
     }
 
     .partner-box p {
@@ -384,10 +384,13 @@
       border-radius: 22px;
 
       background:
-        rgba(255,255,255,.065);
+        rgba(255,255,255,.78);
 
       border:
         1px solid var(--border);
+
+      box-shadow:
+        0 8px 22px rgba(90,60,35,.06);
     }
 
     .section-title {
@@ -396,6 +399,8 @@
       font-weight: 800;
 
       margin-bottom: 7px;
+
+      color: #31261f;
     }
 
     .required-star {
@@ -440,17 +445,19 @@
       text-align: center;
 
       background:
-        rgba(255,255,255,.07);
+        rgba(245,238,230,.85);
 
       border:
-        1px solid transparent;
+        1px solid rgba(90,70,50,.08);
 
       transition: .18s ease;
+
+      color: #33281f;
     }
 
     .rating-box:hover {
       background:
-        rgba(229,138,47,.10);
+        rgba(239,180,105,.16);
     }
 
     .rating-number {
@@ -471,7 +478,7 @@
 
     .rating input:checked + .rating-box {
       background:
-        rgba(229,138,47,.18);
+        rgba(239,180,105,.26);
 
       border-color:
         var(--orange);
@@ -480,7 +487,7 @@
         translateY(-2px);
 
       box-shadow:
-        0 5px 18px rgba(229,138,47,.10);
+        0 5px 18px rgba(217,132,47,.11);
     }
 
 
@@ -494,22 +501,27 @@
       width: 100%;
 
       border:
-        1px solid rgba(255,255,255,.12);
+        1px solid rgba(90,70,50,.14);
 
       outline: none;
 
       border-radius: 14px;
 
       background:
-        rgba(255,255,255,.95);
+        rgba(255,255,255,.96);
 
-      color: #17130f;
+      color: #2f261f;
 
       padding: 14px 15px;
 
       font-size: 16px;
 
       font-family: inherit;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #8b8179;
     }
 
     textarea {
@@ -521,7 +533,10 @@
     input:focus,
     textarea:focus {
       box-shadow:
-        0 0 0 3px rgba(229,138,47,.20);
+        0 0 0 3px rgba(217,132,47,.18);
+
+      border-color:
+        rgba(217,132,47,.45);
     }
 
     .two-cols {
@@ -557,25 +572,25 @@
       cursor: pointer;
 
       background:
-        rgba(255,255,255,.06);
+        rgba(255,255,255,.80);
 
       border:
-        1px solid transparent;
+        1px solid rgba(90,70,50,.10);
 
       transition: .15s ease;
     }
 
     .checkbox:hover {
       background:
-        rgba(127,154,58,.09);
+        rgba(156,175,99,.10);
     }
 
     .checkbox:has(input:checked) {
       background:
-        rgba(127,154,58,.14);
+        rgba(156,175,99,.18);
 
       border-color:
-        rgba(127,154,58,.65);
+        rgba(113,132,58,.48);
     }
 
     .checkbox input {
@@ -592,6 +607,7 @@
 
     .checkbox-title {
       font-weight: 700;
+      color: #33281f;
     }
 
     .checkbox-desc {
@@ -599,7 +615,7 @@
 
       margin-top: 3px;
 
-      color: #c3bdb7;
+      color: #756b64;
 
       font-size: 12px;
 
@@ -636,7 +652,7 @@
     }
 
     a {
-      color: var(--orange-light);
+      color: #b35f23;
     }
 
 
@@ -661,7 +677,7 @@
           var(--red-light)
         );
 
-      color: #17130f;
+      color: #ffffff;
 
       font-size: 18px;
 
@@ -687,7 +703,7 @@
         translateY(-2px);
 
       box-shadow:
-        0 12px 30px rgba(229,138,47,.22);
+        0 12px 30px rgba(217,132,47,.20);
     }
 
     .submit-button:disabled {
@@ -717,17 +733,20 @@
       line-height: 1.4;
 
       background:
-        rgba(255,255,255,.05);
+        rgba(255,255,255,.56);
 
-      color: #c7c7c7;
+      color: #7b7068;
+
+      border:
+        1px solid rgba(90,70,50,.08);
     }
 
     .network-status.online {
-      color: var(--green-light);
+      color: #627d39;
     }
 
     .network-status.offline {
-      color: var(--orange-light);
+      color: #b66a2a;
     }
 
 
@@ -741,6 +760,8 @@
       text-align: center;
 
       padding: 70px 30px;
+
+      color: var(--text);
     }
 
     .success-icon {
@@ -751,6 +772,8 @@
       margin: 15px 0 10px;
 
       font-size: 36px;
+
+      color: #33281f;
     }
 
     .success p {
@@ -777,12 +800,15 @@
       background:
         linear-gradient(
           135deg,
-          rgba(127,154,58,.12),
-          rgba(183,58,47,.12)
+          rgba(156,175,99,.16),
+          rgba(209,106,85,.10)
         );
 
       border:
-        1px solid rgba(229,138,47,.25);
+        1px solid rgba(217,132,47,.20);
+
+      box-shadow:
+        0 8px 20px rgba(90,60,35,.05);
     }
 
     .success-next h3 {
@@ -790,7 +816,7 @@
 
       font-size: 22px;
 
-      color: var(--orange-light);
+      color: #a85821;
     }
 
     .success-next p {
@@ -812,7 +838,7 @@
     .success-brand {
       margin-top: 28px;
 
-      color: var(--orange-light);
+      color: #a85d29;
 
       font-weight: 800;
     }
@@ -1055,8 +1081,6 @@
     <header class="brand-header">
 
 
-      <!-- PH FINANZEN -->
-
       <div class="ph-logo-box">
 
         <img
@@ -1067,14 +1091,10 @@
       </div>
 
 
-      <!-- NOSTALGISCHES UND -->
-
       <div class="brand-und">
         und
       </div>
 
-
-      <!-- WALDWURZ + SPRUCH -->
 
       <div class="waldwurz-area">
 
@@ -1192,9 +1212,7 @@
         >
 
 
-          <!-- =================================================
-               BEWERTUNG
-          ================================================== -->
+          <!-- BEWERTUNG -->
 
           <div class="form-card">
 
@@ -1338,9 +1356,7 @@
           </div>
 
 
-          <!-- =================================================
-               FREIES FEEDBACK
-          ================================================== -->
+          <!-- FREIES FEEDBACK -->
 
           <div class="form-card">
 
@@ -1364,9 +1380,7 @@
           </div>
 
 
-          <!-- =================================================
-               THEMEN
-          ================================================== -->
+          <!-- THEMEN -->
 
           <div class="form-card">
 
@@ -1560,9 +1574,7 @@
           </div>
 
 
-          <!-- =================================================
-               KONTAKTDATEN
-          ================================================== -->
+          <!-- KONTAKTDATEN -->
 
           <div class="form-card">
 
@@ -1624,9 +1636,7 @@
           </div>
 
 
-          <!-- =================================================
-               DATENSCHUTZ
-          ================================================== -->
+          <!-- DATENSCHUTZ -->
 
           <label class="legal">
 
@@ -1660,16 +1670,12 @@
           </label>
 
 
-          <!-- FORMSPREE SUBJECT -->
-
           <input
             type="hidden"
             name="_subject"
             value="Neues Vereins-Feedback – Narrenzunft Waldwurz Albersbösch 1980 e. V."
           >
 
-
-          <!-- ABSENDEN -->
 
           <button
             id="submitButton"
@@ -1783,10 +1789,6 @@
 
 
 <script>
-
-  /* =====================================================
-     ELEMENTE
-  ===================================================== */
 
   const form =
     document.getElementById("feedbackForm");
@@ -2118,8 +2120,6 @@
 
       validateThemen();
 
-
-      /* PFLICHTFELDER */
 
       if (!form.checkValidity()) {
 
