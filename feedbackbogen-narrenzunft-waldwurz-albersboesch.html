@@ -64,7 +64,6 @@
       min-height: 100vh;
     }
 
-
     /* =========================
        SEITE
     ========================== */
@@ -93,7 +92,6 @@
         0 24px 60px rgba(120,70,35,.12);
     }
 
-
     /* =========================
        HEADER
     ========================== */
@@ -118,7 +116,6 @@
           #fce6d2 100%
         );
     }
-
 
     /* PH LOGO */
 
@@ -152,7 +149,6 @@
       transform-origin: center;
     }
 
-
     /* UND */
 
     .brand-und {
@@ -173,7 +169,6 @@
 
       transform: rotate(-6deg);
     }
-
 
     /* WALDWURZ */
 
@@ -229,7 +224,6 @@
       white-space: nowrap;
     }
 
-
     /* =========================
        CONTENT
     ========================== */
@@ -277,9 +271,7 @@
       margin: 0 0 16px;
 
       font-size: 44px;
-
       line-height: 1.05;
-
       letter-spacing: -1px;
     }
 
@@ -293,7 +285,6 @@
       color: var(--muted);
 
       font-size: 18px;
-
       line-height: 1.6;
     }
 
@@ -329,9 +320,8 @@
       font-size: 15px;
     }
 
-
     /* =========================
-       FORM
+       FORMULAR
     ========================== */
 
     form {
@@ -360,9 +350,7 @@
 
     .section-title {
       font-size: 20px;
-
       font-weight: 800;
-
       margin-bottom: 7px;
     }
 
@@ -372,23 +360,17 @@
 
     .section-hint {
       color: var(--muted);
-
       font-size: 14px;
-
       margin-bottom: 15px;
     }
 
-
     /* =========================
-       RATING
+       BEWERTUNG
     ========================== */
 
     .rating {
       display: grid;
-
-      grid-template-columns:
-        repeat(5,1fr);
-
+      grid-template-columns: repeat(5,1fr);
       gap: 9px;
     }
 
@@ -422,17 +404,13 @@
 
     .rating-number {
       display: block;
-
       font-size: 19px;
-
       font-weight: 800;
     }
 
     .rating-emoji {
       display: block;
-
       margin-top: 4px;
-
       font-size: 19px;
     }
 
@@ -440,13 +418,11 @@
       background:
         rgba(229,133,45,.14);
 
-      border-color:
-        var(--orange);
+      border-color: var(--orange);
 
       transform:
         translateY(-2px);
     }
-
 
     /* =========================
        INPUTS
@@ -482,7 +458,6 @@
 
     textarea {
       resize: vertical;
-
       min-height: 95px;
     }
 
@@ -497,13 +472,9 @@
 
     .two-cols {
       display: grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
-
 
     /* =========================
        THEMEN
@@ -511,15 +482,12 @@
 
     .checkbox-group {
       display: grid;
-
       gap: 9px;
     }
 
     .checkbox {
       display: flex;
-
       align-items: flex-start;
-
       gap: 11px;
 
       padding: 13px;
@@ -580,35 +548,20 @@
       line-height: 1.4;
     }
 
-
     /* =========================
-       DATENSCHUTZ
+       DATENSCHUTZ CLEAN
     ========================== */
-
-    .privacy-box {
-      padding: 18px;
-
-      border-radius: 18px;
-
-      background:
-        #fffaf6;
-
-      border:
-        1px solid rgba(229,133,45,.16);
-    }
 
     .privacy-consent {
       display: flex;
-
       align-items: flex-start;
+      gap: 10px;
 
-      gap: 11px;
+      padding: 4px 2px;
 
       font-size: 13px;
-
+      color: var(--muted);
       line-height: 1.55;
-
-      color: #554c45;
     }
 
     .privacy-consent input {
@@ -617,80 +570,16 @@
 
       margin-top: 2px;
 
-      flex-shrink: 0;
-
       accent-color: var(--green);
+
+      flex-shrink: 0;
     }
 
-    .privacy-consent strong {
-      color: var(--text);
-    }
-
-    .privacy-details {
-      margin-top: 14px;
-
-      border-top:
-        1px solid rgba(229,133,45,.13);
-
-      padding-top: 12px;
-    }
-
-    .privacy-details summary {
-      cursor: pointer;
-
+    .privacy-consent a {
       color: var(--green-dark);
-
-      font-size: 13px;
-
       font-weight: 700;
-
-      user-select: none;
+      text-decoration: underline;
     }
-
-    .privacy-content {
-      padding-top: 13px;
-
-      font-size: 12px;
-
-      line-height: 1.6;
-
-      color: var(--muted);
-    }
-
-    .privacy-content h4 {
-      margin:
-        14px 0 4px;
-
-      color: var(--text);
-
-      font-size: 13px;
-    }
-
-    .privacy-content p {
-      margin:
-        0 0 8px;
-    }
-
-    .privacy-content a {
-      color: var(--green-dark);
-    }
-
-    .privacy-note {
-      padding: 11px 12px;
-
-      border-radius: 10px;
-
-      margin: 10px 0;
-
-      background:
-        rgba(120,148,71,.08);
-
-      border:
-        1px solid rgba(120,148,71,.18);
-
-      color: #4f6330;
-    }
-
 
     /* =========================
        BUTTON
@@ -701,7 +590,6 @@
       width: 100%;
 
       border: none;
-
       border-radius: 17px;
 
       padding: 17px 20px;
@@ -716,7 +604,6 @@
       color: #fff;
 
       font-size: 18px;
-
       font-weight: 900;
 
       cursor: pointer;
@@ -744,15 +631,12 @@
 
     .submit-button:disabled {
       opacity: .6;
-
       cursor: default;
-
       transform: none;
     }
 
-
     /* =========================
-       STATUS / FEHLER
+       FEHLER
     ========================== */
 
     .status-message {
@@ -763,7 +647,6 @@
       border-radius: 12px;
 
       font-size: 13px;
-
       line-height: 1.4;
 
       text-align: center;
@@ -772,19 +655,16 @@
     .status-message.error {
       display: block;
 
-      background:
-        #fff0ed;
+      background: #fff0ed;
 
-      color:
-        #9d3f32;
+      color: #9d3f32;
 
       border:
         1px solid rgba(197,74,58,.20);
     }
 
-
     /* =========================
-       SUCCESS
+       ERFOLGSSEITE
     ========================== */
 
     .success {
@@ -814,7 +694,6 @@
       color: var(--muted);
 
       font-size: 17px;
-
       line-height: 1.6;
     }
 
@@ -850,7 +729,6 @@
 
     .success-next p {
       margin-bottom: 20px;
-
       font-size: 16px;
     }
 
@@ -872,7 +750,6 @@
       font-weight: 800;
     }
 
-
     /* =========================
        RESPONSIVE
     ========================== */
@@ -881,15 +758,12 @@
 
       .brand-header {
         padding: 20px 12px;
-
         gap: 14px;
-
         flex-wrap: wrap;
       }
 
       .ph-logo-box {
         width: 180px;
-
         height: 105px;
       }
 
@@ -903,30 +777,24 @@
 
       .waldwurz-logo-box {
         width: 145px;
-
         height: 100px;
       }
 
       .waldwurz-spruch {
         max-width: 205px;
-
         font-size: 12px;
-
         padding-left: 12px;
       }
 
       .waldwurz-spruch span {
         white-space: normal;
       }
-
     }
-
 
     @media(max-width:700px) {
 
       .page {
         padding: 12px;
-
         align-items: flex-start;
       }
 
@@ -945,7 +813,6 @@
 
       .ph-logo-box {
         width: 190px;
-
         height: 108px;
       }
 
@@ -963,7 +830,6 @@
 
       .waldwurz-logo-box {
         width: 135px;
-
         height: 100px;
       }
 
@@ -1021,15 +887,12 @@
       .discover-button {
         width: 100%;
       }
-
     }
-
 
     @media(max-width:430px) {
 
       .ph-logo-box {
         width: 180px;
-
         height: 103px;
       }
 
@@ -1039,7 +902,6 @@
 
       .waldwurz-logo-box {
         width: 120px;
-
         height: 90px;
       }
 
@@ -1050,12 +912,10 @@
 
         padding-left: 10px;
       }
-
     }
 
   </style>
 </head>
-
 
 <body>
 
@@ -1063,10 +923,7 @@
 
   <main class="shell">
 
-
-    <!-- =========================
-         HEADER
-    ========================== -->
+    <!-- HEADER -->
 
     <header class="brand-header">
 
@@ -1079,11 +936,9 @@
 
       </div>
 
-
       <div class="brand-und">
         und
       </div>
-
 
       <div class="waldwurz-area">
 
@@ -1095,7 +950,6 @@
           >
 
         </div>
-
 
         <div class="waldwurz-spruch">
 
@@ -1114,16 +968,12 @@
     </header>
 
 
-
-    <!-- =========================
-         CONTENT
-    ========================== -->
+    <!-- CONTENT -->
 
     <div
       id="formArea"
       class="content"
     >
-
 
       <!-- INTRO -->
 
@@ -1133,15 +983,10 @@
           🎭 Vereins-Feedback
         </div>
 
-
         <h1>
-
           Deine Meinung<br>
-
           <span>zählt.</span>
-
         </h1>
-
 
         <p class="lead">
 
@@ -1153,7 +998,6 @@
           weiterzuentwickeln.
 
         </p>
-
 
         <div class="partner-box">
 
@@ -1177,7 +1021,6 @@
       </section>
 
 
-
       <!-- FORMULAR -->
 
       <section>
@@ -1187,7 +1030,6 @@
           action="https://formspree.io/f/moeakpep"
           method="POST"
         >
-
 
           <!-- BEWERTUNG -->
 
@@ -1201,14 +1043,11 @@
 
             </div>
 
-
             <div class="section-hint">
               Einfach kurz auswählen.
             </div>
 
-
             <div class="rating">
-
 
               <label>
 
@@ -1233,7 +1072,6 @@
 
               </label>
 
-
               <label>
 
                 <input
@@ -1255,7 +1093,6 @@
                 </div>
 
               </label>
-
 
               <label>
 
@@ -1279,7 +1116,6 @@
 
               </label>
 
-
               <label>
 
                 <input
@@ -1301,7 +1137,6 @@
                 </div>
 
               </label>
-
 
               <label>
 
@@ -1325,11 +1160,9 @@
 
               </label>
 
-
             </div>
 
           </div>
-
 
 
           <!-- FEEDBACK -->
@@ -1340,11 +1173,9 @@
               Dein Feedback
             </div>
 
-
             <div class="section-hint">
               Optional – ein paar Worte reichen völlig.
             </div>
-
 
             <textarea
               name="Feedback"
@@ -1352,7 +1183,6 @@
             ></textarea>
 
           </div>
-
 
 
           <!-- THEMEN -->
@@ -1367,7 +1197,6 @@
 
             </div>
 
-
             <div class="section-hint">
 
               Mindestens ein Thema auswählen ·
@@ -1375,12 +1204,10 @@
 
             </div>
 
-
             <div
               class="checkbox-group"
               id="themenGruppe"
             >
-
 
               <label class="checkbox">
 
@@ -1393,23 +1220,16 @@
                 <span>
 
                   <span class="checkbox-title">
-
                     💰 Geldanlage & Vermögensaufbau
-
                   </span>
 
                   <span class="checkbox-desc">
-
-                    Sparen, Investment und langfristiger
-                    Vermögensaufbau
-
+                    Sparen, Investment und langfristiger Vermögensaufbau
                   </span>
 
                 </span>
 
               </label>
-
-
 
               <label class="checkbox">
 
@@ -1422,23 +1242,16 @@
                 <span>
 
                   <span class="checkbox-title">
-
                     🏡 Immobilien & Finanzierung
-
                   </span>
 
                   <span class="checkbox-desc">
-
-                    Immobilie kaufen, finanzieren
-                    oder modernisieren
-
+                    Immobilie kaufen, finanzieren oder modernisieren
                   </span>
 
                 </span>
 
               </label>
-
-
 
               <label class="checkbox">
 
@@ -1451,23 +1264,16 @@
                 <span>
 
                   <span class="checkbox-title">
-
                     🛡️ Absicherung & Vorsorge
-
                   </span>
 
                   <span class="checkbox-desc">
-
-                    Persönliche Absicherung,
-                    Vorsorge und Versicherungen
-
+                    Persönliche Absicherung, Vorsorge und Versicherungen
                   </span>
 
                 </span>
 
               </label>
-
-
 
               <label class="checkbox">
 
@@ -1480,23 +1286,16 @@
                 <span>
 
                   <span class="checkbox-title">
-
                     🎭 Häs & Vereinsausstattung
-
                   </span>
 
                   <span class="checkbox-desc">
-
-                    Fragen rund um Häs,
-                    Ausstattung und persönliches Eigentum
-
+                    Fragen rund um Häs, Ausstattung und persönliches Eigentum
                   </span>
 
                 </span>
 
               </label>
-
-
 
               <label class="checkbox">
 
@@ -1509,23 +1308,16 @@
                 <span>
 
                   <span class="checkbox-title">
-
                     ❤️ Krankenversicherung
-
                   </span>
 
                   <span class="checkbox-desc">
-
-                    Gesetzlich, privat und
-                    Zusatzabsicherungen
-
+                    Gesetzlich, privat und Zusatzabsicherungen
                   </span>
 
                 </span>
 
               </label>
-
-
 
               <label class="checkbox">
 
@@ -1538,23 +1330,16 @@
                 <span>
 
                   <span class="checkbox-title">
-
                     👨‍👩‍👧 Eltern & Kinder
-
                   </span>
 
                   <span class="checkbox-desc">
-
-                    Absicherung, Vorsorge und
-                    Vermögensaufbau für Familien
-
+                    Absicherung, Vorsorge und Vermögensaufbau für Familien
                   </span>
 
                 </span>
 
               </label>
-
-
 
               <label class="checkbox">
 
@@ -1567,27 +1352,20 @@
                 <span>
 
                   <span class="checkbox-title">
-
                     🤝 Empfehlungsgeber werden
-
                   </span>
 
                   <span class="checkbox-desc">
-
-                    Du kennst jemanden,
-                    dem wir weiterhelfen können?
-
+                    Du kennst jemanden, dem wir weiterhelfen können?
                   </span>
 
                 </span>
 
               </label>
 
-
             </div>
 
           </div>
-
 
 
           <!-- KONTAKT -->
@@ -1602,7 +1380,6 @@
 
             </div>
 
-
             <div class="two-cols">
 
               <input
@@ -1613,7 +1390,6 @@
                 required
               >
 
-
               <input
                 type="text"
                 name="Nachname"
@@ -1623,7 +1399,6 @@
               >
 
             </div>
-
 
             <div style="margin-top:12px;">
 
@@ -1637,7 +1412,6 @@
 
             </div>
 
-
             <div
               class="section-hint"
               style="margin-top:10px;margin-bottom:0;"
@@ -1650,382 +1424,38 @@
           </div>
 
 
+          <!-- DATENSCHUTZ CLEAN -->
 
-          <!-- =========================
-               DATENSCHUTZ
-          ========================== -->
+          <label class="privacy-consent">
 
-          <div class="privacy-box">
+            <input
+              type="checkbox"
+              name="Einwilligung_Datenverarbeitung"
+              value="Ja"
+              required
+            >
 
+            <span>
 
-            <label class="privacy-consent">
+              Ich habe die
 
-              <input
-                type="checkbox"
-                name="Einwilligung_Datenverarbeitung"
-                value="Ja"
-                required
+              <a
+                href="https://www.ph-finanzen.de/datenschutz-feedbackbogen.html"
+                target="_blank"
+                rel="noopener noreferrer"
               >
+                Datenschutzhinweise
+              </a>
 
+              gelesen und willige in die Verarbeitung meiner Angaben
+              zur Auswertung des Feedbacks sowie zur Kontaktaufnahme
+              zu den von mir ausgewählten Themen ein.
 
-              <span>
+              <span class="required-star">*</span>
 
-                <strong>
-                  Einwilligung zur Datenverarbeitung *
-                </strong>
+            </span>
 
-                <br><br>
-
-                Ich willige ein, dass meine im Feedbackbogen
-                angegebenen personenbezogenen Daten zur
-                Auswertung meines Feedbacks sowie zur
-                Kontaktaufnahme durch einen zuständigen
-                Vermögensberater zu den von mir ausgewählten
-                Themen verarbeitet werden.
-
-                Die technische Übermittlung des Formulars
-                erfolgt über den Dienst Formspree.
-
-                Meine Einwilligung kann ich jederzeit mit
-                Wirkung für die Zukunft widerrufen.
-
-              </span>
-
-            </label>
-
-
-
-            <details class="privacy-details">
-
-              <summary>
-
-                Datenschutzhinweise anzeigen
-
-              </summary>
-
-
-              <div class="privacy-content">
-
-
-                <h4>
-                  1. Verantwortliche Stelle
-                </h4>
-
-                <p>
-
-                  Deutsche Vermögensberatung Aktiengesellschaft DVAG<br>
-
-                  Wilhelm-Leuschner-Straße 24<br>
-
-                  60329 Frankfurt am Main<br>
-
-                  Telefon: 069 / 2384-0<br>
-
-                  E-Mail: info@dvag.com
-
-                </p>
-
-
-                <p>
-
-                  Den Datenschutzbeauftragten der DVAG erreichst du
-                  unter der genannten Anschrift mit dem Zusatz
-                  „Datenschutzbeauftragter“ oder per E-Mail unter
-
-                  <strong>
-                    datenschutz@dvag.com
-                  </strong>.
-
-                </p>
-
-
-
-                <h4>
-                  2. Welche Daten werden erhoben?
-                </h4>
-
-                <p>
-
-                  Im Rahmen dieses Feedbackbogens werden folgende
-                  personenbezogene Daten erhoben und verarbeitet:
-
-                </p>
-
-                <p>
-
-                  Vorname, Nachname, Telefonnummer,
-                  Bewertung, ausgewählte Interessenthemen
-                  sowie freiwillige Angaben im Freitextfeld.
-
-                </p>
-
-
-
-                <h4>
-                  3. Zweck der Verarbeitung
-                </h4>
-
-                <p>
-
-                  Die Daten werden zur Auswertung des
-                  Feedbackbogens und zur Durchführung sowie
-                  Weiterentwicklung des Vereinssponsorings
-                  verarbeitet.
-
-                </p>
-
-                <p>
-
-                  Da mindestens ein Interessenthema ausgewählt wird,
-                  werden die angegebenen Kontaktdaten außerdem dazu
-                  verwendet, durch einen zuständigen Vermögensberater
-                  zu diesen ausgewählten Themen Kontakt aufzunehmen.
-
-                </p>
-
-
-
-                <h4>
-                  4. Rechtsgrundlage
-                </h4>
-
-                <p>
-
-                  Die Verarbeitung der Daten für die oben genannten
-                  Zwecke erfolgt auf Grundlage der erteilten
-                  Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO.
-
-                </p>
-
-                <p>
-
-                  Die Einwilligung ist freiwillig und kann jederzeit
-                  mit Wirkung für die Zukunft widerrufen werden.
-
-                </p>
-
-
-
-                <h4>
-                  5. Technische Verarbeitung über Formspree
-                </h4>
-
-                <p>
-
-                  Für die technische Entgegennahme und Übermittlung
-                  der über dieses Formular eingegebenen Daten wird
-                  der Dienst Formspree eingesetzt.
-
-                </p>
-
-                <p>
-
-                  Die von dir eingegebenen Formulardaten werden daher
-                  technisch an Formspree übertragen, dort verarbeitet
-                  und an den Empfänger des Feedbackbogens
-                  weitergeleitet.
-
-                </p>
-
-                <div class="privacy-note">
-
-                  Formspree gibt an, die Anforderungen der DSGVO
-                  einzuhalten und als Datenverarbeiter für
-                  internationale Datenübermittlungen
-                  Standardvertragsklauseln (Standard Contractual
-                  Clauses – SCCs) einzusetzen.
-
-                </div>
-
-                <p>
-
-                  Weitere Informationen zu Datenschutz und Sicherheit
-                  bei Formspree findest du unter:
-
-                  <br><br>
-
-                  <a
-                    href="https://formspree.io/security/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Informationen zu Datenschutz und Sicherheit
-                    bei Formspree →
-                  </a>
-
-                </p>
-
-
-
-                <h4>
-                  6. Empfänger der Daten
-                </h4>
-
-                <p>
-
-                  Empfänger der Daten können die Deutsche
-                  Vermögensberatung AG DVAG, der zuständige
-                  Vermögensberater sowie Formspree als
-                  technischer Dienstleister für die
-                  Formularübermittlung sein.
-
-                </p>
-
-                <p>
-
-                  Eine weitere Nutzung erfolgt nur im Rahmen
-                  der angegebenen Zwecke oder soweit hierfür
-                  eine andere gesetzliche Rechtsgrundlage besteht.
-
-                </p>
-
-
-
-                <h4>
-                  7. Speicherdauer
-                </h4>
-
-                <p>
-
-                  Die personenbezogenen Daten werden nur so lange
-                  gespeichert, wie dies für die genannten Zwecke
-                  erforderlich ist oder gesetzliche
-                  Aufbewahrungspflichten bestehen.
-
-                </p>
-
-                <p>
-
-                  Wird die Einwilligung widerrufen, werden die auf
-                  dieser Einwilligung beruhenden Daten gelöscht,
-                  sofern keine andere Rechtsgrundlage oder
-                  gesetzliche Aufbewahrungspflicht einer Löschung
-                  entgegensteht.
-
-                </p>
-
-
-
-                <h4>
-                  8. Widerruf
-                </h4>
-
-                <p>
-
-                  Du kannst deine Einwilligung jederzeit mit Wirkung
-                  für die Zukunft widerrufen.
-
-                </p>
-
-                <p>
-
-                  Der Widerruf kann gegenüber dem zuständigen
-                  Vermögensberater oder per E-Mail an
-
-                  <strong>
-                    datenschutz@dvag.com
-                  </strong>
-
-                  erfolgen.
-
-                </p>
-
-
-
-                <h4>
-                  9. Deine Datenschutzrechte
-                </h4>
-
-                <p>
-
-                  Im Rahmen der gesetzlichen Voraussetzungen hast du
-                  insbesondere das Recht auf Auskunft über deine
-                  personenbezogenen Daten sowie auf Berichtigung,
-                  Löschung, Einschränkung der Verarbeitung und
-                  Datenübertragbarkeit.
-
-                </p>
-
-                <p>
-
-                  Außerdem kannst du eine erteilte Einwilligung
-                  jederzeit mit Wirkung für die Zukunft widerrufen.
-
-                </p>
-
-
-
-                <h4>
-                  10. Beschwerderecht
-                </h4>
-
-                <p>
-
-                  Du hast das Recht, dich bei einer zuständigen
-                  Datenschutzaufsichtsbehörde über die Verarbeitung
-                  deiner personenbezogenen Daten zu beschweren.
-
-                </p>
-
-
-
-                <h4>
-                  11. Keine lokale Speicherung auf deinem Gerät
-                </h4>
-
-                <p>
-
-                  Die über das Formular eingegebenen Daten werden
-                  von dieser Webseite nicht dauerhaft im Browser
-                  oder im lokalen Speicher deines Gerätes
-                  gespeichert.
-
-                </p>
-
-                <p>
-
-                  Ist keine Internetverbindung vorhanden oder kann
-                  Formspree nicht erreicht werden, wird das Formular
-                  nicht übermittelt und muss später erneut abgesendet
-                  werden.
-
-                </p>
-
-
-
-                <h4>
-                  12. Weitere Datenschutzinformationen
-                </h4>
-
-                <p>
-
-                  Weitere Informationen zur Datenverarbeitung durch
-                  die Deutsche Vermögensberatung findest du in den
-                  offiziellen Datenschutzhinweisen der DVAG.
-
-                </p>
-
-                <p>
-
-                  <a
-                    href="https://www.dvag.de/dvag/datenschutz.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-
-                    Datenschutzhinweise der DVAG öffnen →
-
-                  </a>
-
-                </p>
-
-
-              </div>
-
-            </details>
-
-          </div>
-
+          </label>
 
 
           <!-- FORMSPREE -->
@@ -2036,7 +1466,6 @@
             value="Neues Vereins-Feedback – Narrenzunft Waldwurz Albersbösch 1980 e. V."
           >
 
-
           <input
             type="hidden"
             name="Formular"
@@ -2044,13 +1473,7 @@
           >
 
 
-          <input
-            type="hidden"
-            name="Datenverarbeitung"
-            value="Einwilligung wurde aktiv bestätigt"
-          >
-
-
+          <!-- ABSENDEN -->
 
           <button
             id="submitButton"
@@ -2068,7 +1491,6 @@
             class="status-message"
           ></div>
 
-
         </form>
 
       </section>
@@ -2076,35 +1498,24 @@
     </div>
 
 
-
-    <!-- =========================
-         SUCCESS
-    ========================== -->
+    <!-- ERFOLGSSEITE -->
 
     <div
       id="successArea"
       class="success"
     >
 
-
       <div class="success-icon">
         🎭
       </div>
 
-
       <h2>
-
         Vielen Dank für dein Feedback!
-
       </h2>
 
-
       <p id="successText">
-
         Deine Angaben wurden erfolgreich übermittelt.
-
       </p>
-
 
       <p style="margin-top:18px;">
 
@@ -2113,16 +1524,11 @@
 
       </p>
 
-
       <div class="success-next">
 
-
         <h3>
-
           Du möchtest nicht so lange warten?
-
         </h3>
-
 
         <p>
 
@@ -2131,7 +1537,6 @@
           und deiner aktuellen Situation passen.
 
         </p>
-
 
         <a
           href="https://www.ph-finanzen.de/was-passt-zu-dir.html"
@@ -2144,9 +1549,7 @@
 
         </a>
 
-
       </div>
-
 
       <div class="success-brand">
 
@@ -2155,14 +1558,11 @@
 
       </div>
 
-
     </div>
-
 
   </main>
 
 </div>
-
 
 
 <script>
@@ -2186,9 +1586,7 @@
     document.getElementById("statusMessage");
 
 
-  /* =========================
-     THEMEN VALIDIEREN
-  ========================== */
+  /* THEMEN VALIDIEREN */
 
   const themenCheckboxen =
     document.querySelectorAll(
@@ -2239,9 +1637,7 @@
   validateThemen();
 
 
-  /* =========================
-     FEHLER ANZEIGEN
-  ========================== */
+  /* FEHLER */
 
   function showError(message) {
 
@@ -2265,9 +1661,7 @@
   }
 
 
-  /* =========================
-     FORMULAR ABSENDEN
-  ========================== */
+  /* ABSENDEN */
 
   form.addEventListener(
 
@@ -2285,8 +1679,6 @@
       validateThemen();
 
 
-      /* Pflichtfelder prüfen */
-
       if (!form.checkValidity()) {
 
         form.reportValidity();
@@ -2296,7 +1688,10 @@
       }
 
 
-      /* Keine Internetverbindung */
+      /*
+        Keine lokale Speicherung.
+        Ohne Internet wird nichts gespeichert.
+      */
 
       if (!navigator.onLine) {
 
@@ -2314,7 +1709,7 @@
 
 
       submitButton.textContent =
-        "Wird sicher übermittelt …";
+        "Wird übermittelt …";
 
 
       const formData =
@@ -2331,11 +1726,9 @@
 
             {
 
-              method:
-                "POST",
+              method: "POST",
 
-              body:
-                formData,
+              body: formData,
 
               headers: {
 
@@ -2415,7 +1808,6 @@
   );
 
 </script>
-
 
 </body>
 </html>
