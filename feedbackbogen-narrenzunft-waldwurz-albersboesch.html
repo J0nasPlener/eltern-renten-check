@@ -3,23 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#171717">
+  <meta name="theme-color" content="#17130f">
 
   <title>Feedback | PH Finanzen & Narrenzunft Waldwurz Albersbösch 1980 e. V.</title>
 
   <style>
 
     :root {
-      --bg: #141414;
-      --bg2: #201a1a;
+      --bg: #17130f;
+      --bg2: #221a14;
+
       --card: rgba(255,255,255,.07);
-      --gold: #e9bd67;
-      --gold-light: #f6dc9b;
-      --wine: #742b38;
+
+      --green: #7f9a3a;
+      --green-light: #a8bf5d;
+
+      --red: #b73a2f;
+      --red-light: #d85a49;
+
+      --orange: #e58a2f;
+      --orange-light: #f3b35f;
+
+      --brown: #5a3a24;
+
       --text: #ffffff;
-      --muted: #d0d0d0;
+      --muted: #d7d1cb;
       --border: rgba(255,255,255,.14);
-      --success: #8ed0a6;
+
+      --success: #8ebc67;
     }
 
     * {
@@ -38,13 +49,13 @@
       background:
         radial-gradient(
           circle at top left,
-          rgba(116,43,56,.42),
-          transparent 35%
+          rgba(183,58,47,.34),
+          transparent 34%
         ),
         radial-gradient(
           circle at bottom right,
-          rgba(233,189,103,.12),
-          transparent 30%
+          rgba(127,154,58,.22),
+          transparent 32%
         ),
         linear-gradient(
           135deg,
@@ -63,7 +74,6 @@
     .page {
       min-height: 100vh;
       padding: 28px 16px;
-
       display: flex;
       align-items: center;
       justify-content: center;
@@ -73,7 +83,7 @@
       width: 100%;
       max-width: 1100px;
 
-      background: rgba(18,18,18,.88);
+      background: rgba(18,16,13,.90);
 
       border: 1px solid var(--border);
       border-radius: 30px;
@@ -81,14 +91,14 @@
       overflow: hidden;
 
       box-shadow:
-        0 30px 80px rgba(0,0,0,.45);
+        0 30px 80px rgba(0,0,0,.48);
 
       backdrop-filter: blur(15px);
     }
 
 
     /* =====================================================
-       HEADER / CO-BRANDING
+       HEADER
     ===================================================== */
 
     .brand-header {
@@ -101,23 +111,23 @@
       gap: 28px;
 
       border-bottom:
-        1px solid var(--border);
+        1px solid rgba(229,138,47,.22);
 
       background:
         linear-gradient(
-          90deg,
-          rgba(233,189,103,.08),
-          rgba(116,43,56,.14)
+          105deg,
+          rgba(90,58,36,.28),
+          rgba(183,58,47,.12) 48%,
+          rgba(127,154,58,.12)
         );
     }
 
 
     /* =====================================================
-       PH FINANZEN LOGO
+       PH FINANZEN
     ===================================================== */
 
     .ph-logo-box {
-
       width: 235px;
       height: 135px;
 
@@ -132,18 +142,20 @@
       border-radius: 20px;
 
       overflow: hidden;
+
+      box-shadow:
+        0 10px 30px rgba(0,0,0,.20);
     }
 
     .ph-logo-box img {
-
       width: 100%;
       height: 100%;
 
       object-fit: contain;
 
       /*
-        Nur das Logo wird größer.
-        Der weiße Kasten verändert sich NICHT.
+        Der weiße Rahmen bleibt gleich groß.
+        Nur das PH-Logo darin wird vergrößert.
       */
 
       transform: scale(1.42);
@@ -156,10 +168,9 @@
     ===================================================== */
 
     .brand-und {
-
       flex-shrink: 0;
 
-      color: var(--gold);
+      color: var(--orange);
 
       font-family:
         "Palatino Linotype",
@@ -168,10 +179,8 @@
         Georgia,
         serif;
 
-      font-size: 30px;
-
+      font-size: 31px;
       font-weight: 700;
-
       font-style: italic;
 
       letter-spacing: -1px;
@@ -181,45 +190,35 @@
       transform: rotate(-6deg);
 
       text-shadow:
-        0 1px 0 rgba(255,255,255,.15),
-        0 3px 8px rgba(0,0,0,.35);
+        0 1px 0 rgba(255,255,255,.12),
+        0 3px 8px rgba(0,0,0,.40);
     }
 
 
     /* =====================================================
-       WALDWURZ BEREICH
+       WALDWURZ
     ===================================================== */
 
     .waldwurz-area {
-
       display: flex;
-
       align-items: center;
-
       gap: 22px;
     }
 
-
-    /* WALDWURZ LOGO */
-
     .waldwurz-logo-box {
-
       width: 210px;
       height: 135px;
 
       flex-shrink: 0;
 
       display: flex;
-
       align-items: center;
       justify-content: center;
     }
 
     .waldwurz-logo-box img {
-
       width: 100%;
       height: 100%;
-
       object-fit: contain;
     }
 
@@ -229,7 +228,6 @@
     ===================================================== */
 
     .waldwurz-spruch {
-
       max-width: 245px;
 
       font-family:
@@ -240,27 +238,23 @@
         serif;
 
       font-size: 15px;
-
       font-weight: 700;
-
       font-style: italic;
 
       line-height: 1.55;
 
-      color: #f1e8dc;
+      color: #f3ede7;
 
       text-align: left;
 
       padding-left: 20px;
 
       border-left:
-        2px solid rgba(233,189,103,.55);
+        2px solid var(--orange);
     }
 
     .waldwurz-spruch span {
-
       display: block;
-
       white-space: nowrap;
     }
 
@@ -270,7 +264,6 @@
     ===================================================== */
 
     .content {
-
       padding: 34px;
 
       display: grid;
@@ -287,14 +280,11 @@
     ===================================================== */
 
     .intro {
-
       padding-top: 8px;
     }
 
     .badge {
-
       display: inline-flex;
-
       align-items: center;
 
       gap: 7px;
@@ -304,22 +294,20 @@
       border-radius: 999px;
 
       background:
-        rgba(233,189,103,.14);
+        rgba(127,154,58,.16);
 
       border:
-        1px solid rgba(233,189,103,.30);
+        1px solid rgba(127,154,58,.38);
 
-      color: var(--gold-light);
+      color: var(--green-light);
 
       font-size: 14px;
-
       font-weight: 700;
 
       margin-bottom: 20px;
     }
 
     h1 {
-
       margin: 0 0 16px;
 
       font-size: 44px;
@@ -330,12 +318,10 @@
     }
 
     h1 span {
-
-      color: var(--gold);
+      color: var(--orange);
     }
 
     .lead {
-
       margin: 0 0 25px;
 
       color: var(--muted);
@@ -351,7 +337,6 @@
     ===================================================== */
 
     .partner-box {
-
       margin-top: 26px;
 
       padding: 20px;
@@ -361,21 +346,19 @@
       background:
         linear-gradient(
           135deg,
-          rgba(116,43,56,.22),
-          rgba(233,189,103,.08)
+          rgba(183,58,47,.18),
+          rgba(127,154,58,.10)
         );
 
       border:
-        1px solid rgba(233,189,103,.18);
+        1px solid rgba(229,138,47,.22);
     }
 
     .partner-box strong {
-
-      color: var(--gold-light);
+      color: var(--orange-light);
     }
 
     .partner-box p {
-
       margin: 8px 0 0;
 
       color: var(--muted);
@@ -391,26 +374,23 @@
     ===================================================== */
 
     form {
-
       display: grid;
-
       gap: 17px;
     }
 
     .form-card {
-
       padding: 22px;
 
       border-radius: 22px;
 
-      background: var(--card);
+      background:
+        rgba(255,255,255,.065);
 
       border:
         1px solid var(--border);
     }
 
     .section-title {
-
       font-size: 20px;
 
       font-weight: 800;
@@ -419,12 +399,10 @@
     }
 
     .required-star {
-
-      color: var(--gold);
+      color: var(--orange);
     }
 
     .section-hint {
-
       color: var(--muted);
 
       font-size: 14px;
@@ -438,7 +416,6 @@
     ===================================================== */
 
     .rating {
-
       display: grid;
 
       grid-template-columns:
@@ -448,17 +425,14 @@
     }
 
     .rating label {
-
       cursor: pointer;
     }
 
     .rating input {
-
       display: none;
     }
 
     .rating-box {
-
       padding: 12px 5px;
 
       border-radius: 14px;
@@ -474,8 +448,12 @@
       transition: .18s ease;
     }
 
-    .rating-number {
+    .rating-box:hover {
+      background:
+        rgba(229,138,47,.10);
+    }
 
+    .rating-number {
       display: block;
 
       font-size: 19px;
@@ -484,7 +462,6 @@
     }
 
     .rating-emoji {
-
       display: block;
 
       margin-top: 4px;
@@ -493,14 +470,17 @@
     }
 
     .rating input:checked + .rating-box {
-
       background:
-        rgba(233,189,103,.20);
+        rgba(229,138,47,.18);
 
-      border-color: var(--gold);
+      border-color:
+        var(--orange);
 
       transform:
         translateY(-2px);
+
+      box-shadow:
+        0 5px 18px rgba(229,138,47,.10);
     }
 
 
@@ -511,7 +491,6 @@
     input[type="text"],
     input[type="tel"],
     textarea {
-
       width: 100%;
 
       border:
@@ -524,7 +503,7 @@
       background:
         rgba(255,255,255,.95);
 
-      color: #171717;
+      color: #17130f;
 
       padding: 14px 15px;
 
@@ -534,7 +513,6 @@
     }
 
     textarea {
-
       resize: vertical;
 
       min-height: 95px;
@@ -542,13 +520,11 @@
 
     input:focus,
     textarea:focus {
-
       box-shadow:
-        0 0 0 3px rgba(233,189,103,.22);
+        0 0 0 3px rgba(229,138,47,.20);
     }
 
     .two-cols {
-
       display: grid;
 
       grid-template-columns:
@@ -563,14 +539,11 @@
     ===================================================== */
 
     .checkbox-group {
-
       display: grid;
-
       gap: 9px;
     }
 
     .checkbox {
-
       display: flex;
 
       align-items: flex-start;
@@ -593,45 +566,40 @@
     }
 
     .checkbox:hover {
-
       background:
-        rgba(255,255,255,.09);
+        rgba(127,154,58,.09);
     }
 
     .checkbox:has(input:checked) {
-
       background:
-        rgba(233,189,103,.13);
+        rgba(127,154,58,.14);
 
       border-color:
-        rgba(233,189,103,.55);
+        rgba(127,154,58,.65);
     }
 
     .checkbox input {
-
       width: 18px;
-
       height: 18px;
 
       margin-top: 2px;
 
-      accent-color: var(--gold);
+      accent-color:
+        var(--green);
 
       flex-shrink: 0;
     }
 
     .checkbox-title {
-
       font-weight: 700;
     }
 
     .checkbox-desc {
-
       display: block;
 
       margin-top: 3px;
 
-      color: #bebebe;
+      color: #c3bdb7;
 
       font-size: 12px;
 
@@ -644,7 +612,6 @@
     ===================================================== */
 
     .legal {
-
       display: flex;
 
       gap: 10px;
@@ -657,21 +624,19 @@
     }
 
     .legal input {
-
       margin-top: 3px;
 
       width: 17px;
-
       height: 17px;
 
-      accent-color: var(--gold);
+      accent-color:
+        var(--green);
 
       flex-shrink: 0;
     }
 
     a {
-
-      color: var(--gold-light);
+      color: var(--orange-light);
     }
 
 
@@ -681,7 +646,6 @@
 
     .submit-button,
     .discover-button {
-
       width: 100%;
 
       border: none;
@@ -693,11 +657,11 @@
       background:
         linear-gradient(
           135deg,
-          var(--gold),
-          var(--gold-light)
+          var(--orange),
+          var(--red-light)
         );
 
-      color: #171717;
+      color: #17130f;
 
       font-size: 18px;
 
@@ -712,20 +676,21 @@
       display: inline-block;
 
       text-align: center;
+
+      box-shadow:
+        0 8px 24px rgba(183,58,47,.14);
     }
 
     .submit-button:hover,
     .discover-button:hover {
-
       transform:
         translateY(-2px);
 
       box-shadow:
-        0 12px 30px rgba(233,189,103,.17);
+        0 12px 30px rgba(229,138,47,.22);
     }
 
     .submit-button:disabled {
-
       opacity: .6;
 
       cursor: default;
@@ -739,7 +704,6 @@
     ===================================================== */
 
     .network-status {
-
       margin-top: 8px;
 
       padding: 10px 12px;
@@ -759,13 +723,11 @@
     }
 
     .network-status.online {
-
-      color: var(--success);
+      color: var(--green-light);
     }
 
     .network-status.offline {
-
-      color: var(--gold-light);
+      color: var(--orange-light);
     }
 
 
@@ -774,7 +736,6 @@
     ===================================================== */
 
     .success {
-
       display: none;
 
       text-align: center;
@@ -783,19 +744,16 @@
     }
 
     .success-icon {
-
       font-size: 65px;
     }
 
     .success h2 {
-
       margin: 15px 0 10px;
 
       font-size: 36px;
     }
 
     .success p {
-
       max-width: 560px;
 
       margin: 0 auto;
@@ -808,7 +766,6 @@
     }
 
     .success-next {
-
       margin: 28px auto 0;
 
       max-width: 560px;
@@ -820,32 +777,29 @@
       background:
         linear-gradient(
           135deg,
-          rgba(233,189,103,.09),
-          rgba(116,43,56,.12)
+          rgba(127,154,58,.12),
+          rgba(183,58,47,.12)
         );
 
       border:
-        1px solid rgba(233,189,103,.24);
+        1px solid rgba(229,138,47,.25);
     }
 
     .success-next h3 {
-
       margin: 0 0 10px;
 
       font-size: 22px;
 
-      color: var(--gold-light);
+      color: var(--orange-light);
     }
 
     .success-next p {
-
       margin-bottom: 20px;
 
       font-size: 16px;
     }
 
     .discover-button {
-
       width: auto;
 
       min-width: 240px;
@@ -856,10 +810,9 @@
     }
 
     .success-brand {
-
       margin-top: 28px;
 
-      color: var(--gold);
+      color: var(--orange-light);
 
       font-weight: 800;
     }
@@ -872,7 +825,6 @@
     @media (max-width: 900px) {
 
       .brand-header {
-
         padding: 20px 12px;
 
         gap: 14px;
@@ -881,39 +833,30 @@
       }
 
       .ph-logo-box {
-
         width: 180px;
-
         height: 105px;
 
         border-radius: 17px;
       }
 
       .ph-logo-box img {
-
-        transform:
-          scale(1.42);
+        transform: scale(1.42);
       }
 
       .brand-und {
-
         font-size: 25px;
       }
 
       .waldwurz-area {
-
         gap: 13px;
       }
 
       .waldwurz-logo-box {
-
         width: 145px;
-
         height: 100px;
       }
 
       .waldwurz-spruch {
-
         max-width: 205px;
 
         font-size: 12px;
@@ -924,7 +867,6 @@
       }
 
       .waldwurz-spruch span {
-
         white-space: normal;
       }
     }
@@ -937,22 +879,16 @@
     @media (max-width: 700px) {
 
       .page {
-
         padding: 12px;
 
         align-items: flex-start;
       }
 
       .shell {
-
         border-radius: 22px;
       }
 
-
-      /* HEADER */
-
       .brand-header {
-
         flex-direction: column;
 
         gap: 13px;
@@ -962,22 +898,17 @@
       }
 
       .ph-logo-box {
-
         width: 190px;
-
         height: 108px;
 
         border-radius: 17px;
       }
 
       .ph-logo-box img {
-
-        transform:
-          scale(1.42);
+        transform: scale(1.42);
       }
 
       .brand-und {
-
         font-size: 25px;
 
         margin:
@@ -985,7 +916,6 @@
       }
 
       .waldwurz-area {
-
         width: 100%;
 
         justify-content: center;
@@ -994,14 +924,11 @@
       }
 
       .waldwurz-logo-box {
-
         width: 135px;
-
         height: 100px;
       }
 
       .waldwurz-spruch {
-
         max-width: 190px;
 
         font-size: 12px;
@@ -1012,88 +939,67 @@
       }
 
       .waldwurz-spruch span {
-
         white-space: normal;
       }
 
-
-      /* CONTENT */
-
       .content {
-
         display: block;
 
         padding: 24px 18px;
       }
 
       .intro {
-
         margin-bottom: 30px;
       }
 
       h1 {
-
         font-size: 32px;
       }
 
       .lead {
-
         font-size: 16px;
       }
 
       .form-card {
-
         padding: 17px;
       }
 
       .two-cols {
-
         grid-template-columns: 1fr;
       }
 
       .rating {
-
         gap: 6px;
       }
 
       .rating-box {
-
         padding:
           10px 2px;
       }
 
       .rating-number {
-
         font-size: 17px;
       }
 
       .rating-emoji {
-
         font-size: 17px;
       }
 
-
-      /* ERFOLGSSEITE */
-
       .success {
-
         padding:
           45px 18px;
       }
 
       .success h2 {
-
         font-size: 30px;
       }
 
       .success-next {
-
         padding:
           20px 16px;
       }
 
       .discover-button {
-
         width: 100%;
       }
     }
@@ -1106,26 +1012,20 @@
     @media (max-width: 430px) {
 
       .ph-logo-box {
-
         width: 180px;
-
         height: 103px;
       }
 
       .waldwurz-area {
-
         gap: 10px;
       }
 
       .waldwurz-logo-box {
-
         width: 120px;
-
         height: 90px;
       }
 
       .waldwurz-spruch {
-
         max-width: 175px;
 
         font-size: 11px;
@@ -1152,12 +1052,10 @@
          CO-BRANDING
     ====================================================== -->
 
-
     <header class="brand-header">
 
 
       <!-- PH FINANZEN -->
-
 
       <div class="ph-logo-box">
 
@@ -1171,16 +1069,12 @@
 
       <!-- NOSTALGISCHES UND -->
 
-
       <div class="brand-und">
-
         und
-
       </div>
 
 
       <!-- WALDWURZ + SPRUCH -->
-
 
       <div class="waldwurz-area">
 
@@ -1210,7 +1104,7 @@
           </span>
 
           <span>
-            alles brielt, die Waldwurz sind do
+            Alles brielt, die Waldwurz sind do
           </span>
 
         </div>
@@ -1226,25 +1120,19 @@
          FORMULAR
     ====================================================== -->
 
-
     <div
       id="formArea"
       class="content"
     >
 
 
-      <!-- ===================================================
-           LINKE SEITE
-      ==================================================== -->
-
+      <!-- LINKE SEITE -->
 
       <section class="intro">
 
 
         <div class="badge">
-
           🎭 Vereins-Feedback
-
         </div>
 
 
@@ -1262,10 +1150,8 @@
         <p class="lead">
 
           Gemeinsam für die Narrenzunft Waldwurz Albersbösch 1980 e. V.:
-
           Gib uns kurz dein Feedback und hilf dabei,
-          die Zusammenarbeit und das Vereinsleben
-          weiterzuentwickeln.
+          die Zusammenarbeit und das Vereinsleben weiterzuentwickeln.
 
         </p>
 
@@ -1294,10 +1180,7 @@
       </section>
 
 
-      <!-- ===================================================
-           RECHTE SEITE
-      ==================================================== -->
-
+      <!-- RECHTE SEITE -->
 
       <section>
 
@@ -1309,10 +1192,9 @@
         >
 
 
-          <!-- ===============================================
+          <!-- =================================================
                BEWERTUNG
-          ================================================ -->
-
+          ================================================== -->
 
           <div class="form-card">
 
@@ -1321,17 +1203,13 @@
 
               Wie zufrieden bist du?
 
-              <span class="required-star">
-                *
-              </span>
+              <span class="required-star">*</span>
 
             </div>
 
 
             <div class="section-hint">
-
               Einfach kurz auswählen.
-
             </div>
 
 
@@ -1460,25 +1338,20 @@
           </div>
 
 
-          <!-- ===============================================
+          <!-- =================================================
                FREIES FEEDBACK
-          ================================================ -->
-
+          ================================================== -->
 
           <div class="form-card">
 
 
             <div class="section-title">
-
               Dein Feedback
-
             </div>
 
 
             <div class="section-hint">
-
               Optional – ein paar Worte reichen völlig.
-
             </div>
 
 
@@ -1491,10 +1364,9 @@
           </div>
 
 
-          <!-- ===============================================
+          <!-- =================================================
                THEMEN
-          ================================================ -->
-
+          ================================================== -->
 
           <div class="form-card">
 
@@ -1503,9 +1375,7 @@
 
               Wobei können wir dich unterstützen?
 
-              <span class="required-star">
-                *
-              </span>
+              <span class="required-star">*</span>
 
             </div>
 
@@ -1523,11 +1393,7 @@
             >
 
 
-              <!-- GELDANLAGE -->
-
-
               <label class="checkbox">
-
 
                 <input
                   type="checkbox"
@@ -1535,35 +1401,22 @@
                   value="Geldanlage & Vermögensaufbau"
                 >
 
-
                 <span>
 
-
                   <span class="checkbox-title">
-
                     💰 Geldanlage & Vermögensaufbau
-
                   </span>
-
 
                   <span class="checkbox-desc">
-
                     Sparen, Investment und langfristiger Vermögensaufbau
-
                   </span>
 
-
                 </span>
-
 
               </label>
 
 
-              <!-- IMMOBILIEN -->
-
-
               <label class="checkbox">
-
 
                 <input
                   type="checkbox"
@@ -1571,35 +1424,22 @@
                   value="Immobilien & Finanzierung"
                 >
 
-
                 <span>
 
-
                   <span class="checkbox-title">
-
                     🏡 Immobilien & Finanzierung
-
                   </span>
-
 
                   <span class="checkbox-desc">
-
                     Immobilie kaufen, finanzieren oder modernisieren
-
                   </span>
 
-
                 </span>
-
 
               </label>
 
 
-              <!-- ABSICHERUNG -->
-
-
               <label class="checkbox">
-
 
                 <input
                   type="checkbox"
@@ -1607,35 +1447,22 @@
                   value="Absicherung & Vorsorge"
                 >
 
-
                 <span>
 
-
                   <span class="checkbox-title">
-
                     🛡️ Absicherung & Vorsorge
-
                   </span>
-
 
                   <span class="checkbox-desc">
-
                     Persönliche Absicherung, Vorsorge und Versicherungen
-
                   </span>
 
-
                 </span>
-
 
               </label>
 
 
-              <!-- HÄS -->
-
-
               <label class="checkbox">
-
 
                 <input
                   type="checkbox"
@@ -1643,35 +1470,22 @@
                   value="Häs & Vereinsausstattung"
                 >
 
-
                 <span>
 
-
                   <span class="checkbox-title">
-
                     🎭 Häs & Vereinsausstattung
-
                   </span>
-
 
                   <span class="checkbox-desc">
-
                     Fragen rund um Häs, Ausstattung und persönliches Eigentum
-
                   </span>
 
-
                 </span>
-
 
               </label>
 
 
-              <!-- KRANKENVERSICHERUNG -->
-
-
               <label class="checkbox">
-
 
                 <input
                   type="checkbox"
@@ -1679,35 +1493,22 @@
                   value="Krankenversicherung"
                 >
 
-
                 <span>
 
-
                   <span class="checkbox-title">
-
                     ❤️ Krankenversicherung
-
                   </span>
-
 
                   <span class="checkbox-desc">
-
                     Gesetzlich, privat und Zusatzabsicherungen
-
                   </span>
 
-
                 </span>
-
 
               </label>
 
 
-              <!-- ELTERN & KINDER -->
-
-
               <label class="checkbox">
-
 
                 <input
                   type="checkbox"
@@ -1715,35 +1516,22 @@
                   value="Eltern & Kinder"
                 >
 
-
                 <span>
 
-
                   <span class="checkbox-title">
-
                     👨‍👩‍👧 Eltern & Kinder
-
                   </span>
-
 
                   <span class="checkbox-desc">
-
                     Absicherung, Vorsorge und Vermögensaufbau für Familien
-
                   </span>
 
-
                 </span>
-
 
               </label>
 
 
-              <!-- EMPFEHLUNGSGEBER -->
-
-
               <label class="checkbox">
-
 
                 <input
                   type="checkbox"
@@ -1751,26 +1539,17 @@
                   value="Empfehlungsgeber"
                 >
 
-
                 <span>
 
-
                   <span class="checkbox-title">
-
                     🤝 Empfehlungsgeber werden
-
                   </span>
-
 
                   <span class="checkbox-desc">
-
                     Du kennst jemanden, dem wir weiterhelfen können?
-
                   </span>
 
-
                 </span>
-
 
               </label>
 
@@ -1781,18 +1560,15 @@
           </div>
 
 
-          <!-- ===============================================
+          <!-- =================================================
                KONTAKTDATEN
-          ================================================ -->
-
+          ================================================== -->
 
           <div class="form-card">
 
 
             <div class="section-title">
-
               Wie dürfen wir dich erreichen?
-
             </div>
 
 
@@ -1837,10 +1613,7 @@
 
             <div
               class="section-hint"
-              style="
-                margin-top:10px;
-                margin-bottom:0;
-              "
+              style="margin-top:10px; margin-bottom:0;"
             >
 
               * Pflichtfelder
@@ -1851,10 +1624,9 @@
           </div>
 
 
-          <!-- ===============================================
+          <!-- =================================================
                DATENSCHUTZ
-          ================================================ -->
-
+          ================================================== -->
 
           <label class="legal">
 
@@ -1880,9 +1652,7 @@
 
               gelesen.
 
-              <span class="required-star">
-                *
-              </span>
+              <span class="required-star">*</span>
 
             </span>
 
@@ -1890,10 +1660,7 @@
           </label>
 
 
-          <!-- ===============================================
-               FORMSPREE
-          ================================================ -->
-
+          <!-- FORMSPREE SUBJECT -->
 
           <input
             type="hidden"
@@ -1902,10 +1669,7 @@
           >
 
 
-          <!-- ===============================================
-               ABSENDEN
-          ================================================ -->
-
+          <!-- ABSENDEN -->
 
           <button
             id="submitButton"
@@ -1941,7 +1705,6 @@
          ERFOLGSSEITE
     ====================================================== -->
 
-
     <div
       id="successArea"
       class="success"
@@ -1949,23 +1712,17 @@
 
 
       <div class="success-icon">
-
         🎭
-
       </div>
 
 
       <h2>
-
         Vielen Dank für dein Feedback!
-
       </h2>
 
 
       <p id="successText">
-
         Deine Angaben wurden erfolgreich übermittelt.
-
       </p>
 
 
@@ -1977,16 +1734,11 @@
       </p>
 
 
-      <!-- NÄCHSTER SCHRITT -->
-
-
       <div class="success-next">
 
 
         <h3>
-
           Du möchtest nicht so lange warten?
-
         </h3>
 
 
@@ -2032,41 +1784,32 @@
 
 <script>
 
-
   /* =====================================================
      ELEMENTE
   ===================================================== */
 
-
   const form =
     document.getElementById("feedbackForm");
-
 
   const formArea =
     document.getElementById("formArea");
 
-
   const successArea =
     document.getElementById("successArea");
-
 
   const successText =
     document.getElementById("successText");
 
-
   const networkStatus =
     document.getElementById("networkStatus");
-
 
   const submitButton =
     document.getElementById("submitButton");
 
 
   /* =====================================================
-     THEMEN:
-     MINDESTENS EINE AUSWAHL
+     MINDESTENS EIN THEMA
   ===================================================== */
-
 
   const themenCheckboxen =
     document.querySelectorAll(
@@ -2076,33 +1819,26 @@
 
   function validateThemen() {
 
-
     const mindestensEins =
       Array
         .from(themenCheckboxen)
         .some(
-          checkbox =>
-            checkbox.checked
+          checkbox => checkbox.checked
         );
 
 
     if (themenCheckboxen.length > 0) {
 
-
       themenCheckboxen[0]
         .setCustomValidity(
 
           mindestensEins
-
             ? ""
-
             : "Bitte wähle mindestens ein Thema aus."
 
         );
 
-
     }
-
 
   }
 
@@ -2111,15 +1847,10 @@
 
     checkbox => {
 
-
       checkbox.addEventListener(
-
         "change",
-
         validateThemen
-
       );
-
 
     }
 
@@ -2133,41 +1864,27 @@
      ONLINE / OFFLINE STATUS
   ===================================================== */
 
-
   function updateNetworkStatus() {
-
 
     if (navigator.onLine) {
 
-
       networkStatus.textContent =
-
         "● Online – Feedback kann direkt übertragen werden.";
 
-
       networkStatus.className =
-
         "network-status online";
 
-
     }
-
 
     else {
 
-
       networkStatus.textContent =
-
         "● Offline – Feedback wird auf diesem Gerät gespeichert und später übertragen.";
 
-
       networkStatus.className =
-
         "network-status offline";
 
-
     }
-
 
   }
 
@@ -2178,12 +1895,9 @@
 
     () => {
 
-
       updateNetworkStatus();
 
-
       sendStoredFeedback();
-
 
     }
 
@@ -2191,11 +1905,8 @@
 
 
   window.addEventListener(
-
     "offline",
-
     updateNetworkStatus
-
   );
 
 
@@ -2206,9 +1917,7 @@
      FORMDATA → OBJEKT
   ===================================================== */
 
-
   function formDataToObject(formData) {
-
 
     const data = {};
 
@@ -2218,41 +1927,30 @@
       of formData.entries()
     ) {
 
-
       if (data[key]) {
 
-
         if (!Array.isArray(data[key])) {
-
 
           data[key] = [
             data[key]
           ];
 
-
         }
-
 
         data[key].push(value);
 
-
       }
-
 
       else {
 
-
         data[key] = value;
 
-
       }
-
 
     }
 
 
     return data;
-
 
   }
 
@@ -2261,18 +1959,13 @@
      OFFLINE SPEICHERN
   ===================================================== */
 
-
   function saveOffline(data) {
 
-
     const stored =
-
       JSON.parse(
 
         localStorage.getItem(
-
           "waldwurz_feedback_queue"
-
         ) || "[]"
 
       );
@@ -2289,7 +1982,6 @@
 
     );
 
-
   }
 
 
@@ -2297,34 +1989,25 @@
      GESPEICHERTE DATEN SENDEN
   ===================================================== */
 
-
   async function sendStoredFeedback() {
 
-
     if (!navigator.onLine) {
-
       return;
-
     }
 
 
     const stored =
-
       JSON.parse(
 
         localStorage.getItem(
-
           "waldwurz_feedback_queue"
-
         ) || "[]"
 
       );
 
 
     if (!stored.length) {
-
       return;
-
     }
 
 
@@ -2333,9 +2016,7 @@
 
     for (const item of stored) {
 
-
       try {
-
 
         const data =
           new FormData();
@@ -2347,9 +2028,7 @@
 
             ([key, value]) => {
 
-
               if (Array.isArray(value)) {
-
 
                 value.forEach(
 
@@ -2361,21 +2040,16 @@
 
                 );
 
-
               }
 
-
               else {
-
 
                 data.append(
                   key,
                   value
                 );
 
-
               }
-
 
             }
 
@@ -2383,24 +2057,19 @@
 
 
         const response =
-
           await fetch(
 
             form.action,
 
             {
-
               method: "POST",
 
               body: data,
 
               headers: {
-
                 "Accept":
                   "application/json"
-
               }
-
             }
 
           );
@@ -2408,24 +2077,17 @@
 
         if (!response.ok) {
 
-
           remaining.push(item);
-
 
         }
 
-
       }
-
 
       catch {
 
-
         remaining.push(item);
 
-
       }
-
 
     }
 
@@ -2440,14 +2102,12 @@
 
     );
 
-
   }
 
 
   /* =====================================================
      FORMULAR ABSENDEN
   ===================================================== */
-
 
   form.addEventListener(
 
@@ -2459,22 +2119,15 @@
       validateThemen();
 
 
-      /* -----------------------------------------
-         PFLICHTFELDER PRÜFEN
-      ----------------------------------------- */
-
+      /* PFLICHTFELDER */
 
       if (!form.checkValidity()) {
 
-
         event.preventDefault();
-
 
         form.reportValidity();
 
-
         return;
-
 
       }
 
@@ -2498,7 +2151,6 @@
          OFFLINE
       ================================================= */
 
-
       if (!navigator.onLine) {
 
 
@@ -2520,7 +2172,6 @@
 
 
         successText.textContent =
-
           "Dein Feedback wurde auf diesem Gerät gespeichert. Sobald wieder eine Internetverbindung besteht, versuchen wir es automatisch zu übertragen.";
 
 
@@ -2528,16 +2179,12 @@
 
 
         window.scrollTo({
-
           top: 0,
-
           behavior: "smooth"
-
         });
 
 
         return;
-
 
       }
 
@@ -2546,18 +2193,15 @@
          ONLINE → FORMSPREE
       ================================================= */
 
-
       try {
 
 
         const response =
-
           await fetch(
 
             form.action,
 
             {
-
               method:
                 form.method,
 
@@ -2565,12 +2209,9 @@
                 formData,
 
               headers: {
-
                 "Accept":
                   "application/json"
-
               }
-
             }
 
           );
@@ -2588,7 +2229,6 @@
 
 
           successText.textContent =
-
             "Deine Angaben wurden erfolgreich übermittelt.";
 
 
@@ -2596,39 +2236,25 @@
 
 
           window.scrollTo({
-
             top: 0,
-
             behavior: "smooth"
-
           });
 
 
         }
 
-
         else {
 
-
           throw new Error(
-
             "Serverantwort war nicht erfolgreich."
-
           );
-
 
         }
 
 
       }
 
-
       catch (error) {
-
-
-        /* -----------------------------------------
-           FALLBACK → LOKAL SPEICHERN
-        ----------------------------------------- */
 
 
         const data =
@@ -2649,7 +2275,6 @@
 
 
         successText.textContent =
-
           "Die Übertragung war gerade nicht möglich. Dein Feedback wurde deshalb auf diesem Gerät gespeichert und wird beim nächsten Online-Aufruf erneut übertragen.";
 
 
@@ -2657,13 +2282,9 @@
 
 
         window.scrollTo({
-
           top: 0,
-
           behavior: "smooth"
-
         });
-
 
       }
 
@@ -2674,12 +2295,10 @@
 
 
   /* =====================================================
-     OFFLINE DATEN BEIM LADEN SENDEN
+     GESPEICHERTES FEEDBACK BEIM LADEN SENDEN
   ===================================================== */
 
-
   sendStoredFeedback();
-
 
 </script>
 
