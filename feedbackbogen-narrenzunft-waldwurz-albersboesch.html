@@ -3,36 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#e7ead8">
+  <meta name="theme-color" content="#fff7ef">
 
   <title>Feedback | PH Finanzen & Narrenzunft Waldwurz Albersbösch 1980 e. V.</title>
 
   <style>
 
     :root {
-      --bg: #e7ead8;
-      --bg2: #d9dfc3;
+      --bg: #fff7ef;
+      --bg2: #ffe9d6;
 
-      --card: rgba(255,255,255,.78);
+      --card: rgba(255,255,255,.92);
 
-      --green: #6f8738;
-      --green-light: #a5b967;
-      --green-soft: #dce5c5;
-      --green-dark: #4f6429;
+      --orange: #e9852d;
+      --orange-light: #f7b768;
 
-      --red: #b84936;
-      --red-light: #d16a55;
+      --red: #c54a3a;
+      --red-light: #df6b57;
 
-      --orange: #d9842f;
-      --orange-light: #efb469;
+      --green: #789447;
+      --green-light: #a5ba73;
+      --green-dark: #586f34;
 
-      --brown: #604a38;
+      --brown: #6a4631;
 
-      --text: #2d3024;
-      --muted: #68705b;
-      --border: rgba(79,100,41,.18);
+      --text: #2b241f;
+      --muted: #6f665f;
+      --border: rgba(120,80,50,.12);
 
-      --success: #718d46;
+      --success: #789447;
     }
 
     * {
@@ -51,32 +50,27 @@
       background:
         radial-gradient(
           circle at top left,
-          rgba(184,73,54,.12),
+          rgba(229,133,45,.18),
           transparent 32%
         ),
         radial-gradient(
           circle at top right,
-          rgba(111,135,56,.28),
-          transparent 35%
+          rgba(197,74,58,.10),
+          transparent 32%
         ),
         radial-gradient(
-          circle at bottom left,
-          rgba(165,185,103,.30),
-          transparent 38%
+          circle at bottom right,
+          rgba(120,148,71,.10),
+          transparent 35%
         ),
         linear-gradient(
           135deg,
-          #eef0e1,
-          #d9dfc3
+          #fffaf5,
+          #ffead8
         );
 
       min-height: 100vh;
     }
-
-
-    /* =====================================================
-       SEITE
-    ===================================================== */
 
     .page {
       min-height: 100vh;
@@ -90,23 +84,18 @@
       width: 100%;
       max-width: 1100px;
 
-      background: rgba(250,250,241,.95);
+      background: rgba(255,255,255,.95);
 
-      border: 1px solid rgba(79,100,41,.18);
+      border: 1px solid rgba(229,133,45,.14);
       border-radius: 30px;
 
       overflow: hidden;
 
       box-shadow:
-        0 24px 60px rgba(66,76,43,.16);
-
-      backdrop-filter: blur(15px);
+        0 24px 60px rgba(120,70,35,.12);
     }
 
-
-    /* =====================================================
-       HEADER
-    ===================================================== */
+    /* HEADER */
 
     .brand-header {
       padding: 28px 34px;
@@ -118,21 +107,18 @@
       gap: 28px;
 
       border-bottom:
-        1px solid rgba(111,135,56,.24);
+        1px solid rgba(229,133,45,.18);
 
       background:
         linear-gradient(
           105deg,
-          #f7f4e9 0%,
-          #edf0dc 42%,
-          #dce5c5 100%
+          #fffaf5 0%,
+          #fff0e1 50%,
+          #fce6d2 100%
         );
     }
 
-
-    /* =====================================================
-       PH FINANZEN
-    ===================================================== */
+    /* PH LOGO */
 
     .ph-logo-box {
       width: 235px;
@@ -151,21 +137,20 @@
       overflow: hidden;
 
       box-shadow:
-        0 10px 26px rgba(79,100,41,.10);
+        0 10px 26px rgba(120,70,35,.10);
     }
 
     .ph-logo-box img {
       width: 100%;
       height: 100%;
+
       object-fit: contain;
+
       transform: scale(1.42);
       transform-origin: center;
     }
 
-
-    /* =====================================================
-       NOSTALGISCHES "UND"
-    ===================================================== */
+    /* UND */
 
     .brand-und {
       flex-shrink: 0;
@@ -190,13 +175,10 @@
 
       text-shadow:
         0 1px 0 rgba(255,255,255,.5),
-        0 2px 5px rgba(79,100,41,.10);
+        0 2px 5px rgba(120,70,35,.10);
     }
 
-
-    /* =====================================================
-       WALDWURZ
-    ===================================================== */
+    /* WALDWURZ */
 
     .waldwurz-area {
       display: flex;
@@ -220,11 +202,6 @@
       height: 100%;
       object-fit: contain;
     }
-
-
-    /* =====================================================
-       WALDWURZ SPRUCH
-    ===================================================== */
 
     .waldwurz-spruch {
       max-width: 245px;
@@ -257,10 +234,7 @@
       white-space: nowrap;
     }
 
-
-    /* =====================================================
-       CONTENT
-    ===================================================== */
+    /* CONTENT */
 
     .content {
       padding: 34px;
@@ -272,11 +246,6 @@
 
       gap: 42px;
     }
-
-
-    /* =====================================================
-       INTRO
-    ===================================================== */
 
     .intro {
       padding-top: 8px;
@@ -293,12 +262,12 @@
       border-radius: 999px;
 
       background:
-        rgba(165,185,103,.24);
+        rgba(229,133,45,.12);
 
       border:
-        1px solid rgba(111,135,56,.28);
+        1px solid rgba(229,133,45,.22);
 
-      color: var(--green-dark);
+      color: #a95d22;
 
       font-size: 14px;
       font-weight: 700;
@@ -310,16 +279,14 @@
       margin: 0 0 16px;
 
       font-size: 44px;
-
       line-height: 1.05;
-
       letter-spacing: -1px;
 
-      color: #2d3024;
+      color: var(--text);
     }
 
     h1 span {
-      color: var(--green-dark);
+      color: var(--orange);
     }
 
     .lead {
@@ -328,14 +295,10 @@
       color: var(--muted);
 
       font-size: 18px;
-
       line-height: 1.6;
     }
 
-
-    /* =====================================================
-       PARTNER BOX
-    ===================================================== */
+    /* PARTNER BOX */
 
     .partner-box {
       margin-top: 26px;
@@ -345,19 +308,19 @@
       background:
         linear-gradient(
           135deg,
-          rgba(165,185,103,.22),
-          rgba(220,229,197,.55)
+          rgba(229,133,45,.10),
+          rgba(197,74,58,.07)
         );
 
       border:
-        1px solid rgba(111,135,56,.22);
+        1px solid rgba(229,133,45,.18);
 
       box-shadow:
-        0 8px 20px rgba(79,100,41,.06);
+        0 8px 20px rgba(120,70,35,.05);
     }
 
     .partner-box strong {
-      color: var(--green-dark);
+      color: #aa5d22;
     }
 
     .partner-box p {
@@ -370,10 +333,7 @@
       font-size: 15px;
     }
 
-
-    /* =====================================================
-       FORMULAR
-    ===================================================== */
+    /* FORM */
 
     form {
       display: grid;
@@ -387,22 +347,22 @@
       background:
         linear-gradient(
           145deg,
-          rgba(255,255,255,.92),
-          rgba(235,240,218,.76)
+          #ffffff,
+          #fff8f2
         );
 
       border:
-        1px solid rgba(111,135,56,.16);
+        1px solid rgba(229,133,45,.12);
 
       box-shadow:
-        0 8px 22px rgba(79,100,41,.06);
+        0 8px 22px rgba(120,70,35,.05);
     }
 
     .section-title {
       font-size: 20px;
       font-weight: 800;
       margin-bottom: 7px;
-      color: #2d3024;
+      color: var(--text);
     }
 
     .required-star {
@@ -415,10 +375,7 @@
       margin-bottom: 15px;
     }
 
-
-    /* =====================================================
-       BEWERTUNG
-    ===================================================== */
+    /* RATING */
 
     .rating {
       display: grid;
@@ -440,19 +397,19 @@
       text-align: center;
 
       background:
-        rgba(248,249,240,.92);
+        rgba(255,255,255,.92);
 
       border:
-        1px solid rgba(111,135,56,.12);
+        1px solid rgba(229,133,45,.10);
 
       transition: .18s ease;
 
-      color: #2f3026;
+      color: var(--text);
     }
 
     .rating-box:hover {
       background:
-        rgba(165,185,103,.15);
+        rgba(229,133,45,.08);
     }
 
     .rating-number {
@@ -469,26 +426,19 @@
 
     .rating input:checked + .rating-box {
       background:
-        linear-gradient(
-          135deg,
-          rgba(165,185,103,.30),
-          rgba(220,229,197,.65)
-        );
+        rgba(229,133,45,.14);
 
       border-color:
-        var(--green);
+        var(--orange);
 
       transform:
         translateY(-2px);
 
       box-shadow:
-        0 5px 18px rgba(111,135,56,.10);
+        0 5px 18px rgba(229,133,45,.10);
     }
 
-
-    /* =====================================================
-       INPUTS
-    ===================================================== */
+    /* INPUTS */
 
     input[type="text"],
     input[type="tel"],
@@ -496,16 +446,16 @@
       width: 100%;
 
       border:
-        1px solid rgba(111,135,56,.16);
+        1px solid rgba(120,80,50,.14);
 
       outline: none;
 
       border-radius: 14px;
 
       background:
-        rgba(255,255,255,.96);
+        rgba(255,255,255,.97);
 
-      color: #2d3024;
+      color: var(--text);
 
       padding: 14px 15px;
 
@@ -516,7 +466,7 @@
 
     input::placeholder,
     textarea::placeholder {
-      color: #7b816d;
+      color: #8a817a;
     }
 
     textarea {
@@ -527,10 +477,10 @@
     input:focus,
     textarea:focus {
       box-shadow:
-        0 0 0 3px rgba(111,135,56,.18);
+        0 0 0 3px rgba(229,133,45,.18);
 
       border-color:
-        rgba(111,135,56,.46);
+        rgba(229,133,45,.45);
     }
 
     .two-cols {
@@ -539,10 +489,7 @@
       gap: 12px;
     }
 
-
-    /* =====================================================
-       THEMEN
-    ===================================================== */
+    /* CHECKBOXES */
 
     .checkbox-group {
       display: grid;
@@ -558,33 +505,32 @@
       border-radius: 14px;
       cursor: pointer;
 
-      background:
-        rgba(248,249,240,.92);
+      background: #ffffff;
 
       border:
-        1px solid rgba(111,135,56,.13);
+        1px solid rgba(229,133,45,.10);
 
       transition: .15s ease;
     }
 
     .checkbox:hover {
       background:
-        rgba(165,185,103,.18);
+        rgba(229,133,45,.08);
 
       border-color:
-        rgba(111,135,56,.28);
+        rgba(229,133,45,.22);
     }
 
     .checkbox:has(input:checked) {
       background:
         linear-gradient(
           135deg,
-          rgba(165,185,103,.30),
-          rgba(220,229,197,.65)
+          rgba(120,148,71,.12),
+          rgba(165,186,115,.16)
         );
 
       border-color:
-        rgba(79,100,41,.58);
+        rgba(88,111,52,.40);
     }
 
     .checkbox input {
@@ -600,21 +546,18 @@
 
     .checkbox-title {
       font-weight: 700;
-      color: #2d3024;
+      color: var(--text);
     }
 
     .checkbox-desc {
       display: block;
       margin-top: 3px;
-      color: #68705b;
+      color: var(--muted);
       font-size: 12px;
       line-height: 1.4;
     }
 
-
-    /* =====================================================
-       DATENSCHUTZ
-    ===================================================== */
+    /* LEGAL */
 
     .legal {
       display: flex;
@@ -636,14 +579,12 @@
       color: var(--green-dark);
     }
 
-
-    /* =====================================================
-       BUTTONS
-    ===================================================== */
+    /* BUTTONS */
 
     .submit-button,
     .discover-button {
       width: 100%;
+
       border: none;
       border-radius: 17px;
       padding: 17px 20px;
@@ -677,7 +618,7 @@
         translateY(-2px);
 
       box-shadow:
-        0 12px 30px rgba(217,132,47,.20);
+        0 12px 30px rgba(229,133,45,.20);
     }
 
     .submit-button:disabled {
@@ -686,10 +627,7 @@
       transform: none;
     }
 
-
-    /* =====================================================
-       ONLINE / OFFLINE
-    ===================================================== */
+    /* NETWORK */
 
     .network-status {
       margin-top: 8px;
@@ -700,12 +638,12 @@
       line-height: 1.4;
 
       background:
-        rgba(235,240,218,.65);
+        rgba(255,248,242,.88);
 
-      color: #6c755a;
+      color: #7a7068;
 
       border:
-        1px solid rgba(111,135,56,.10);
+        1px solid rgba(229,133,45,.08);
     }
 
     .network-status.online {
@@ -716,10 +654,7 @@
       color: #b66a2a;
     }
 
-
-    /* =====================================================
-       ERFOLGSSEITE
-    ===================================================== */
+    /* SUCCESS */
 
     .success {
       display: none;
@@ -735,7 +670,7 @@
     .success h2 {
       margin: 15px 0 10px;
       font-size: 36px;
-      color: #2d3024;
+      color: var(--text);
     }
 
     .success p {
@@ -755,21 +690,21 @@
       background:
         linear-gradient(
           135deg,
-          rgba(165,185,103,.22),
-          rgba(220,229,197,.55)
+          rgba(229,133,45,.10),
+          rgba(197,74,58,.06)
         );
 
       border:
-        1px solid rgba(111,135,56,.22);
+        1px solid rgba(229,133,45,.18);
 
       box-shadow:
-        0 8px 20px rgba(79,100,41,.06);
+        0 8px 20px rgba(120,70,35,.05);
     }
 
     .success-next h3 {
       margin: 0 0 10px;
       font-size: 22px;
-      color: var(--green-dark);
+      color: #aa5d22;
     }
 
     .success-next p {
@@ -786,14 +721,11 @@
 
     .success-brand {
       margin-top: 28px;
-      color: var(--green-dark);
+      color: #aa5d22;
       font-weight: 800;
     }
 
-
-    /* =====================================================
-       TABLET
-    ===================================================== */
+    /* TABLET */
 
     @media (max-width: 900px) {
 
@@ -838,10 +770,7 @@
       }
     }
 
-
-    /* =====================================================
-       MOBILE
-    ===================================================== */
+    /* MOBILE */
 
     @media (max-width: 700px) {
 
@@ -960,11 +889,6 @@
       }
     }
 
-
-    /* =====================================================
-       KLEINE HANDYS
-    ===================================================== */
-
     @media (max-width: 430px) {
 
       .ph-logo-box {
@@ -989,7 +913,6 @@
     }
 
   </style>
-
 </head>
 
 <body>
@@ -997,8 +920,6 @@
 <div class="page">
 
   <main class="shell">
-
-    <!-- CO-BRANDING -->
 
     <header class="brand-header">
 
@@ -1023,38 +944,20 @@
         </div>
 
         <div class="waldwurz-spruch">
-
-          <span>
-            Donner Blitz un Krache
-          </span>
-
-          <span>
-            Im Unterholz erwache
-          </span>
-
-          <span>
-            G’sichter knorrig aschtig froh
-          </span>
-
-          <span>
-            Alles brielt, die Waldwurz sind do
-          </span>
-
+          <span>Donner Blitz un Krache</span>
+          <span>Im Unterholz erwache</span>
+          <span>G’sichter knorrig aschtig froh</span>
+          <span>Alles brielt, die Waldwurz sind do</span>
         </div>
 
       </div>
 
     </header>
 
-
-    <!-- FORMULAR -->
-
     <div
       id="formArea"
       class="content"
     >
-
-      <!-- LINKE SEITE -->
 
       <section class="intro">
 
@@ -1088,9 +991,6 @@
 
       </section>
 
-
-      <!-- RECHTE SEITE -->
-
       <section>
 
         <form
@@ -1098,8 +998,6 @@
           action="https://formspree.io/f/moeakpep"
           method="POST"
         >
-
-          <!-- BEWERTUNG -->
 
           <div class="form-card">
 
@@ -1179,9 +1077,6 @@
 
           </div>
 
-
-          <!-- FREIES FEEDBACK -->
-
           <div class="form-card">
 
             <div class="section-title">
@@ -1198,9 +1093,6 @@
             ></textarea>
 
           </div>
-
-
-          <!-- THEMEN -->
 
           <div class="form-card">
 
@@ -1334,9 +1226,6 @@
 
           </div>
 
-
-          <!-- KONTAKTDATEN -->
-
           <div class="form-card">
 
             <div class="section-title">
@@ -1384,9 +1273,6 @@
 
           </div>
 
-
-          <!-- DATENSCHUTZ -->
-
           <label class="legal">
 
             <input
@@ -1410,13 +1296,11 @@
 
           </label>
 
-
           <input
             type="hidden"
             name="_subject"
             value="Neues Vereins-Feedback – Narrenzunft Waldwurz Albersbösch 1980 e. V."
           >
-
 
           <button
             id="submitButton"
@@ -1425,7 +1309,6 @@
           >
             🎭 Feedback absenden
           </button>
-
 
           <div
             id="networkStatus"
@@ -1439,9 +1322,6 @@
       </section>
 
     </div>
-
-
-    <!-- ERFOLGSSEITE -->
 
     <div
       id="successArea"
@@ -1498,7 +1378,6 @@
 
 </div>
 
-
 <script>
 
   const form =
@@ -1519,14 +1398,10 @@
   const submitButton =
     document.getElementById("submitButton");
 
-
-  /* MINDESTENS EIN THEMA */
-
   const themenCheckboxen =
     document.querySelectorAll(
       'input[name="Themen[]"]'
     );
-
 
   function validateThemen() {
 
@@ -1536,7 +1411,6 @@
         .some(
           checkbox => checkbox.checked
         );
-
 
     if (themenCheckboxen.length > 0) {
 
@@ -1551,25 +1425,16 @@
 
   }
 
-
   themenCheckboxen.forEach(
-
     checkbox => {
-
       checkbox.addEventListener(
         "change",
         validateThemen
       );
-
     }
-
   );
 
-
   validateThemen();
-
-
-  /* ONLINE / OFFLINE */
 
   function updateNetworkStatus() {
 
@@ -1581,9 +1446,7 @@
       networkStatus.className =
         "network-status online";
 
-    }
-
-    else {
+    } else {
 
       networkStatus.textContent =
         "● Offline – Feedback wird auf diesem Gerät gespeichert und später übertragen.";
@@ -1595,37 +1458,24 @@
 
   }
 
-
   window.addEventListener(
-
     "online",
-
     () => {
-
       updateNetworkStatus();
-
       sendStoredFeedback();
-
     }
-
   );
-
 
   window.addEventListener(
     "offline",
     updateNetworkStatus
   );
 
-
   updateNetworkStatus();
-
-
-  /* FORMDATA → OBJEKT */
 
   function formDataToObject(formData) {
 
     const data = {};
-
 
     for (
       const [key, value]
@@ -1635,18 +1485,12 @@
       if (data[key]) {
 
         if (!Array.isArray(data[key])) {
-
-          data[key] = [
-            data[key]
-          ];
-
+          data[key] = [data[key]];
         }
 
         data[key].push(value);
 
-      }
-
-      else {
+      } else {
 
         data[key] = value;
 
@@ -1654,41 +1498,27 @@
 
     }
 
-
     return data;
 
   }
-
-
-  /* OFFLINE SPEICHERN */
 
   function saveOffline(data) {
 
     const stored =
       JSON.parse(
-
         localStorage.getItem(
           "waldwurz_feedback_queue"
         ) || "[]"
-
       );
-
 
     stored.push(data);
 
-
     localStorage.setItem(
-
       "waldwurz_feedback_queue",
-
       JSON.stringify(stored)
-
     );
 
   }
-
-
-  /* GESPEICHERTE DATEN SENDEN */
 
   async function sendStoredFeedback() {
 
@@ -1696,24 +1526,18 @@
       return;
     }
 
-
     const stored =
       JSON.parse(
-
         localStorage.getItem(
           "waldwurz_feedback_queue"
         ) || "[]"
-
       );
-
 
     if (!stored.length) {
       return;
     }
 
-
     const remaining = [];
-
 
     for (const item of stored) {
 
@@ -1722,28 +1546,22 @@
         const data =
           new FormData();
 
-
         Object
           .entries(item)
           .forEach(
-
             ([key, value]) => {
 
               if (Array.isArray(value)) {
 
                 value.forEach(
-
                   v =>
                     data.append(
                       key,
                       v
                     )
-
                 );
 
-              }
-
-              else {
+              } else {
 
                 data.append(
                   key,
@@ -1753,38 +1571,26 @@
               }
 
             }
-
           );
-
 
         const response =
           await fetch(
-
             form.action,
-
             {
               method: "POST",
-
               body: data,
-
               headers: {
                 "Accept":
                   "application/json"
               }
             }
-
           );
 
-
         if (!response.ok) {
-
           remaining.push(item);
-
         }
 
-      }
-
-      catch {
+      } catch {
 
         remaining.push(item);
 
@@ -1792,31 +1598,20 @@
 
     }
 
-
     localStorage.setItem(
-
       "waldwurz_feedback_queue",
-
       JSON.stringify(
         remaining
       )
-
     );
 
   }
 
-
-  /* FORMULAR ABSENDEN */
-
   form.addEventListener(
-
     "submit",
-
     async function(event) {
 
-
       validateThemen();
-
 
       if (!form.checkValidity()) {
 
@@ -1828,72 +1623,50 @@
 
       }
 
-
       event.preventDefault();
 
-
-      submitButton.disabled =
-        true;
-
+      submitButton.disabled = true;
 
       submitButton.textContent =
         "Wird gespeichert …";
 
-
       const formData =
         new FormData(form);
 
-
-      /* OFFLINE */
-
       if (!navigator.onLine) {
-
 
         const data =
           formDataToObject(
             formData
           );
 
-
         saveOffline(data);
-
 
         formArea.style.display =
           "none";
 
-
         successArea.style.display =
           "block";
-
 
         successText.textContent =
           "Dein Feedback wurde auf diesem Gerät gespeichert. Sobald wieder eine Internetverbindung besteht, versuchen wir es automatisch zu übertragen.";
 
-
         form.reset();
-
 
         window.scrollTo({
           top: 0,
           behavior: "smooth"
         });
 
-
         return;
 
       }
 
-
-      /* ONLINE */
-
       try {
-
 
         const response =
           await fetch(
-
             form.action,
-
             {
               method:
                 form.method,
@@ -1906,37 +1679,27 @@
                   "application/json"
               }
             }
-
           );
 
-
         if (response.ok) {
-
 
           formArea.style.display =
             "none";
 
-
           successArea.style.display =
             "block";
-
 
           successText.textContent =
             "Deine Angaben wurden erfolgreich übermittelt.";
 
-
           form.reset();
-
 
           window.scrollTo({
             top: 0,
             behavior: "smooth"
           });
 
-
-        }
-
-        else {
+        } else {
 
           throw new Error(
             "Serverantwort war nicht erfolgreich."
@@ -1944,35 +1707,25 @@
 
         }
 
-
-      }
-
-      catch (error) {
-
+      } catch (error) {
 
         const data =
           formDataToObject(
             formData
           );
 
-
         saveOffline(data);
-
 
         formArea.style.display =
           "none";
 
-
         successArea.style.display =
           "block";
-
 
         successText.textContent =
           "Die Übertragung war gerade nicht möglich. Dein Feedback wurde deshalb auf diesem Gerät gespeichert und wird beim nächsten Online-Aufruf erneut übertragen.";
 
-
         form.reset();
-
 
         window.scrollTo({
           top: 0,
@@ -1981,18 +1734,12 @@
 
       }
 
-
     }
-
   );
-
-
-  /* GESPEICHERTES FEEDBACK BEIM LADEN SENDEN */
 
   sendStoredFeedback();
 
 </script>
-
 
 </body>
 </html>
