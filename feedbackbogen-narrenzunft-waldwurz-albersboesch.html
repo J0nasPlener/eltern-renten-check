@@ -3,36 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#e7ead8">
+  <meta name="theme-color" content="#fff7ef">
 
   <title>Feedback | PH Finanzen & Narrenzunft Waldwurz Albersbösch 1980 e. V.</title>
 
   <style>
 
     :root {
-      --bg: #e7ead8;
-      --bg2: #d9dfc3;
+      --orange: #e9852d;
+      --orange-light: #f7b768;
 
-      --card: rgba(255,255,255,.78);
+      --red: #c54a3a;
+      --red-light: #df6b57;
 
-      --green: #6f8738;
-      --green-light: #a5b967;
-      --green-soft: #dce5c5;
-      --green-dark: #4f6429;
+      --green: #789447;
+      --green-light: #a5ba73;
+      --green-dark: #586f34;
 
-      --red: #b84936;
-      --red-light: #d16a55;
+      --brown: #6a4631;
 
-      --orange: #d9842f;
-      --orange-light: #efb469;
-
-      --brown: #604a38;
-
-      --text: #2d3024;
-      --muted: #68705b;
-      --border: rgba(79,100,41,.18);
-
-      --success: #718d46;
+      --text: #2b241f;
+      --muted: #6f665f;
     }
 
     * {
@@ -51,36 +42,37 @@
       background:
         radial-gradient(
           circle at top left,
-          rgba(184,73,54,.12),
+          rgba(229,133,45,.18),
           transparent 32%
         ),
         radial-gradient(
           circle at top right,
-          rgba(111,135,56,.28),
-          transparent 35%
+          rgba(197,74,58,.10),
+          transparent 32%
         ),
         radial-gradient(
-          circle at bottom left,
-          rgba(165,185,103,.30),
-          transparent 38%
+          circle at bottom right,
+          rgba(120,148,71,.08),
+          transparent 35%
         ),
         linear-gradient(
           135deg,
-          #eef0e1,
-          #d9dfc3
+          #fffaf5,
+          #ffead8
         );
 
       min-height: 100vh;
     }
 
 
-    /* =====================================================
+    /* =========================
        SEITE
-    ===================================================== */
+    ========================== */
 
     .page {
       min-height: 100vh;
       padding: 28px 16px;
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -90,23 +82,21 @@
       width: 100%;
       max-width: 1100px;
 
-      background: rgba(250,250,241,.95);
+      background: rgba(255,255,255,.96);
 
-      border: 1px solid rgba(79,100,41,.18);
+      border: 1px solid rgba(229,133,45,.14);
       border-radius: 30px;
 
       overflow: hidden;
 
       box-shadow:
-        0 24px 60px rgba(66,76,43,.16);
-
-      backdrop-filter: blur(15px);
+        0 24px 60px rgba(120,70,35,.12);
     }
 
 
-    /* =====================================================
+    /* =========================
        HEADER
-    ===================================================== */
+    ========================== */
 
     .brand-header {
       padding: 28px 34px;
@@ -118,21 +108,19 @@
       gap: 28px;
 
       border-bottom:
-        1px solid rgba(111,135,56,.24);
+        1px solid rgba(229,133,45,.18);
 
       background:
         linear-gradient(
           105deg,
-          #f7f4e9 0%,
-          #edf0dc 42%,
-          #dce5c5 100%
+          #fffaf5 0%,
+          #fff0e1 50%,
+          #fce6d2 100%
         );
     }
 
 
-    /* =====================================================
-       PH FINANZEN
-    ===================================================== */
+    /* PH LOGO */
 
     .ph-logo-box {
       width: 235px;
@@ -151,21 +139,21 @@
       overflow: hidden;
 
       box-shadow:
-        0 10px 26px rgba(79,100,41,.10);
+        0 10px 26px rgba(120,70,35,.10);
     }
 
     .ph-logo-box img {
       width: 100%;
       height: 100%;
+
       object-fit: contain;
+
       transform: scale(1.42);
       transform-origin: center;
     }
 
 
-    /* =====================================================
-       NOSTALGISCHES "UND"
-    ===================================================== */
+    /* UND */
 
     .brand-und {
       flex-shrink: 0;
@@ -183,20 +171,11 @@
       font-weight: 700;
       font-style: italic;
 
-      letter-spacing: -1px;
-      line-height: 1;
-
       transform: rotate(-6deg);
-
-      text-shadow:
-        0 1px 0 rgba(255,255,255,.5),
-        0 2px 5px rgba(79,100,41,.10);
     }
 
 
-    /* =====================================================
-       WALDWURZ
-    ===================================================== */
+    /* WALDWURZ */
 
     .waldwurz-area {
       display: flex;
@@ -221,11 +200,6 @@
       object-fit: contain;
     }
 
-
-    /* =====================================================
-       WALDWURZ SPRUCH
-    ===================================================== */
-
     .waldwurz-spruch {
       max-width: 245px;
 
@@ -244,8 +218,6 @@
 
       color: var(--brown);
 
-      text-align: left;
-
       padding-left: 20px;
 
       border-left:
@@ -258,9 +230,9 @@
     }
 
 
-    /* =====================================================
+    /* =========================
        CONTENT
-    ===================================================== */
+    ========================== */
 
     .content {
       padding: 34px;
@@ -272,11 +244,6 @@
 
       gap: 42px;
     }
-
-
-    /* =====================================================
-       INTRO
-    ===================================================== */
 
     .intro {
       padding-top: 8px;
@@ -293,12 +260,12 @@
       border-radius: 999px;
 
       background:
-        rgba(165,185,103,.24);
+        rgba(229,133,45,.12);
 
       border:
-        1px solid rgba(111,135,56,.28);
+        1px solid rgba(229,133,45,.22);
 
-      color: var(--green-dark);
+      color: #a95d22;
 
       font-size: 14px;
       font-weight: 700;
@@ -314,12 +281,10 @@
       line-height: 1.05;
 
       letter-spacing: -1px;
-
-      color: #2d3024;
     }
 
     h1 span {
-      color: var(--green-dark);
+      color: var(--orange);
     }
 
     .lead {
@@ -332,32 +297,26 @@
       line-height: 1.6;
     }
 
-
-    /* =====================================================
-       PARTNER BOX
-    ===================================================== */
-
     .partner-box {
       margin-top: 26px;
+
       padding: 20px;
+
       border-radius: 20px;
 
       background:
         linear-gradient(
           135deg,
-          rgba(165,185,103,.22),
-          rgba(220,229,197,.55)
+          rgba(229,133,45,.10),
+          rgba(197,74,58,.07)
         );
 
       border:
-        1px solid rgba(111,135,56,.22);
-
-      box-shadow:
-        0 8px 20px rgba(79,100,41,.06);
+        1px solid rgba(229,133,45,.18);
     }
 
     .partner-box strong {
-      color: var(--green-dark);
+      color: #aa5d22;
     }
 
     .partner-box p {
@@ -371,9 +330,9 @@
     }
 
 
-    /* =====================================================
-       FORMULAR
-    ===================================================== */
+    /* =========================
+       FORM
+    ========================== */
 
     form {
       display: grid;
@@ -382,27 +341,29 @@
 
     .form-card {
       padding: 22px;
+
       border-radius: 22px;
 
       background:
         linear-gradient(
           145deg,
-          rgba(255,255,255,.92),
-          rgba(235,240,218,.76)
+          #ffffff,
+          #fff8f2
         );
 
       border:
-        1px solid rgba(111,135,56,.16);
+        1px solid rgba(229,133,45,.12);
 
       box-shadow:
-        0 8px 22px rgba(79,100,41,.06);
+        0 8px 22px rgba(120,70,35,.05);
     }
 
     .section-title {
       font-size: 20px;
+
       font-weight: 800;
+
       margin-bottom: 7px;
-      color: #2d3024;
     }
 
     .required-star {
@@ -411,18 +372,23 @@
 
     .section-hint {
       color: var(--muted);
+
       font-size: 14px;
+
       margin-bottom: 15px;
     }
 
 
-    /* =====================================================
-       BEWERTUNG
-    ===================================================== */
+    /* =========================
+       RATING
+    ========================== */
 
     .rating {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+
+      grid-template-columns:
+        repeat(5,1fr);
+
       gap: 9px;
     }
 
@@ -436,59 +402,55 @@
 
     .rating-box {
       padding: 12px 5px;
+
       border-radius: 14px;
+
       text-align: center;
 
-      background:
-        rgba(248,249,240,.92);
+      background: #fff;
 
       border:
-        1px solid rgba(111,135,56,.12);
+        1px solid rgba(229,133,45,.10);
 
       transition: .18s ease;
-
-      color: #2f3026;
     }
 
     .rating-box:hover {
       background:
-        rgba(165,185,103,.15);
+        rgba(229,133,45,.08);
     }
 
     .rating-number {
       display: block;
+
       font-size: 19px;
+
       font-weight: 800;
     }
 
     .rating-emoji {
       display: block;
+
       margin-top: 4px;
+
       font-size: 19px;
     }
 
     .rating input:checked + .rating-box {
       background:
-        linear-gradient(
-          135deg,
-          rgba(165,185,103,.30),
-          rgba(220,229,197,.65)
-        );
+        rgba(229,133,45,.14);
 
       border-color:
-        var(--green);
+        var(--orange);
 
       transform:
         translateY(-2px);
-
-      box-shadow:
-        0 5px 18px rgba(111,135,56,.10);
     }
 
 
-    /* =====================================================
+    /* =========================
        INPUTS
-    ===================================================== */
+    ========================== */
 
     input[type="text"],
     input[type="tel"],
@@ -496,16 +458,15 @@
       width: 100%;
 
       border:
-        1px solid rgba(111,135,56,.16);
+        1px solid rgba(120,80,50,.14);
 
       outline: none;
 
       border-radius: 14px;
 
-      background:
-        rgba(255,255,255,.96);
+      background: #fff;
 
-      color: #2d3024;
+      color: var(--text);
 
       padding: 14px 15px;
 
@@ -516,75 +477,80 @@
 
     input::placeholder,
     textarea::placeholder {
-      color: #7b816d;
+      color: #8a817a;
     }
 
     textarea {
       resize: vertical;
+
       min-height: 95px;
     }
 
     input:focus,
     textarea:focus {
       box-shadow:
-        0 0 0 3px rgba(111,135,56,.18);
+        0 0 0 3px rgba(229,133,45,.18);
 
       border-color:
-        rgba(111,135,56,.46);
+        rgba(229,133,45,.45);
     }
 
     .two-cols {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        1fr 1fr;
+
       gap: 12px;
     }
 
 
-    /* =====================================================
+    /* =========================
        THEMEN
-    ===================================================== */
+    ========================== */
 
     .checkbox-group {
       display: grid;
+
       gap: 9px;
     }
 
     .checkbox {
       display: flex;
+
       align-items: flex-start;
+
       gap: 11px;
 
       padding: 13px;
+
       border-radius: 14px;
+
       cursor: pointer;
 
-      background:
-        rgba(248,249,240,.92);
+      background: #fff;
 
       border:
-        1px solid rgba(111,135,56,.13);
+        1px solid rgba(229,133,45,.10);
 
       transition: .15s ease;
     }
 
     .checkbox:hover {
       background:
-        rgba(165,185,103,.18);
-
-      border-color:
-        rgba(111,135,56,.28);
+        rgba(229,133,45,.08);
     }
 
     .checkbox:has(input:checked) {
       background:
         linear-gradient(
           135deg,
-          rgba(165,185,103,.30),
-          rgba(220,229,197,.65)
+          rgba(120,148,71,.12),
+          rgba(165,186,115,.16)
         );
 
       border-color:
-        rgba(79,100,41,.58);
+        rgba(88,111,52,.40);
     }
 
     .checkbox input {
@@ -600,52 +566,144 @@
 
     .checkbox-title {
       font-weight: 700;
-      color: #2d3024;
     }
 
     .checkbox-desc {
       display: block;
+
       margin-top: 3px;
-      color: #68705b;
+
+      color: var(--muted);
+
       font-size: 12px;
+
       line-height: 1.4;
     }
 
 
-    /* =====================================================
+    /* =========================
        DATENSCHUTZ
-    ===================================================== */
+    ========================== */
 
-    .legal {
+    .privacy-box {
+      padding: 18px;
+
+      border-radius: 18px;
+
+      background:
+        #fffaf6;
+
+      border:
+        1px solid rgba(229,133,45,.16);
+    }
+
+    .privacy-consent {
       display: flex;
-      gap: 10px;
+
+      align-items: flex-start;
+
+      gap: 11px;
+
       font-size: 13px;
-      color: var(--muted);
-      line-height: 1.5;
+
+      line-height: 1.55;
+
+      color: #554c45;
     }
 
-    .legal input {
-      margin-top: 3px;
-      width: 17px;
-      height: 17px;
-      accent-color: var(--green);
+    .privacy-consent input {
+      width: 18px;
+      height: 18px;
+
+      margin-top: 2px;
+
       flex-shrink: 0;
+
+      accent-color: var(--green);
     }
 
-    a {
+    .privacy-consent strong {
+      color: var(--text);
+    }
+
+    .privacy-details {
+      margin-top: 14px;
+
+      border-top:
+        1px solid rgba(229,133,45,.13);
+
+      padding-top: 12px;
+    }
+
+    .privacy-details summary {
+      cursor: pointer;
+
+      color: var(--green-dark);
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      user-select: none;
+    }
+
+    .privacy-content {
+      padding-top: 13px;
+
+      font-size: 12px;
+
+      line-height: 1.6;
+
+      color: var(--muted);
+    }
+
+    .privacy-content h4 {
+      margin:
+        14px 0 4px;
+
+      color: var(--text);
+
+      font-size: 13px;
+    }
+
+    .privacy-content p {
+      margin:
+        0 0 8px;
+    }
+
+    .privacy-content a {
       color: var(--green-dark);
     }
 
+    .privacy-note {
+      padding: 11px 12px;
 
-    /* =====================================================
-       BUTTONS
-    ===================================================== */
+      border-radius: 10px;
+
+      margin: 10px 0;
+
+      background:
+        rgba(120,148,71,.08);
+
+      border:
+        1px solid rgba(120,148,71,.18);
+
+      color: #4f6330;
+    }
+
+
+    /* =========================
+       BUTTON
+    ========================== */
 
     .submit-button,
     .discover-button {
       width: 100%;
+
       border: none;
+
       border-radius: 17px;
+
       padding: 17px 20px;
 
       background:
@@ -655,16 +713,20 @@
           var(--red-light)
         );
 
-      color: #ffffff;
+      color: #fff;
 
       font-size: 18px;
+
       font-weight: 900;
+
       cursor: pointer;
+
       transition: .2s ease;
 
       text-decoration: none;
 
       display: inline-block;
+
       text-align: center;
 
       box-shadow:
@@ -677,55 +739,60 @@
         translateY(-2px);
 
       box-shadow:
-        0 12px 30px rgba(217,132,47,.20);
+        0 12px 30px rgba(229,133,45,.20);
     }
 
     .submit-button:disabled {
       opacity: .6;
+
       cursor: default;
+
       transform: none;
     }
 
 
-    /* =====================================================
-       ONLINE / OFFLINE
-    ===================================================== */
+    /* =========================
+       STATUS / FEHLER
+    ========================== */
 
-    .network-status {
-      margin-top: 8px;
-      padding: 10px 12px;
+    .status-message {
+      display: none;
+
+      padding: 12px;
+
       border-radius: 12px;
-      text-align: center;
-      font-size: 12px;
+
+      font-size: 13px;
+
       line-height: 1.4;
 
-      background:
-        rgba(235,240,218,.65);
+      text-align: center;
+    }
 
-      color: #6c755a;
+    .status-message.error {
+      display: block;
+
+      background:
+        #fff0ed;
+
+      color:
+        #9d3f32;
 
       border:
-        1px solid rgba(111,135,56,.10);
-    }
-
-    .network-status.online {
-      color: var(--green-dark);
-    }
-
-    .network-status.offline {
-      color: #b66a2a;
+        1px solid rgba(197,74,58,.20);
     }
 
 
-    /* =====================================================
-       ERFOLGSSEITE
-    ===================================================== */
+    /* =========================
+       SUCCESS
+    ========================== */
 
     .success {
       display: none;
+
       text-align: center;
+
       padding: 70px 30px;
-      color: var(--text);
     }
 
     .success-icon {
@@ -733,84 +800,97 @@
     }
 
     .success h2 {
-      margin: 15px 0 10px;
+      margin:
+        15px 0 10px;
+
       font-size: 36px;
-      color: #2d3024;
     }
 
     .success p {
       max-width: 560px;
+
       margin: 0 auto;
+
       color: var(--muted);
+
       font-size: 17px;
+
       line-height: 1.6;
     }
 
     .success-next {
-      margin: 28px auto 0;
+      margin:
+        28px auto 0;
+
       max-width: 560px;
+
       padding: 24px;
+
       border-radius: 20px;
 
       background:
         linear-gradient(
           135deg,
-          rgba(165,185,103,.22),
-          rgba(220,229,197,.55)
+          rgba(229,133,45,.10),
+          rgba(197,74,58,.06)
         );
 
       border:
-        1px solid rgba(111,135,56,.22);
-
-      box-shadow:
-        0 8px 20px rgba(79,100,41,.06);
+        1px solid rgba(229,133,45,.18);
     }
 
     .success-next h3 {
-      margin: 0 0 10px;
+      margin:
+        0 0 10px;
+
       font-size: 22px;
-      color: var(--green-dark);
+
+      color: #aa5d22;
     }
 
     .success-next p {
       margin-bottom: 20px;
+
       font-size: 16px;
     }
 
     .discover-button {
       width: auto;
+
       min-width: 240px;
+
       padding: 15px 22px;
+
       font-size: 16px;
     }
 
     .success-brand {
       margin-top: 28px;
-      color: var(--green-dark);
+
+      color: #aa5d22;
+
       font-weight: 800;
     }
 
 
-    /* =====================================================
-       TABLET
-    ===================================================== */
+    /* =========================
+       RESPONSIVE
+    ========================== */
 
-    @media (max-width: 900px) {
+    @media(max-width:900px) {
 
       .brand-header {
         padding: 20px 12px;
+
         gap: 14px;
+
         flex-wrap: wrap;
       }
 
       .ph-logo-box {
         width: 180px;
-        height: 105px;
-        border-radius: 17px;
-      }
 
-      .ph-logo-box img {
-        transform: scale(1.42);
+        height: 105px;
       }
 
       .brand-und {
@@ -823,30 +903,30 @@
 
       .waldwurz-logo-box {
         width: 145px;
+
         height: 100px;
       }
 
       .waldwurz-spruch {
         max-width: 205px;
+
         font-size: 12px;
+
         padding-left: 12px;
-        line-height: 1.5;
       }
 
       .waldwurz-spruch span {
         white-space: normal;
       }
+
     }
 
 
-    /* =====================================================
-       MOBILE
-    ===================================================== */
-
-    @media (max-width: 700px) {
+    @media(max-width:700px) {
 
       .page {
         padding: 12px;
+
         align-items: flex-start;
       }
 
@@ -856,42 +936,42 @@
 
       .brand-header {
         flex-direction: column;
+
         gap: 13px;
+
         padding:
           20px 12px 24px;
       }
 
       .ph-logo-box {
         width: 190px;
-        height: 108px;
-        border-radius: 17px;
-      }
 
-      .ph-logo-box img {
-        transform: scale(1.42);
+        height: 108px;
       }
 
       .brand-und {
         font-size: 25px;
-        margin:
-          -1px 0;
       }
 
       .waldwurz-area {
         width: 100%;
+
         justify-content: center;
+
         gap: 16px;
       }
 
       .waldwurz-logo-box {
         width: 135px;
+
         height: 100px;
       }
 
       .waldwurz-spruch {
         max-width: 190px;
+
         font-size: 12px;
-        line-height: 1.5;
+
         padding-left: 13px;
       }
 
@@ -901,6 +981,7 @@
 
       .content {
         display: block;
+
         padding: 24px 18px;
       }
 
@@ -928,19 +1009,6 @@
         gap: 6px;
       }
 
-      .rating-box {
-        padding:
-          10px 2px;
-      }
-
-      .rating-number {
-        font-size: 17px;
-      }
-
-      .rating-emoji {
-        font-size: 17px;
-      }
-
       .success {
         padding:
           45px 18px;
@@ -950,25 +1018,18 @@
         font-size: 30px;
       }
 
-      .success-next {
-        padding:
-          20px 16px;
-      }
-
       .discover-button {
         width: 100%;
       }
+
     }
 
 
-    /* =====================================================
-       KLEINE HANDYS
-    ===================================================== */
-
-    @media (max-width: 430px) {
+    @media(max-width:430px) {
 
       .ph-logo-box {
         width: 180px;
+
         height: 103px;
       }
 
@@ -978,19 +1039,23 @@
 
       .waldwurz-logo-box {
         width: 120px;
+
         height: 90px;
       }
 
       .waldwurz-spruch {
         max-width: 175px;
+
         font-size: 11px;
+
         padding-left: 10px;
       }
+
     }
 
   </style>
-
 </head>
+
 
 <body>
 
@@ -998,47 +1063,49 @@
 
   <main class="shell">
 
-    <!-- CO-BRANDING -->
+
+    <!-- =========================
+         HEADER
+    ========================== -->
 
     <header class="brand-header">
 
       <div class="ph-logo-box">
+
         <img
           src="ph-logo.png"
-          alt="PH Finanzen Logo"
+          alt="PH Finanzen"
         >
+
       </div>
+
 
       <div class="brand-und">
         und
       </div>
 
+
       <div class="waldwurz-area">
 
         <div class="waldwurz-logo-box">
+
           <img
             src="narrenzunft-albersboesch-logo.png"
             alt="Narrenzunft Waldwurz Albersbösch 1980 e. V."
           >
+
         </div>
+
 
         <div class="waldwurz-spruch">
 
-          <span>
-            Donner Blitz un Krache
-          </span>
+          <span>Donner Blitz un Krache</span>
 
-          <span>
-            Im Unterholz erwache
-          </span>
+          <span>Im Unterholz erwache</span>
 
-          <span>
-            G’sichter knorrig aschtig froh
-          </span>
+          <span>G’sichter knorrig aschtig froh</span>
 
-          <span>
-            Alles brielt, die Waldwurz sind do
-          </span>
+          <span>Alles brielt, die Waldwurz sind do</span>
 
         </div>
 
@@ -1047,14 +1114,18 @@
     </header>
 
 
-    <!-- FORMULAR -->
+
+    <!-- =========================
+         CONTENT
+    ========================== -->
 
     <div
       id="formArea"
       class="content"
     >
 
-      <!-- LINKE SEITE -->
+
+      <!-- INTRO -->
 
       <section class="intro">
 
@@ -1062,26 +1133,43 @@
           🎭 Vereins-Feedback
         </div>
 
+
         <h1>
+
           Deine Meinung<br>
+
           <span>zählt.</span>
+
         </h1>
 
+
         <p class="lead">
-          Gemeinsam für die Narrenzunft Waldwurz Albersbösch 1980 e. V.:
+
+          Gemeinsam für die Narrenzunft Waldwurz
+          Albersbösch 1980 e. V.:
+
           Gib uns kurz dein Feedback und hilf dabei,
-          die Zusammenarbeit und das Vereinsleben weiterzuentwickeln.
+          die Zusammenarbeit und das Vereinsleben
+          weiterzuentwickeln.
+
         </p>
+
 
         <div class="partner-box">
 
           <strong>
-            PH Finanzen & Narrenzunft Waldwurz Albersbösch 1980 e. V.
+
+            PH Finanzen & Narrenzunft
+            Waldwurz Albersbösch 1980 e. V.
+
           </strong>
 
           <p>
-            Als Vereinspartner möchten wir nicht nur unterstützen,
-            sondern auch wissen, was euch wichtig ist.
+
+            Als Vereinspartner möchten wir nicht nur
+            unterstützen, sondern auch wissen,
+            was euch wichtig ist.
+
           </p>
 
         </div>
@@ -1089,7 +1177,8 @@
       </section>
 
 
-      <!-- RECHTE SEITE -->
+
+      <!-- FORMULAR -->
 
       <section>
 
@@ -1099,88 +1188,151 @@
           method="POST"
         >
 
+
           <!-- BEWERTUNG -->
 
           <div class="form-card">
 
             <div class="section-title">
+
               Wie zufrieden bist du?
+
               <span class="required-star">*</span>
+
             </div>
+
 
             <div class="section-hint">
               Einfach kurz auswählen.
             </div>
 
+
             <div class="rating">
 
+
               <label>
+
                 <input
                   type="radio"
                   name="Bewertung"
                   value="1"
                   required
                 >
+
                 <div class="rating-box">
-                  <span class="rating-number">1</span>
-                  <span class="rating-emoji">😕</span>
+
+                  <span class="rating-number">
+                    1
+                  </span>
+
+                  <span class="rating-emoji">
+                    😕
+                  </span>
+
                 </div>
+
               </label>
 
+
               <label>
+
                 <input
                   type="radio"
                   name="Bewertung"
                   value="2"
                 >
+
                 <div class="rating-box">
-                  <span class="rating-number">2</span>
-                  <span class="rating-emoji">🙁</span>
+
+                  <span class="rating-number">
+                    2
+                  </span>
+
+                  <span class="rating-emoji">
+                    🙁
+                  </span>
+
                 </div>
+
               </label>
 
+
               <label>
+
                 <input
                   type="radio"
                   name="Bewertung"
                   value="3"
                 >
+
                 <div class="rating-box">
-                  <span class="rating-number">3</span>
-                  <span class="rating-emoji">🙂</span>
+
+                  <span class="rating-number">
+                    3
+                  </span>
+
+                  <span class="rating-emoji">
+                    🙂
+                  </span>
+
                 </div>
+
               </label>
 
+
               <label>
+
                 <input
                   type="radio"
                   name="Bewertung"
                   value="4"
                 >
+
                 <div class="rating-box">
-                  <span class="rating-number">4</span>
-                  <span class="rating-emoji">😊</span>
+
+                  <span class="rating-number">
+                    4
+                  </span>
+
+                  <span class="rating-emoji">
+                    😊
+                  </span>
+
                 </div>
+
               </label>
 
+
               <label>
+
                 <input
                   type="radio"
                   name="Bewertung"
                   value="5"
                 >
+
                 <div class="rating-box">
-                  <span class="rating-number">5</span>
-                  <span class="rating-emoji">🤩</span>
+
+                  <span class="rating-number">
+                    5
+                  </span>
+
+                  <span class="rating-emoji">
+                    🤩
+                  </span>
+
                 </div>
+
               </label>
+
 
             </div>
 
           </div>
 
 
-          <!-- FREIES FEEDBACK -->
+
+          <!-- FEEDBACK -->
 
           <div class="form-card">
 
@@ -1188,9 +1340,11 @@
               Dein Feedback
             </div>
 
+
             <div class="section-hint">
               Optional – ein paar Worte reichen völlig.
             </div>
+
 
             <textarea
               name="Feedback"
@@ -1200,148 +1354,254 @@
           </div>
 
 
+
           <!-- THEMEN -->
 
           <div class="form-card">
 
             <div class="section-title">
+
               Wobei können wir dich unterstützen?
+
               <span class="required-star">*</span>
+
             </div>
 
+
             <div class="section-hint">
-              Mindestens ein Thema auswählen · Mehrfachauswahl möglich
+
+              Mindestens ein Thema auswählen ·
+              Mehrfachauswahl möglich
+
             </div>
+
 
             <div
               class="checkbox-group"
               id="themenGruppe"
             >
 
+
               <label class="checkbox">
+
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Geldanlage & Vermögensaufbau"
                 >
+
                 <span>
+
                   <span class="checkbox-title">
+
                     💰 Geldanlage & Vermögensaufbau
+
                   </span>
+
                   <span class="checkbox-desc">
-                    Sparen, Investment und langfristiger Vermögensaufbau
+
+                    Sparen, Investment und langfristiger
+                    Vermögensaufbau
+
                   </span>
+
                 </span>
+
               </label>
 
+
+
               <label class="checkbox">
+
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Immobilien & Finanzierung"
                 >
+
                 <span>
+
                   <span class="checkbox-title">
+
                     🏡 Immobilien & Finanzierung
+
                   </span>
+
                   <span class="checkbox-desc">
-                    Immobilie kaufen, finanzieren oder modernisieren
+
+                    Immobilie kaufen, finanzieren
+                    oder modernisieren
+
                   </span>
+
                 </span>
+
               </label>
 
+
+
               <label class="checkbox">
+
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Absicherung & Vorsorge"
                 >
+
                 <span>
+
                   <span class="checkbox-title">
+
                     🛡️ Absicherung & Vorsorge
+
                   </span>
+
                   <span class="checkbox-desc">
-                    Persönliche Absicherung, Vorsorge und Versicherungen
+
+                    Persönliche Absicherung,
+                    Vorsorge und Versicherungen
+
                   </span>
+
                 </span>
+
               </label>
 
+
+
               <label class="checkbox">
+
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Häs & Vereinsausstattung"
                 >
+
                 <span>
+
                   <span class="checkbox-title">
+
                     🎭 Häs & Vereinsausstattung
+
                   </span>
+
                   <span class="checkbox-desc">
-                    Fragen rund um Häs, Ausstattung und persönliches Eigentum
+
+                    Fragen rund um Häs,
+                    Ausstattung und persönliches Eigentum
+
                   </span>
+
                 </span>
+
               </label>
 
+
+
               <label class="checkbox">
+
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Krankenversicherung"
                 >
+
                 <span>
+
                   <span class="checkbox-title">
+
                     ❤️ Krankenversicherung
+
                   </span>
+
                   <span class="checkbox-desc">
-                    Gesetzlich, privat und Zusatzabsicherungen
+
+                    Gesetzlich, privat und
+                    Zusatzabsicherungen
+
                   </span>
+
                 </span>
+
               </label>
 
+
+
               <label class="checkbox">
+
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Eltern & Kinder"
                 >
+
                 <span>
+
                   <span class="checkbox-title">
+
                     👨‍👩‍👧 Eltern & Kinder
+
                   </span>
+
                   <span class="checkbox-desc">
-                    Absicherung, Vorsorge und Vermögensaufbau für Familien
+
+                    Absicherung, Vorsorge und
+                    Vermögensaufbau für Familien
+
                   </span>
+
                 </span>
+
               </label>
 
+
+
               <label class="checkbox">
+
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Empfehlungsgeber"
                 >
+
                 <span>
+
                   <span class="checkbox-title">
+
                     🤝 Empfehlungsgeber werden
+
                   </span>
+
                   <span class="checkbox-desc">
-                    Du kennst jemanden, dem wir weiterhelfen können?
+
+                    Du kennst jemanden,
+                    dem wir weiterhelfen können?
+
                   </span>
+
                 </span>
+
               </label>
+
 
             </div>
 
           </div>
 
 
-          <!-- KONTAKTDATEN -->
+
+          <!-- KONTAKT -->
 
           <div class="form-card">
 
             <div class="section-title">
+
               Wie dürfen wir dich erreichen?
+
+              <span class="required-star">*</span>
+
             </div>
+
 
             <div class="two-cols">
 
@@ -1353,6 +1613,7 @@
                 required
               >
 
+
               <input
                 type="text"
                 name="Nachname"
@@ -1362,6 +1623,7 @@
               >
 
             </div>
+
 
             <div style="margin-top:12px;">
 
@@ -1375,41 +1637,398 @@
 
             </div>
 
+
             <div
               class="section-hint"
-              style="margin-top:10px; margin-bottom:0;"
+              style="margin-top:10px;margin-bottom:0;"
             >
+
               * Pflichtfelder
+
             </div>
 
           </div>
 
 
-          <!-- DATENSCHUTZ -->
 
-          <label class="legal">
+          <!-- =========================
+               DATENSCHUTZ
+          ========================== -->
 
-            <input
-              type="checkbox"
-              name="Datenschutz akzeptiert"
-              value="Ja"
-              required
-            >
+          <div class="privacy-box">
 
-            <span>
-              Ich habe die
-              <a
-                href="/datenschutz.html"
-                target="_blank"
+
+            <label class="privacy-consent">
+
+              <input
+                type="checkbox"
+                name="Einwilligung_Datenverarbeitung"
+                value="Ja"
+                required
               >
-                Datenschutzhinweise
-              </a>
-              gelesen.
-              <span class="required-star">*</span>
-            </span>
 
-          </label>
 
+              <span>
+
+                <strong>
+                  Einwilligung zur Datenverarbeitung *
+                </strong>
+
+                <br><br>
+
+                Ich willige ein, dass meine im Feedbackbogen
+                angegebenen personenbezogenen Daten zur
+                Auswertung meines Feedbacks sowie zur
+                Kontaktaufnahme durch einen zuständigen
+                Vermögensberater zu den von mir ausgewählten
+                Themen verarbeitet werden.
+
+                Die technische Übermittlung des Formulars
+                erfolgt über den Dienst Formspree.
+
+                Meine Einwilligung kann ich jederzeit mit
+                Wirkung für die Zukunft widerrufen.
+
+              </span>
+
+            </label>
+
+
+
+            <details class="privacy-details">
+
+              <summary>
+
+                Datenschutzhinweise anzeigen
+
+              </summary>
+
+
+              <div class="privacy-content">
+
+
+                <h4>
+                  1. Verantwortliche Stelle
+                </h4>
+
+                <p>
+
+                  Deutsche Vermögensberatung Aktiengesellschaft DVAG<br>
+
+                  Wilhelm-Leuschner-Straße 24<br>
+
+                  60329 Frankfurt am Main<br>
+
+                  Telefon: 069 / 2384-0<br>
+
+                  E-Mail: info@dvag.com
+
+                </p>
+
+
+                <p>
+
+                  Den Datenschutzbeauftragten der DVAG erreichst du
+                  unter der genannten Anschrift mit dem Zusatz
+                  „Datenschutzbeauftragter“ oder per E-Mail unter
+
+                  <strong>
+                    datenschutz@dvag.com
+                  </strong>.
+
+                </p>
+
+
+
+                <h4>
+                  2. Welche Daten werden erhoben?
+                </h4>
+
+                <p>
+
+                  Im Rahmen dieses Feedbackbogens werden folgende
+                  personenbezogene Daten erhoben und verarbeitet:
+
+                </p>
+
+                <p>
+
+                  Vorname, Nachname, Telefonnummer,
+                  Bewertung, ausgewählte Interessenthemen
+                  sowie freiwillige Angaben im Freitextfeld.
+
+                </p>
+
+
+
+                <h4>
+                  3. Zweck der Verarbeitung
+                </h4>
+
+                <p>
+
+                  Die Daten werden zur Auswertung des
+                  Feedbackbogens und zur Durchführung sowie
+                  Weiterentwicklung des Vereinssponsorings
+                  verarbeitet.
+
+                </p>
+
+                <p>
+
+                  Da mindestens ein Interessenthema ausgewählt wird,
+                  werden die angegebenen Kontaktdaten außerdem dazu
+                  verwendet, durch einen zuständigen Vermögensberater
+                  zu diesen ausgewählten Themen Kontakt aufzunehmen.
+
+                </p>
+
+
+
+                <h4>
+                  4. Rechtsgrundlage
+                </h4>
+
+                <p>
+
+                  Die Verarbeitung der Daten für die oben genannten
+                  Zwecke erfolgt auf Grundlage der erteilten
+                  Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO.
+
+                </p>
+
+                <p>
+
+                  Die Einwilligung ist freiwillig und kann jederzeit
+                  mit Wirkung für die Zukunft widerrufen werden.
+
+                </p>
+
+
+
+                <h4>
+                  5. Technische Verarbeitung über Formspree
+                </h4>
+
+                <p>
+
+                  Für die technische Entgegennahme und Übermittlung
+                  der über dieses Formular eingegebenen Daten wird
+                  der Dienst Formspree eingesetzt.
+
+                </p>
+
+                <p>
+
+                  Die von dir eingegebenen Formulardaten werden daher
+                  technisch an Formspree übertragen, dort verarbeitet
+                  und an den Empfänger des Feedbackbogens
+                  weitergeleitet.
+
+                </p>
+
+                <div class="privacy-note">
+
+                  Formspree gibt an, die Anforderungen der DSGVO
+                  einzuhalten und als Datenverarbeiter für
+                  internationale Datenübermittlungen
+                  Standardvertragsklauseln (Standard Contractual
+                  Clauses – SCCs) einzusetzen.
+
+                </div>
+
+                <p>
+
+                  Weitere Informationen zu Datenschutz und Sicherheit
+                  bei Formspree findest du unter:
+
+                  <br><br>
+
+                  <a
+                    href="https://formspree.io/security/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Informationen zu Datenschutz und Sicherheit
+                    bei Formspree →
+                  </a>
+
+                </p>
+
+
+
+                <h4>
+                  6. Empfänger der Daten
+                </h4>
+
+                <p>
+
+                  Empfänger der Daten können die Deutsche
+                  Vermögensberatung AG DVAG, der zuständige
+                  Vermögensberater sowie Formspree als
+                  technischer Dienstleister für die
+                  Formularübermittlung sein.
+
+                </p>
+
+                <p>
+
+                  Eine weitere Nutzung erfolgt nur im Rahmen
+                  der angegebenen Zwecke oder soweit hierfür
+                  eine andere gesetzliche Rechtsgrundlage besteht.
+
+                </p>
+
+
+
+                <h4>
+                  7. Speicherdauer
+                </h4>
+
+                <p>
+
+                  Die personenbezogenen Daten werden nur so lange
+                  gespeichert, wie dies für die genannten Zwecke
+                  erforderlich ist oder gesetzliche
+                  Aufbewahrungspflichten bestehen.
+
+                </p>
+
+                <p>
+
+                  Wird die Einwilligung widerrufen, werden die auf
+                  dieser Einwilligung beruhenden Daten gelöscht,
+                  sofern keine andere Rechtsgrundlage oder
+                  gesetzliche Aufbewahrungspflicht einer Löschung
+                  entgegensteht.
+
+                </p>
+
+
+
+                <h4>
+                  8. Widerruf
+                </h4>
+
+                <p>
+
+                  Du kannst deine Einwilligung jederzeit mit Wirkung
+                  für die Zukunft widerrufen.
+
+                </p>
+
+                <p>
+
+                  Der Widerruf kann gegenüber dem zuständigen
+                  Vermögensberater oder per E-Mail an
+
+                  <strong>
+                    datenschutz@dvag.com
+                  </strong>
+
+                  erfolgen.
+
+                </p>
+
+
+
+                <h4>
+                  9. Deine Datenschutzrechte
+                </h4>
+
+                <p>
+
+                  Im Rahmen der gesetzlichen Voraussetzungen hast du
+                  insbesondere das Recht auf Auskunft über deine
+                  personenbezogenen Daten sowie auf Berichtigung,
+                  Löschung, Einschränkung der Verarbeitung und
+                  Datenübertragbarkeit.
+
+                </p>
+
+                <p>
+
+                  Außerdem kannst du eine erteilte Einwilligung
+                  jederzeit mit Wirkung für die Zukunft widerrufen.
+
+                </p>
+
+
+
+                <h4>
+                  10. Beschwerderecht
+                </h4>
+
+                <p>
+
+                  Du hast das Recht, dich bei einer zuständigen
+                  Datenschutzaufsichtsbehörde über die Verarbeitung
+                  deiner personenbezogenen Daten zu beschweren.
+
+                </p>
+
+
+
+                <h4>
+                  11. Keine lokale Speicherung auf deinem Gerät
+                </h4>
+
+                <p>
+
+                  Die über das Formular eingegebenen Daten werden
+                  von dieser Webseite nicht dauerhaft im Browser
+                  oder im lokalen Speicher deines Gerätes
+                  gespeichert.
+
+                </p>
+
+                <p>
+
+                  Ist keine Internetverbindung vorhanden oder kann
+                  Formspree nicht erreicht werden, wird das Formular
+                  nicht übermittelt und muss später erneut abgesendet
+                  werden.
+
+                </p>
+
+
+
+                <h4>
+                  12. Weitere Datenschutzinformationen
+                </h4>
+
+                <p>
+
+                  Weitere Informationen zur Datenverarbeitung durch
+                  die Deutsche Vermögensberatung findest du in den
+                  offiziellen Datenschutzhinweisen der DVAG.
+
+                </p>
+
+                <p>
+
+                  <a
+                    href="https://www.dvag.de/dvag/datenschutz.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+
+                    Datenschutzhinweise der DVAG öffnen →
+
+                  </a>
+
+                </p>
+
+
+              </div>
+
+            </details>
+
+          </div>
+
+
+
+          <!-- FORMSPREE -->
 
           <input
             type="hidden"
@@ -1418,21 +2037,37 @@
           >
 
 
+          <input
+            type="hidden"
+            name="Formular"
+            value="Vereins-Feedback Narrenzunft Waldwurz Albersbösch 1980 e. V."
+          >
+
+
+          <input
+            type="hidden"
+            name="Datenverarbeitung"
+            value="Einwilligung wurde aktiv bestätigt"
+          >
+
+
+
           <button
             id="submitButton"
             class="submit-button"
             type="submit"
           >
+
             🎭 Feedback absenden
+
           </button>
 
 
           <div
-            id="networkStatus"
-            class="network-status"
-          >
-            Verbindung wird geprüft …
-          </div>
+            id="statusMessage"
+            class="status-message"
+          ></div>
+
 
         </form>
 
@@ -1441,41 +2076,62 @@
     </div>
 
 
-    <!-- ERFOLGSSEITE -->
+
+    <!-- =========================
+         SUCCESS
+    ========================== -->
 
     <div
       id="successArea"
       class="success"
     >
 
+
       <div class="success-icon">
         🎭
       </div>
 
+
       <h2>
+
         Vielen Dank für dein Feedback!
+
       </h2>
 
+
       <p id="successText">
+
         Deine Angaben wurden erfolgreich übermittelt.
+
       </p>
 
+
       <p style="margin-top:18px;">
-        Wenn du ein Thema ausgewählt hast,
-        kommen wir gerne persönlich auf dich zu.
+
+        Wir kommen zu den von dir ausgewählten Themen
+        gerne persönlich auf dich zu.
+
       </p>
+
 
       <div class="success-next">
 
+
         <h3>
+
           Du möchtest nicht so lange warten?
+
         </h3>
 
+
         <p>
-          Dann verschaff dir schon jetzt einen ersten Überblick
-          und entdecke, welche Themen zu dir und deiner
-          aktuellen Situation passen.
+
+          Dann verschaff dir schon jetzt einen ersten
+          Überblick und entdecke, welche Themen zu dir
+          und deiner aktuellen Situation passen.
+
         </p>
+
 
         <a
           href="https://www.ph-finanzen.de/was-passt-zu-dir.html"
@@ -1483,20 +2139,30 @@
           target="_blank"
           rel="noopener noreferrer"
         >
+
           Was passt zu dir? →
+
         </a>
 
+
       </div>
+
 
       <div class="success-brand">
-        PH Finanzen & Narrenzunft Waldwurz Albersbösch 1980 e. V.
+
+        PH Finanzen & Narrenzunft
+        Waldwurz Albersbösch 1980 e. V.
+
       </div>
 
+
     </div>
+
 
   </main>
 
 </div>
+
 
 
 <script>
@@ -1513,14 +2179,16 @@
   const successText =
     document.getElementById("successText");
 
-  const networkStatus =
-    document.getElementById("networkStatus");
-
   const submitButton =
     document.getElementById("submitButton");
 
+  const statusMessage =
+    document.getElementById("statusMessage");
 
-  /* MINDESTENS EIN THEMA */
+
+  /* =========================
+     THEMEN VALIDIEREN
+  ========================== */
 
   const themenCheckboxen =
     document.querySelectorAll(
@@ -1542,9 +2210,11 @@
 
       themenCheckboxen[0]
         .setCustomValidity(
+
           mindestensEins
             ? ""
             : "Bitte wähle mindestens ein Thema aus."
+
         );
 
     }
@@ -1569,244 +2239,35 @@
   validateThemen();
 
 
-  /* ONLINE / OFFLINE */
+  /* =========================
+     FEHLER ANZEIGEN
+  ========================== */
 
-  function updateNetworkStatus() {
+  function showError(message) {
 
-    if (navigator.onLine) {
+    statusMessage.textContent =
+      message;
 
-      networkStatus.textContent =
-        "● Online – Feedback kann direkt übertragen werden.";
-
-      networkStatus.className =
-        "network-status online";
-
-    }
-
-    else {
-
-      networkStatus.textContent =
-        "● Offline – Feedback wird auf diesem Gerät gespeichert und später übertragen.";
-
-      networkStatus.className =
-        "network-status offline";
-
-    }
+    statusMessage.className =
+      "status-message error";
 
   }
 
 
-  window.addEventListener(
+  function clearError() {
 
-    "online",
+    statusMessage.textContent =
+      "";
 
-    () => {
-
-      updateNetworkStatus();
-
-      sendStoredFeedback();
-
-    }
-
-  );
-
-
-  window.addEventListener(
-    "offline",
-    updateNetworkStatus
-  );
-
-
-  updateNetworkStatus();
-
-
-  /* FORMDATA → OBJEKT */
-
-  function formDataToObject(formData) {
-
-    const data = {};
-
-
-    for (
-      const [key, value]
-      of formData.entries()
-    ) {
-
-      if (data[key]) {
-
-        if (!Array.isArray(data[key])) {
-
-          data[key] = [
-            data[key]
-          ];
-
-        }
-
-        data[key].push(value);
-
-      }
-
-      else {
-
-        data[key] = value;
-
-      }
-
-    }
-
-
-    return data;
+    statusMessage.className =
+      "status-message";
 
   }
 
 
-  /* OFFLINE SPEICHERN */
-
-  function saveOffline(data) {
-
-    const stored =
-      JSON.parse(
-
-        localStorage.getItem(
-          "waldwurz_feedback_queue"
-        ) || "[]"
-
-      );
-
-
-    stored.push(data);
-
-
-    localStorage.setItem(
-
-      "waldwurz_feedback_queue",
-
-      JSON.stringify(stored)
-
-    );
-
-  }
-
-
-  /* GESPEICHERTE DATEN SENDEN */
-
-  async function sendStoredFeedback() {
-
-    if (!navigator.onLine) {
-      return;
-    }
-
-
-    const stored =
-      JSON.parse(
-
-        localStorage.getItem(
-          "waldwurz_feedback_queue"
-        ) || "[]"
-
-      );
-
-
-    if (!stored.length) {
-      return;
-    }
-
-
-    const remaining = [];
-
-
-    for (const item of stored) {
-
-      try {
-
-        const data =
-          new FormData();
-
-
-        Object
-          .entries(item)
-          .forEach(
-
-            ([key, value]) => {
-
-              if (Array.isArray(value)) {
-
-                value.forEach(
-
-                  v =>
-                    data.append(
-                      key,
-                      v
-                    )
-
-                );
-
-              }
-
-              else {
-
-                data.append(
-                  key,
-                  value
-                );
-
-              }
-
-            }
-
-          );
-
-
-        const response =
-          await fetch(
-
-            form.action,
-
-            {
-              method: "POST",
-
-              body: data,
-
-              headers: {
-                "Accept":
-                  "application/json"
-              }
-            }
-
-          );
-
-
-        if (!response.ok) {
-
-          remaining.push(item);
-
-        }
-
-      }
-
-      catch {
-
-        remaining.push(item);
-
-      }
-
-    }
-
-
-    localStorage.setItem(
-
-      "waldwurz_feedback_queue",
-
-      JSON.stringify(
-        remaining
-      )
-
-    );
-
-  }
-
-
-  /* FORMULAR ABSENDEN */
+  /* =========================
+     FORMULAR ABSENDEN
+  ========================== */
 
   form.addEventListener(
 
@@ -1815,12 +2276,18 @@
     async function(event) {
 
 
+      event.preventDefault();
+
+
+      clearError();
+
+
       validateThemen();
 
 
-      if (!form.checkValidity()) {
+      /* Pflichtfelder prüfen */
 
-        event.preventDefault();
+      if (!form.checkValidity()) {
 
         form.reportValidity();
 
@@ -1829,7 +2296,17 @@
       }
 
 
-      event.preventDefault();
+      /* Keine Internetverbindung */
+
+      if (!navigator.onLine) {
+
+        showError(
+          "Aktuell besteht keine Internetverbindung. Es wurden keine Daten gespeichert. Bitte versuche es erneut, sobald du wieder online bist."
+        );
+
+        return;
+
+      }
 
 
       submitButton.disabled =
@@ -1837,54 +2314,12 @@
 
 
       submitButton.textContent =
-        "Wird gespeichert …";
+        "Wird sicher übermittelt …";
 
 
       const formData =
         new FormData(form);
 
-
-      /* OFFLINE */
-
-      if (!navigator.onLine) {
-
-
-        const data =
-          formDataToObject(
-            formData
-          );
-
-
-        saveOffline(data);
-
-
-        formArea.style.display =
-          "none";
-
-
-        successArea.style.display =
-          "block";
-
-
-        successText.textContent =
-          "Dein Feedback wurde auf diesem Gerät gespeichert. Sobald wieder eine Internetverbindung besteht, versuchen wir es automatisch zu übertragen.";
-
-
-        form.reset();
-
-
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
-
-
-        return;
-
-      }
-
-
-      /* ONLINE */
 
       try {
 
@@ -1895,16 +2330,20 @@
             form.action,
 
             {
+
               method:
-                form.method,
+                "POST",
 
               body:
                 formData,
 
               headers: {
+
                 "Accept":
                   "application/json"
+
               }
+
             }
 
           );
@@ -1929,8 +2368,11 @@
 
 
           window.scrollTo({
+
             top: 0,
+
             behavior: "smooth"
+
           });
 
 
@@ -1938,46 +2380,32 @@
 
         else {
 
+
           throw new Error(
-            "Serverantwort war nicht erfolgreich."
+            "Übertragung fehlgeschlagen."
           );
+
 
         }
 
 
       }
 
-      catch (error) {
+      catch(error) {
 
 
-        const data =
-          formDataToObject(
-            formData
-          );
+        submitButton.disabled =
+          false;
 
 
-        saveOffline(data);
+        submitButton.textContent =
+          "🎭 Feedback absenden";
 
 
-        formArea.style.display =
-          "none";
+        showError(
+          "Die Übertragung war gerade nicht möglich. Es wurden keine Daten lokal gespeichert. Bitte versuche es später erneut."
+        );
 
-
-        successArea.style.display =
-          "block";
-
-
-        successText.textContent =
-          "Die Übertragung war gerade nicht möglich. Dein Feedback wurde deshalb auf diesem Gerät gespeichert und wird beim nächsten Online-Aufruf erneut übertragen.";
-
-
-        form.reset();
-
-
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
 
       }
 
@@ -1985,11 +2413,6 @@
     }
 
   );
-
-
-  /* GESPEICHERTES FEEDBACK BEIM LADEN SENDEN */
-
-  sendStoredFeedback();
 
 </script>
 
