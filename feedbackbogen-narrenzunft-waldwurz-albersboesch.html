@@ -3,20 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f3eadf">
+  <meta name="theme-color" content="#e7ead8">
 
   <title>Feedback | PH Finanzen & Narrenzunft Waldwurz Albersbösch 1980 e. V.</title>
 
   <style>
 
     :root {
-      --bg: #f3eadf;
-      --bg2: #ead9c7;
+      --bg: #e7ead8;
+      --bg2: #d9dfc3;
 
-      --card: rgba(255,255,255,.76);
+      --card: rgba(255,255,255,.78);
 
-      --green: #71843a;
-      --green-light: #9caf63;
+      --green: #6f8738;
+      --green-light: #a5b967;
+      --green-soft: #dce5c5;
+      --green-dark: #4f6429;
 
       --red: #b84936;
       --red-light: #d16a55;
@@ -24,13 +26,13 @@
       --orange: #d9842f;
       --orange-light: #efb469;
 
-      --brown: #6a4a35;
+      --brown: #604a38;
 
-      --text: #2f261f;
-      --muted: #6f6258;
-      --border: rgba(84,65,50,.16);
+      --text: #2d3024;
+      --muted: #68705b;
+      --border: rgba(79,100,41,.18);
 
-      --success: #789b56;
+      --success: #718d46;
     }
 
     * {
@@ -49,18 +51,23 @@
       background:
         radial-gradient(
           circle at top left,
-          rgba(209,106,85,.22),
-          transparent 34%
+          rgba(184,73,54,.12),
+          transparent 32%
         ),
         radial-gradient(
-          circle at bottom right,
-          rgba(156,175,99,.22),
-          transparent 32%
+          circle at top right,
+          rgba(111,135,56,.28),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at bottom left,
+          rgba(165,185,103,.30),
+          transparent 38%
         ),
         linear-gradient(
           135deg,
-          var(--bg),
-          var(--bg2)
+          #eef0e1,
+          #d9dfc3
         );
 
       min-height: 100vh;
@@ -83,15 +90,15 @@
       width: 100%;
       max-width: 1100px;
 
-      background: rgba(255,250,244,.94);
+      background: rgba(250,250,241,.95);
 
-      border: 1px solid var(--border);
+      border: 1px solid rgba(79,100,41,.18);
       border-radius: 30px;
 
       overflow: hidden;
 
       box-shadow:
-        0 24px 60px rgba(90,60,35,.16);
+        0 24px 60px rgba(66,76,43,.16);
 
       backdrop-filter: blur(15px);
     }
@@ -111,14 +118,14 @@
       gap: 28px;
 
       border-bottom:
-        1px solid rgba(217,132,47,.22);
+        1px solid rgba(111,135,56,.24);
 
       background:
         linear-gradient(
           105deg,
-          rgba(255,244,232,.98),
-          rgba(209,106,85,.10) 48%,
-          rgba(156,175,99,.14)
+          #f7f4e9 0%,
+          #edf0dc 42%,
+          #dce5c5 100%
         );
     }
 
@@ -144,15 +151,13 @@
       overflow: hidden;
 
       box-shadow:
-        0 10px 26px rgba(90,60,35,.12);
+        0 10px 26px rgba(79,100,41,.10);
     }
 
     .ph-logo-box img {
       width: 100%;
       height: 100%;
-
       object-fit: contain;
-
       transform: scale(1.42);
       transform-origin: center;
     }
@@ -179,14 +184,13 @@
       font-style: italic;
 
       letter-spacing: -1px;
-
       line-height: 1;
 
       transform: rotate(-6deg);
 
       text-shadow:
         0 1px 0 rgba(255,255,255,.5),
-        0 2px 5px rgba(90,60,35,.12);
+        0 2px 5px rgba(79,100,41,.10);
     }
 
 
@@ -289,12 +293,12 @@
       border-radius: 999px;
 
       background:
-        rgba(127,154,58,.14);
+        rgba(165,185,103,.24);
 
       border:
-        1px solid rgba(127,154,58,.26);
+        1px solid rgba(111,135,56,.28);
 
-      color: #53652b;
+      color: var(--green-dark);
 
       font-size: 14px;
       font-weight: 700;
@@ -311,11 +315,11 @@
 
       letter-spacing: -1px;
 
-      color: #2f261f;
+      color: #2d3024;
     }
 
     h1 span {
-      color: var(--orange);
+      color: var(--green-dark);
     }
 
     .lead {
@@ -335,27 +339,25 @@
 
     .partner-box {
       margin-top: 26px;
-
       padding: 20px;
-
       border-radius: 20px;
 
       background:
         linear-gradient(
           135deg,
-          rgba(209,106,85,.10),
-          rgba(156,175,99,.11)
+          rgba(165,185,103,.22),
+          rgba(220,229,197,.55)
         );
 
       border:
-        1px solid rgba(217,132,47,.18);
+        1px solid rgba(111,135,56,.22);
 
       box-shadow:
-        0 8px 20px rgba(90,60,35,.05);
+        0 8px 20px rgba(79,100,41,.06);
     }
 
     .partner-box strong {
-      color: #b46325;
+      color: var(--green-dark);
     }
 
     .partner-box p {
@@ -380,27 +382,27 @@
 
     .form-card {
       padding: 22px;
-
       border-radius: 22px;
 
       background:
-        rgba(255,255,255,.78);
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.92),
+          rgba(235,240,218,.76)
+        );
 
       border:
-        1px solid var(--border);
+        1px solid rgba(111,135,56,.16);
 
       box-shadow:
-        0 8px 22px rgba(90,60,35,.06);
+        0 8px 22px rgba(79,100,41,.06);
     }
 
     .section-title {
       font-size: 20px;
-
       font-weight: 800;
-
       margin-bottom: 7px;
-
-      color: #31261f;
+      color: #2d3024;
     }
 
     .required-star {
@@ -409,9 +411,7 @@
 
     .section-hint {
       color: var(--muted);
-
       font-size: 14px;
-
       margin-bottom: 15px;
     }
 
@@ -422,10 +422,7 @@
 
     .rating {
       display: grid;
-
-      grid-template-columns:
-        repeat(5, 1fr);
-
+      grid-template-columns: repeat(5, 1fr);
       gap: 9px;
     }
 
@@ -439,55 +436,53 @@
 
     .rating-box {
       padding: 12px 5px;
-
       border-radius: 14px;
-
       text-align: center;
 
       background:
-        rgba(245,238,230,.85);
+        rgba(248,249,240,.92);
 
       border:
-        1px solid rgba(90,70,50,.08);
+        1px solid rgba(111,135,56,.12);
 
       transition: .18s ease;
 
-      color: #33281f;
+      color: #2f3026;
     }
 
     .rating-box:hover {
       background:
-        rgba(239,180,105,.16);
+        rgba(165,185,103,.15);
     }
 
     .rating-number {
       display: block;
-
       font-size: 19px;
-
       font-weight: 800;
     }
 
     .rating-emoji {
       display: block;
-
       margin-top: 4px;
-
       font-size: 19px;
     }
 
     .rating input:checked + .rating-box {
       background:
-        rgba(239,180,105,.26);
+        linear-gradient(
+          135deg,
+          rgba(165,185,103,.30),
+          rgba(220,229,197,.65)
+        );
 
       border-color:
-        var(--orange);
+        var(--green);
 
       transform:
         translateY(-2px);
 
       box-shadow:
-        0 5px 18px rgba(217,132,47,.11);
+        0 5px 18px rgba(111,135,56,.10);
     }
 
 
@@ -501,7 +496,7 @@
       width: 100%;
 
       border:
-        1px solid rgba(90,70,50,.14);
+        1px solid rgba(111,135,56,.16);
 
       outline: none;
 
@@ -510,7 +505,7 @@
       background:
         rgba(255,255,255,.96);
 
-      color: #2f261f;
+      color: #2d3024;
 
       padding: 14px 15px;
 
@@ -521,30 +516,26 @@
 
     input::placeholder,
     textarea::placeholder {
-      color: #8b8179;
+      color: #7b816d;
     }
 
     textarea {
       resize: vertical;
-
       min-height: 95px;
     }
 
     input:focus,
     textarea:focus {
       box-shadow:
-        0 0 0 3px rgba(217,132,47,.18);
+        0 0 0 3px rgba(111,135,56,.18);
 
       border-color:
-        rgba(217,132,47,.45);
+        rgba(111,135,56,.46);
     }
 
     .two-cols {
       display: grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
 
@@ -560,37 +551,40 @@
 
     .checkbox {
       display: flex;
-
       align-items: flex-start;
-
       gap: 11px;
 
       padding: 13px;
-
       border-radius: 14px;
-
       cursor: pointer;
 
       background:
-        rgba(255,255,255,.80);
+        rgba(248,249,240,.92);
 
       border:
-        1px solid rgba(90,70,50,.10);
+        1px solid rgba(111,135,56,.13);
 
       transition: .15s ease;
     }
 
     .checkbox:hover {
       background:
-        rgba(156,175,99,.10);
+        rgba(165,185,103,.18);
+
+      border-color:
+        rgba(111,135,56,.28);
     }
 
     .checkbox:has(input:checked) {
       background:
-        rgba(156,175,99,.18);
+        linear-gradient(
+          135deg,
+          rgba(165,185,103,.30),
+          rgba(220,229,197,.65)
+        );
 
       border-color:
-        rgba(113,132,58,.48);
+        rgba(79,100,41,.58);
     }
 
     .checkbox input {
@@ -599,26 +593,21 @@
 
       margin-top: 2px;
 
-      accent-color:
-        var(--green);
+      accent-color: var(--green);
 
       flex-shrink: 0;
     }
 
     .checkbox-title {
       font-weight: 700;
-      color: #33281f;
+      color: #2d3024;
     }
 
     .checkbox-desc {
       display: block;
-
       margin-top: 3px;
-
-      color: #756b64;
-
+      color: #68705b;
       font-size: 12px;
-
       line-height: 1.4;
     }
 
@@ -629,30 +618,22 @@
 
     .legal {
       display: flex;
-
       gap: 10px;
-
       font-size: 13px;
-
       color: var(--muted);
-
       line-height: 1.5;
     }
 
     .legal input {
       margin-top: 3px;
-
       width: 17px;
       height: 17px;
-
-      accent-color:
-        var(--green);
-
+      accent-color: var(--green);
       flex-shrink: 0;
     }
 
     a {
-      color: #b35f23;
+      color: var(--green-dark);
     }
 
 
@@ -663,11 +644,8 @@
     .submit-button,
     .discover-button {
       width: 100%;
-
       border: none;
-
       border-radius: 17px;
-
       padding: 17px 20px;
 
       background:
@@ -680,17 +658,13 @@
       color: #ffffff;
 
       font-size: 18px;
-
       font-weight: 900;
-
       cursor: pointer;
-
       transition: .2s ease;
 
       text-decoration: none;
 
       display: inline-block;
-
       text-align: center;
 
       box-shadow:
@@ -708,9 +682,7 @@
 
     .submit-button:disabled {
       opacity: .6;
-
       cursor: default;
-
       transform: none;
     }
 
@@ -721,28 +693,23 @@
 
     .network-status {
       margin-top: 8px;
-
       padding: 10px 12px;
-
       border-radius: 12px;
-
       text-align: center;
-
       font-size: 12px;
-
       line-height: 1.4;
 
       background:
-        rgba(255,255,255,.56);
+        rgba(235,240,218,.65);
 
-      color: #7b7068;
+      color: #6c755a;
 
       border:
-        1px solid rgba(90,70,50,.08);
+        1px solid rgba(111,135,56,.10);
     }
 
     .network-status.online {
-      color: #627d39;
+      color: var(--green-dark);
     }
 
     .network-status.offline {
@@ -756,11 +723,8 @@
 
     .success {
       display: none;
-
       text-align: center;
-
       padding: 70px 30px;
-
       color: var(--text);
     }
 
@@ -770,76 +734,59 @@
 
     .success h2 {
       margin: 15px 0 10px;
-
       font-size: 36px;
-
-      color: #33281f;
+      color: #2d3024;
     }
 
     .success p {
       max-width: 560px;
-
       margin: 0 auto;
-
       color: var(--muted);
-
       font-size: 17px;
-
       line-height: 1.6;
     }
 
     .success-next {
       margin: 28px auto 0;
-
       max-width: 560px;
-
       padding: 24px;
-
       border-radius: 20px;
 
       background:
         linear-gradient(
           135deg,
-          rgba(156,175,99,.16),
-          rgba(209,106,85,.10)
+          rgba(165,185,103,.22),
+          rgba(220,229,197,.55)
         );
 
       border:
-        1px solid rgba(217,132,47,.20);
+        1px solid rgba(111,135,56,.22);
 
       box-shadow:
-        0 8px 20px rgba(90,60,35,.05);
+        0 8px 20px rgba(79,100,41,.06);
     }
 
     .success-next h3 {
       margin: 0 0 10px;
-
       font-size: 22px;
-
-      color: #a85821;
+      color: var(--green-dark);
     }
 
     .success-next p {
       margin-bottom: 20px;
-
       font-size: 16px;
     }
 
     .discover-button {
       width: auto;
-
       min-width: 240px;
-
       padding: 15px 22px;
-
       font-size: 16px;
     }
 
     .success-brand {
       margin-top: 28px;
-
-      color: #a85d29;
-
+      color: var(--green-dark);
       font-weight: 800;
     }
 
@@ -852,16 +799,13 @@
 
       .brand-header {
         padding: 20px 12px;
-
         gap: 14px;
-
         flex-wrap: wrap;
       }
 
       .ph-logo-box {
         width: 180px;
         height: 105px;
-
         border-radius: 17px;
       }
 
@@ -884,11 +828,8 @@
 
       .waldwurz-spruch {
         max-width: 205px;
-
         font-size: 12px;
-
         padding-left: 12px;
-
         line-height: 1.5;
       }
 
@@ -906,7 +847,6 @@
 
       .page {
         padding: 12px;
-
         align-items: flex-start;
       }
 
@@ -916,9 +856,7 @@
 
       .brand-header {
         flex-direction: column;
-
         gap: 13px;
-
         padding:
           20px 12px 24px;
       }
@@ -926,7 +864,6 @@
       .ph-logo-box {
         width: 190px;
         height: 108px;
-
         border-radius: 17px;
       }
 
@@ -936,16 +873,13 @@
 
       .brand-und {
         font-size: 25px;
-
         margin:
           -1px 0;
       }
 
       .waldwurz-area {
         width: 100%;
-
         justify-content: center;
-
         gap: 16px;
       }
 
@@ -956,11 +890,8 @@
 
       .waldwurz-spruch {
         max-width: 190px;
-
         font-size: 12px;
-
         line-height: 1.5;
-
         padding-left: 13px;
       }
 
@@ -970,7 +901,6 @@
 
       .content {
         display: block;
-
         padding: 24px 18px;
       }
 
@@ -1053,9 +983,7 @@
 
       .waldwurz-spruch {
         max-width: 175px;
-
         font-size: 11px;
-
         padding-left: 10px;
       }
     }
@@ -1064,50 +992,35 @@
 
 </head>
 
-
 <body>
-
 
 <div class="page">
 
-
   <main class="shell">
 
-
-    <!-- =====================================================
-         CO-BRANDING
-    ====================================================== -->
+    <!-- CO-BRANDING -->
 
     <header class="brand-header">
 
-
       <div class="ph-logo-box">
-
         <img
           src="ph-logo.png"
           alt="PH Finanzen Logo"
         >
-
       </div>
-
 
       <div class="brand-und">
         und
       </div>
 
-
       <div class="waldwurz-area">
 
-
         <div class="waldwurz-logo-box">
-
           <img
             src="narrenzunft-albersboesch-logo.png"
             alt="Narrenzunft Waldwurz Albersbösch 1980 e. V."
           >
-
         </div>
-
 
         <div class="waldwurz-spruch">
 
@@ -1129,73 +1042,49 @@
 
         </div>
 
-
       </div>
-
 
     </header>
 
 
-    <!-- =====================================================
-         FORMULAR
-    ====================================================== -->
+    <!-- FORMULAR -->
 
     <div
       id="formArea"
       class="content"
     >
 
-
       <!-- LINKE SEITE -->
 
       <section class="intro">
-
 
         <div class="badge">
           🎭 Vereins-Feedback
         </div>
 
-
         <h1>
-
           Deine Meinung<br>
-
-          <span>
-            zählt.
-          </span>
-
+          <span>zählt.</span>
         </h1>
 
-
         <p class="lead">
-
           Gemeinsam für die Narrenzunft Waldwurz Albersbösch 1980 e. V.:
           Gib uns kurz dein Feedback und hilf dabei,
           die Zusammenarbeit und das Vereinsleben weiterzuentwickeln.
-
         </p>
-
 
         <div class="partner-box">
 
-
           <strong>
-
             PH Finanzen & Narrenzunft Waldwurz Albersbösch 1980 e. V.
-
           </strong>
 
-
           <p>
-
             Als Vereinspartner möchten wir nicht nur unterstützen,
             sondern auch wissen, was euch wichtig ist.
-
           </p>
 
-
         </div>
-
 
       </section>
 
@@ -1204,154 +1093,89 @@
 
       <section>
 
-
         <form
           id="feedbackForm"
           action="https://formspree.io/f/moeakpep"
           method="POST"
         >
 
-
           <!-- BEWERTUNG -->
 
           <div class="form-card">
 
-
             <div class="section-title">
-
               Wie zufrieden bist du?
-
               <span class="required-star">*</span>
-
             </div>
-
 
             <div class="section-hint">
               Einfach kurz auswählen.
             </div>
 
-
             <div class="rating">
 
-
               <label>
-
                 <input
                   type="radio"
                   name="Bewertung"
                   value="1"
                   required
                 >
-
                 <div class="rating-box">
-
-                  <span class="rating-number">
-                    1
-                  </span>
-
-                  <span class="rating-emoji">
-                    😕
-                  </span>
-
+                  <span class="rating-number">1</span>
+                  <span class="rating-emoji">😕</span>
                 </div>
-
               </label>
 
-
               <label>
-
                 <input
                   type="radio"
                   name="Bewertung"
                   value="2"
                 >
-
                 <div class="rating-box">
-
-                  <span class="rating-number">
-                    2
-                  </span>
-
-                  <span class="rating-emoji">
-                    🙁
-                  </span>
-
+                  <span class="rating-number">2</span>
+                  <span class="rating-emoji">🙁</span>
                 </div>
-
               </label>
 
-
               <label>
-
                 <input
                   type="radio"
                   name="Bewertung"
                   value="3"
                 >
-
                 <div class="rating-box">
-
-                  <span class="rating-number">
-                    3
-                  </span>
-
-                  <span class="rating-emoji">
-                    🙂
-                  </span>
-
+                  <span class="rating-number">3</span>
+                  <span class="rating-emoji">🙂</span>
                 </div>
-
               </label>
 
-
               <label>
-
                 <input
                   type="radio"
                   name="Bewertung"
                   value="4"
                 >
-
                 <div class="rating-box">
-
-                  <span class="rating-number">
-                    4
-                  </span>
-
-                  <span class="rating-emoji">
-                    😊
-                  </span>
-
+                  <span class="rating-number">4</span>
+                  <span class="rating-emoji">😊</span>
                 </div>
-
               </label>
 
-
               <label>
-
                 <input
                   type="radio"
                   name="Bewertung"
                   value="5"
                 >
-
                 <div class="rating-box">
-
-                  <span class="rating-number">
-                    5
-                  </span>
-
-                  <span class="rating-emoji">
-                    🤩
-                  </span>
-
+                  <span class="rating-number">5</span>
+                  <span class="rating-emoji">🤩</span>
                 </div>
-
               </label>
 
-
             </div>
-
 
           </div>
 
@@ -1360,22 +1184,18 @@
 
           <div class="form-card">
 
-
             <div class="section-title">
               Dein Feedback
             </div>
-
 
             <div class="section-hint">
               Optional – ein paar Worte reichen völlig.
             </div>
 
-
             <textarea
               name="Feedback"
               placeholder="Was gefällt dir? Was können wir noch besser machen?"
             ></textarea>
-
 
           </div>
 
@@ -1384,192 +1204,133 @@
 
           <div class="form-card">
 
-
             <div class="section-title">
-
               Wobei können wir dich unterstützen?
-
               <span class="required-star">*</span>
-
             </div>
-
 
             <div class="section-hint">
-
               Mindestens ein Thema auswählen · Mehrfachauswahl möglich
-
             </div>
-
 
             <div
               class="checkbox-group"
               id="themenGruppe"
             >
 
-
               <label class="checkbox">
-
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Geldanlage & Vermögensaufbau"
                 >
-
                 <span>
-
                   <span class="checkbox-title">
                     💰 Geldanlage & Vermögensaufbau
                   </span>
-
                   <span class="checkbox-desc">
                     Sparen, Investment und langfristiger Vermögensaufbau
                   </span>
-
                 </span>
-
               </label>
 
-
               <label class="checkbox">
-
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Immobilien & Finanzierung"
                 >
-
                 <span>
-
                   <span class="checkbox-title">
                     🏡 Immobilien & Finanzierung
                   </span>
-
                   <span class="checkbox-desc">
                     Immobilie kaufen, finanzieren oder modernisieren
                   </span>
-
                 </span>
-
               </label>
 
-
               <label class="checkbox">
-
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Absicherung & Vorsorge"
                 >
-
                 <span>
-
                   <span class="checkbox-title">
                     🛡️ Absicherung & Vorsorge
                   </span>
-
                   <span class="checkbox-desc">
                     Persönliche Absicherung, Vorsorge und Versicherungen
                   </span>
-
                 </span>
-
               </label>
 
-
               <label class="checkbox">
-
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Häs & Vereinsausstattung"
                 >
-
                 <span>
-
                   <span class="checkbox-title">
                     🎭 Häs & Vereinsausstattung
                   </span>
-
                   <span class="checkbox-desc">
                     Fragen rund um Häs, Ausstattung und persönliches Eigentum
                   </span>
-
                 </span>
-
               </label>
 
-
               <label class="checkbox">
-
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Krankenversicherung"
                 >
-
                 <span>
-
                   <span class="checkbox-title">
                     ❤️ Krankenversicherung
                   </span>
-
                   <span class="checkbox-desc">
                     Gesetzlich, privat und Zusatzabsicherungen
                   </span>
-
                 </span>
-
               </label>
 
-
               <label class="checkbox">
-
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Eltern & Kinder"
                 >
-
                 <span>
-
                   <span class="checkbox-title">
                     👨‍👩‍👧 Eltern & Kinder
                   </span>
-
                   <span class="checkbox-desc">
                     Absicherung, Vorsorge und Vermögensaufbau für Familien
                   </span>
-
                 </span>
-
               </label>
 
-
               <label class="checkbox">
-
                 <input
                   type="checkbox"
                   name="Themen[]"
                   value="Empfehlungsgeber"
                 >
-
                 <span>
-
                   <span class="checkbox-title">
                     🤝 Empfehlungsgeber werden
                   </span>
-
                   <span class="checkbox-desc">
                     Du kennst jemanden, dem wir weiterhelfen können?
                   </span>
-
                 </span>
-
               </label>
 
-
             </div>
-
 
           </div>
 
@@ -1578,14 +1339,11 @@
 
           <div class="form-card">
 
-
             <div class="section-title">
               Wie dürfen wir dich erreichen?
             </div>
 
-
             <div class="two-cols">
-
 
               <input
                 type="text"
@@ -1595,7 +1353,6 @@
                 required
               >
 
-
               <input
                 type="text"
                 name="Nachname"
@@ -1604,12 +1361,9 @@
                 required
               >
 
-
             </div>
 
-
             <div style="margin-top:12px;">
-
 
               <input
                 type="tel"
@@ -1619,19 +1373,14 @@
                 required
               >
 
-
             </div>
-
 
             <div
               class="section-hint"
               style="margin-top:10px; margin-bottom:0;"
             >
-
               * Pflichtfelder
-
             </div>
-
 
           </div>
 
@@ -1640,7 +1389,6 @@
 
           <label class="legal">
 
-
             <input
               type="checkbox"
               name="Datenschutz akzeptiert"
@@ -1648,24 +1396,17 @@
               required
             >
 
-
             <span>
-
               Ich habe die
-
               <a
                 href="/datenschutz.html"
                 target="_blank"
               >
                 Datenschutzhinweise
               </a>
-
               gelesen.
-
               <span class="required-star">*</span>
-
             </span>
-
 
           </label>
 
@@ -1682,9 +1423,7 @@
             class="submit-button"
             type="submit"
           >
-
             🎭 Feedback absenden
-
           </button>
 
 
@@ -1692,70 +1431,51 @@
             id="networkStatus"
             class="network-status"
           >
-
             Verbindung wird geprüft …
-
           </div>
-
 
         </form>
 
-
       </section>
-
 
     </div>
 
 
-    <!-- =====================================================
-         ERFOLGSSEITE
-    ====================================================== -->
+    <!-- ERFOLGSSEITE -->
 
     <div
       id="successArea"
       class="success"
     >
 
-
       <div class="success-icon">
         🎭
       </div>
-
 
       <h2>
         Vielen Dank für dein Feedback!
       </h2>
 
-
       <p id="successText">
         Deine Angaben wurden erfolgreich übermittelt.
       </p>
 
-
       <p style="margin-top:18px;">
-
         Wenn du ein Thema ausgewählt hast,
         kommen wir gerne persönlich auf dich zu.
-
       </p>
 
-
       <div class="success-next">
-
 
         <h3>
           Du möchtest nicht so lange warten?
         </h3>
 
-
         <p>
-
           Dann verschaff dir schon jetzt einen ersten Überblick
           und entdecke, welche Themen zu dir und deiner
           aktuellen Situation passen.
-
         </p>
-
 
         <a
           href="https://www.ph-finanzen.de/was-passt-zu-dir.html"
@@ -1763,27 +1483,18 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-
           Was passt zu dir? →
-
         </a>
 
-
       </div>
-
 
       <div class="success-brand">
-
         PH Finanzen & Narrenzunft Waldwurz Albersbösch 1980 e. V.
-
       </div>
-
 
     </div>
 
-
   </main>
-
 
 </div>
 
@@ -1809,9 +1520,7 @@
     document.getElementById("submitButton");
 
 
-  /* =====================================================
-     MINDESTENS EIN THEMA
-  ===================================================== */
+  /* MINDESTENS EIN THEMA */
 
   const themenCheckboxen =
     document.querySelectorAll(
@@ -1833,11 +1542,9 @@
 
       themenCheckboxen[0]
         .setCustomValidity(
-
           mindestensEins
             ? ""
             : "Bitte wähle mindestens ein Thema aus."
-
         );
 
     }
@@ -1862,9 +1569,7 @@
   validateThemen();
 
 
-  /* =====================================================
-     ONLINE / OFFLINE STATUS
-  ===================================================== */
+  /* ONLINE / OFFLINE */
 
   function updateNetworkStatus() {
 
@@ -1915,9 +1620,7 @@
   updateNetworkStatus();
 
 
-  /* =====================================================
-     FORMDATA → OBJEKT
-  ===================================================== */
+  /* FORMDATA → OBJEKT */
 
   function formDataToObject(formData) {
 
@@ -1957,9 +1660,7 @@
   }
 
 
-  /* =====================================================
-     OFFLINE SPEICHERN
-  ===================================================== */
+  /* OFFLINE SPEICHERN */
 
   function saveOffline(data) {
 
@@ -1987,9 +1688,7 @@
   }
 
 
-  /* =====================================================
-     GESPEICHERTE DATEN SENDEN
-  ===================================================== */
+  /* GESPEICHERTE DATEN SENDEN */
 
   async function sendStoredFeedback() {
 
@@ -2107,9 +1806,7 @@
   }
 
 
-  /* =====================================================
-     FORMULAR ABSENDEN
-  ===================================================== */
+  /* FORMULAR ABSENDEN */
 
   form.addEventListener(
 
@@ -2147,9 +1844,7 @@
         new FormData(form);
 
 
-      /* =================================================
-         OFFLINE
-      ================================================= */
+      /* OFFLINE */
 
       if (!navigator.onLine) {
 
@@ -2189,9 +1884,7 @@
       }
 
 
-      /* =================================================
-         ONLINE → FORMSPREE
-      ================================================= */
+      /* ONLINE */
 
       try {
 
@@ -2294,9 +1987,7 @@
   );
 
 
-  /* =====================================================
-     GESPEICHERTES FEEDBACK BEIM LADEN SENDEN
-  ===================================================== */
+  /* GESPEICHERTES FEEDBACK BEIM LADEN SENDEN */
 
   sendStoredFeedback();
 
